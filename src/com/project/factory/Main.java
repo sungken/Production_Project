@@ -15,6 +15,7 @@ public class Main {
 		boolean loop = true;
 		Scanner scan = new Scanner(System.in);
 
+
 		while (loop) {
 
 			MainView.mainMenu();

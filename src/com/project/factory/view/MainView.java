@@ -103,4 +103,5 @@ public class MainView {
 		scan.nextLine();
 		System.out.println();
 	}
+
 }
