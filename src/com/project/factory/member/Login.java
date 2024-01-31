@@ -14,7 +14,7 @@ public class Login {
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				String[] temp = line.split(",");
+				String[] temp = line.split("■");
 
 				if (temp[0].equals(id) && temp[1].equals(pw)) {
 					// 로그인 성공 > 계속 유지

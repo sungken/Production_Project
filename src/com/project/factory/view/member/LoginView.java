@@ -5,9 +5,9 @@ import java.util.Scanner;
 import com.project.factory.member.Login;
 
 public class LoginView {
-	public void loginView() {
+	public static void loginView() {
 		Scanner scan = new Scanner(System.in);
-		
+//		Main.title();
 		System.out.println("--------------------------");
 		System.out.print("아이디(사원번호) : ");
 		String id = scan.nextLine();

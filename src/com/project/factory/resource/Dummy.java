@@ -14,6 +14,7 @@ public class Dummy {
 			String depart = "";
 			String id = "";
 			String name = "";
+			String humanNum = "";
 			String result = "";
 			String email = "";
 
@@ -25,6 +26,20 @@ public class Dummy {
 				
 				name = lastName[rnd.nextInt(lastName.length)] + firstName[rnd.nextInt(firstName.length)]
 						+ firstName[rnd.nextInt(firstName.length)];
+				
+			for (int j = 0; j < 30; j++) {
+				//생년월일 생성
+				//생년
+				String[] num1 = {"7", "8", "9"};
+				String[] num2 = {"0","1","2","3","4","5","6","7","8","9"};
+				//월
+				String[] num3 = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+				//일
+				String[] num4 = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
+				
+				humanNum = num1[rnd.nextInt(num1.length)] + num2[rnd.nextInt(num2.length)] 
+						+ num3[rnd.nextInt(num3.length)] + num4[rnd.nextInt(num4.length)];
+			}
 				
 				
 				//주소 생성
@@ -97,9 +112,16 @@ public class Dummy {
 
 				// 주소 생성
 
-				// 사원번호■비밀번호■이름■전화번호■주소■직급■부서■생년월일■이메일(사원번호@auto.com)
-				result = id + "■" + "134113411341" + "■" + name + "■" + phoneNum + "■" + address + "■" + "2" + "■" + depart
-						+ "■" + email;
+				// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■생년월일■이메일(사원번호@auto.com)
+				result = id + "■" 
+						+ "134113411341" + "■" 
+						+ name + "■" 
+						+ humanNum + "■" 
+						+ phoneNum + "■" 
+						+ address + "■" 
+						+ "2" + "■" 
+						+ depart + "■" 
+						+ email;
 
 				writer.write(result + "\r\n");
 
