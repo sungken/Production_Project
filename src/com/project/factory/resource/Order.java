@@ -3,9 +3,6 @@ package com.project.factory.resource;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import com.test.java.member.Member;
-import com.test.java.resource.Path;
-
 public class Order {
 	// 주문서
 
