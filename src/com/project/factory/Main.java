@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 
 import com.project.factory.member.Login;
-
+import com.project.factory.dept.CommutePush;
 import com.project.factory.member.Find;
-
+import com.project.factory.member.Identify;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
@@ -47,13 +47,17 @@ public class Main {
 				//Logout.logout(); > 메서드 생성 필요
 			} else if (sel.equals("4")) {
 				//아이디/비번 찾기
-				Find.find();
+//				if (Identify.auth == null) {
+					Find.find();
+//				}
 			} else if (sel.equals("5")) {
 				//개인정보 조회 및 수정
 				//Modify.modify(); > 메서드 생성 필요
 			} else if (sel.equals("6")) {
 				//근태 등록
-				//CommutePush.commutePush(); > 메서드 생성 필요
+//				if (Identify.auth != null) {
+				CommutePush.commutePush(); 
+//				}
 			} else if (sel.equals("7")) {
 				//공지 사항(읽기)
 				//ReadBoard board = new ReadBoard();

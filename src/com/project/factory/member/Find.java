@@ -10,25 +10,27 @@ import com.project.factory.view.member.FindView;
 
 public class Find {
 	
+	//TODO Find 변수와 메서드 모두 삭제하고 다시 만듬
+	
 	//TODO find 메서드 추가
 	//1. 아이디 찾기
 	//2. 비밀먼호 찾기
     public static void find() {
-        //Data.load();
 
-        Scanner scan = new Scanner(System.in);
-
+		Scanner scan = new Scanner(System.in);
+		
         FindView.findMenu();
+        
+        Main.selectNum = scan.nextLine();
 
-        String selNum = scan.nextLine();
-
-        if (selNum.equals("1")) {
+        
+        
+        if (Main.selectNum.equals("1")) {
             findId();
-        } else if (selNum.equals("2")) {
+        } else if (Main.selectNum.equals("2")) {
             findPw();
         }
-
-        // 다른 코드...
+        
     }
 
     //TODO findId 메서드 추가
