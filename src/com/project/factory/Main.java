@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
+import com.project.factory.member.Modify;
 import com.project.factory.resource.Data;
 import com.project.factory.view.MainView;
 
@@ -52,7 +53,7 @@ public class Main {
 					// Logout.logout(); > 메서드 생성 필요
 				} else if (sel.equals("5")) {
 					// 개인정보 조회 및 수정
-					// Modify.modify(); > 메서드 생성 필요
+					Modify.modify(); 
 				} else if (sel.equals("6")) {
 					// 근태 등록
 					// CommutePush.commutePush(); > 메서드 생성 필요
