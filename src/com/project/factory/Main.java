@@ -4,7 +4,11 @@ package com.project.factory;
 import java.lang.reflect.Member;
 import java.util.Scanner;
 
+
 import com.project.factory.member.Login;
+
+import com.project.factory.member.Find;
+
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
@@ -43,7 +47,7 @@ public class Main {
 				//Logout.logout(); > 메서드 생성 필요
 			} else if (sel.equals("4")) {
 				//아이디/비번 찾기
-				//Find.fine(); > 메서드 생성 필요
+				Find.find();
 			} else if (sel.equals("5")) {
 				//개인정보 조회 및 수정
 				//Modify.modify(); > 메서드 생성 필요

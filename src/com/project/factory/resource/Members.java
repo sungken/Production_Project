@@ -99,5 +99,10 @@ public class Members {
 	public String toString() {
 		return super.toString();
 	}
+
+	public String getMemberId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
