@@ -4,11 +4,15 @@ package com.project.factory;
 import java.lang.reflect.Member;
 import java.util.Scanner;
 
+
+import com.project.factory.member.Login;
+
 import com.project.factory.member.Find;
+
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
-import com.project.factory.view.member.LoginView;
+//import com.project.factory.view.member.LoginView;
 
 public class Main {
 
@@ -36,7 +40,7 @@ public class Main {
 				//SignUp.signUp(); > 메서드 생성 필요
 			} else if (sel.equals("2")) {
 				//로그인
-				LoginView.loginView();
+				Login.login();
 				//Login.login(); > 메서드 생성 필요
 			} else if (sel.equals("3")) {
 				//로그아웃
