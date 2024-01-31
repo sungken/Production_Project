@@ -9,6 +9,7 @@ public class MainView {
 
 	// TODO mainMenu 메서드 추가
 	public static void mainMenu() {
+		System.out.println();
 		MainView.doubleLine();
 		System.out.println("            쌍용 테크");
 		MainView.doubleLine();
@@ -17,7 +18,7 @@ public class MainView {
 		if (Identify.auth == null) {
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
-			System.out.println("4. 아이디(사원번호) / 비밀번호 찾기");
+			System.out.println("4. 아이디/비밀번호 찾기");
 		} else {
 			System.out.println("3. 로그아웃");
 		}
@@ -83,15 +84,9 @@ public class MainView {
 
 		System.out.println("0. 종료");
 		MainView.singnleLine();
-		System.out.print("번호 입력 : ");
+		System.out.print("번호 입력: ");
 	}
 
-	// TODO title 메서드 추가
-	public static void title(String title) {
-		MainView.singnleLine();
-		System.out.println("             " + title);
-		MainView.singnleLine();
-	}
 
 	// TODO pause 메서드 추가
 	public static void pause() {
@@ -109,7 +104,8 @@ public class MainView {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println();
-		System.out.print("계속 진행하시겠습니까?(Y/N)");
+		System.out.print("계속 진행하시겠습니까?(Y/N)\n");
+		System.out.print("입력: ");
 		Main.answer = scan.nextLine();
 		
 //		if(Main.answer.equals("Y") || Main.answer.equals("y")) {
