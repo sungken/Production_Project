@@ -1,6 +1,6 @@
 package com.project.factory;
 
-import com.project.factory.member.SignUp;
+import com.project.factory.view.member.SignUpView;
 
 public class Main {
 	int selectNum;
@@ -11,7 +11,7 @@ public class Main {
 //		Dummy.makeUserData("B");
 //		Dummy.makeUserData("C");
 //		Dummy.makeUserData("D");
-		SignUp.cheackid();
+		SignUpView.singUpView();
 
 	}
 
