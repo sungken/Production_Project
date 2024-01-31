@@ -73,10 +73,10 @@ public class Members {
 	
 	/**
 	 * 
-	 * @param 사원번호
-	 * @param 비밀번호
-	 * @param 이름
-	 * @param 생년월일
+	 * @param id = 사원번호
+	 * @param pw =비밀번호
+	 * @param name = 이름
+	 * @param birth = 생년월일
 	 * @param 휴대폰번호
 	 * @param 주소
 	 * @param 권한

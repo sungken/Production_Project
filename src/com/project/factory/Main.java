@@ -1,13 +1,13 @@
 package com.project.factory;
 
-<<<<<<< HEAD
-import com.project.factory.resource.Dummy;
-import com.project.factory.view.member.LoginView;
-=======
+
+import java.lang.reflect.Member;
 import java.util.Scanner;
 
+import com.project.factory.resource.Data;
+import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
->>>>>>> upstream/main
+import com.project.factory.view.member.LoginView;
 
 public class Main {
 
@@ -16,16 +16,13 @@ public class Main {
 	public static String answer;
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		
-		LoginView.loginView();
-=======
+
 		//TODO loop 변수 추가 > 초기 화면 메뉴 반복문
 		boolean loop = true;
 		Scanner scan = new Scanner(System.in);
->>>>>>> upstream/main
 
 
+		Data.load();
 		while (loop) {
 
 			MainView.mainMenu();
@@ -38,6 +35,7 @@ public class Main {
 				//SignUp.signUp(); > 메서드 생성 필요
 			} else if (sel.equals("2")) {
 				//로그인
+				LoginView.loginView();
 				//Login.login(); > 메서드 생성 필요
 			} else if (sel.equals("3")) {
 				//로그아웃
@@ -106,6 +104,7 @@ public class Main {
 			} else if (sel.equals("0")) {
 				//종료
 				loop = false;
+				Data.save();
 			} else {
 				System.out.println("잘못된 번호입니다.");
 			}

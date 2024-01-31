@@ -22,7 +22,6 @@ public class MainView {
 			System.out.println("3. 로그아웃");
 		}
 
-		// Identify.level.equals("3")
 		// 사원, 관리자 공통
 		if (Identify.auth != null && (Identify.level.equals("1") || Identify.level.equals("2"))) {
 			System.out.println("5. 개인정보 조회 및 수정");
@@ -84,7 +83,6 @@ public class MainView {
 		System.out.println("0. 종료");
 		System.out.println("-------------------------------");
 		System.out.print("번호 입력 : ");
-		System.out.println();
 	}
 
 	//TODO title 메서드 추가 

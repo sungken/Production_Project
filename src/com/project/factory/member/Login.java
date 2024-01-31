@@ -19,8 +19,8 @@ public class Login {
 				if (temp[0].equals(id) && temp[1].equals(pw)) {
 					// 로그인 성공 > 계속 유지
 					Identify.auth = id;
-					Identify.level = temp[5];
-					Identify.dept = temp[6];
+					Identify.level = temp[6];
+					Identify.dept = temp[7];
 					
 				}
 				reader.close();
