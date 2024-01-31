@@ -24,7 +24,7 @@ public class Data {
 				// 홍길동,100,90,80
 				String[] temp = line.split("■");
 				
-				Members member = new Members(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], Integer.parseInt(temp[6]), temp[7], temp[8]);
+				Members member = new Members(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8]);
 				
 				memberList.add(member);
 
@@ -46,7 +46,16 @@ public class Data {
 			for(Members members : Data.memberList) {
 				
 				//Score 객체 1개 > 홍길동, 100, 90, 80
-				String line = String.format("%s■%s■%s■%s■%s■%s■%s■%s■%d■%s", members.getId(), members.getPw(), members.getName(), members.getBirth(), members.getPhoneNum(), members.getAddress(), members.getLevel(), members.getDept(), members.getEmail());
+				String line = String.format("%s■%s■%s■%s■%s■%s■%s■%s■%s"
+																, members.getId()
+																, members.getPw()
+																, members.getName()
+																, members.getBirth()
+																, members.getPhoneNum()
+																, members.getAddress()
+																, members.getLevel()
+																, members.getDept()
+																, members.getEmail());
 				
 				writer.write(line);
 				

@@ -7,7 +7,7 @@ public class Members {
 	private String birth;
 	private String phoneNum;
 	private String address;
-	private int level;
+	private String level;
 	private String dept;
 	private String email;
 
@@ -43,11 +43,11 @@ public class Members {
 		this.address = address;
 	}
 
-	public int getLevel() {
+	public String getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
@@ -83,7 +83,7 @@ public class Members {
 	 * @param 부서
 	 * @param 이메일
 	 */
-	public Members(String id, String pw, String name, String birth, String phoneNum, String address, int level, String dept, String email ) {
+	public Members(String id, String pw, String name, String birth, String phoneNum, String address, String level, String dept, String email ) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;

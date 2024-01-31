@@ -1,5 +1,7 @@
 package com.project.factory.member;
 
+import com.project.factory.resource.Members;
+
 //TODO 로그인한 사용자 정보 저장
 /**
  * 로그인한 사용자 정보 저장 클래스
