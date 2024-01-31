@@ -15,4 +15,6 @@ public class Identify {
 	
 	// 부서(생산, 유통, 인사, 경영) 
 	public static String dept;
+	
+	//TODO 이름 추가
 }

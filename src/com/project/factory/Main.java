@@ -1,14 +1,9 @@
 package com.project.factory;
 
-
 import java.lang.reflect.Member;
 import java.util.Scanner;
-
-
 import com.project.factory.member.Login;
-
 import com.project.factory.member.Find;
-
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;

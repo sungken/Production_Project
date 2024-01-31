@@ -2,7 +2,9 @@ package com.project.factory.member;
 
 import java.util.Scanner;
 
+import com.project.factory.Main;
 import com.project.factory.resource.Data;
+import com.project.factory.view.MainView;
 
 public class Login {
 	public static boolean login() {
@@ -17,13 +19,36 @@ public class Login {
 				Identify.auth = id;
 				Identify.level = Data.memberList.get(i).getLevel();
 				Identify.dept = Data.memberList.get(i).getDept();
-				System.out.println("성공");
-				System.out.println(Identify.level);
-				System.out.println(Identify.dept);
+				//아이디가 잘못입력된 경우
+			}else if(Data.memberList.get(i).getId().equals(id) && !Data.memberList.get(i).getPw().equals(pw)) {
+				System.out.println("아이디를 잘못 입력했습니다");
+				MainView.checkContinue();
+				MainView.singnleLine();
+				if(Main.answer == "Y") {
+					login();
+				}else {
+					MainView.mainMenu();
+				}
 				
-
+			}else if(!Data.memberList.get(i).getId().equals(id) && Data.memberList.get(i).getPw().equals(pw)) {
+				System.out.println("비밀번호를 잘못 입력했습니다");
+				MainView.checkContinue();
+				MainView.singnleLine();
+				if(Main.answer == "Y") {
+					login();
+				}else {
+					MainView.mainMenu();
+				}
+				
 			}else {
-				System.out.println("실패");
+				System.out.println("아이디와 비밀번호를 잘못 입력했습니다");
+				MainView.checkContinue();
+				MainView.singnleLine();
+				if(Main.answer == "Y") {
+					login();
+				}else {
+					MainView.mainMenu();
+				}
 			}
 
 		}

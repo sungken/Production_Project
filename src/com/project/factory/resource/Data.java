@@ -46,7 +46,7 @@ public class Data {
 			for(Members members : Data.memberList) {
 				
 				//Score 객체 1개 > 홍길동, 100, 90, 80
-				String line = String.format("%s■%s■%s■%s■%s■%s■%s■%s■%s"
+				String line = String.format("%s■%s■%s■%s■%s■%s■%s■%s■%s\r\n"
 																, members.getId()
 																, members.getPw()
 																, members.getName()
