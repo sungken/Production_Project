@@ -1,6 +1,7 @@
 package com.project.factory.dept.production.admin;
 
-public class PruductionManagement {
+//TODO ProductionManagement 클래스명 오타 수정
+public class ProductionManagement {
 	//생산관리
 	
 	
