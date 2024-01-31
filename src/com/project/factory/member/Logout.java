@@ -2,8 +2,13 @@ package com.project.factory.member;
 
 public class Logout {
 	
-//	this.id = null;
-//	this.pw = null;
-//	View.pause;
+	public void logout(){
+		Identify.auth = null;
+		Identify.dept = null;
+		Identify.level = null;
+	}
+	
+//	MainView.pause;
+	
 	
 }
