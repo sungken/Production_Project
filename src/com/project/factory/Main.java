@@ -1,8 +1,13 @@
 package com.project.factory;
 
+<<<<<<< HEAD
+import com.project.factory.resource.Dummy;
+import com.project.factory.view.member.LoginView;
+=======
 import java.util.Scanner;
 
 import com.project.factory.view.MainView;
+>>>>>>> upstream/main
 
 public class Main {
 
@@ -11,9 +16,14 @@ public class Main {
 	public static String answer;
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
+		
+		LoginView.loginView();
+=======
 		//TODO loop 변수 추가 > 초기 화면 메뉴 반복문
 		boolean loop = true;
 		Scanner scan = new Scanner(System.in);
+>>>>>>> upstream/main
 
 
 		while (loop) {
