@@ -32,7 +32,8 @@ public class MainView {
 
 		// 관리자 공통
 		if (Identify.auth != null && Identify.level.equals("1")) {
-			System.out.println("10. 사원 출근 조회");
+			//TODO 10번 사원 출/퇴근 조회로 이름 변경
+			System.out.println("10. 사원 출/퇴근 조회");
 			System.out.println("11. 재고 확인");
 			System.out.println("12. 공지사항 관리");
 		}

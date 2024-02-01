@@ -68,7 +68,7 @@ public class Main {
 					// 배송지 조회 및 유통
 					// CheckDest.checkDest(); > 메서드 생성 필요
 				} else if (sel.equals("10")) {
-					// 사원 출근 조회
+					// 사원 출/퇴근 조회
 					// CommuteSearch.commuteSearch(); > 메서드 생성 필요
 				} else if (sel.equals("11")) {
 					// 재고 확인
@@ -117,7 +117,6 @@ public class Main {
 					System.out.println("잘못된 번호입니다.");
 				}
 			}
-
 		} // while
 
 		scan.close();
