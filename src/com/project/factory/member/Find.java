@@ -10,25 +10,29 @@ import com.project.factory.view.member.FindView;
 
 public class Find {
 	
+	//TODO Find 변수와 메서드 모두 삭제하고 다시 만듬
+	
 	//TODO find 메서드 추가
 	//1. 아이디 찾기
 	//2. 비밀먼호 찾기
     public static void find() {
-        //Data.load();
 
-        Scanner scan = new Scanner(System.in);
-
+		Scanner scan = new Scanner(System.in);
+		
         FindView.findMenu();
+        
 
-        String selNum = scan.nextLine();
+        Main.selectNum = scan.nextLine();
 
-        if (selNum.equals("1")) {
+
+        if (Main.selectNum.equals("1")) {
             findId();
-        } else if (selNum.equals("2")) {
+        } else if (Main.selectNum.equals("2")) {
             findPw();
+        } else {
+        	System.out.println("잘못된 번호입니다.");
         }
-
-        // 다른 코드...
+        
     }
 
     //TODO findId 메서드 추가
@@ -50,15 +54,26 @@ public class Find {
         if (memberId != null) {
         	System.out.println();
             System.out.println("아이디: " + memberId + " 입니다.");
+            MainView.pause();
+            
         } else {
         	System.out.println();
             System.out.println("아이디를 찾을 수 없습니다.");
             MainView.checkContinue();
 
-            if(Main.answer.equals("Y") || Main.answer.equals("y")) {
-            	find();
-            	
-            }
+			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+				find();
+			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+
+				MainView.pause();
+
+			} else {
+				System.out.println();
+				MainView.singnleLine();
+				System.out.println();
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+				MainView.checkContinue();
+			}
          
         }
     }
@@ -91,6 +106,7 @@ public class Find {
         if (memberPw != null) {
         	System.out.println();
             System.out.println("비밀번호: " + memberPw);
+            MainView.pause();
         } else {
         	System.out.println();
             System.out.println("비밀번호를 찾을 수 없습니다.");
@@ -98,7 +114,18 @@ public class Find {
 
             if(Main.answer.equals("Y") || Main.answer.equals("y")) {
             	find();
-            }
+            	
+            } else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+          
+            MainView.pause();
+            	
+            } else {
+            	System.out.println();
+				MainView.singnleLine();
+				System.out.println();
+				System.out.println("잘못 입력입니다. 다시 입력해주세요.");
+				MainView.checkContinue();
+            } 
         }
     }
 
