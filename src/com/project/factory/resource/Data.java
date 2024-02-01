@@ -21,7 +21,6 @@ public class Data {
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				// 홍길동,100,90,80
 				String[] temp = line.split("■");
 				
 				Members member = new Members(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8]);
@@ -45,7 +44,6 @@ public class Data {
 			
 			for(Members members : Data.memberList) {
 				
-				//Score 객체 1개 > 홍길동, 100, 90, 80
 				String line = String.format("%s■%s■%s■%s■%s■%s■%s■%s■%s\r\n"
 																, members.getId()
 																, members.getPw()

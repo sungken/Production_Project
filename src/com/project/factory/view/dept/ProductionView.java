@@ -1,7 +1,6 @@
 package com.project.factory.view.dept;
 
-import com.project.factory.resource.Data;
-import com.project.factory.resource.Members;
+
 import com.project.factory.view.MainView;
 
 public class ProductionView {
