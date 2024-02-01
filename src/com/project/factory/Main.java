@@ -2,6 +2,8 @@ package com.project.factory;
 
 import java.util.Scanner;
 
+import com.project.factory.dept.production.admin.ProductionTarget;
+import com.project.factory.dept.production.admin.SetProductionTarget;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
@@ -80,6 +82,8 @@ public class Main {
 					// 사원 관리(입사, 퇴사)
 					// HRD.hrd(); > 메서드 생성 필요
 				} else if (sel.equals("14")) {
+					ProductionTarget.load_target();
+					SetProductionTarget.setProductionTarget();
 					// 생산 목표량 입력 및 수정
 					// ProductionTarget.productionTarget(); > 메서드 생성 필요
 				} else if (sel.equals("15")) {
