@@ -36,7 +36,8 @@ public class Data {
 			System.out.println("Data.load");
 			e.printStackTrace();
 		}
-
+		
+		
 	}
 	
 	public static void save() {
