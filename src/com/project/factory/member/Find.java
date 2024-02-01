@@ -19,7 +19,7 @@ public class Find {
         Scanner scan = new Scanner(System.in);
 
         FindView.findMenu();
-
+        
         String selNum = scan.nextLine();
 
         if (selNum.equals("1")) {

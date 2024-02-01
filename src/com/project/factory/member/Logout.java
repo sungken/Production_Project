@@ -2,7 +2,7 @@ package com.project.factory.member;
 
 public class Logout {
 	
-	public void logout(){
+	public static void logout(){
 		Identify.auth = null;
 		Identify.dept = null;
 		Identify.level = null;

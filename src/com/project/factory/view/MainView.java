@@ -74,10 +74,10 @@ public class MainView {
 		}
 
 		// 이메일(경영부 관리자, 대리점)
-		if (Identify.auth != null
-				&& ((Identify.level.equals("1") && Identify.dept.equals("경영")) || Identify.level.equals("3")))
-			System.out.println("22. 이메일");
+		if (Identify.auth != null && ((Identify.level.equals("1") && Identify.dept.equals("경영")) || Identify.level.equals("3"))) {
 
+			System.out.println("22. 이메일");
+		}
 		// 대리점
 		if (Identify.auth != null && Identify.level.equals("3")) {
 			System.out.println("23. 주문서 관리");
