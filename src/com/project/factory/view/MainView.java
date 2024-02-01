@@ -124,5 +124,10 @@ public class MainView {
 	public static void singnleLine() {
 		System.out.println("-------------------------------");
 	}
+	
+	//스캐너 호출 메서드 추가
+	public static void scanner() {
+		Scanner scan = new Scanner(System.in);
+	}
 
 }
