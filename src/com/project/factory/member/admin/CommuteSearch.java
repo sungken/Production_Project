@@ -3,6 +3,7 @@ package com.project.factory.member.admin;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.project.factory.Today;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.user.Commute;
@@ -37,7 +38,7 @@ public class CommuteSearch {
 			boolean isdate = memberCommute(date);
 	
 			
-			if(checkDate(date)) {
+			if(Today.checkDate(date)) {
 				
 				if(isdate) {
 					memberCommute(date);
@@ -61,11 +62,11 @@ public class CommuteSearch {
 
 
 
-	private static boolean checkDate(String date) {
-		
-        String regex = "\\d{4}-\\d{2}-\\d{2}";
-        return Pattern.matches(regex, date);
-	}
+//	private static boolean checkDate(String date) {
+//		
+//        String regex = "\\d{4}-\\d{2}-\\d{2}";
+//        return Pattern.matches(regex, date);
+//	}
 
 
 

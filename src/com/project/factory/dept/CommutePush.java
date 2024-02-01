@@ -1,6 +1,8 @@
 package com.project.factory.dept;
 
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.project.factory.Main;
@@ -23,7 +25,7 @@ public class CommutePush {
 		
 		CommuteData.load();
 	
-		boolean isGoWork = checkGoWork(Identify.auth);
+		int isGoWork = checkGoWork(Identify.auth);
 		System.out.println(isGoWork);
 		System.out.println(Identify.auth);
 		
@@ -32,7 +34,7 @@ public class CommutePush {
 
 		
 		//출근을 안 하면 
-	    if (!isGoWork) {
+	    if (isGoWork ==0) {
 	        commutePushView.notCommutePushView();
 	        Main.selectNum = scan.nextLine();
 
@@ -45,7 +47,7 @@ public class CommutePush {
 	        	
 	        }
 	        
-	    } else  {
+	    } else if(isGoWork ==1)  {
 	        commutePushView.commutePushViewEnd();
 	        Main.selectNum = scan.nextLine();
 
@@ -60,24 +62,39 @@ public class CommutePush {
 	            
 
 	        }
+	    }else if(isGoWork ==2) {
+	    	commutePushView.alreadyCommute();
+	    	
 	    }
 
 	}
 	
 	
+
 	
-	private static boolean checkGoWork(String auth) {
+	
+	private static int checkGoWork(String auth) {
 		
 		System.out.println("CommuteData.commuteMemberList " + CommuteData.commuteMemberList);
 		
-		for (Commute commuteMember : CommuteData.commuteMemberList) {
-			if (commuteMember.getId().equals(auth) ) {
+		List<Commute> matchingCommutes = new ArrayList<>();
 
-				return true;
-			}
+		for (Commute commuteMember : CommuteData.commuteMemberList) {
+		    if (commuteMember.getId().equals(auth)) {
+		        matchingCommutes.add(commuteMember);
+		    }
 		}
 
-		return false;
+		int matchingCount = matchingCommutes.size();
+
+		if (matchingCount == 0) {
+		    return 0;
+		} else if (matchingCount == 1) {
+		    return 1;
+		} else if (matchingCount ==2) {
+		    return 2;
+		}
+		return matchingCount;
 	}
 	
 	//commute.txt에 퇴근 등록

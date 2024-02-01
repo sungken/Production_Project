@@ -45,5 +45,10 @@ public class commutePushView {
 			
 	}
 	
-
+	public static void alreadyCommute() {
+			System.out.println();
+			System.out.println("이미 출/퇴근을 완료했습니다.");
+			System.out.println();
+			MainView.pause();
+	}
 }
