@@ -8,7 +8,6 @@ public class ProductionManagement {
 	//스위치 케이스 맘대루~
 	
 	
-	
 	private void startProduction() {
 		//생산 자동 카운트
 	}

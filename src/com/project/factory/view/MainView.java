@@ -97,6 +97,7 @@ public class MainView {
 		System.out.print("엔터를 치면 초기화면으로 돌아갑니다.");
 		scan.nextLine();
 		System.out.println();
+		Main.main(null);
 	}
 
 	// TODO checkContinue 메서드 추가
@@ -118,12 +119,12 @@ public class MainView {
 
 	// TODO doubleLine 메서드 추가
 	public static void doubleLine() {
-		System.out.println("===============================");
+		System.out.println("===========================================================================");
 	}
 
 	// TODO singnleLine 메서드 추가
 	public static void singnleLine() {
-		System.out.println("-------------------------------");
+		System.out.println("---------------------------------------------------------------------------");
 	}
 	
 

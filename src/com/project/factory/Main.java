@@ -22,9 +22,11 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 
 		Data.load();
+		
 		while (loop) {
 
 			MainView.mainMenu();
+
 
 			// TODO sel 변수 추가 > 메뉴 번호 답변 받는 변수
 			String sel = scan.nextLine();
@@ -116,6 +118,7 @@ public class Main {
 				} else {
 					System.out.println("잘못된 번호입니다.");
 				}
+
 			}
 		} // while
 
