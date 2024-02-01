@@ -31,7 +31,7 @@ public class commutePushView {
 	}
 	
 	
-	public static void CommutePushView() {
+	public static void commutePushViewEnd() {
 		
 
 		//로그인이 된 상태이면
@@ -44,4 +44,6 @@ public class commutePushView {
 			System.out.print("번호 입력: ");
 			
 	}
+	
+
 }

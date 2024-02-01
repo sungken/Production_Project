@@ -13,12 +13,12 @@ public class CommuteSearch {
 	// 직원 근태 확인
 	
 	private static String date;
-	
+
 
 
 	public static void commuteSearch() {
 
-		CommuteData.load();
+			CommuteData.load();
 			Scanner scan = new Scanner(System.in);
 			
 			System.out.println();
@@ -32,8 +32,10 @@ public class CommuteSearch {
 
 			
 			date = scan.nextLine();
+
 			
 			boolean isdate = memberCommute(date);
+	
 			
 			if(checkDate(date)) {
 				
@@ -56,6 +58,8 @@ public class CommuteSearch {
 
 
 	}
+
+
 
 	private static boolean checkDate(String date) {
 		

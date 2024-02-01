@@ -24,7 +24,6 @@ public class CommutePush {
 		CommuteData.load();
 	
 		boolean isGoWork = checkGoWork(Identify.auth);
-		
 		System.out.println(isGoWork);
 		System.out.println(Identify.auth);
 		
@@ -38,27 +37,33 @@ public class CommutePush {
 	        Main.selectNum = scan.nextLine();
 
 	        if (Main.selectNum.equals("1")) {
+	        	
 	            String currentTime = Today.time();
 	            System.out.println();
 	            System.out.println(currentTime + " 출근하셨습니다.");
 	            gowork(Identify.auth);
+	        	
 	        }
-	    } else {
-	        commutePushView.CommutePushView();
+	        
+	    } else  {
+	        commutePushView.commutePushViewEnd();
 	        Main.selectNum = scan.nextLine();
 
 	        if (Main.selectNum.equals("2")) {
+	        	
+
 	            String currentTime = Today.time();
 	            System.out.println();
 	            System.out.println(currentTime + " 퇴근하셨습니다.");
 	            
 	            // 퇴근 처리를 위한 메서드 호출 등 추가
 	            
-	            leaveOut(Identify.auth);
+
 	        }
 	    }
 
 	}
+	
 	
 	
 	private static boolean checkGoWork(String auth) {
@@ -74,7 +79,8 @@ public class CommutePush {
 
 		return false;
 	}
-
+	
+	//commute.txt에 퇴근 등록
 	private static void leaveOut(String auth) {
 		
 		try {
@@ -105,23 +111,7 @@ public class CommutePush {
 
     }
 		
-		
-//	private static String currentTime() {
-//		Calendar commuteTime = Calendar.getInstance();
-//		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-//		String currentTime = sdf.format(commuteTime.getTime());
-//		return currentTime;
-//	}
-//	
-//	
-//	private static String currentDay() {
-//		Calendar today = Calendar.getInstance();
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		String formattedDate = dateFormat.format(today.getTime());
-//		return formattedDate;
-//
-//	}
-
+	//commute.txt에 출근 등록
 	private static void gowork(String auth) {
 		
 		try {

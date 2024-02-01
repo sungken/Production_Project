@@ -1,5 +1,6 @@
 package com.project.factory.view;
 
+import com.project.factory.member.Identify;
 import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.user.Commute;
 
@@ -13,6 +14,7 @@ public class CommuteView {
 		System.out.println();
 		System.out.println("[날짜]\t\t[사원번호]\t[이름]\t[부서]\t[직급]\t[시간]\t[출/퇴근]");
 		for (Commute commuteMember : CommuteData.commuteMemberList) {
+			if(commuteMember.getDept().equals(Identify.dept)) {
 		    System.out.printf("%s\t%s\t\t%s\t%s\t%s\t%s\t%s%n",
 		            commuteMember.getCal(),
 		            commuteMember.getId(),
@@ -21,6 +23,8 @@ public class CommuteView {
 		            commuteMember.getLevel(),
 		            commuteMember.getCurrentTime(),
 		            commuteMember.getCommute()); 
+		    
+			}
 		}
 		MainView.singnleLine();
 		MainView.pause();
