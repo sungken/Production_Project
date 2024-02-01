@@ -1,6 +1,5 @@
 package com.project.factory.member;
 
-import com.project.factory.resource.Members;
 
 //TODO 로그인한 사용자 정보 저장
 /**
@@ -15,4 +14,7 @@ public class Identify {
 	
 	// 부서(생산, 유통, 인사, 경영) 
 	public static String dept;
+	
+	//TODO 이름 추가
+	public static String name;
 }

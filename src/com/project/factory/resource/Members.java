@@ -70,12 +70,12 @@ public class Members {
 	public String getEmail() {
 		return email;
 	}
-	
+
 	/**
 	 * 
-	 * @param id = 사원번호
-	 * @param pw =비밀번호
-	 * @param name = 이름
+	 * @param id    = 사원번호
+	 * @param pw    =비밀번호
+	 * @param name  = 이름
 	 * @param birth = 생년월일
 	 * @param 휴대폰번호
 	 * @param 주소
@@ -83,7 +83,8 @@ public class Members {
 	 * @param 부서
 	 * @param 이메일
 	 */
-	public Members(String id, String pw, String name, String birth, String phoneNum, String address, String level, String dept, String email ) {
+	public Members(String id, String pw, String name, String birth, String phoneNum, String address, String level,
+			String dept, String email) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -93,8 +94,9 @@ public class Members {
 		this.level = level;
 		this.dept = dept;
 		this.email = email;
-	
+
 	}
+
 	@Override
 	public String toString() {
 		return super.toString();
@@ -104,5 +106,5 @@ public class Members {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }
