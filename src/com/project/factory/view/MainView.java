@@ -125,5 +125,6 @@ public class MainView {
 	public static void singnleLine() {
 		System.out.println("-------------------------------");
 	}
+	
 
 }
