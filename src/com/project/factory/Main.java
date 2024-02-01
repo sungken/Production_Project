@@ -2,6 +2,7 @@ package com.project.factory;
 
 import java.util.Scanner;
 
+import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
@@ -75,7 +76,7 @@ public class Main {
 					// InventorySearch.inventorySearch(); > 메서드 생성 필요
 				} else if (sel.equals("12")) {
 					// 공지사항 관리
-					// WriteBoard.writeBoared(); > 메서드 생성 필요
+					BoardManagement.boardManagement(); 
 				} else if (sel.equals("13")) {
 					// 사원 관리(입사, 퇴사)
 					// HRD.hrd(); > 메서드 생성 필요
