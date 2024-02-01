@@ -34,54 +34,37 @@ public class Login {
 				checkId++;
 			} else if (id.equals(member.getId())) {
 				checkPw++;
-			} 
+			}
 
 		} // for문
-		
-		if(checkId > checkPw) {
-			System.out.println("아이디를 잘못 입력했습니다.");
-			MainView.checkContinue();
-			MainView.singnleLine();
-			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
-				login();
-			} 
-			else if(Main.answer.equals("N") || Main.answer.equals("n")) {
-				return;
-			}
-			else {
-				System.out.println("잘못된 입력입니다. 다시 입력하세요.");
-				MainView.checkContinue();
-			}
-		}else if(checkId < checkPw) {			
-			System.out.println("비밀번호를 잘못 입력했습니다.");
-			MainView.checkContinue();
-			MainView.singnleLine();
-			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
-				login();
-			} 
-			else if(Main.answer.equals("N") || Main.answer.equals("n")) {
-				return;
-			}
-			else {
-				System.out.println("잘못된 입력입니다. 다시 입력하세요.");
-				MainView.checkContinue();
-			}
-			
-		}else if(checkId < 1 && checkPw < 1) {
-			System.out.println("아이디와 비밀번호를 잘못 입력했습니다.");
-			MainView.checkContinue();
-			MainView.singnleLine();
-			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
-				login();
-			} 
-			else if(Main.answer.equals("N") || Main.answer.equals("n")) {
-				return;
-			}
-			else {
-				System.out.println("잘못된 입력입니다. 다시 입력하세요.");
-				MainView.checkContinue();
-			}
-		}
 
+		if (checkId > checkPw) {
+			System.out.println("아이디를 잘못 입력했습니다.");
+			checkContinue();
+		} else if (checkId < checkPw) {
+			System.out.println("비밀번호를 잘못 입력했습니다.");
+			checkContinue();
+
+		} else if (checkId < 1 && checkPw < 1) {
+			System.out.println("아이디와 비밀번호를 잘못 입력했습니다.");
+			checkContinue();
+
+		}
+	}
+
+	private static void checkContinue() {
+		MainView.checkContinue();
+		
+		if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+			login();
+		} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+			MainView.pause();
+		} else {
+			System.out.println();
+			MainView.singnleLine();
+			System.out.println();
+			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			Login.checkContinue();
+		}
 	}
 }

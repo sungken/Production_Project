@@ -16,7 +16,7 @@ public static void modelLoad() {
 		String line = null;
 		while((line = reader.readLine()) != null) {
 			String[] temp = line.split("■");
-			Model model = new Model(temp[0], temp[1]);
+//			Model model = new Model(temp[0], temp[1]);
 		}
 	} catch (Exception e) {
 		// TODO: handle exception

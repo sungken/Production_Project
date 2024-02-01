@@ -126,9 +126,5 @@ public class MainView {
 		System.out.println("-------------------------------");
 	}
 	
-	//스캐너 호출 메서드 추가
-	public static void scanner() {
-		Scanner scan = new Scanner(System.in);
-	}
 
 }
