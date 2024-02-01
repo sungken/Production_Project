@@ -16,14 +16,15 @@ public class CommuteData {
 		public static void load() {
 			try {
 
+				
 				BufferedReader reader = new BufferedReader(new FileReader(Path.COMMUTE));
 
-				String line = reader.readLine();
+				String line = null;//reader.readLine();
 				while ((line = reader.readLine()) != null) {
 					// 홍길동,100,90,80
 					String[] temp = line.split("■");
 					
-					Commute commuteMember = new Commute(temp[0], temp[1], temp[2], temp[3], temp[4],temp[5]);
+					Commute commuteMember = new Commute(temp[0], temp[1], temp[2], temp[3], temp[4],temp[5],temp[6]);
 					
 					commuteMemberList.add(commuteMember);
 
@@ -40,13 +41,14 @@ public class CommuteData {
 		}
 		
 		public static void save() {
+			
 			try {
 				BufferedWriter writer =  new BufferedWriter(new FileWriter(Path.MEMBER));
 				
 				for(Commute commuteMember : CommuteData.commuteMemberList) {
 					
 					//Score 객체 1개 > 홍길동, 100, 90, 80
-					String line = String.format("%s■%s■%s■%s■%d■%s"
+					String line = String.format("\r\n%s■%s■%s■%s■%d■%s"
 																	, commuteMember.getCal()
 																	, commuteMember.getId()
 																	, commuteMember.getName()

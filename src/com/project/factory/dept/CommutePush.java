@@ -1,15 +1,10 @@
 package com.project.factory.dept;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Scanner;
 
 import com.project.factory.Main;
+import com.project.factory.Today;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.Data;
@@ -43,7 +38,7 @@ public class CommutePush {
 	        Main.selectNum = scan.nextLine();
 
 	        if (Main.selectNum.equals("1")) {
-	            String currentTime = currentTime();
+	            String currentTime = Today.time();
 	            System.out.println();
 	            System.out.println(currentTime + " 출근하셨습니다.");
 	            gowork(Identify.auth);
@@ -53,7 +48,7 @@ public class CommutePush {
 	        Main.selectNum = scan.nextLine();
 
 	        if (Main.selectNum.equals("2")) {
-	            String currentTime = currentTime();
+	            String currentTime = Today.time();
 	            System.out.println();
 	            System.out.println(currentTime + " 퇴근하셨습니다.");
 	            
@@ -67,6 +62,8 @@ public class CommutePush {
 	
 	
 	private static boolean checkGoWork(String auth) {
+		
+		System.out.println("CommuteData.commuteMemberList " + CommuteData.commuteMemberList);
 		
 		for (Commute commuteMember : CommuteData.commuteMemberList) {
 			if (commuteMember.getId().equals(auth) ) {
@@ -87,8 +84,8 @@ public class CommutePush {
 			//날짜■사원번호■이름■부서■직급■출근시간
 			for (Members member : Data.memberList) {
 				if(member.getId().equals(auth)) {
-					   String commuteRecord = currentDay() + "■" + member.getId() + "■" + member.getName() + "■" 
-							   				+ member.getDept() + "■" + member.getLevel() + "■" + currentTime() +"■" + "퇴근"; 
+					   String commuteRecord = Today.day() + "■" + member.getId() + "■" + member.getName() + "■" 
+							   				+ member.getDept() + "■" + member.getLevel() + "■" + Today.time() +"■" + "퇴근"; 
 		                writer.write(commuteRecord);
 		                writer.write(System.getProperty("line.separator")); // 개행 문자 추가
 				
@@ -109,23 +106,21 @@ public class CommutePush {
     }
 		
 		
-
-
-	private static String currentTime() {
-		Calendar commuteTime = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		String currentTime = sdf.format(commuteTime.getTime());
-		return currentTime;
-	}
-	
-	
-	private static String currentDay() {
-		Calendar today = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String formattedDate = dateFormat.format(today.getTime());
-		return formattedDate;
-
-	}
+//	private static String currentTime() {
+//		Calendar commuteTime = Calendar.getInstance();
+//		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//		String currentTime = sdf.format(commuteTime.getTime());
+//		return currentTime;
+//	}
+//	
+//	
+//	private static String currentDay() {
+//		Calendar today = Calendar.getInstance();
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		String formattedDate = dateFormat.format(today.getTime());
+//		return formattedDate;
+//
+//	}
 
 	private static void gowork(String auth) {
 		
@@ -136,10 +131,12 @@ public class CommutePush {
 			//날짜■사원번호■이름■부서■직급■출근시간
 			for (Members member : Data.memberList) {
 				if(member.getId().equals(auth)) {
-					   String commuteRecord = currentDay() + "■" + member.getId() + "■" + member.getName() + "■" 
-							   				+ member.getDept() + "■" + member.getLevel() + "■" + currentTime() +"■" + "출근"; 
-		                writer.write(commuteRecord);
-		                writer.write(System.getProperty("line.separator")); // 개행 문자 추가
+					   String commuteRecord = Today.day() + "■" + member.getId() + "■" + member.getName() + "■" 
+							   				+ member.getDept() + "■" + member.getLevel() + "■" + Today.time() +"■" + "출근";
+
+		               writer.write(commuteRecord);
+		               writer.write("\r\n");
+
 				
 		                break;
 				}

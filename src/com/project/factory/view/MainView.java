@@ -118,12 +118,12 @@ public class MainView {
 
 	// TODO doubleLine 메서드 추가
 	public static void doubleLine() {
-		System.out.println("===============================");
+		System.out.println("===========================================================================");
 	}
 
 	// TODO singnleLine 메서드 추가
 	public static void singnleLine() {
-		System.out.println("-------------------------------");
+		System.out.println("---------------------------------------------------------------------------");
 	}
 
 }

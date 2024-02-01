@@ -4,6 +4,7 @@ import java.lang.reflect.Member;
 import java.util.Scanner;
 import com.project.factory.member.Login;
 import com.project.factory.member.Logout;
+import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.dept.CommutePush;
 import com.project.factory.member.Find;
 import com.project.factory.resource.Data;
@@ -67,7 +68,7 @@ public class Main {
 				//CheckDest.checkDest(); > 메서드 생성 필요
 			} else if (sel.equals("10")) {
 				//사원 출근 조회
-				//CommuteSearch.commuteSearch(); > 메서드 생성 필요
+				CommuteSearch.commuteSearch();
 			} else if (sel.equals("11")) {
 				//재고 확인
 				//InventorySearch.inventorySearch(); > 메서드 생성 필요

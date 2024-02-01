@@ -29,7 +29,9 @@ public class Find {
             findId();
         } else if (Main.selectNum.equals("2")) {
             findPw();
-        } 
+        } else {
+        	System.out.println("잘못된 번호입니다.");
+        }
         
     }
 
@@ -52,6 +54,8 @@ public class Find {
         if (memberId != null) {
         	System.out.println();
             System.out.println("아이디: " + memberId + " 입니다.");
+            MainView.pause();
+            
         } else {
         	System.out.println();
             System.out.println("아이디를 찾을 수 없습니다.");
@@ -102,6 +106,7 @@ public class Find {
         if (memberPw != null) {
         	System.out.println();
             System.out.println("비밀번호: " + memberPw);
+            MainView.pause();
         } else {
         	System.out.println();
             System.out.println("비밀번호를 찾을 수 없습니다.");

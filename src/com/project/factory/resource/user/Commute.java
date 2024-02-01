@@ -8,6 +8,7 @@ public class Commute{
 	private String dept;
 	private String level;
 	private String currentTime;
+	private String commute;
 
 	
 	public String getCal() {
@@ -48,6 +49,12 @@ public class Commute{
 		this.currentTime = currentTime;
 	}
 	
+	public String getCommute() {
+		return commute;
+	}
+	public void setCommute(String commute) {
+		this.commute = commute;
+	}
 
 	
 	/**
@@ -57,18 +64,24 @@ public class Commute{
 	 * @param dept = 부서
 	 * @param level = 권한
 	 * @param currentTime = 출근시간 
-
+	 * @param commute = 출/퇴근 
 	 */
 	
 	
-	public Commute(String cal ,String id, String name, String dept, String level, String currentTime) {
+	public Commute(String cal ,String id, String name, String dept, String level, String currentTime, String commute) {
 		this.cal = cal;
 		this.id = id;
 		this.name = name;
 		this.dept = dept;
 		this.level = level;
 		this.currentTime = currentTime;
+		this.commute = commute;
 	}
+//	@Override
+//	public String toString() {
+//		return "Commute [cal=" + cal + ", id=" + id + ", name=" + name + ", dept=" + dept + ", level=" + level
+//				+ ", currentTime=" + currentTime + "]";
+//	}
 
 	
 	
