@@ -1,12 +1,11 @@
 package com.project.factory;
 
-
+import java.lang.reflect.Member;
 import java.util.Scanner;
-
+import com.project.factory.member.Login;
+import com.project.factory.member.Logout;
 import com.project.factory.dept.CommutePush;
 import com.project.factory.member.Find;
-import com.project.factory.member.Login;
-import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.Data;
 import com.project.factory.view.MainView;
 //import com.project.factory.view.member.LoginView;
@@ -42,7 +41,7 @@ public class Main {
 				//Login.login(); > 메서드 생성 필요
 			} else if (sel.equals("3")) {
 				//로그아웃
-				//Logout.logout(); > 메서드 생성 필요
+				Logout.logout();
 			} else if (sel.equals("4")) {
 				//아이디/비번 찾기
 //				if (Identify.auth == null) {

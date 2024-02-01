@@ -21,10 +21,10 @@ public class Find {
 		
         FindView.findMenu();
         
+
         Main.selectNum = scan.nextLine();
 
-        
-        
+
         if (Main.selectNum.equals("1")) {
             findId();
         } else if (Main.selectNum.equals("2")) {
