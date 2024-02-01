@@ -13,7 +13,7 @@ $ <type>(<scope>): <subject>    -- 헤더<br>
 
 <type><br>
 feat : 새로운 기능에 대한 커밋<br>
-fix : build 빌드 관련 파일 수정에 대한 커밋<br>
+fix : 기능 수정에 대한 커밋<br>
 build : 빌드 관련 파일 수정에 대한 커밋<br>
 chore : 그 외 자잘한 수정에 대한 커밋(rlxk qusrud)<br>
 ci : CI 관련 설정 수정에 대한 커밋<br>
