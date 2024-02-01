@@ -7,6 +7,7 @@ import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
 
+//TODO checkContinue 유효성 검사시 반복문 돌음
 public class Login {
 	public static void login() {
 		Scanner scan = new Scanner(System.in);
@@ -16,6 +17,7 @@ public class Login {
 		String pw = scan.next();
 
 		for (Members member : Data.memberList) {
+			//로그인 성공 시
 			if (member.getId().equals(id) && member.getPw().equals(pw)) {
 				Identify.auth = id;
 				Identify.level = member.getLevel();
@@ -30,8 +32,9 @@ public class Login {
 				MainView.singnleLine();
 				if (Main.answer.equals("Y") || Main.answer.equals("y")) {
 					login();
-				} else if(Main.answer.equals("N") || Main.answer.equals("n")) {
-				break;
+				} 
+				else if(Main.answer.equals("N") || Main.answer.equals("n")) {
+					break;
 				}
 				else {
 					System.out.println("잘못된 입력입니다. 다시 입력하세요.");
@@ -46,11 +49,12 @@ public class Login {
 				MainView.singnleLine();
 				if (Main.answer.equals("Y") || Main.answer.equals("y")) {
 					login();
-				} else if(Main.answer.equals("N") || Main.answer.equals("n")) {
-				break;
+				} 
+				else if(Main.answer.equals("N") || Main.answer.equals("n")) {
+					break;
 				}
 				else {
-					System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+					System.out.println("잘못된 입력입니다. 다시 입력해요.");
 					MainView.checkContinue();
 				}
 			}
@@ -61,15 +65,17 @@ public class Login {
 				MainView.singnleLine();
 				if (Main.answer.equals("Y") || Main.answer.equals("y")) {
 					login();
-				} else if(Main.answer.equals("N") || Main.answer.equals("n")) {
-				break;
+					break;
+				} 
+				else if(Main.answer.equals("N") || Main.answer.equals("n")) {
+					break;
 				}
 				else {
 					System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+					MainView.checkContinue();
 				}
+				MainView.pause();
 			}
-
 		}
-		MainView.pause();
 	}
 }
