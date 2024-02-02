@@ -7,6 +7,9 @@ import com.project.factory.member.Identify;
 
 public class MainView {
 
+	public static Object selectNum;
+
+
 	// TODO mainMenu 메서드 추가
 	public static void mainMenu() {
 //		System.out.println();
@@ -97,7 +100,7 @@ public class MainView {
 		System.out.print("엔터를 치면 초기화면으로 돌아갑니다.");
 		scan.nextLine();
 		System.out.println();
-		Main.main(null);
+
 	}
 
 	// TODO checkContinue 메서드 추가
