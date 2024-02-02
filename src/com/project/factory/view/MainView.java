@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
+import com.project.factory.member.Modify;
 
 public class MainView {
 
@@ -97,7 +98,6 @@ public class MainView {
 		System.out.print("엔터를 치면 초기화면으로 돌아갑니다.");
 		scan.nextLine();
 		System.out.println();
-		Main.main(null);
 	}
 
 	// TODO checkContinue 메서드 추가
@@ -110,9 +110,21 @@ public class MainView {
 		System.out.print("입력: ");
 		Main.answer = scan.nextLine();
 		
-//		if(Main.answer.equals("Y") || Main.answer.equals("y")) {
-//			
-//		} else {//N이나 아무것도 입력 안 한 경우
+//		private static void checkContinue() {
+//
+//			MainView.checkContinue();
+//
+//			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+//				Modify.modify();
+//			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+//				MainView.pause();
+//			} else {
+//				System.out.println();
+//				MainView.singnleLine();
+//				System.out.println();
+//				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+//				Modify.checkContinue();
+//			}
 //		}
 		
 	}

@@ -95,7 +95,7 @@ public class BoardManagement {
 
 				if (BoardManagement.invalidateTitle(title)) {
 					System.out.println();
-					System.out.println("제목은 최대 15글자까지 입력 가능합니다.");
+					System.out.println("제목은 최대 30글자까지 입력 가능합니다.");
 					System.out.println();
 				} else {
 					break;
@@ -162,12 +162,8 @@ public class BoardManagement {
 	}
 
 	private static boolean invalidateTitle(String title) {
-		// 제목 > 최대 15글자
-		BoardManagement.regex = "^.{1,15}$";
-		Pattern titlePattern = Pattern.compile(BoardManagement.regex);
-		Matcher titleMatcher = titlePattern.matcher(title);
-
-		return !titleMatcher.find();
+		// 제목 > 최대 30글자
+		return title.length() > 30;
 	}
 
 	private static boolean invalidateContents(String contents) {

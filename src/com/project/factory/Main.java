@@ -18,8 +18,6 @@ public class Main {
 	// TODO selectNum String으로 변경
 	public static String selectNum;
 	public static String answer;
-	
-	
 
 	public static void main(String[] args) {
 
