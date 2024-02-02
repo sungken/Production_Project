@@ -11,6 +11,7 @@ import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.Path;
+import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
 import com.project.factory.view.BoardManagementView;
 import com.project.factory.view.MainView;
@@ -19,6 +20,7 @@ import com.project.factory.view.MainView;
 public class BoardManagement {
 
 	public static String regex = ""; // 유효성 검사를 위한 변수
+	public static int noticeNumber = 0; //공지사항 번호
 
 	// TODO 공지사항 데이터에 작성일 추가
 	// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
@@ -54,7 +56,7 @@ public class BoardManagement {
 			BoardData.setNewNoticeNumber(); // 공지사항 번호 설정
 
 			// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
-			int noticeNumber = BoardData.getNoticeNumber();
+			BoardManagement.noticeNumber = BoardData.getNoticeNumber();
 			String id = Identify.auth;
 			String title = ""; // 제목
 			StringBuilder contents = new StringBuilder(); // 내용을 저장할 StringBuilder
@@ -75,7 +77,6 @@ public class BoardManagement {
 					System.out.println();
 					System.out.println("잘못된 형식의 날짜입니다.");
 					System.out.println("날짜는 10글자(하이픈 포함), 숫자만 입력 가능합니다.");
-					System.out.println();
 
 					if (!checkWriteContinue()) {
 						return;
@@ -85,7 +86,6 @@ public class BoardManagement {
 					if (checkDeleteDate(deleteDate)) {
 						System.out.println();
 						System.out.println("삭제할 날짜는 작성일보다 과거로 설정할 수 없습니다.");
-						System.out.println();
 
 						if (!checkWriteContinue()) {
 							return;
@@ -104,7 +104,6 @@ public class BoardManagement {
 				if (BoardManagement.invalidateTitle(title)) {
 					System.out.println();
 					System.out.println("제목은 최대 30글자까지 입력 가능합니다.");
-					System.out.println();
 
 					if (!checkWriteContinue()) {
 						return;
@@ -127,7 +126,6 @@ public class BoardManagement {
 				if (invalidateContents(contents.toString())) {
 					System.out.println();
 					System.out.println("내용은 최대 200자까지 입력 가능합니다.");
-					System.out.println();
 
 					if (!checkWriteContinue()) {
 						return;
@@ -135,7 +133,7 @@ public class BoardManagement {
 
 				} else {
 					// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
-					writer.write(noticeNumber + "■" + id + "■" + title + "■" + contents.toString().trim() + "■"
+					writer.write(BoardManagement.noticeNumber + "■" + id + "■" + title + "■" + contents.toString().trim() + "■"
 							+ Today.day() + "■" + deleteDate);
 					writer.newLine();
 					writer.close();
@@ -155,46 +153,63 @@ public class BoardManagement {
 	}
 
 	private static void boardEdit() {
+		
+		Scanner scan = new Scanner(System.in);
+
+		BoardManagementView.boardManagementListView();
+		
+		System.out.println("수정하실 공지사항 번호를 선택해주세요.");
+		MainView.singnleLine();
+		System.out.print("번호 입력: ");
+		BoardManagement.noticeNumber = scan.nextInt();//수정할 공지사항 번호			
+
+		BoardManagementView.boardEditMenu();
+		Main.selectNum = scan.nextLine();
+
+		if (Main.selectNum.equals("1")) {
+			BoardManagement.boardEditTitle(BoardManagement.noticeNumber);
+		} else if (Main.selectNum.equals("2")) {
+			BoardManagement.boardEditcontents();
+		} else if (Main.selectNum.equals("3")) {
+			BoardManagement.boardEditdeleteDate();
+		} else {
+			System.out.println("잘못된 번호입니다.");
+			BoardManagement.checkContinue();
+		}
+
+	}
+	
+	private static void boardEditTitle(int noticeNumber) {
 		try {
-
-			Scanner scan = new Scanner(System.in);
-
-			BoardManagementView.boardManagementListView();
-
-			BoardManagementView.boardEditMenu();
-			Main.selectNum = scan.nextLine();
-
-			if (Main.selectNum.equals("1")) {
-				BoardManagement.boardEditTitle();
-			} else if (Main.selectNum.equals("2")) {
-				BoardManagement.boardEditcontents();
-			} else if (Main.selectNum.equals("3")) {
-				BoardManagement.boardEditdeleteDate();
-			} else {
-				System.out.println("잘못된 번호입니다.");
-
+			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.BOARD, true)); // true인 경우 이어쓰기
+			
+			for (Board board : BoardData.boardList) {
+				if (board.getNoticeNumber() == noticeNumber) {
+					
+				}
 			}
 
+		} catch (Exception e) {
+			System.out.println("BoardManagement.boardEdit");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private static void boardEditcontents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void boardEditdeleteDate() {
+		// TODO Auto-generated method stub
+		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.BOARD, true)); // true인 경우 이어쓰기
 
 		} catch (Exception e) {
 			System.out.println("BoardManagement.boardEdit");
 			e.printStackTrace();
 		}
-	}
-
-	private static void boardEditdeleteDate() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void boardEditcontents() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void boardEditTitle() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -235,7 +250,9 @@ public class BoardManagement {
 
 	private static boolean checkWriteContinue() {
 		while (true) {
+
 			MainView.checkContinue();
+
 			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
 				return true;
 			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {

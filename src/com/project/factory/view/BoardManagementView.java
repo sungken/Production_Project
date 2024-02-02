@@ -20,7 +20,7 @@ public class BoardManagementView {
 		System.out.print("번호 입력: ");
 	}
 	
-	public static void boardEditMenu() {
+	public static void boardEditMenu() {		
 		System.out.println();
 		System.out.println("1. 삭제 날짜");
 		System.out.println("2. 제목");
@@ -32,6 +32,10 @@ public class BoardManagementView {
 	
 	
 	public static void boardManagementListView() {
+		MainView.singnleLine();
+		System.out.println("          공지사항 수정");
+		MainView.singnleLine();
+		
 		System.out.println();
 		MainView.singnleLine();
 		
@@ -41,8 +45,5 @@ public class BoardManagementView {
 
 
 		}
-		MainView.singnleLine();
-		System.out.println("          공지사항 수정");
-		MainView.singnleLine();
 	}
 }
