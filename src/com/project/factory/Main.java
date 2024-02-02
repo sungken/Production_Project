@@ -7,7 +7,7 @@ import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
 import com.project.factory.member.Modify;
-
+import com.project.factory.member.SignUp;
 import com.project.factory.resource.Data;
 import com.project.factory.view.MainView;
 
@@ -38,7 +38,7 @@ public class Main {
 			if (Identify.auth == null) {
 				if (sel.equals("1")) {
 					// 회원가입
-					// SignUp.signUp(); > 메서드 생성 필요
+					 SignUp.cheackid(); 
 				} else if (sel.equals("2")) {
 					// 로그인
 					Login.login();
@@ -121,7 +121,7 @@ public class Main {
 				} else {
 					System.out.println("잘못된 번호입니다.");
 				}
-
+				
 			}
 		} // while
 

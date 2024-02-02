@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import com.project.factory.Main;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
@@ -36,7 +37,7 @@ public class SignUp {
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.NEWMEMBER));
 
-			String txt = "";
+			
 			boolean loop = true;
 			
 			while(loop) {
@@ -94,9 +95,26 @@ public class SignUp {
 						if (pw.matches("^[a-zA-Z0-9]{10,16}$")) {
 							System.out.println();
 							System.out.println("회원가입이 완료되었습니다.");
-							Members member = new Members(id, pw, name, humanNum, phoneNum, address, "2", depart,
-									id + "@auto.com");
+							
+							BufferedReader readerDelete = new BufferedReader(new FileReader(Path.NEWMEMBER));
+							
+							String txt = "";
+							String line2 = null;
+							
+							while ((line2 = readerDelete.readLine()) != null) {
+//								System.out.println(tempMember);
+								txt += line2.replace(tempMember, "") + "\r\n";
+							}
+							
+							// 수정된 파일을 가지고 원본 파일에 덮어쓰기
+							BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBER));
+							writer.write(txt);
+							
+							Members member = new Members(id, pw, name, humanNum, phoneNum, address, "2", depart, id + "@auto.com");
 							Data.memberList.add(member);
+							writer.close();
+							readerDelete.close();
+							
 							pwLoop = false;
 						} else {
 							System.out.println("비밀번호는 10-16자, 영문자, 숫자만 가능합니다.");
@@ -104,25 +122,20 @@ public class SignUp {
 						}
 					}
 					loop = false;
+					MainView.pause(); // 왜 문제 ? + newMember에서 추가된 부분 삭제시키기
+					break;
 					
 				} else {
 					System.out.println("사원번호를 잘못 입력하셨습니다.");
 					System.out.println();
-					//Yes or No 메서드 다시받기
-					MainView.checkContinue();
+					checkContinue();
+					break;
 				}
 				
 			}
-			
-			
-			
 
-			
-			
-			
-			
-			
 			reader.close();
+			
 //			reader = new BufferedReader(new FileReader(Path.NEWMEMBER));
 
 			
@@ -131,6 +144,22 @@ public class SignUp {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private static void checkContinue() {
+		MainView.checkContinue();
+		
+		if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+			cheackid();
+		} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+			MainView.pause();
+		} else {
+			System.out.println();
+			MainView.singnleLine();
+			System.out.println();
+			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			SignUp.checkContinue();
+		}
 	}
 
 }
