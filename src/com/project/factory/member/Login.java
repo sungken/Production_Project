@@ -16,6 +16,7 @@ public class Login {
 		System.out.print("아이디 입력: ");
 		String id = scan.nextLine();
 		System.out.print("비밀번호 입력: ");
+
 		String pw = scan.nextLine();
 		if (id == "" || pw == "") {
 			System.out.println("잘못된 입력입니다. 다시 입력하세요.");
@@ -34,6 +35,7 @@ public class Login {
 				checkId++;
 			} else if (id.equals(member.getId())) {
 				checkPw++;
+
 			}
 
 		} // for문
