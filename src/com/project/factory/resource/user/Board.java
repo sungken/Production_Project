@@ -1,14 +1,11 @@
 package com.project.factory.resource.user;
 
-import com.project.factory.Today;
-import com.project.factory.member.Identify;
-
 public class Board {
-	//게시판	
+	//공지사항(게시판)	
 	private int noticeNumber;
 	private String id;
 	private String title;
-	private String content;
+	private String contents;
 	private String today;
 	private String deleteDate;
 	
@@ -17,16 +14,16 @@ public class Board {
 	 * @param noticeNumber = 공지사항 번호
 	 * @param id = 작성자
 	 * @param title = 제목
-	 * @param content = 내용
+	 * @param contents = 내용
 	 * @param today = 작성일
 	 * @param deleteDate = 삭제할 날짜
 	 */
-	public Board(int noticeNumber, String id, String title, String content, String today, String deleteDate) {
-		this.noticeNumber = 1;
-		this.id = Identify.auth;
+	public Board(int noticeNumber, String id, String title, String contents, String today, String deleteDate) {
+		this.noticeNumber = noticeNumber;
+		this.id = id;
 		this.title = title;
-		this.content = content;
-		this.today = Today.day();
+		this.contents = contents;
+		this.today = today;
 		this.deleteDate = deleteDate;
 	}
 	
@@ -36,11 +33,11 @@ public class Board {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
+	public String getContents() {
+		return contents;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	public String getDeleteDate() {
 		return deleteDate;
@@ -56,6 +53,12 @@ public class Board {
 	}
 	public String getToday() {
 		return today;
+	}
+
+	@Override
+	public String toString() {
+		return "noticeNumber=" + noticeNumber + ", id=" + id + ", title=" + title + ", contents=" + contents
+				+ ", today=" + today + ", deleteDate=" + deleteDate + "]";
 	}
 	
 }

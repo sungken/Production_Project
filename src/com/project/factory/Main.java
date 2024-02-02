@@ -1,13 +1,15 @@
 package com.project.factory;
 
-import java.util.Calendar;
 import java.util.Scanner;
 
 import com.project.factory.board.admin.BoardManagement;
+import com.project.factory.dept.CommutePush;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
+import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
+import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.resource.Data;
 import com.project.factory.view.MainView;
 
@@ -54,13 +56,13 @@ public class Main {
 			} else if (Identify.auth != null) {
 				if (sel.equals("3")) {
 					// 로그아웃
-					// Logout.logout(); > 메서드 생성 필요
+					Logout.logout();
 				} else if (sel.equals("5")) {
 					// 개인정보 조회 및 수정
 					Modify.modify(); 
 				} else if (sel.equals("6")) {
 					// 근태 등록
-					// CommutePush.commutePush(); > 메서드 생성 필요
+					CommutePush.commutePush();
 				} else if (sel.equals("7")) {
 					// 공지 사항(읽기)
 					// ReadBoard board = new ReadBoard();
@@ -73,7 +75,7 @@ public class Main {
 					// CheckDest.checkDest(); > 메서드 생성 필요
 				} else if (sel.equals("10")) {
 					// 사원 출/퇴근 조회
-					// CommuteSearch.commuteSearch(); > 메서드 생성 필요
+					CommuteSearch.commuteSearch();
 				} else if (sel.equals("11")) {
 					// 재고 확인
 					// InventorySearch.inventorySearch(); > 메서드 생성 필요
