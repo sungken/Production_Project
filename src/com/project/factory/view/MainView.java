@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
+import com.project.factory.member.Login;
 
 public class MainView {
 
@@ -115,6 +116,7 @@ public class MainView {
 //		}
 		
 	}
+	
 
 	// TODO doubleLine 메서드 추가
 	public static void doubleLine() {

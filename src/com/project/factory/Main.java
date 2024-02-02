@@ -2,8 +2,10 @@ package com.project.factory;
 
 import java.util.Scanner;
 
-import com.project.factory.dept.production.admin.ProductionTarget;
+import com.project.factory.dept.production.admin.ProductionManagement;
 import com.project.factory.dept.production.admin.SetProductionTarget;
+import com.project.factory.dept.production.admin.resource.ModelInventoryData;
+import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
@@ -83,11 +85,13 @@ public class Main {
 					// HRD.hrd(); > 메서드 생성 필요
 				} else if (sel.equals("14")) {
 					ProductionTarget.load_target();
-					SetProductionTarget.setProductionTarget();
+					SetProductionTarget.setproductionTarget();
 					// 생산 목표량 입력 및 수정
 					// ProductionTarget.productionTarget(); > 메서드 생성 필요
 				} else if (sel.equals("15")) {
 					// 생산 관리
+					ModelInventoryData.inventoryLoad();
+					ProductionManagement.productionSelect();
 					// ProductionManagement.productionManagement(); > 메서드 생성 필요
 				} else if (sel.equals("16")) {
 					// 주문서 확인 및 배정 수정

@@ -1,4 +1,4 @@
-package com.project.factory.dept.production.admin;
+package com.project.factory.dept.production.admin.resource;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
