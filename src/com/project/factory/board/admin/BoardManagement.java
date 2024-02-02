@@ -6,8 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.project.factory.Main;
 import com.project.factory.Today;
@@ -116,7 +114,8 @@ public class BoardManagement {
 				System.out.println();
 			} else {
 				// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
-				writer.write(noticeNumber + "■" + id + "■" + title + "■" + contents.toString().trim() + "■" + Today.day() + "■" + deleteDate);
+				writer.write(noticeNumber + "■" + id + "■" + title + "■" + contents.toString().trim() + "■"
+						+ Today.day() + "■" + deleteDate);
 				writer.newLine();
 				writer.close();
 

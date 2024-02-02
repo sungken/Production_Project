@@ -16,4 +16,17 @@ public class BoardManagementView {
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
 	}
+	
+	public static void boardEditMenu() {
+		System.out.println();
+		System.out.println("1. 삭제 날짜");
+		System.out.println("2. 제목");
+		System.out.println("3. 내용");
+		System.out.println();
+		MainView.singnleLine();
+		System.out.print("번호 입력: ");
+	}
+	
+	
+	public sta
 }
