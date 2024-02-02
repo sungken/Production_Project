@@ -1,10 +1,10 @@
-package com.project.factory.resource;
+package com.project.factory.resource.dept;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import com.project.factory.resource.user.Board;
+import com.project.factory.resource.Path;
 
 //TODO Board 클래스 추가
 public class BoardData {

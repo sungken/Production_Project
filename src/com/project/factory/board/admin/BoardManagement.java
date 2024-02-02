@@ -10,8 +10,8 @@ import java.util.Scanner;
 import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.member.Identify;
-import com.project.factory.resource.BoardData;
 import com.project.factory.resource.Path;
+import com.project.factory.resource.dept.BoardData;
 import com.project.factory.view.BoardManagementView;
 import com.project.factory.view.MainView;
 
@@ -41,7 +41,7 @@ public class BoardManagement {
 			BoardManagement.boardDelete();
 		} else {
 			System.out.println("잘못된 번호입니다.");
-			MainView.pause();
+			BoardManagement.checkContinue();
 		}
 
 	}// boardManagement
@@ -76,16 +76,26 @@ public class BoardManagement {
 					System.out.println("잘못된 형식의 날짜입니다.");
 					System.out.println("날짜는 10글자(하이픈 포함), 숫자만 입력 가능합니다.");
 					System.out.println();
+
+					if (!checkWriteContinue()) {
+						return;
+					}
+
 				} else {
 					if (checkDeleteDate(deleteDate)) {
 						System.out.println();
 						System.out.println("삭제할 날짜는 작성일보다 과거로 설정할 수 없습니다.");
 						System.out.println();
+
+						if (!checkWriteContinue()) {
+							return;
+						}
+
 					} else {
 						break;
 					}
 				}
-			} // while
+			}
 
 			while (true) {
 				System.out.print("제목: ");
@@ -95,35 +105,49 @@ public class BoardManagement {
 					System.out.println();
 					System.out.println("제목은 최대 30글자까지 입력 가능합니다.");
 					System.out.println();
+
+					if (!checkWriteContinue()) {
+						return;
+					}
+
 				} else {
 					break;
 				}
-			} // while
+			}
 
-			System.out.print("내용(종료하려면 빈 줄에서 엔터를 두 번 입력하세요.) : ");
 			while (true) {
-				String line = scan.nextLine(); // 한 줄씩 입력받음
-				if (line.isEmpty()) { // 입력이 빈 줄인 경우 반복문 종료
+				System.out.print("내용(종료하려면 빈 줄에서 엔터를 두 번 입력하세요.) : ");
+				while (true) {
+					String line = scan.nextLine(); // 한 줄씩 입력받음
+					if (line.isEmpty()) { // 입력이 빈 줄인 경우 반복문 종료
+						break;
+					}
+					contents.append(line).append("\\n"); // 줄바꿈된 상태로 저장하지 말고 줄바꿈 문자를 추가하여 표시
+				}
+				if (invalidateContents(contents.toString())) {
+					System.out.println();
+					System.out.println("내용은 최대 200자까지 입력 가능합니다.");
+					System.out.println();
+
+					if (!checkWriteContinue()) {
+						return;
+					}
+
+				} else {
+					// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
+					writer.write(noticeNumber + "■" + id + "■" + title + "■" + contents.toString().trim() + "■"
+							+ Today.day() + "■" + deleteDate);
+					writer.newLine();
+					writer.close();
+
+					System.out.println("게시글이 성공적으로 작성되었습니다.");
+					System.out.println("선택 화면으로 돌아갑니다.");
+
+					BoardManagement.boardManagement();
 					break;
 				}
-				contents.append(line).append("\\n"); // 줄바꿈된 상태로 저장하지 말고 줄바꿈 문자를 추가하여 표시
 			}
-			if (invalidateContents(contents.toString())) {
-				System.out.println();
-				System.out.println("내용은 최대 200자까지 입력 가능합니다.");
-				System.out.println();
-			} else {
-				// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
-				writer.write(noticeNumber + "■" + id + "■" + title + "■" + contents.toString().trim() + "■"
-						+ Today.day() + "■" + deleteDate);
-				writer.newLine();
-				writer.close();
 
-				System.out.println("게시글이 성공적으로 작성되었습니다.");
-				System.out.println("선택 화면으로 돌아갑니다.");
-
-				BoardManagement.boardManagement();
-			}
 		} catch (Exception e) {
 			System.out.println("BoardManagement.boardWrite");
 			e.printStackTrace();
@@ -131,6 +155,45 @@ public class BoardManagement {
 	}
 
 	private static void boardEdit() {
+		try {
+
+			Scanner scan = new Scanner(System.in);
+
+			BoardManagementView.boardManagementListView();
+
+			BoardManagementView.boardEditMenu();
+			Main.selectNum = scan.nextLine();
+
+			if (Main.selectNum.equals("1")) {
+				BoardManagement.boardEditTitle();
+			} else if (Main.selectNum.equals("2")) {
+				BoardManagement.boardEditcontents();
+			} else if (Main.selectNum.equals("3")) {
+				BoardManagement.boardEditdeleteDate();
+			} else {
+				System.out.println("잘못된 번호입니다.");
+
+			}
+
+			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.BOARD, true)); // true인 경우 이어쓰기
+
+		} catch (Exception e) {
+			System.out.println("BoardManagement.boardEdit");
+			e.printStackTrace();
+		}
+	}
+
+	private static void boardEditdeleteDate() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void boardEditcontents() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void boardEditTitle() {
 		// TODO Auto-generated method stub
 
 	}
@@ -170,21 +233,37 @@ public class BoardManagement {
 		return contents.length() > 200;
 	}
 
-//	private static void checkContinue() {
-//
-//		MainView.checkContinue();
-//
-//		if (Main.answer.equals("Y") || Main.answer.equals("y")) {
-//			BoardManagement.boardManagement();
-//		} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
-//			MainView.pause();
-//		} else {
-//			System.out.println();
-//			MainView.singnleLine();
-//			System.out.println();
-//			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-//			BoardManagement.checkContinue();
-//		}
-//
-//	}
+	private static boolean checkWriteContinue() {
+		while (true) {
+			MainView.checkContinue();
+			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+				return true;
+			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+				MainView.pause();
+				return false;
+			} else {
+				System.out.println();
+				MainView.singnleLine();
+				System.out.println();
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			}
+		}
+	}
+
+	private static void checkContinue() {
+
+		MainView.checkContinue();
+
+		if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+			BoardManagement.boardManagement();
+		} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+			MainView.pause();
+		} else {
+			System.out.println();
+			MainView.singnleLine();
+			System.out.println();
+			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			BoardManagement.checkContinue();
+		}
+	}
 }

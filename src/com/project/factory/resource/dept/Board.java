@@ -1,4 +1,4 @@
-package com.project.factory.resource.user;
+package com.project.factory.resource.dept;
 
 public class Board {
 	//공지사항(게시판)	
@@ -6,7 +6,7 @@ public class Board {
 	private String id;
 	private String title;
 	private String contents;
-	private String today;
+	private String writeDate;
 	private String deleteDate;
 	
 	/**
@@ -15,15 +15,15 @@ public class Board {
 	 * @param id = 작성자
 	 * @param title = 제목
 	 * @param contents = 내용
-	 * @param today = 작성일
+	 * @param writeDate = 작성일
 	 * @param deleteDate = 삭제할 날짜
 	 */
-	public Board(int noticeNumber, String id, String title, String contents, String today, String deleteDate) {
+	public Board(int noticeNumber, String id, String title, String contents, String writeDate, String deleteDate) {
 		this.noticeNumber = noticeNumber;
 		this.id = id;
 		this.title = title;
 		this.contents = contents;
-		this.today = today;
+		this.writeDate = writeDate;
 		this.deleteDate = deleteDate;
 	}
 	
@@ -51,14 +51,14 @@ public class Board {
 	public String getId() {
 		return id;
 	}
-	public String getToday() {
-		return today;
+	public String getWriteDate() {
+		return writeDate;
 	}
 
 	@Override
 	public String toString() {
 		return "noticeNumber=" + noticeNumber + ", id=" + id + ", title=" + title + ", contents=" + contents
-				+ ", today=" + today + ", deleteDate=" + deleteDate + "]";
+				+ ", writeDate=" + writeDate + ", deleteDate=" + deleteDate + "]";
 	}
 	
 }
