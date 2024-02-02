@@ -32,6 +32,7 @@ public class Modify {
 			Modify.modifyPw();
 		} else {
 			System.out.println("잘못된 번호입니다.");
+			MainView.pause();
 		}
 
 	}
