@@ -3,6 +3,7 @@ package com.project.factory;
 
 import java.util.Scanner;
 
+import com.project.factory.dept.distribution.admin.OrderAssign;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
@@ -92,7 +93,7 @@ public class Main {
 					// ProductionManagement.productionManagement(); > 메서드 생성 필요
 				} else if (sel.equals("16")) {
 					// 주문서 확인 및 배정 수정
-					// OrderAssign.orderAssign(); > 메서드 생성 필요
+					OrderAssign.orderView(); //> 메서드 생성 필요
 				} else if (sel.equals("17")) {
 					// 사원 배송 구역 관리
 					// DestManagement.destManagement(); > 메서드 생성 필요
