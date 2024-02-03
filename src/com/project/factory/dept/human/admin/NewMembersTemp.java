@@ -1,6 +1,9 @@
 package com.project.factory.dept.human.admin;
 
-public class NewMembers {
+public class NewMembersTemp {
+	//신규 입사자에서 사원번호까지 받은 사람들 리스트 (신입사원은 비밀번호가 없어서 멤버 리스트에 저장하면 나중에 사용할때 인덱스아웃오브 에러뜸)
+	
+	//449644A■차은우■010-1234-5678■920505■서울특별시 송파구 풍성로76길■생산■2
 	
 	private String id ;
 	private String name;
@@ -9,8 +12,7 @@ public class NewMembers {
 	private String address;
 	private String dept;
 	private String level;
-
-
+	
 	public String getId() {
 		return id;
 	}
@@ -101,8 +103,12 @@ public class NewMembers {
 	}
 
 
-	public NewMembers(String id, String name, String phoneNum, String birth, String address, String dept, String level) {
-		this.id = "0";
+
+
+	public NewMembersTemp(String id, String name, String phoneNum, String birth, String address, String dept,
+			String level) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.phoneNum = phoneNum;
 		this.birth = birth;
@@ -110,29 +116,6 @@ public class NewMembers {
 		this.dept = dept;
 		this.level = level;
 	}
-
-
-
-
-	@Override
-	public String toString() {
-		return super.toString();
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

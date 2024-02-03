@@ -7,16 +7,14 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import com.project.factory.dept.human.admin.NewMembers;
-import com.project.factory.resource.user.Commute;
+import com.project.factory.dept.human.admin.NewMembersTemp;
 
-
-
-public class NewMemberData {
-	public static ArrayList<NewMembers> NewMemberList = new ArrayList<NewMembers>();
+public class NewMemberTempData {
+	public static ArrayList<NewMembersTemp> NewMemberTempList = new ArrayList<NewMembersTemp>();
 
 	public static void load() {
         try {
-            NewMemberList.clear();
+        	NewMemberTempList.clear();
 
             BufferedReader reader = new BufferedReader(new FileReader(Path.NEWMEMBER));
 
@@ -25,8 +23,8 @@ public class NewMemberData {
                 String[] temp = line.split("■");
 
                 	
-                    NewMembers newMember = new NewMembers(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5],temp[6]);
-                    NewMemberList.add(newMember);
+                    NewMembersTemp newMemberTemp = new NewMembersTemp(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5],temp[6]);
+                    NewMemberTempList.add(newMemberTemp);
                
                     // 유효하지 않은 데이터 처리
                
@@ -46,10 +44,10 @@ public class NewMemberData {
 	    try {
 	        BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBERTEMP,true));
 
-	        for (NewMembers newMember : NewMemberData.NewMemberList) {
-	            String line = String.format("%s■%s■%s■%s■%s■%s■%s\r\n", newMember.getId(), newMember.getName(),
-	                    newMember.getPhoneNum(), newMember.getBirth(), newMember.getAddress(), newMember.getDept(),
-	                    newMember.getLevel());
+	        for (NewMembersTemp newMemberTemp : NewMemberTempData.NewMemberTempList) {
+	            String line = String.format("%s■%s■%s■%s■%s■%s■%s\r\n", newMemberTemp.getId(), newMemberTemp.getName(),
+	            		newMemberTemp.getPhoneNum(), newMemberTemp.getBirth(), newMemberTemp.getAddress(), newMemberTemp.getDept(),
+	            		newMemberTemp.getLevel());
 	            writer.write(line);
 	        }
 
@@ -59,4 +57,5 @@ public class NewMemberData {
 	        e.printStackTrace();
 	    }
 	}
+	
 }
