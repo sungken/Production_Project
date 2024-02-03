@@ -10,8 +10,6 @@ import java.util.Scanner;
 import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.member.Identify;
-import com.project.factory.resource.Data;
-import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
@@ -20,6 +18,8 @@ import com.project.factory.view.MainView;
 
 //TODO WriteBoard 클래스명 > BoardManagement으로 수정 
 public class BoardManagement {
+
+	public static Scanner scan = new Scanner(System.in);
 
 	public static String regex = ""; // 유효성 검사를 위한 변수
 	public static int noticeNumber = 0; // 공지사항 번호
@@ -33,8 +33,6 @@ public class BoardManagement {
 	public static void boardManagement() {
 
 		BoardData.load();
-
-		Scanner scan = new Scanner(System.in);
 
 		BoardManagementView.boardManagementMenu();
 
@@ -60,14 +58,13 @@ public class BoardManagement {
 
 	}// boardManagement
 
+	// 공지사항 등록
 	private static void boardWrite() {
 
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.BOARD, true)); // true인 경우 이어쓰기
 
 			BoardData.setNewNoticeNumber(); // 공지사항 번호 설정
-
-			Scanner scan = new Scanner(System.in);
 
 			System.out.println();
 			MainView.singnleLine();
@@ -78,11 +75,11 @@ public class BoardManagement {
 			System.out.println("날짜: " + Today.day());
 			MainView.doubleLine();
 
-			if (BoardManagement.writeDeleteDate(scan)) {
+			if (BoardManagement.writeDeleteDate()) {
 
-				if (BoardManagement.writeTitle(scan)) {
+				if (BoardManagement.writeTitle()) {
 
-					if (BoardManagement.writeContents(scan)) {
+					if (BoardManagement.writeContents()) {
 						// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
 						writer.write(BoardData.getNoticeNumber() + "■" + Identify.auth + "■" + BoardManagement.title
 								+ "■" + BoardManagement.contents.toString().trim() + "■" + Today.day() + "■"
@@ -91,24 +88,24 @@ public class BoardManagement {
 						writer.close();
 
 						System.out.println("게시글이 성공적으로 작성되었습니다.");
-						BoardManagement.pause(scan);
+						BoardManagement.pause();
 
 						BoardManagement.boardManagement();
 						return;
 					} else {
-						BoardManagement.pause(scan);
+						BoardManagement.pause();
 
 						BoardManagement.boardManagement();
 						return;
 					}
 				} else {
-					BoardManagement.pause(scan);
+					BoardManagement.pause();
 
 					BoardManagement.boardManagement();
 					return;
 				}
 			} else {
-				BoardManagement.pause(scan);
+				BoardManagement.pause();
 
 				BoardManagement.boardManagement();
 				return;
@@ -122,129 +119,140 @@ public class BoardManagement {
 
 	// 공지사항 수정
 	private static void boardEdit() {
-
-		Scanner scan = new Scanner(System.in);
-
-		// int 값만 입력 가능
 		while (true) {
 			BoardManagementView.boardEditView();
 
-			if (scan.hasNextInt()) {
+			Main.selectNum = scan.nextLine(); // 입력 받기
 
-				BoardManagement.noticeNumber = scan.nextInt(); // 수정할 공지사항 번호
+			if (!Main.selectNum.isEmpty()) { // 입력이 공백이 아닌 경우
+				if (isInteger(Main.selectNum)) { // 정수값인지 확인
 
-				scan.nextLine(); // 비우기
+					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum); // 수정할 공지사항 번호
 
-				// 유효한 공지사항 번호인지 확인
-				if (checkNoticeNumberExists()) {
-					while (true) {
-						BoardManagementView.boardEditMenu();
+					// 유효한 공지사항 번호인지 확인
+					if (checkNoticeNumberExists()) {
+						while (true) {
+							BoardManagementView.boardEditMenu();
 
-						Main.selectNum = scan.nextLine();
+							Main.selectNum = scan.nextLine();
 
-						if (Main.selectNum.equals("1")) {
-							BoardManagement.boardEditDeleteDate(scan, BoardManagement.noticeNumber);
-							break;
-						} else if (Main.selectNum.equals("2")) {
-							BoardManagement.boardEditTitle(scan, BoardManagement.noticeNumber);
-							break;
-						} else if (Main.selectNum.equals("3")) {
-							BoardManagement.boardEditcontents(scan, BoardManagement.noticeNumber);
-							break;
-						} else {
-							System.out.println("잘못된 번호입니다.");
-							if (MainView.checkContinueBoolean()) {
-								continue;
+							if (Main.selectNum.equals("1")) {
+								BoardManagement.boardEditDeleteDate(BoardManagement.noticeNumber);
+								break;
+							} else if (Main.selectNum.equals("2")) {
+								BoardManagement.boardEditTitle(BoardManagement.noticeNumber);
+								break;
+							} else if (Main.selectNum.equals("3")) {
+								BoardManagement.boardEditcontents(BoardManagement.noticeNumber);
+								break;
 							} else {
-								BoardManagement.pause(scan);
+								System.out.println("잘못된 번호입니다.");
+								if (MainView.checkContinueBoolean()) {
+									continue;
+								} else {
+									BoardManagement.pause();
 
-								BoardManagement.boardEdit();
-								return;
+									BoardManagement.boardEdit();
+									return;
+								}
 							}
 						}
+					} else {
+						System.out.println("잘못된 번호입니다.");
+						if (MainView.checkContinueBoolean()) {
+							continue;
+						} else {
+							BoardManagement.pause();
+							BoardManagement.boardManagement();
+							return;
+						}
 					}
+					break;
 				} else {
-					System.out.println("잘못된 번호입니다.");
-
+					System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
 					if (MainView.checkContinueBoolean()) {
 						continue;
 					} else {
-						BoardManagement.pause(scan);
-
+						BoardManagement.pause();
 						BoardManagement.boardManagement();
 						return;
 					}
 				}
-
-				break;
-
 			} else {
-				System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
-				scan.nextLine(); // 비우기
-
+				System.out.println("잘못된 번호입니다.");
 				if (MainView.checkContinueBoolean()) {
 					continue;
 				} else {
+					BoardManagement.pause();
 					BoardManagement.boardManagement();
 					return;
 				}
 			}
 		} // while
-	}// boardEdit
+	} // boardEdit
 
+	// 공지사항 삭제
 	private static void boardDelete() {
-		boolean loop = true;
-		Scanner scan = new Scanner(System.in);
+		boolean loop = false;
 
-		// int 값만 입력 가능
 		while (true) {
-			BoardManagementView.boardDeleteView();
+			BoardManagementView.boardEditView();
 
-			if (scan.hasNextInt()) {
-				BoardManagement.noticeNumber = scan.nextInt(); // 수정할 공지사항 번호
+			Main.selectNum = scan.nextLine();
 
-				scan.nextLine(); // 비우기
+			if (!Main.selectNum.isEmpty()) { 
+				if (isInteger(Main.selectNum)) { 
 
-				for (Board board : BoardData.boardList) {
-					if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
-						BoardData.boardList.remove(board);// 해당 board 삭제
+					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum);
 
-						BoardData.save();
+					for (Board board : BoardData.boardList) {
+						if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
+							BoardData.boardList.remove(board);// 해당 board 삭제
 
-						System.out.println();
-						System.out.println("공지사항이 성공적으로 삭제되었습니다.");
+							BoardData.save();
 
-						break;
+							System.out.println();
+							System.out.println("공지사항이 성공적으로 삭제되었습니다.");
+
+							loop = true;
+							break;
+						}
 					}
-				}
 
-				if (loop) {
-					BoardManagement.pause(scan);
-					
-					BoardManagement.boardManagement();
-					return;
+					if (loop) {
+						BoardManagement.pause();
+
+						BoardManagement.boardManagement();
+						return;
+					} else {
+						System.out.println("잘못된 번호입니다.");
+
+						if (MainView.checkContinueBoolean()) {
+							continue;
+						} else {
+							BoardManagement.pause();
+
+							BoardManagement.boardManagement();
+							return;
+						}
+					}
+
 				} else {
-					System.out.println("잘못된 번호입니다.");
-
+					System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
 					if (MainView.checkContinueBoolean()) {
 						continue;
 					} else {
-						BoardManagement.pause(scan);
-
+						BoardManagement.pause();
 						BoardManagement.boardManagement();
 						return;
 					}
 				}
-
 			} else {
-				System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
-				scan.nextLine(); // 비우기
-
+				System.out.println("잘못된 번호입니다.");
 				if (MainView.checkContinueBoolean()) {
 					continue;
 				} else {
-					BoardManagement.pause(scan);
-					
+					BoardManagement.pause();
 					BoardManagement.boardManagement();
 					return;
 				}
@@ -252,17 +260,18 @@ public class BoardManagement {
 		} // while
 	}// boardDelete
 
+	// 공지사항 수정 메서드
 	// 수정 메서드
-	private static void boardEditDeleteDate(Scanner scan, int noticeNumber) {
+	private static void boardEditDeleteDate(int noticeNumber) {
 
 		while (true) {
-			if (BoardManagement.writeDeleteDate(scan)) {
+			if (BoardManagement.writeDeleteDate()) {
 				if (checkDeleteDateChange(noticeNumber, BoardManagement.deleteDate)) {
 					BoardData.save();
 
 					System.out.println();
 					System.out.println("삭제 날짜가 성공적으로 수정되었습니다.");
-					BoardManagement.pause(scan);
+					BoardManagement.pause();
 
 					BoardManagement.boardManagement();
 					return;
@@ -271,19 +280,16 @@ public class BoardManagement {
 					System.out.println("변경된 내용이 없습니다.");
 
 					if (MainView.checkContinueBoolean()) {
-						BoardManagement.pause(scan);
-
 						continue;
 
 					} else {
-						BoardManagement.pause(scan);
+						BoardManagement.pause();
 
 						BoardManagement.boardEdit();
 						return;
 					}
 				}
 			} else {
-
 				BoardManagement.boardManagement();
 				return;
 			}
@@ -291,15 +297,15 @@ public class BoardManagement {
 
 	}// boardEditDeleteDate
 
-	private static void boardEditTitle(Scanner scan, int noticeNumber) {
+	private static void boardEditTitle(int noticeNumber) {
 		while (true) {
-			if (BoardManagement.writeTitle(scan)) {
+			if (BoardManagement.writeTitle()) {
 				if (checkTitleChange(noticeNumber, BoardManagement.title)) {
 					BoardData.save();
 
 					System.out.println();
 					System.out.println("제목이 성공적으로 수정되었습니다.");
-					BoardManagement.pause(scan);
+					BoardManagement.pause();
 
 					BoardManagement.boardManagement();
 					return;
@@ -308,12 +314,10 @@ public class BoardManagement {
 					System.out.println("변경된 내용이 없습니다.");
 
 					if (MainView.checkContinueBoolean()) {
-						BoardManagement.pause(scan);
-
 						continue;
 
 					} else {
-						BoardManagement.pause(scan);
+						BoardManagement.pause();
 
 						BoardManagement.boardEdit();
 						return;
@@ -326,23 +330,23 @@ public class BoardManagement {
 		}
 	}// boardEditTitle
 
-	private static void boardEditcontents(Scanner scan, int noticeNumber) {
+	private static void boardEditcontents(int noticeNumber) {
 		while (true) {
-			// TODO 공지사항 내용 출력 수정
 			for (Board board : BoardData.boardList) {
 				if (board.getNoticeNumber() == noticeNumber) {
-					System.out.println("기존 내용 :" + board.getContents());
+					System.out.println();
+					System.out.println("기존 내용: " + board.getContents().replace("\\n", "\n"));
 					break;
 				}
 			}
 
-			if (BoardManagement.writeContents(scan)) {
+			if (BoardManagement.writeContents()) {
 				if (checkContentsChange(noticeNumber, BoardManagement.contents)) {
 					BoardData.save();
 
 					System.out.println();
 					System.out.println("내용이 성공적으로 수정되었습니다.");
-					BoardManagement.pause(scan);
+					BoardManagement.pause();
 
 					BoardManagement.boardManagement();
 					return;
@@ -351,12 +355,10 @@ public class BoardManagement {
 					System.out.println("변경된 내용이 없습니다.");
 
 					if (MainView.checkContinueBoolean()) {
-						BoardManagement.pause(scan);
-
 						continue;
 
 					} else {
-						BoardManagement.pause(scan);
+						BoardManagement.pause();
 
 						BoardManagement.boardEdit();
 						return;
@@ -370,7 +372,8 @@ public class BoardManagement {
 	}// boardEditcontents
 
 	// 작성 메서드
-	private static boolean writeDeleteDate(Scanner scan) {
+	// 공지사항 작성 메서드
+	private static boolean writeDeleteDate() {
 		while (true) {
 			System.out.print("삭제할 날짜: ");
 			BoardManagement.deleteDate = scan.nextLine();
@@ -404,14 +407,14 @@ public class BoardManagement {
 		}
 	}
 
-	private static boolean writeTitle(Scanner scan) {
+	private static boolean writeTitle() {
 		while (true) {
 			System.out.print("제목: ");
 			BoardManagement.title = scan.nextLine();
 
 			if (BoardManagement.invalidateTitle(BoardManagement.title)) {
 				System.out.println();
-				System.out.println("제목은 최대 30글자까지 입력 가능합니다.");
+				System.out.println("제목은 1-30글자까지 입력 가능합니다.");
 
 				if (MainView.checkContinueBoolean()) {
 					continue;
@@ -425,9 +428,11 @@ public class BoardManagement {
 		}
 	}
 
-	private static boolean writeContents(Scanner scan) {
+	private static boolean writeContents() {
 		while (true) {
-			System.out.print("내용(종료하려면 빈 줄에서 엔터를 두 번 입력하세요.) : ");
+			System.out.println();
+			System.out.println("종료하려면 빈 줄에서 엔터를 두 번 입력하세요.");
+			System.out.print("내용: ");
 			while (true) {
 				String line = scan.nextLine(); // 한 줄씩 입력받음
 				if (line.isEmpty()) { // 입력이 빈 줄인 경우 반복문 종료
@@ -437,7 +442,7 @@ public class BoardManagement {
 			}
 			if (invalidateContents(BoardManagement.contents.toString())) {
 				System.out.println();
-				System.out.println("내용은 최대 200자까지 입력 가능합니다.");
+				System.out.println("내용은 1-200글자까지 입력 가능합니다.");
 
 				if (MainView.checkContinueBoolean()) {
 					continue;
@@ -452,6 +457,8 @@ public class BoardManagement {
 
 	// 유효성 검사
 	// java.util.Date와 java.sql.Date는 서로 다른 클래스입니다. 따라서 직접적인 형변환이 불가능
+
+	// 유효성 검사
 	private static boolean checkDeleteDate(String deleteDate) {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -472,15 +479,16 @@ public class BoardManagement {
 
 	private static boolean invalidateTitle(String title) {
 		// 제목 > 최대 30글자
-		return title.length() > 30;
+		return title.isEmpty() || title.length() > 30;
 	}
 
 	private static boolean invalidateContents(String contents) {
 		// 내용 > 최대 200글자
-		return contents.length() > 200;
+		return contents.isEmpty() || contents.length() > 200;
 	}
 
 	private static boolean checkNoticeNumberExists() {
+		System.out.println(BoardManagement.noticeNumber);
 		for (Board board : BoardData.boardList) {
 			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
 				return true;
@@ -489,6 +497,7 @@ public class BoardManagement {
 		return false;
 	}
 
+	// 중복성 검사
 	// 중복성 검사
 	private static boolean checkDeleteDateChange(int noticeNumber, String deleteDate) {
 		for (Board board : BoardData.boardList) {
@@ -534,7 +543,17 @@ public class BoardManagement {
 		return false;
 	}
 
-	private static void pause(Scanner scan) {
+	// 문자열이 정수값인지 확인하는 메서드
+	private static boolean isInteger(String s) {
+		try {
+			Integer.parseInt(s);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	private static void pause() {
 		System.out.println("엔터를 치면 선택 화면으로 돌아갑니다.");
 		scan.nextLine();
 		System.out.println();
