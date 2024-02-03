@@ -33,7 +33,7 @@ public class MainView {
 
 		// 관리자 공통
 		if (Identify.auth != null && Identify.level.equals("1")) {
-			//TODO 10번 사원 출/퇴근 조회로 이름 변경
+			// TODO 10번 사원 출/퇴근 조회로 이름 변경
 			System.out.println("10. 사원 출/퇴근 조회");
 			System.out.println("11. 재고 확인");
 			System.out.println("12. 공지사항 관리");
@@ -75,7 +75,8 @@ public class MainView {
 		}
 
 		// 이메일(경영부 관리자, 대리점)
-		if (Identify.auth != null && ((Identify.level.equals("1") && Identify.dept.equals("경영")) || Identify.level.equals("3"))) {
+		if (Identify.auth != null
+				&& ((Identify.level.equals("1") && Identify.dept.equals("경영")) || Identify.level.equals("3"))) {
 
 			System.out.println("22. 이메일");
 		}
@@ -88,7 +89,6 @@ public class MainView {
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
 	}
-
 
 	// TODO pause 메서드 추가
 	public static void pause() {
@@ -104,29 +104,33 @@ public class MainView {
 	// y,s 답변 받는 메서드
 	public static void checkContinue() {
 		Scanner scan = new Scanner(System.in);
-		
+
 		System.out.println();
 		System.out.print("계속 진행하시겠습니까?(Y/N)\n");
 		System.out.print("입력: ");
 		Main.answer = scan.nextLine();
-		
-//		private static void checkContinue() {
-//
-//			MainView.checkContinue();
-//
-//			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
-//				Modify.modify();
-//			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
-//				MainView.pause();
-//			} else {
-//				System.out.println();
-//				MainView.singnleLine();
-//				System.out.println();
-//				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-//				Modify.checkContinue();
-//			}
-//		}
-		
+	}
+
+	public static boolean checkContinueBoolean() {
+		Scanner scan = new Scanner(System.in);
+		while (true) {
+
+			System.out.println();
+			System.out.print("계속 진행하시겠습니까?(Y/N)\n");
+			System.out.print("입력: ");
+			Main.answer = scan.nextLine();
+
+			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+				return true;
+			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+				return false;
+			} else {
+				System.out.println();
+				MainView.singnleLine();
+				System.out.println();
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			}
+		}
 	}
 
 	// TODO doubleLine 메서드 추가
@@ -138,6 +142,5 @@ public class MainView {
 	public static void singnleLine() {
 		System.out.println("---------------------------------------------------------------------------");
 	}
-	
 
 }

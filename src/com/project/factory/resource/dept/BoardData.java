@@ -1,12 +1,13 @@
 package com.project.factory.resource.dept;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import com.project.factory.resource.Path;
 
-//TODO Board 클래스 추가
 public class BoardData {
 	
 	public static ArrayList<Board> boardList = new ArrayList<Board>();
@@ -14,6 +15,8 @@ public class BoardData {
 
 	public static void load() {
 		try {
+			
+			boardList.clear(); // 기존 데이터 초기화
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.BOARD));
 
@@ -58,32 +61,32 @@ public class BoardData {
     }
     
 
-//	public static void save() {
-//
-//		try {
-//			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.BOARD));
-//
-//			for (Board boardItem : BoardData.boardList) {
-//
-//				//공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
-//				String line = String.format("\r\n%d■%s■%s■%s■%s■%s", 
-//						boardItem.getNoticeNumber(), 
-//						boardItem.getId(),
-//						boardItem.getTitle(), 
-//						boardItem.getContents(), 
-//						boardItem.getToday(),
-//						boardItem.getDeleteDate());
-//
-//				writer.write(line);
-//
-//			}
-//
-//			writer.close();
-//
-//		} catch (Exception e) {
-//			System.out.println("BoardData.save");
-//			e.printStackTrace();
-//		}
-//
-//	}
+	public static void save() {
+
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.BOARD));
+
+			for (Board boardItem : BoardData.boardList) {
+
+				//공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
+				String line = String.format("%d■%s■%s■%s■%s■%s\r\n", 
+						boardItem.getNoticeNumber(), 
+						boardItem.getId(),
+						boardItem.getTitle(), 
+						boardItem.getContents(), 
+						boardItem.getWriteDate(),
+						boardItem.getDeleteDate());
+
+				writer.write(line);
+
+			}
+
+			writer.close();
+
+		} catch (Exception e) {
+			System.out.println("BoardData.save");
+			e.printStackTrace();
+		}
+
+	}
 }
