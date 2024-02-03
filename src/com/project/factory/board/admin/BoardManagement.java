@@ -80,10 +80,10 @@ public class BoardManagement {
 				if (BoardManagement.writeTitle()) {
 
 					if (BoardManagement.writeContents()) {
-						// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
-						writer.write(BoardData.getNoticeNumber() + "■" + Identify.auth + "■" + BoardManagement.title
-								+ "■" + BoardManagement.contents.toString().trim() + "■" + Today.day() + "■"
-								+ BoardManagement.deleteDate);
+						// 공지사항번호■작성자ID(사원번호)■부서■제목■내용■작성일■삭제할날짜
+						writer.write(BoardData.getNoticeNumber() + "■" + Identify.auth + "■" + Identify.dept + "■"
+								+ BoardManagement.title + "■" + BoardManagement.contents.toString().trim() + "■"
+								+ Today.day() + "■" + BoardManagement.deleteDate);
 						writer.newLine();
 						writer.close();
 
@@ -137,13 +137,13 @@ public class BoardManagement {
 							Main.selectNum = scan.nextLine();
 
 							if (Main.selectNum.equals("1")) {
-								BoardManagement.boardEditDeleteDate(BoardManagement.noticeNumber);
-								break;
-							} else if (Main.selectNum.equals("2")) {
 								BoardManagement.boardEditTitle(BoardManagement.noticeNumber);
 								break;
-							} else if (Main.selectNum.equals("3")) {
+							} else if (Main.selectNum.equals("2")) {
 								BoardManagement.boardEditcontents(BoardManagement.noticeNumber);
+								break;
+							} else if (Main.selectNum.equals("3")) {
+								BoardManagement.boardEditDeleteDate(BoardManagement.noticeNumber);
 								break;
 							} else {
 								System.out.println("잘못된 번호입니다.");
@@ -200,8 +200,8 @@ public class BoardManagement {
 
 			Main.selectNum = scan.nextLine();
 
-			if (!Main.selectNum.isEmpty()) { 
-				if (isInteger(Main.selectNum)) { 
+			if (!Main.selectNum.isEmpty()) {
+				if (isInteger(Main.selectNum)) {
 
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum);
 

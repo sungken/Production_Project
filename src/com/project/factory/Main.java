@@ -2,6 +2,7 @@ package com.project.factory;
 
 import java.util.Scanner;
 
+import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
 import com.project.factory.member.Find;
@@ -63,8 +64,8 @@ public class Main {
 					CommutePush.commutePush();
 				} else if (sel.equals("7")) {
 					// 공지 사항(읽기)
-					// ReadBoard board = new ReadBoard();
-					// board.list(); > 메서드 생성 필요
+					ReadBoard board = new ReadBoard();
+					board.list();
 				} else if (sel.equals("8")) {
 					// 부품 재고 파악 및 발주
 					// CheckPiece.checkPiece(); > 메서드 생성 필요

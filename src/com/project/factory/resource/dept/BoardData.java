@@ -22,10 +22,10 @@ public class BoardData {
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				//공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
+				// 공지사항번호■작성자ID(사원번호)■부서■제목■내용■작성일■삭제할날짜
 				String[] temp = line.split("■");
 
-				Board boardItem = new Board(Integer.parseInt(temp[0]), temp[1], temp[2], temp[3], temp[4], temp[5]);
+				Board boardItem = new Board(Integer.parseInt(temp[0]), temp[1], temp[2], temp[3], temp[4], temp[5], temp[6]);
 
 				boardList.add(boardItem);
 
@@ -68,10 +68,11 @@ public class BoardData {
 
 			for (Board boardItem : BoardData.boardList) {
 
-				//공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
-				String line = String.format("%d■%s■%s■%s■%s■%s\r\n", 
+				//공지사항번호■작성자ID(사원번호)■부서■제목■내용■작성일■삭제할날짜
+				String line = String.format("%d■%s■%s■%s■%s■%s■%s\r\n", 
 						boardItem.getNoticeNumber(), 
 						boardItem.getId(),
+						boardItem.getDept(),
 						boardItem.getTitle(), 
 						boardItem.getContents(), 
 						boardItem.getWriteDate(),

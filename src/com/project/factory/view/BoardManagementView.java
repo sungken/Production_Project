@@ -24,9 +24,9 @@ public class BoardManagementView {
 		System.out.println();
 		MainView.singnleLine();
 		System.out.println();
-		System.out.println("1. 삭제 날짜");
-		System.out.println("2. 제목");
-		System.out.println("3. 내용");
+		System.out.println("1. 제목");
+		System.out.println("2. 내용");
+		System.out.println("3. 삭제 날짜");
 		System.out.println();
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
@@ -62,10 +62,10 @@ public class BoardManagementView {
 	}
 
 	private static void boardManagementListView() {
-		System.out.printf("%-5s\t%-10S\t%-40S\t%-10S\r\n","[번호]", "[작성일]", "[제목]", "[삭제 예정일]");
+		System.out.printf("%-5s\t%-40S\t%-10S\t%-10S\r\n","[번호]", "[제목]", "[작성일]", "[삭제 예정일]");
 		
 		for (Board board : BoardData.boardList) {	
-			System.out.printf("%3d\t%10S\t%-40S\t%-10S\n", board.getNoticeNumber(), board.getWriteDate(), board.getTitle().trim(), board.getDeleteDate());
+			System.out.printf("%3d\t%-40S\t%10S\t%-10S\n", board.getNoticeNumber(), board.getTitle().trim(), board.getWriteDate(), board.getDeleteDate());
 		}
 	}
 }
