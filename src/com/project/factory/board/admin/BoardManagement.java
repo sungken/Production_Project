@@ -486,9 +486,9 @@ public class BoardManagement {
 		// 내용 > 최대 200글자
 		return contents.isEmpty() || contents.length() > 200;
 	}
+	//TODO ReadBoard에서 사용해서 일단 public으로 수정
 
-	private static boolean checkNoticeNumberExists() {
-		System.out.println(BoardManagement.noticeNumber);
+	public static boolean checkNoticeNumberExists() {
 		for (Board board : BoardData.boardList) {
 			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
 				return true;
@@ -543,8 +543,9 @@ public class BoardManagement {
 		return false;
 	}
 
+	//TODO ReadBoard에서 사용해서 일단 public으로 수정
 	// 문자열이 정수값인지 확인하는 메서드
-	private static boolean isInteger(String s) {
+	public static boolean isInteger(String s) {
 		try {
 			Integer.parseInt(s);
 			return true;

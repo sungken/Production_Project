@@ -64,8 +64,7 @@ public class Main {
 					CommutePush.commutePush();
 				} else if (sel.equals("7")) {
 					// 공지 사항(읽기)
-					ReadBoard board = new ReadBoard();
-					board.list();
+					ReadBoard.readBoard();
 				} else if (sel.equals("8")) {
 					// 부품 재고 파악 및 발주
 					// CheckPiece.checkPiece(); > 메서드 생성 필요
