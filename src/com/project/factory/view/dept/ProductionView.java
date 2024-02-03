@@ -28,16 +28,38 @@ public class ProductionView {
 		MainView.doubleLine();
 		System.out.println();
 		System.out.println("1. 생산 시작");
-		System.out.println("1. 생산 정지");
+		System.out.println("2. 생산 정지");
 		System.out.println("3. 생산 종료");
 		System.out.println();
 		MainView.doubleLine();
 	}
 	
 	public static void viewCurrentProduct() {
-		for(ModelInventory models : ModelInventoryData.modelInventoryList) {
-			System.out.printf("%s : %d대", models.getModelName(), models.getModelInventory());
+		for (ModelInventory modelInventory : ModelInventoryData.modelInventoryList) {
+			System.out.printf("%s : %d대\n", modelInventory.getModelName(), modelInventory.getModelInventory());
 		}
+	}
+	
+	public static void viewPoductionView() {
+		MainView.doubleLine();
+		System.out.println();
+		System.out.printf("총 생산량 %d대\n");
+		System.out.printf("불량품 개수 : %d대");
+		System.out.println("재고량 : ");
+		System.out.println();
+		MainView.doubleLine();
+	}
+	public static void viewModel() {
+		MainView.doubleLine();
+		System.out.println();
+		System.out.println("모델별 불량품 개수를 입력해주세요");
+		int count = 1;
+		for (ModelInventory modelInventory : ModelInventoryData.modelInventoryList) {
+			System.out.printf("%d. %s \n", count, modelInventory.getModelName());
+			count++;
+		}
+		System.out.println();
+		MainView.doubleLine();
 	}
 
 

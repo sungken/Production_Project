@@ -7,7 +7,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import com.project.factory.resource.Path;
-
+/**
+ * 모델별 재고 관리 클래스
+ */
 public class ModelInventoryData {
 	public static ArrayList<ModelInventory> modelInventoryList = new ArrayList<ModelInventory>();
 
@@ -41,7 +43,7 @@ public class ModelInventoryData {
 
 			for (ModelInventory modelInventory : ModelInventoryData.modelInventoryList) {
 
-				String line = String.format("%s■%d\r\n", modelInventory.getModelName(),modelInventory.getModelInventory());
+				String line = String.format("%s■%d\r\n", modelInventory.getModelName(), modelInventory.getModelInventory());
 
 				writer.write(line);
 

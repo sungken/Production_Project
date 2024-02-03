@@ -10,6 +10,7 @@ import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
 import com.project.factory.member.Modify;
+import com.project.factory.member.admin.InventorySearch;
 import com.project.factory.resource.Data;
 import com.project.factory.view.MainView;
 
@@ -26,6 +27,7 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 
 		Data.load();
+		ModelInventoryData.inventoryLoad();
 		while (loop) {
 
 			MainView.mainMenu();
@@ -76,7 +78,7 @@ public class Main {
 					// CommuteSearch.commuteSearch(); > 메서드 생성 필요
 				} else if (sel.equals("11")) {
 					// 재고 확인
-					// InventorySearch.inventorySearch(); > 메서드 생성 필요
+					 InventorySearch.checkInventory();
 				} else if (sel.equals("12")) {
 					// 공지사항 관리
 					// WriteBoard.writeBoared(); > 메서드 생성 필요
