@@ -1,18 +1,19 @@
 package com.project.factory;
 
+
 import java.util.Scanner;
 
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
 import com.project.factory.dept.management.admin.AgencyManagement;
-import com.project.factory.dept.management.admin.OrderManagement;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
 import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
 import com.project.factory.member.admin.CommuteSearch;
+import com.project.factory.member.SignUp;
 import com.project.factory.resource.Data;
 import com.project.factory.view.MainView;
 
@@ -40,7 +41,7 @@ public class Main {
 			if (Identify.auth == null) {
 				if (sel.equals("1")) {
 					// 회원가입
-					// SignUp.signUp(); > 메서드 생성 필요
+					 SignUp.cheackid(); 
 				} else if (sel.equals("2")) {
 					// 로그인
 					Login.login();

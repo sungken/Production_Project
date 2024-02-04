@@ -543,7 +543,7 @@ public class BoardManagement {
 		return false;
 	}
 
-	//TODO ReadBoard에서 사용해서 일단 public으로 수정
+	//TODO ReadBoard에서 사용해서 일단 public으로 수정, AgencyManagement에서도 사용
 	// 문자열이 정수값인지 확인하는 메서드
 	public static boolean isInteger(String s) {
 		try {
