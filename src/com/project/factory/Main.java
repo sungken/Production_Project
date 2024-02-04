@@ -5,6 +5,8 @@ import java.util.Scanner;
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
+import com.project.factory.dept.management.admin.AgencyManagement;
+import com.project.factory.dept.management.admin.OrderManagement;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
@@ -97,10 +99,10 @@ public class Main {
 					// DestManagement.destManagement(); > 메서드 생성 필요
 				} else if (sel.equals("18")) {
 					// 대리점 관리
-					// AgencyManagement.agencyManagement(); > 메서드 생성 필요
+					AgencyManagement.agencyManagement();
 				} else if (sel.equals("19")) {
 					// 대리점 주문 관리
-					// OrderManagement.orderManagement(); > 메서드 생성 필요
+					//OrderManagement.orderManagement();
 				} else if (sel.equals("20")) {
 					// 모델 관리
 					// ModelManagement.modelManagement(); > 메서드 생성 필요
