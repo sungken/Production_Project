@@ -119,6 +119,28 @@ public class MainView {
 //		}
 		
 	}
+	
+	public static boolean checkContinueBoolean() {
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+
+            System.out.println();
+            System.out.print("계속 진행하시겠습니까?(Y/N)\n");
+            System.out.print("입력: ");
+            Main.answer = scan.nextLine();
+
+            if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+                return true;
+            } else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+                return false;
+            } else {
+                System.out.println();
+                MainView.singnleLine();
+                System.out.println();
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            }
+        }
+    }
 
 	// TODO doubleLine 메서드 추가
 	public static void doubleLine() {

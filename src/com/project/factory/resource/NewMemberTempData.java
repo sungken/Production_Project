@@ -16,7 +16,7 @@ public class NewMemberTempData {
         try {
         	NewMemberTempList.clear();
 
-            BufferedReader reader = new BufferedReader(new FileReader(Path.NEWMEMBER));
+            BufferedReader reader = new BufferedReader(new FileReader(Path.NEWMEMBERTEMP));
 
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -40,22 +40,22 @@ public class NewMemberTempData {
 		
 	
 	
-	public static void save() {
+	public static void save(NewMembers newMember) {
 	    try {
-	        BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBERTEMP,true));
+	        BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBERTEMP, true));
 
-	        for (NewMembersTemp newMemberTemp : NewMemberTempData.NewMemberTempList) {
-	            String line = String.format("%s■%s■%s■%s■%s■%s■%s\r\n", newMemberTemp.getId(), newMemberTemp.getName(),
-	            		newMemberTemp.getPhoneNum(), newMemberTemp.getBirth(), newMemberTemp.getAddress(), newMemberTemp.getDept(),
-	            		newMemberTemp.getLevel());
-	            writer.write(line);
-	        }
+	        String line = String.format("%s■%s■%s■%s■%s■%s■%s\r\n", newMember.getId(), newMember.getName(),
+	                newMember.getPhoneNum(), newMember.getBirth(), newMember.getAddress(), newMember.getDept(),
+	                newMember.getLevel());
+	        writer.write(line);
 
 	        writer.close();
 	    } catch (Exception e) {
-	        System.out.println("Data.save");
+	        System.out.println("NewMemberTempData.save");
 	        e.printStackTrace();
 	    }
 	}
+
+
 	
 }
