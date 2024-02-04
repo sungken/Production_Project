@@ -32,8 +32,8 @@ public class Today {
         return Pattern.matches(regex, date);
     }
 	
-	//날짜 유효성 검사
-	public static boolean inValidDate(String date) {
+	//날짜 유효성 검사 > 유효하지 않으면 true
+	public static boolean invalidateDate(String date) {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             dateFormat.setLenient(false); // 엄격한 모드로 설정
@@ -41,10 +41,10 @@ public class Today {
             Today.calendar.setTime(dateFormat.parse(date));
 
             // ParseException이 발생하지 않으면 유효한 날짜
-            return true;
+            return false;
         } catch (ParseException e) {
             // ParseException이 발생하면 유효하지 않은 날짜
-            return false;
+            return true;
         }
     }
 }
