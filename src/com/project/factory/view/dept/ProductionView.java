@@ -58,9 +58,10 @@ public class ProductionView {
 		System.out.println("모델별 불량품 개수를 입력해주세요");
 		int count = 1;
 		for (TodayProduction modelInventory : TodayProductionData.todayProductionList) {
-			System.out.printf("%d. %s:  \n", count, modelInventory.getModel());
+			System.out.printf("%d. %s: %d \n", count, modelInventory.getModel(), modelInventory.getTodayProductNum());
 			count++;
 		}
+		
 		System.out.println();
 		MainView.doubleLine();
 	}

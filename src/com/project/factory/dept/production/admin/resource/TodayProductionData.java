@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import com.project.factory.dept.production.admin.ProductionManagement;
 import com.project.factory.resource.Path;
+import com.project.factory.view.dept.ProductionView;
 
 public class TodayProductionData {
 	public static ArrayList<TodayProduction> todayProductionList = new ArrayList<TodayProduction>();
@@ -23,9 +25,9 @@ public class TodayProductionData {
 				TodayProduction todayProduction = new TodayProduction(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), temp[3]);
 
 				todayProductionList.add(todayProduction);
+				
 
 			}
-
 			reader.close();
 
 		} catch (Exception e) {

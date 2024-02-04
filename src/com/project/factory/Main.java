@@ -24,7 +24,6 @@ public class Main {
 	// TODO selectNum String으로 변경
 	public static String selectNum;
 	public static String answer;
-
 	public static void main(String[] args) {
 
 		// TODO loop 변수 추가 > 초기 화면 메뉴 반복문
@@ -99,6 +98,7 @@ public class Main {
 					ModelInfoData.modelInfoLoad();
 					TodayProductionData.todayInventoryLoad();
 					ProductionManagement.productionSelect();
+					
 					
 					// ProductionManagement.productionManagement(); > 메서드 생성 필요
 				} else if (sel.equals("16")) {

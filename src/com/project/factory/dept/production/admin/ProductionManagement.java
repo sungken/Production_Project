@@ -12,21 +12,39 @@ import com.project.factory.view.dept.ProductionView;
 
 //TODO productionManagement 클래스명 오타 수정
 public class ProductionManagement {
-	static // 생산관리
-	ProductStart product = new ProductStart();
-
+	 // 생산관리
+	
 	public static void productionSelect() {
+		
+		
+		K3Start k3 = new K3Start();
+		K5Start k5 = new K5Start();
+		K7Start k7 = new K7Start();
+		K9Start k9 = new K9Start();
+		
 		Scanner sc = new Scanner(System.in);
+		
 		ProductionView.viewproductionMenu();
 		System.out.print("생산 입력: ");
 		int sel = sc.nextInt();
+		
 		if (sel == 1) {
-			product.start();
-			product.setstatusproduction(true);
+			
+			k3.start();
+			k5.start();
+			k7.start();
+			k9.start();
+			k3.setStatusproduction(true);
+			k5.setStatusproduction(true);
+			k7.setStatusproduction(true);
+			k9.setStatusproduction(true);
 			
 			MainView.pause();
 		} else if (sel == 2) {
-			product.setstatusproduction(false);
+			k3.setStatusproduction(false);
+			k5.setStatusproduction(false);
+			k7.setStatusproduction(false);
+			k9.setStatusproduction(false);
 			MainView.pause();
 		} else if (sel == 3) {
 			stopproduction();
@@ -76,32 +94,6 @@ public class ProductionManagement {
 
 }// class
 
-//생산시작 쓰레드
-class ProductStart extends Thread {
 
-	private boolean statusproduction = true;
 
-	public void setstatusproduction(boolean statusproduction) {
-		this.statusproduction = statusproduction;
-	}
 
-	public void run(String date) {
-		int count = 0;
-		System.out.println("생산을 시작합니다.");
-		while (statusproduction) {
-			try {
-				for (TodayProduction today : TodayProductionData.todayProductionList) {
-					today.setTodayProductNum(count);
-				}
-				count += 5;
-				Thread.sleep(10000);
-
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		System.out.println("쓰레드 중지");
-
-	}
-
-}

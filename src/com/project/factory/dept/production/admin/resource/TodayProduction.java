@@ -6,6 +6,7 @@ public class TodayProduction {
 	private int finalTodayProductNum;
 	private String model;
 	
+	
 	public TodayProduction(int todayProductNum, int todayDefectiveNum, int finalTodayProductNum,  String model) {
 		this.todayProductNum = todayProductNum;
 		this.todayDefectiveNum = todayDefectiveNum;

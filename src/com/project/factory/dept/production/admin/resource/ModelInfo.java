@@ -20,6 +20,10 @@ public class ModelInfo {
 		this.modelInventory = modelInventory;
 	}
 
+	public ModelInfo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getWheel() {
 		return wheel;
 	}
