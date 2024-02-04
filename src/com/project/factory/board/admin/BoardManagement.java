@@ -31,7 +31,7 @@ public class BoardManagement {
 	// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
 
 	public static void boardManagement() {
-
+		
 		BoardData.load();
 
 		BoardManagementView.boardManagementMenu();
@@ -55,6 +55,8 @@ public class BoardManagement {
 				return;
 			}
 		}
+		
+		//BoardData.save();
 
 	}// boardManagement
 
@@ -129,7 +131,7 @@ public class BoardManagement {
 
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum); // 수정할 공지사항 번호
 
-					// 유효한 공지사항 번호인지 확인
+					// 유효한 공지사항 번호인지 & 공지사항 작성자인지 확인
 					if (checkNoticeNumberExists()) {
 						while (true) {
 							BoardManagementView.boardEditMenu();
@@ -206,7 +208,7 @@ public class BoardManagement {
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum);
 
 					for (Board board : BoardData.boardList) {
-						if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
+						if (board.getNoticeNumber() == BoardManagement.noticeNumber && board.getId().equals(Identify.auth)) {
 							BoardData.boardList.remove(board);// 해당 board 삭제
 
 							BoardData.save();
@@ -459,16 +461,18 @@ public class BoardManagement {
 	// java.util.Date와 java.sql.Date는 서로 다른 클래스입니다. 따라서 직접적인 형변환이 불가능
 
 	// 유효성 검사
-	private static boolean checkDeleteDate(String deleteDate) {
+	//TODO 파일 load할 때 사용하려고 public로 변경
+	public static boolean checkDeleteDate(String deleteDate) {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+			Calendar today = Calendar.getInstance();
 			// 삭제 날짜를 Calendar 객체로 변환
 			Calendar deleteDateCal = Calendar.getInstance();
 			deleteDateCal.setTime(dateFormat.parse(deleteDate));
 
 			// 삭제 날짜가 현재 날짜보다 이전인지 검사
-			return deleteDateCal.before(Today.calendar);
+			return deleteDateCal.before(today);
 
 		} catch (ParseException e) {
 			System.out.println("BoardManagement.checkDeleteDate");
@@ -486,18 +490,16 @@ public class BoardManagement {
 		// 내용 > 최대 200글자
 		return contents.isEmpty() || contents.length() > 200;
 	}
-	// TODO ReadBoard에서 사용해서 일단 public으로 수정
-
-	public static boolean checkNoticeNumberExists() {
+	
+	private static boolean checkNoticeNumberExists() {
 		for (Board board : BoardData.boardList) {
-			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
+			if (board.getNoticeNumber() == BoardManagement.noticeNumber && board.getId().equals(Identify.auth)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	// 중복성 검사
 	// 중복성 검사
 	private static boolean checkDeleteDateChange(int noticeNumber, String deleteDate) {
 		for (Board board : BoardData.boardList) {

@@ -6,13 +6,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import com.project.factory.Today;
+import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.resource.Path;
 
 public class BoardData {
 	
 	public static ArrayList<Board> boardList = new ArrayList<Board>();
 	public static int noticeNumber; //공지사항 번호
-
 	public static void load() {
 		try {
 			
@@ -27,7 +28,14 @@ public class BoardData {
 
 				Board boardItem = new Board(Integer.parseInt(temp[0]), temp[1], temp[2], temp[3], temp[4], temp[5], temp[6]);
 
-				boardList.add(boardItem);
+				//boardList.add(boardItem);
+				
+				//삭제일 지났으면 삭제하기
+				if(BoardManagement.checkDeleteDate(temp[6])) {
+					continue;
+				}else {
+					boardList.add(boardItem);
+				}
 
 			}
 			

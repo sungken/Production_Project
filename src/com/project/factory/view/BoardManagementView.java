@@ -1,5 +1,6 @@
 package com.project.factory.view;
 
+import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
 
@@ -19,8 +20,8 @@ public class BoardManagementView {
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
 	}
-	
-	public static void boardEditMenu() {		
+
+	public static void boardEditMenu() {
 		System.out.println();
 		MainView.singnleLine();
 		System.out.println();
@@ -31,30 +32,29 @@ public class BoardManagementView {
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
 	}
-	
-	
+
 	public static void boardEditView() {
 		System.out.println();
 		MainView.singnleLine();
 		System.out.println("          공지사항 수정");
 		MainView.singnleLine();
-		
+
 		BoardManagementView.boardManagementListView();
-		
+
 		System.out.println();
 		System.out.println("수정하실 공지사항 번호를 입력해주세요.");
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
 	}
-	
+
 	public static void boardDeleteView() {
 		System.out.println();
 		MainView.singnleLine();
 		System.out.println("          공지사항 삭제");
 		MainView.singnleLine();
-		
+
 		BoardManagementView.boardManagementListView();
-		
+
 		System.out.println();
 		System.out.println("삭제하실 공지사항 번호를 입력해주세요.");
 		MainView.singnleLine();
@@ -62,10 +62,13 @@ public class BoardManagementView {
 	}
 
 	private static void boardManagementListView() {
-		System.out.printf("%-5s\t%-40S\t%-10S\t%-10S\r\n","[번호]", "[제목]", "[작성일]", "[삭제 예정일]");
-		
-		for (Board board : BoardData.boardList) {	
-			System.out.printf("%3d\t%-40S\t%10S\t%-10S\n", board.getNoticeNumber(), board.getTitle().trim(), board.getWriteDate(), board.getDeleteDate());
+		System.out.printf("%-5s\t%-40S\t%-10S\t%-10S\r\n", "[번호]", "[제목]", "[작성일]", "[삭제 예정일]");
+
+		for (Board board : BoardData.boardList) {
+			if (board.getId().equals(Identify.auth)) {
+				System.out.printf("%3d\t%-40S\t%10S\t%-10S\n", board.getNoticeNumber(), board.getTitle().trim(),
+						board.getWriteDate(), board.getDeleteDate());
+			}
 		}
 	}
 }

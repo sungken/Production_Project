@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.board.admin.BoardManagement;
+import com.project.factory.member.Identify;
+import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
 import com.project.factory.view.BoardView;
 import com.project.factory.view.MainView;
@@ -28,7 +30,7 @@ public class ReadBoard {
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum); // 확인할 공지사항 번호
 
 					// 유효한 공지사항 번호인지 확인
-					if (BoardManagement.checkNoticeNumberExists()) {
+					if (ReadBoard.checkNoticeNumberExists()) {
 						BoardView.boardDetailView(BoardManagement.noticeNumber);
 
 						MainView.pauseToSel();
@@ -62,4 +64,13 @@ public class ReadBoard {
 			}
 		} // while
 	}// readBoard
+	
+	private static boolean checkNoticeNumberExists() {
+		for (Board board : BoardData.boardList) {
+			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
+				return true;
+			}
+		}
+		return false;
+	}
 }// ReadBoard
