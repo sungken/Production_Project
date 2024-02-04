@@ -23,6 +23,7 @@ public class Modify {
 		Main.selectNum = scan.nextLine();
 
 		if (Main.selectNum.equals("1")) {
+			//TODO 대리점 계정인 경우 이름 유효성 검사가 달라짐 추가 구현 필요
 			Modify.modifyName();
 		} else if (Main.selectNum.equals("2")) {
 			Modify.modifyPhoneNum();

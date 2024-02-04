@@ -24,9 +24,13 @@ public class MainView {
 			System.out.println("3. 로그아웃");
 		}
 
+		//회원 공통
+		if (Identify.auth != null) {
+			System.out.println("5. 개인정보 조회 및 수정");
+		}
+		
 		// 사원, 관리자 공통
 		if (Identify.auth != null && (Identify.level.equals("1") || Identify.level.equals("2"))) {
-			System.out.println("5. 개인정보 조회 및 수정");
 			System.out.println("6. 근태 등록");
 			System.out.println("7. 공지 사항");
 		}

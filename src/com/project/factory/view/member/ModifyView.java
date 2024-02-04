@@ -10,13 +10,13 @@ public class ModifyView {
 	public static void modifyMenu() {
 		System.out.println();
 		MainView.doubleLine();
-		System.out.println("       개인정보 조회 및 수정");
+		System.out.println("\t\t\t\t개인정보 조회 및 수정");
 		MainView.doubleLine();
 
 		for (Members member : Data.memberList) {
 			if (member.getId().equals(Identify.auth)) {
-				System.out.println("[이름]\t[전화번호]\t[주소]\t\t\t\t[비밀번호]");
-				System.out.printf("%S\t%S\t%S\t\t%S\n", member.getName(), member.getPhoneNum(), member.getAddress(), member.getPw());
+			    System.out.printf("%-5s\t%-12S\t%-40S\t%-16S\r\n", "[이름]", "[전화번호]", "[주소]", "[비밀번호]");
+				System.out.printf("%-5S\t%-12S\t%-40S\t%-16S\n", member.getName(), member.getPhoneNum(), member.getAddress(), member.getPw());
 				break;
 			}
 		}
