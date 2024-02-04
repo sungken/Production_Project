@@ -1,7 +1,10 @@
 package com.project.factory.dept.management.admin;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -34,6 +37,8 @@ public class AgencyManagement {
 	public static String pw = "1234";// 비밀번호
 
 	public static void agencyManagement() {
+
+		AgencyManagement.load();
 
 		AgencyManagementView.agencyManagementMenu();
 
@@ -72,13 +77,18 @@ public class AgencyManagement {
 					if (AgencyManagement.registerAgencyArea()) {
 						if (AgencyManagement.registerAgencyAddress()) {
 							if (AgencyManagement.checkContinue()) {
-								BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true)); // true인 경우 이어쓰기
-								
-								AgencyManagement.createAgencyId();//대리점 아이디 생성
-								
+								BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true)); // true인
+																												// 경우
+																												// 이어쓰기
+
+								AgencyManagement.createAgencyId();// 대리점 아이디 생성
+
 								// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
 								// 대리점ID■비밀번호■이름■■전화번호■주소■직급■구역■이메일
-								writer.write(AgencyManagement.id + "■" + AgencyManagement.pw + "■" + AgencyManagement.name + "■" + "" + "■" + AgencyManagement.phoneNum + "■" + AgencyManagement.address + "■" + "3" + "■" + AgencyManagement.areaNum + "■" + AgencyManagement.id + "@auto.com");
+								writer.write(AgencyManagement.id + "■" + AgencyManagement.pw + "■"
+										+ AgencyManagement.name + "■" + "" + "■" + AgencyManagement.phoneNum + "■"
+										+ AgencyManagement.address + "■" + "3" + "■" + AgencyManagement.areaNum + "■"
+										+ AgencyManagement.id + "@auto.com");
 								writer.newLine();
 								writer.close();
 
@@ -87,9 +97,9 @@ public class AgencyManagement {
 								System.out.println();
 								System.out.println("아이디: " + AgencyManagement.id);
 								System.out.println("초기 비밀번호: " + AgencyManagement.pw);
-								
+
 								MainView.pauseToSel();
-								
+
 								AgencyManagement.agencyManagement();
 								return;
 
@@ -129,7 +139,7 @@ public class AgencyManagement {
 			e.printStackTrace();
 		}
 
-	}//registerAgency
+	}// registerAgency
 
 	private static void deleteAgency() {
 		AgencyManagementView.deleteAgencyMenu();
@@ -404,6 +414,35 @@ public class AgencyManagement {
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}
 		}
+	}
+	
+	private static void load() {
+		try {
+						
+			Data.memberList.clear(); // 기존 데이터 초기화
+
+			BufferedReader reader = new BufferedReader(new FileReader(Path.MEMBER));
+
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
+				// 대리점ID■비밀번호■이름■■전화번호■주소■직급■구역■이메일
+				String[] temp = line.split("■");
+
+				Members member = new Members(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7],
+						temp[8]);
+
+				Data.memberList.add(member);
+
+			}
+
+			reader.close();
+
+		} catch (Exception e) {
+			System.out.println("AgencyManagement.load");
+			e.printStackTrace();
+		}
+
 	}
 
 }

@@ -1,8 +1,10 @@
 package com.project.factory.view.sub;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
-import com.project.factory.view.BoardManagementView;
 import com.project.factory.view.MainView;
 
 public class AgencyManagementView {
@@ -37,15 +39,25 @@ public class AgencyManagementView {
 	}
 
 	private static void agencyManagementListView() {
-		System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\r\n", "[대리점 명]", "[전화번호]", "[구역]", "[주소]");
-		// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
-		// 대리점ID■비밀번호■이름■■전화번호■주소■직급■구역■이메일
-		for (Members member : Data.memberList) {
-			if (member.getLevel().equals("3")) {
-				System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\n", member.getName(), member.getPhoneNum(),
-						member.getArea(member.getDept()), member.getAddress());
-			}
-		}
-	}
+	    System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\r\n", "[대리점 명]", "[전화번호]", "[구역]", "[주소]");
+	    
+	    // Comparator를 사용하여 getDept()를 기준으로 오름차순으로 정렬
+	    Comparator<Members> deptComparator = new Comparator<Members>() {
+	        @Override
+	        public int compare(Members m1, Members m2) {
+	            return m1.getDept().compareTo(m2.getDept());
+	        }
+	    };
+	    
+	    // 멤버 목록을 getDept()를 기준으로 오름차순으로 정렬
+	    Collections.sort(Data.memberList, deptComparator);
+
+	    for (Members member : Data.memberList) {
+	        if (member.getLevel().equals("3")) {
+	            System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\n", member.getName(), member.getPhoneNum(),
+	                    member.getArea(member.getDept()), member.getAddress());
+	        }
+	    }
+	}//agencyManagementListView
 
 }
