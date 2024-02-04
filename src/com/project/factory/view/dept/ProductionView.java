@@ -2,10 +2,9 @@ package com.project.factory.view.dept;
 
 import java.util.Set;
 
-import com.project.factory.dept.production.admin.ProductionManagement;
-import com.project.factory.dept.production.admin.resource.ModelInventory;
-import com.project.factory.dept.production.admin.resource.ModelInventoryData;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
+import com.project.factory.dept.production.admin.resource.TodayProduction;
+import com.project.factory.dept.production.admin.resource.TodayProductionData;
 import com.project.factory.view.MainView;
 
 public class ProductionView {
@@ -24,6 +23,9 @@ public class ProductionView {
 		System.out.println();
 	}
 	
+	/**
+	 * 생산관리 View
+	 */
 	public static void viewproductionMenu() {
 		MainView.doubleLine();
 		System.out.println();
@@ -34,12 +36,10 @@ public class ProductionView {
 		MainView.doubleLine();
 	}
 	
-	public static void viewCurrentProduct() {
-		for (ModelInventory modelInventory : ModelInventoryData.modelInventoryList) {
-			System.out.printf("%s : %d대\n", modelInventory.getModelName(), modelInventory.getModelInventory());
-		}
-	}
 	
+	/**
+	 * 총생량, 불량품개수, 재고량 View
+	 */
 	public static void viewPoductionView() {
 		MainView.doubleLine();
 		System.out.println();
@@ -49,13 +49,16 @@ public class ProductionView {
 		System.out.println();
 		MainView.doubleLine();
 	}
+	/**
+	 * 불량품 개수 입력 View
+	 */
 	public static void viewModel() {
 		MainView.doubleLine();
 		System.out.println();
 		System.out.println("모델별 불량품 개수를 입력해주세요");
 		int count = 1;
-		for (ModelInventory modelInventory : ModelInventoryData.modelInventoryList) {
-			System.out.printf("%d. %s \n", count, modelInventory.getModelName());
+		for (TodayProduction modelInventory : TodayProductionData.todayProductionList) {
+			System.out.printf("%d. %s:  \n", count, modelInventory.getModel());
 			count++;
 		}
 		System.out.println();

@@ -2,10 +2,15 @@ package com.project.factory;
 
 import java.util.Scanner;
 
+import javax.management.modelmbean.ModelMBeanAttributeInfo;
+
 import com.project.factory.dept.production.admin.ProductionManagement;
 import com.project.factory.dept.production.admin.SetProductionTarget;
-import com.project.factory.dept.production.admin.resource.ModelInventoryData;
+import com.project.factory.dept.production.admin.resource.ModelInfo;
+import com.project.factory.dept.production.admin.resource.ModelInfoData;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
+import com.project.factory.dept.production.admin.resource.TodayProduction;
+import com.project.factory.dept.production.admin.resource.TodayProductionData;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
@@ -27,7 +32,6 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 
 		Data.load();
-		ModelInventoryData.inventoryLoad();
 		while (loop) {
 
 			MainView.mainMenu();
@@ -91,9 +95,11 @@ public class Main {
 					// 생산 목표량 입력 및 수정
 					// ProductionTarget.productionTarget(); > 메서드 생성 필요
 				} else if (sel.equals("15")) {
-					// 생산 관리
-					ModelInventoryData.inventoryLoad();
+//					// 생산 관리
+					ModelInfoData.modelInfoLoad();
+					TodayProductionData.todayInventoryLoad();
 					ProductionManagement.productionSelect();
+					
 					// ProductionManagement.productionManagement(); > 메서드 생성 필요
 				} else if (sel.equals("16")) {
 					// 주문서 확인 및 배정 수정

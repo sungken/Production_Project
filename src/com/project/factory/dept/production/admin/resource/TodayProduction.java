@@ -1,28 +1,28 @@
 package com.project.factory.dept.production.admin.resource;
 
 public class TodayProduction {
-	private String date;
-	private int todayProductNum;
-	private int todayDefectiveNum;
+	private static int todayProductNum;
+	private static int todayDefectiveNum;
+	private int finalTodayProductNum;
 	private String model;
 	
-	public TodayProduction(String date, int todayProductNum, int todayDefectiveNum, String model) {
-		this.date = date;
+	public TodayProduction(int todayProductNum, int todayDefectiveNum, int finalTodayProductNum,  String model) {
 		this.todayProductNum = todayProductNum;
 		this.todayDefectiveNum = todayDefectiveNum;
+		this.finalTodayProductNum = finalTodayProductNum;
 		this.model = model;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
 	}
 
 	public int getTodayProductNum() {
 		return todayProductNum;
+	}
+
+	public static int getFinalTodayProductNum() {
+		return todayProductNum - todayDefectiveNum;
+	}
+
+	public void setFinalTodayProductNum(int finalTodayProductNum) {
+		this.finalTodayProductNum = finalTodayProductNum;
 	}
 
 	public void setTodayProductNum(int todayProductNum) {
@@ -44,6 +44,14 @@ public class TodayProduction {
 	public void setModel(String model) {
 		this.model = model;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+	
 	
 	
 }

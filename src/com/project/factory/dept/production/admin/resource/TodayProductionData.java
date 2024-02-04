@@ -20,7 +20,7 @@ public class TodayProductionData {
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split("■");
 
-				TodayProduction todayProduction = new TodayProduction(temp[0], Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), temp[3]);
+				TodayProduction todayProduction = new TodayProduction(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), temp[3]);
 
 				todayProductionList.add(todayProduction);
 
@@ -41,7 +41,7 @@ public class TodayProductionData {
 
 			for (TodayProduction todayProduction : TodayProductionData.todayProductionList) {
 
-				String line = String.format("%s■%d■%d■%s\r\n", todayProduction.getDate(),todayProduction.getTodayProductNum(), todayProduction.getTodayDefectiveNum(), todayProduction.getModel());
+				String line = String.format("%d■%d■%d■%s\r\n", todayProduction.getTodayProductNum(), todayProduction.getTodayDefectiveNum(), todayProduction.getModel());
 
 				writer.write(line);
 

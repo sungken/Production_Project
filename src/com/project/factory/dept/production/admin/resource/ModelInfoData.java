@@ -7,13 +7,11 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import com.project.factory.resource.Path;
-/**
- * 모델별 재고 관리 클래스
- */
-public class ModelInventoryData {
-	public static ArrayList<ModelInventory> modelInventoryList = new ArrayList<ModelInventory>();
 
-	public static void inventoryLoad() {
+public class ModelInfoData {
+	public static ArrayList<ModelInfo> modelInfoList = new ArrayList<ModelInfo>();
+
+	public static void modelInfoLoad() {
 		try {
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.MODELINVENTORY));
@@ -22,9 +20,9 @@ public class ModelInventoryData {
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split("■");
 
-				ModelInventory modelInventory = new ModelInventory(temp[0], Integer.parseInt(temp[1]));
+				ModelInfo modelInfo = new ModelInfo(temp[0], Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), temp[4], Integer.parseInt(temp[5]));
 
-				modelInventoryList.add(modelInventory);
+				modelInfoList.add(modelInfo);
 
 			}
 
@@ -37,13 +35,13 @@ public class ModelInventoryData {
 
 	}
 
-	public static void inventorySave() {
+	public static void ModelInfoSave() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MODELINVENTORY));
 
-			for (ModelInventory modelInventory : ModelInventoryData.modelInventoryList) {
+			for (ModelInfo modelInfo : ModelInfoData.modelInfoList) {
 
-				String line = String.format("%s■%d\r\n", modelInventory.getModelName(), modelInventory.getModelInventory());
+				String line = String.format("%s■%d■%d■%d■%s■%d\r\n", modelInfo.getModelName(), modelInfo.getWheel(), modelInfo.getFrame(), modelInfo.getLeather(), modelInfo.getEngineType(), modelInfo.getModelInventory());
 
 				writer.write(line);
 
@@ -57,4 +55,6 @@ public class ModelInventoryData {
 		}
 
 	}
+
+
 }
