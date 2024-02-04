@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -29,12 +28,9 @@ public class AgencyManagement {
 
 	public static String name = ""; // 이름
 	public static String phoneNum = ""; // 전화번호
-	public static String depart = ""; // 부서
 	public static String areaNum = ""; // 구역번호(부서)
 	public static String address = ""; // 주소
 	public static String id = ""; // 아이디
-	public static String humanNum = "";// 생년월일
-	public static String pw = "1234";// 비밀번호
 
 	public static void agencyManagement() {
 
@@ -46,7 +42,6 @@ public class AgencyManagement {
 
 		if (Main.selectNum.equals("1")) {
 			AgencyManagement.registerAgency();
-			;
 		} else if (Main.selectNum.equals("2")) {
 			AgencyManagement.deleteAgency();
 		} else {
@@ -76,7 +71,7 @@ public class AgencyManagement {
 				if (AgencyManagement.registerAgencyPhoneNum()) {
 					if (AgencyManagement.registerAgencyArea()) {
 						if (AgencyManagement.registerAgencyAddress()) {
-							if (AgencyManagement.checkContinue()) {
+							if (AgencyManagement.checkRegisterContinue()) {
 								BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true)); // true인
 																												// 경우
 																												// 이어쓰기
@@ -85,10 +80,9 @@ public class AgencyManagement {
 
 								// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
 								// 대리점ID■비밀번호■이름■■전화번호■주소■직급■구역■이메일
-								writer.write(AgencyManagement.id + "■" + AgencyManagement.pw + "■"
-										+ AgencyManagement.name + "■" + "" + "■" + AgencyManagement.phoneNum + "■"
-										+ AgencyManagement.address + "■" + "3" + "■" + AgencyManagement.areaNum + "■"
-										+ AgencyManagement.id + "@auto.com");
+								writer.write(AgencyManagement.id + "■" + "1234" + "■" + AgencyManagement.name + "■" + ""
+										+ "■" + AgencyManagement.phoneNum + "■" + AgencyManagement.address + "■" + "3"
+										+ "■" + AgencyManagement.areaNum + "■" + AgencyManagement.id + "@auto.com");
 								writer.newLine();
 								writer.close();
 
@@ -96,7 +90,7 @@ public class AgencyManagement {
 								System.out.println("새로운 대리점이 등록되었습니다.");
 								System.out.println();
 								System.out.println("아이디: " + AgencyManagement.id);
-								System.out.println("초기 비밀번호: " + AgencyManagement.pw);
+								System.out.println("초기 비밀번호: 1234");
 
 								MainView.pauseToSel();
 
@@ -141,10 +135,55 @@ public class AgencyManagement {
 
 	}// registerAgency
 
+	// 이름도 중복 검사를 진행해서 이름으로 삭제하는 게 편할 듯
 	private static void deleteAgency() {
-		AgencyManagementView.deleteAgencyMenu();
 
-	}
+		boolean loop = false;
+
+		while (true) {
+			AgencyManagementView.deleteAgencyMenu();
+			AgencyManagement.name = scan.nextLine();
+
+			for (Members member : Data.memberList) {
+				if (member.getName().equals(AgencyManagement.name)) {
+					
+					loop = true;
+									
+					System.out.println();
+					System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\r\n", "[대리점명]", "[전화번호]", "[구역]", "[주소]");
+					System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\n", member.getName(),member.getPhoneNum(),member.getArea(member.getDept()), member.getAddress());
+
+					if (AgencyManagement.checkDeleteContinue()) {
+						Data.memberList.remove(member);// 해당 member 삭제
+
+						Data.save();
+
+						System.out.println();
+						System.out.println("대리점이 성공적으로 삭제되었습니다.");
+					} 
+					break;
+				} 
+			}//for
+
+			if (loop) {
+				MainView.pauseToSel();
+
+				AgencyManagement.agencyManagement();
+				return;
+			} else {
+				System.out.println("존재하지 않는 대리점입니다.");
+
+				if (MainView.checkContinueBoolean()) {
+					continue;
+				} else {
+					MainView.pauseToSel();
+
+					AgencyManagement.agencyManagement();
+					return;
+				}
+			}
+		}
+	}// deleteAgency
 
 	// 대리점 등록 메서드
 	private static boolean registerAgencyName() {
@@ -396,7 +435,8 @@ public class AgencyManagement {
 		return "";
 	}
 
-	private static boolean checkContinue() {
+	// checkContinue
+	private static boolean checkRegisterContinue() {
 		while (true) {
 			System.out.println();
 			System.out.print("대리점 등록을 진행하시겠습니까?(Y/N)\n");
@@ -415,10 +455,30 @@ public class AgencyManagement {
 			}
 		}
 	}
-	
+
+	private static boolean checkDeleteContinue() {
+		while (true) {
+			System.out.println();
+			System.out.print("대리점 삭제를 진행하시겠습니까?(Y/N)\n");
+			System.out.print("입력: ");
+			Main.answer = scan.nextLine();
+
+			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+				return true;
+			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+				return false;
+			} else {
+				System.out.println();
+				MainView.singnleLine();
+				System.out.println();
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			}
+		}
+	}
+
 	private static void load() {
 		try {
-						
+
 			Data.memberList.clear(); // 기존 데이터 초기화
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.MEMBER));

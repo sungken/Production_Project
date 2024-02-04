@@ -33,13 +33,13 @@ public class AgencyManagementView {
 		System.out.println("\t\t\t\t대리점 삭제");
 		MainView.singnleLine();
 		System.out.println();
-		System.out.println("삭제하실 대리점 ID를 입력해주세요.");
+		System.out.println("삭제하실 대리점 이름을 입력해주세요.");
 		MainView.singnleLine();
-		System.out.print("대리점 ID: ");
+		System.out.print("대리점명: ");
 	}
 
 	private static void agencyManagementListView() {
-	    System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\r\n", "[대리점 명]", "[전화번호]", "[구역]", "[주소]");
+	    System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\r\n", "[대리점명]", "[전화번호]", "[구역]", "[주소]");
 	    
 	    // Comparator를 사용하여 getDept()를 기준으로 오름차순으로 정렬
 	    Comparator<Members> deptComparator = new Comparator<Members>() {
