@@ -88,24 +88,24 @@ public class BoardManagement {
 						writer.close();
 
 						System.out.println("게시글이 성공적으로 작성되었습니다.");
-						BoardManagement.pause();
+						MainView.pauseToSel();
 
 						BoardManagement.boardManagement();
 						return;
 					} else {
-						BoardManagement.pause();
+						MainView.pauseToSel();
 
 						BoardManagement.boardManagement();
 						return;
 					}
 				} else {
-					BoardManagement.pause();
+					MainView.pauseToSel();
 
 					BoardManagement.boardManagement();
 					return;
 				}
 			} else {
-				BoardManagement.pause();
+				MainView.pauseToSel();
 
 				BoardManagement.boardManagement();
 				return;
@@ -150,7 +150,7 @@ public class BoardManagement {
 								if (MainView.checkContinueBoolean()) {
 									continue;
 								} else {
-									BoardManagement.pause();
+									MainView.pauseToSel();
 
 									BoardManagement.boardEdit();
 									return;
@@ -162,7 +162,7 @@ public class BoardManagement {
 						if (MainView.checkContinueBoolean()) {
 							continue;
 						} else {
-							BoardManagement.pause();
+							MainView.pauseToSel();
 							BoardManagement.boardManagement();
 							return;
 						}
@@ -173,7 +173,7 @@ public class BoardManagement {
 					if (MainView.checkContinueBoolean()) {
 						continue;
 					} else {
-						BoardManagement.pause();
+						MainView.pauseToSel();
 						BoardManagement.boardManagement();
 						return;
 					}
@@ -183,7 +183,7 @@ public class BoardManagement {
 				if (MainView.checkContinueBoolean()) {
 					continue;
 				} else {
-					BoardManagement.pause();
+					MainView.pauseToSel();
 					BoardManagement.boardManagement();
 					return;
 				}
@@ -220,7 +220,7 @@ public class BoardManagement {
 					}
 
 					if (loop) {
-						BoardManagement.pause();
+						MainView.pauseToSel();
 
 						BoardManagement.boardManagement();
 						return;
@@ -230,7 +230,7 @@ public class BoardManagement {
 						if (MainView.checkContinueBoolean()) {
 							continue;
 						} else {
-							BoardManagement.pause();
+							MainView.pauseToSel();
 
 							BoardManagement.boardManagement();
 							return;
@@ -242,7 +242,7 @@ public class BoardManagement {
 					if (MainView.checkContinueBoolean()) {
 						continue;
 					} else {
-						BoardManagement.pause();
+						MainView.pauseToSel();
 						BoardManagement.boardManagement();
 						return;
 					}
@@ -252,7 +252,7 @@ public class BoardManagement {
 				if (MainView.checkContinueBoolean()) {
 					continue;
 				} else {
-					BoardManagement.pause();
+					MainView.pauseToSel();
 					BoardManagement.boardManagement();
 					return;
 				}
@@ -271,7 +271,7 @@ public class BoardManagement {
 
 					System.out.println();
 					System.out.println("삭제 날짜가 성공적으로 수정되었습니다.");
-					BoardManagement.pause();
+					MainView.pauseToSel();
 
 					BoardManagement.boardManagement();
 					return;
@@ -283,7 +283,7 @@ public class BoardManagement {
 						continue;
 
 					} else {
-						BoardManagement.pause();
+						MainView.pauseToSel();
 
 						BoardManagement.boardEdit();
 						return;
@@ -305,7 +305,7 @@ public class BoardManagement {
 
 					System.out.println();
 					System.out.println("제목이 성공적으로 수정되었습니다.");
-					BoardManagement.pause();
+					MainView.pauseToSel();
 
 					BoardManagement.boardManagement();
 					return;
@@ -317,7 +317,7 @@ public class BoardManagement {
 						continue;
 
 					} else {
-						BoardManagement.pause();
+						MainView.pauseToSel();
 
 						BoardManagement.boardEdit();
 						return;
@@ -346,7 +346,7 @@ public class BoardManagement {
 
 					System.out.println();
 					System.out.println("내용이 성공적으로 수정되었습니다.");
-					BoardManagement.pause();
+					MainView.pauseToSel();
 
 					BoardManagement.boardManagement();
 					return;
@@ -358,7 +358,7 @@ public class BoardManagement {
 						continue;
 
 					} else {
-						BoardManagement.pause();
+						MainView.pauseToSel();
 
 						BoardManagement.boardEdit();
 						return;
@@ -486,7 +486,7 @@ public class BoardManagement {
 		// 내용 > 최대 200글자
 		return contents.isEmpty() || contents.length() > 200;
 	}
-	//TODO ReadBoard에서 사용해서 일단 public으로 수정
+	// TODO ReadBoard에서 사용해서 일단 public으로 수정
 
 	public static boolean checkNoticeNumberExists() {
 		for (Board board : BoardData.boardList) {
@@ -543,7 +543,7 @@ public class BoardManagement {
 		return false;
 	}
 
-	//TODO ReadBoard에서 사용해서 일단 public으로 수정, AgencyManagement에서도 사용
+	// TODO ReadBoard에서 사용해서 일단 public으로 수정, AgencyManagement에서도 사용
 	// 문자열이 정수값인지 확인하는 메서드
 	public static boolean isInteger(String s) {
 		try {
@@ -552,11 +552,5 @@ public class BoardManagement {
 		} catch (NumberFormatException e) {
 			return false;
 		}
-	}
-
-	private static void pause() {
-		System.out.println("엔터를 치면 선택 화면으로 돌아갑니다.");
-		scan.nextLine();
-		System.out.println();
 	}
 }
