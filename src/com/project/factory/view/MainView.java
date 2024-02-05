@@ -100,7 +100,10 @@ public class MainView {
 		System.out.print("엔터를 치면 초기화면으로 돌아갑니다.");
 		scan.nextLine();
 		System.out.println();
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/main
 	}
 
 	// TODO checkContinue 메서드 추가
