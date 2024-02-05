@@ -46,6 +46,7 @@ public class MyOrderView {
 
 		MyOrderView.orderListView();
 
+		System.out.println();
 		System.out.println("수정하실 주문서 번호를 입력해주세요.");
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
@@ -65,7 +66,7 @@ public class MyOrderView {
 
 		for (Order order : OrderData.orderList) {
 			if (order.getAgencyName().equals(Identify.name)) {
-				System.out.printf("%-8d\t%-5S\t%-dS\n", order.getId(), order.getModelId(), order.getQuantity());
+				System.out.printf("%-8s\t%-5S\t%-4d\n", order.getId(), order.getModelId(), order.getQuantity());
 			}
 		}
 	}

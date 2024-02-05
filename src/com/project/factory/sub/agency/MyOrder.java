@@ -10,6 +10,7 @@ import java.util.Scanner;
 import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.Toolkit;
+import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
@@ -115,16 +116,43 @@ public class MyOrder {
 	}// orderAdd
 
 	private static void orderEdit() {
+		boolean loop = false;
 		while (true) {
 			MyOrderView.orderEditMenu();
 
 			MyOrder.id = scan.nextLine();// 주문서 번호
 
 			if (checkOrderIdExists()) {
-				
+				for (Order order : OrderData.orderList) {
+					if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {
+
+						System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
+						System.out.printf("%-8s\t%-5S\t%-4d\n", order.getId(), order.getModelId(), order.getQuantity());
+						MainView.singnleLine();
+
+						if (MyOrder.checkEditContinue()) {
+							System.out.println();
+							if (MyOrder.writeQuantity()) {
+								order.setQuantity(MyOrder.quantity);// 수정하기
+								OrderData.save();
+
+								System.out.println();
+								System.out.println("수량이 변경되었습니다.");
+							}
+						}
+						loop = true;
+						break;
+					} // 존재하는 경우
+				}
+			}
+			
+			if (loop) {
+				MainView.pauseToSel();
+				MyOrder.myOrder();
+				return;
 			} else {
-				System.out.println();
 				System.out.println("잘못된 번호입니다.");
+
 				if (MainView.checkContinueBoolean()) {
 					continue;
 				} else {
@@ -133,7 +161,6 @@ public class MyOrder {
 					return;
 				}
 			}
-
 		} // while
 	}// orderEdit
 
@@ -237,17 +264,31 @@ public class MyOrder {
 	private static boolean checkOrderIdExists() {
 		for (Order order : OrderData.orderList) {
 			if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {
-				
-				System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
-				System.out.printf("%-8d\t%-5S\t%-dS\n", order.getId(), order.getModelId(), order.getQuantity());
-				MainView.singnleLine();
-				System.out.println();
-				System.out.println("해당 주문의");
-				
 				return true;
 			}
 		}
 		return false;
 	}
+
+	private static boolean checkEditContinue() {
+        while (true) {
+
+            System.out.println();
+            System.out.print("해당 주문의 수량을 변경하시겠습니까?(Y/N)\n");
+            System.out.print("입력: ");
+            Main.answer = scan.nextLine();
+
+            if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+                return true;
+            } else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+                return false;
+            } else {
+                System.out.println();
+                MainView.singnleLine();
+                System.out.println();
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            }
+        }
+    }//checkEditContinue
 
 }
