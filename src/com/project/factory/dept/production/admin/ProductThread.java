@@ -68,6 +68,7 @@ public class ProductThread extends Thread {
 				K7count += 5;
 				K9count += 3;
 				Thread.sleep(10000);
+				System.out.println("휘리릭");
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
