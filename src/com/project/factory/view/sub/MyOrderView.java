@@ -51,6 +51,20 @@ public class MyOrderView {
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
 	}
+	
+	public static void orderDeleteMenu() {
+		System.out.println();
+		MainView.singnleLine();
+		System.out.println("\t\t\t\t주문서 삭제");
+		MainView.singnleLine();
+		
+		MyOrderView.orderListView();
+		
+		System.out.println();
+		System.out.println("삭제하실 주문서 번호를 입력해주세요.");
+		MainView.singnleLine();
+		System.out.print("번호 입력: ");
+	}
 
 	private static void modeliew() {
 		System.out.println();
