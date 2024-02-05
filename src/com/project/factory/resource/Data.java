@@ -16,6 +16,8 @@ public class Data {
 
 	public static void load() {
 		try {
+			
+			memberList.clear(); // 기존 데이터 초기화
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.MEMBER));
 
