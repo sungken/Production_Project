@@ -16,7 +16,7 @@ public class Path {
 	public static final String REGION = "data\\region.txt";	//구역
 	public static final String TODAYPRODUCTION = "data\\todayProduction.txt";	//하루 생산량정보
 	public static final String USERREGION = "data\\userRegion.txt";	//유통사원 담당지역 정보
+	public static final String DELIVERYMEMBER = "data\\deliveryMember.txt";	//유통사원 담당지역 정보
 	public static final String NEWMEMBERTEMP = "data\\newMemberTemp.txt";	//유통사원 담당지역 정보
-	
 	
 }
