@@ -44,7 +44,7 @@ public class NewMemberData {
 	
 	public static void save() {
 	    try {
-	        BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBER,true));
+	        BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBER));
 
 	        for (NewMembers newMember : NewMemberData.NewMemberList) {
 	            String line = String.format("%s■%s■%s■%s■%s■%s■%s\r\n", newMember.getId(), newMember.getName(),

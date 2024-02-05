@@ -49,7 +49,14 @@ public class HRM {
 	    Main.selectNum = scan.nextLine();
 
 	    if (Main.selectNum.equals("1")) {
-	        addUser();
+		    if (NewMemberData.NewMemberList.isEmpty()) {
+		        System.out.println("사원번호가 모두 부여되었습니다.");
+		        MainView.pause();
+		        // 여기서 메인으로 나갈 수 있도록 처리하거나 다른 로직 추가 가능
+		    } else {
+		    	addUser();
+		    	
+		    }
 	    } else if (Main.selectNum.equals("2")) {
 	        deleteUser();
 	    } else if (Main.selectNum.equals("3")) {
@@ -226,16 +233,11 @@ public class HRM {
 
 	            // 사원번호가 생성되면 newMemberTemp.txt에 저장
 	            NewMemberTempData.save(newMember);
-	            iterator.remove(); // 생성된 사원번호를 부여한 후에 해당 멤버를 리스트에서 삭제
 	        }
 	    }
+	    NewMemberData.NewMemberList.clear();
+	    NewMemberData.save();
 
-	    // 리스트가 비어있으면 메시지 출력
-	    if (NewMemberData.NewMemberList.isEmpty()) {
-	        System.out.println("신입사원 리스트가 비어있습니다.");
-	        System.out.println("모든 입사 처리가 완료되었습니다.");
-	        MainView.pause();
-	    }
 	}
 
 
