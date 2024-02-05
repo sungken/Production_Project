@@ -10,8 +10,6 @@ import java.util.Scanner;
 import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.Toolkit;
-import com.project.factory.board.admin.BoardManagement;
-import com.project.factory.dept.management.admin.AgencyManagement;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
@@ -26,7 +24,6 @@ public class MyOrder {
 	static Scanner scan = new Scanner(System.in);
 
 	private static String id; // 주문서 번호
-	private static String writeDate; // 주문일
 	private static String agencyName; // 대리점명
 	private static String agencyAddress; // 대리점 주소
 	private static String agencyPhoneNum; // 대리점 전화번호
@@ -124,9 +121,10 @@ public class MyOrder {
 	}//orderAdd
 	
 	private static void orderEdit() {
-		// TODO Auto-generated method stub
-
-	}
+		while(true) {
+			
+		}//while
+	}//orderEdit
 
 	private static void orderDelete() {
 		// TODO Auto-generated method stub
