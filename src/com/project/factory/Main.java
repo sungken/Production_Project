@@ -11,6 +11,7 @@ import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
 import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.resource.Data;
+import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
 
 public class Main {
@@ -114,7 +115,7 @@ public class Main {
 					// Mail.mail(); > 메서드 생성 필요
 				} else if (sel.equals("23")) {
 					// 주문서 관리
-					// MyOrder.MyOrder(); > 메서드 생성 필요
+					 MyOrder.MyOrder();
 				} else if (sel.equals("0")) {
 					// 종료
 					loop = false;
