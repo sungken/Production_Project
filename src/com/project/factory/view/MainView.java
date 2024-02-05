@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Modify;
+import com.project.factory.view.member.DistributionView;
 
 public class MainView {
 
@@ -19,6 +20,8 @@ public class MainView {
 		System.out.println("            쌍용 테크");
 		MainView.doubleLine();
 		System.out.println();
+		
+
 
 		if (Identify.auth == null) {
 			System.out.println("1. 회원가입");

@@ -27,23 +27,16 @@ public class AssignData {
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				//                						 1■           경기도■        452721■    2024-01-31■        강남1호점■  서울특별시 강남구 테헤란로 132■010-1234-4567■       30■        2024-02-05■      k3■           정희현■           ffff
-				//						public Assign(int num, String assignOrder, String id, String writeDate, String agencyName, String agencyAddress, String agencyPhoneNum, int quantity, String dueDate, String modelId, String name, String memberId)
+				
 				String[] temp = line.split("■");
 				Assign assignOrder = new Assign(
 					    Integer.parseInt(temp[0]),   // 주문서 번호 (정수)
 					    temp[1],                     // 지역
-					    temp[2],                     // 대리점 코드
-					    temp[3],                     // 작성일
-					    temp[4],                     // 대리점명
-					    temp[5],                     // 대리점 주소
-					    temp[6],                     // 전화번호 (문자열)
-					    Integer.parseInt(temp[7]),   // 수량 (정수)
-					    temp[8],                     // 납기일
-					    temp[9],                     // 모델명
-					    temp[10],                    // 사원명
-					    temp[11]                     // 사원번호
-					);
+					    temp[2],                     // 대리점명
+					    temp[3],                     // 모델명
+					    Integer.parseInt(temp[4]),                     // 수량
+					    temp[5],                     // 이름
+					    temp[6]);
 				assignList.add(assignOrder);
 
 			}
@@ -60,13 +53,13 @@ public class AssignData {
 	public static void save() {
 
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.ORDER));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.ASSIGNORDER));
 
 			for (Assign assignOrder : AssignData.assignList) {
 
-				String line = String.format("%s■%s■%s■%s■%s■%d■%s■%s■%s■%s\r\n", assignOrder.getId(),
-						assignOrder.getWriteDate(), assignOrder.getAgencyName(), assignOrder.getAgencyAddress(),
-						assignOrder.getAgencyPhoneNum(), assignOrder.getQuantity(), assignOrder.getModelId(),
+				String line = String.format("%d■%s■%s■%s■%d■%s■%s\r\n", assignOrder.getNum(),
+						assignOrder.getAssignRegion(), assignOrder.getAgencyName(),
+						assignOrder.getModelId(), assignOrder.getQuantity(), assignOrder.getModelId(),
 						assignOrder.getName(), assignOrder.getMemberId());
 
 				writer.write(line);
