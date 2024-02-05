@@ -3,29 +3,23 @@ package com.project.factory;
 
 import java.util.Scanner;
 
-<<<<<<< HEAD
-import com.project.factory.dept.CommutePush;
-import com.project.factory.dept.human.admin.HRM;
-=======
+
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
+import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.dept.management.admin.AgencyManagement;
->>>>>>> upstream/main
+
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
 import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import com.project.factory.member.admin.CommuteSearch;
-=======
-=======
-import com.project.factory.member.admin.CommuteSearch;
->>>>>>> upstream/main
+
 import com.project.factory.member.SignUp;
->>>>>>> upstream/main
+
 import com.project.factory.resource.Data;
 import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
@@ -71,11 +65,7 @@ public class Main {
 			} else if (Identify.auth != null) {
 				if (sel.equals("3")) {
 					// 로그아웃
-<<<<<<< HEAD
 					Logout.logout(); 
-=======
-					Logout.logout();
->>>>>>> upstream/main
 				} else if (sel.equals("5")) {
 					// 개인정보 조회 및 수정
 					Modify.modify(); 
