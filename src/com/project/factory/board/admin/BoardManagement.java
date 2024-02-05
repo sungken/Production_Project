@@ -19,13 +19,13 @@ import com.project.factory.view.MainView;
 //TODO WriteBoard 클래스명 > BoardManagement으로 수정 
 public class BoardManagement {
 
-	public static Scanner scan = new Scanner(System.in);
+	static Scanner scan = new Scanner(System.in);
 
-	public static String regex = ""; // 유효성 검사를 위한 변수
-	public static int noticeNumber = 0; // 공지사항 번호
-	public static String title = ""; // 제목
-	public static StringBuilder contents = new StringBuilder(); // 내용을 저장할 StringBuilder
-	public static String deleteDate = ""; // 삭제할 날짜
+	static String regex = ""; // 유효성 검사를 위한 변수
+	static int noticeNumber = 0; // 공지사항 번호
+	static String title = ""; // 제목
+	static StringBuilder contents = new StringBuilder(); // 내용을 저장할 StringBuilder
+	static String deleteDate = ""; // 삭제할 날짜
 
 	// TODO 공지사항 데이터에 작성일 추가
 	// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜

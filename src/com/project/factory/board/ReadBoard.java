@@ -12,7 +12,9 @@ import com.project.factory.view.MainView;
 
 public class ReadBoard {
 
-	public static Scanner scan = new Scanner(System.in);
+	static Scanner scan = new Scanner(System.in);
+	
+	static int noticeNumber = 0; // 공지사항 번호
 
 	public static void readBoard() {
 
@@ -27,11 +29,11 @@ public class ReadBoard {
 			if (!Main.selectNum.isEmpty()) { // 입력이 공백이 아닌 경우
 				if (BoardManagement.isInteger(Main.selectNum)) { // 정수값인지 확인
 
-					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum); // 확인할 공지사항 번호
+					ReadBoard.noticeNumber = Integer.parseInt(Main.selectNum); // 확인할 공지사항 번호
 
 					// 유효한 공지사항 번호인지 확인
 					if (ReadBoard.checkNoticeNumberExists()) {
-						BoardView.boardDetailView(BoardManagement.noticeNumber);
+						BoardView.boardDetailView(ReadBoard.noticeNumber);
 
 						MainView.pauseToSel();
 
@@ -67,7 +69,7 @@ public class ReadBoard {
 	
 	private static boolean checkNoticeNumberExists() {
 		for (Board board : BoardData.boardList) {
-			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
+			if (board.getNoticeNumber() == ReadBoard.noticeNumber) {
 				return true;
 			}
 		}

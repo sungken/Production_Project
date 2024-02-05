@@ -21,15 +21,15 @@ import com.project.factory.view.sub.AgencyManagementView;
 //S8132101■1234■강남1호점■010-1234-4567■gangnam1@auto.com■서울특별시 강남구 테헤란로 132■2
 public class AgencyManagement {
 
-	public static Scanner scan = new Scanner(System.in);
+	static Scanner scan = new Scanner(System.in);
 
-	public static String regex = ""; // 유효성 검사를 위한 변수
+	static String regex = ""; // 유효성 검사를 위한 변수
 
-	public static String name = ""; // 이름
-	public static String phoneNum = ""; // 전화번호
-	public static String areaNum = ""; // 구역번호(부서)
-	public static String address = ""; // 주소
-	public static String id = ""; // 아이디
+	static String name = ""; // 이름
+	static String phoneNum = ""; // 전화번호
+	static String areaNum = ""; // 구역번호(부서)
+	static String address = ""; // 주소
+	static String id = ""; // 아이디
 
 	public static void agencyManagement() {
 
