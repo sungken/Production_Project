@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.project.factory.Main;
-import com.project.factory.board.admin.BoardManagement;
+import com.project.factory.Toolkit;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
@@ -265,7 +265,7 @@ public class AgencyManagement {
 					return false;
 				}
 			} else {
-				if (BoardManagement.isInteger(AgencyManagement.areaNum)) { // 정수값인지 확인
+				if (Toolkit.isInteger(AgencyManagement.areaNum)) { // 정수값인지 확인
 
 					if (AgencyManagement.invalidateArea()) {
 						System.out.println();

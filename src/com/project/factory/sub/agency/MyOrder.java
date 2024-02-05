@@ -15,18 +15,16 @@ import com.project.factory.view.sub.MyOrderView;
 
 public class MyOrder {
 	
-	public static Scanner scan = new Scanner(System.in);
+	static Scanner scan = new Scanner(System.in);
 	
-	// 대리점 주문서 넣기, 수정, 조회, 취소
-	int quantity; //수량
-	int orderId; // 숫자6
-//	String regex = ""; // 유효성 검사를 위한 변수
-
-	public static String name = ""; // 이름
-	public static String phoneNum = ""; // 전화번호
-	public static String areaNum = ""; // 구역번호(부서)
-	public static String address = ""; // 주소
-	static String id = ""; // 아이디
+	private static String id; //대리점ID
+	private static String writeDate; //주문일
+	private static String agencyName; //대리점명
+	private static String agencyAddress; //대리점 주소
+	private static String agencyPhoneNum; //대리점 전화번호
+	private static int quantity; //수량
+	private static String dueDate; //납기일
+	private static String modelId; //모델ID
 	
 	public static void myOrder() {
 		
@@ -63,9 +61,9 @@ public class MyOrder {
 			while (true) {
 				
 				MyOrderView.orderAddMenu();
-				id = scan.nextLine();
+				MyOrder.id = scan.nextLine();
 				
-				if (MyOrder.checkModelExists(id)) {
+				if (MyOrder.checkModelExists()) {
 
 					if (MyOrder.writeQuantity()) {
 
@@ -124,6 +122,7 @@ public class MyOrder {
 	private static boolean writeQuantity() {
 		while(true) {
 			System.out.println("원하는 수량을 입력하세요: ");
+			MyOrder.quantity = scan.nextInt();
 			
 			
 		}
@@ -146,8 +145,8 @@ public class MyOrder {
 	}
 	
 	//유효성 검사
-	private static boolean checkModelExists(String id) {
-		if (id.equals("1") || id.equals("2") || id.equals("3") || id.equals("4")) {
+	private static boolean checkModelExists() {
+		if (MyOrder.id.equals("1") || MyOrder.id.equals("2") || MyOrder.id.equals("3") || MyOrder.id.equals("4")) {
 			return true;
 		}
 		return false;

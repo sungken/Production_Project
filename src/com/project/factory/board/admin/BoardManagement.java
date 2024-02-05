@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.Today;
+import com.project.factory.Toolkit;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.Board;
@@ -127,7 +128,7 @@ public class BoardManagement {
 			Main.selectNum = scan.nextLine(); // 입력 받기
 
 			if (!Main.selectNum.isEmpty()) { // 입력이 공백이 아닌 경우
-				if (isInteger(Main.selectNum)) { // 정수값인지 확인
+				if (Toolkit.isInteger(Main.selectNum)) { // 정수값인지 확인
 
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum); // 수정할 공지사항 번호
 
@@ -203,7 +204,7 @@ public class BoardManagement {
 			Main.selectNum = scan.nextLine();
 
 			if (!Main.selectNum.isEmpty()) {
-				if (isInteger(Main.selectNum)) {
+				if (Toolkit.isInteger(Main.selectNum)) {
 
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum);
 
@@ -543,16 +544,5 @@ public class BoardManagement {
 			}
 		} // for
 		return false;
-	}
-
-	// TODO ReadBoard에서 사용해서 일단 public으로 수정, AgencyManagement에서도 사용
-	// 문자열이 정수값인지 확인하는 메서드
-	public static boolean isInteger(String s) {
-		try {
-			Integer.parseInt(s);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 }

@@ -62,7 +62,7 @@ public class OrderData {
 						orderItem.getAgencyName(), 
 						orderItem.getAgencyAddress(),
 						orderItem.getAgencyPhoneNum(),
-						orderItem.getCount(),
+						orderItem.getQuantity(),
 						orderItem.getModelId());
 
 				writer.write(line);

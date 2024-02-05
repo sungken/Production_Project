@@ -118,7 +118,7 @@ public class Main {
 					// Mail.mail(); > 메서드 생성 필요
 				} else if (sel.equals("23")) {
 					// 주문서 관리
-					 MyOrder.MyOrder();
+					 MyOrder.myOrder();
 				} else if (sel.equals("0")) {
 					// 종료
 					loop = false;
