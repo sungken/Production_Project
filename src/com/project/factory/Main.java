@@ -2,6 +2,8 @@ package com.project.factory;
 
 import java.util.Scanner;
 
+import com.project.factory.dept.distribution.admin.DestManagement;
+import com.project.factory.dept.distribution.admin.OrderAssign;
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
@@ -116,7 +118,7 @@ public class Main {
 					OrderAssign.orderView(); //> 메서드 생성 필요
 				} else if (sel.equals("17")) {
 					// 사원 배송 구역 관리
-					// DestManagement.destManagement(); > 메서드 생성 필요
+					DestManagement.destManagement(); 
 				} else if (sel.equals("18")) {
 					// 대리점 관리
 					AgencyManagement.agencyManagement();
@@ -134,7 +136,7 @@ public class Main {
 					// Mail.mail(); > 메서드 생성 필요
 				} else if (sel.equals("23")) {
 					// 주문서 관리
-					 MyOrder.MyOrder();
+					 MyOrder.myOrder();
 				} else if (sel.equals("0")) {
 					// 종료
 					loop = false;

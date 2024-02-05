@@ -6,8 +6,8 @@ import com.project.factory.Today;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.user.Commute;
-import com.project.factory.view.CommuteView;
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.CommuteView;
 
 public class CommuteSearch {
     public static String date;
