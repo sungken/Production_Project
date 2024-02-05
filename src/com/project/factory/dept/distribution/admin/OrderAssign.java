@@ -2,6 +2,7 @@ package com.project.factory.dept.distribution.admin;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class OrderAssign {
 			System.out.println();
 			System.out.println("1. 주문서 확인");
 			System.out.println();
-			System.out.println("2. 배정 수정");
+			System.out.println("2. 배정 확인 및 수정");
 			System.out.println();
 			MainView.doubleLine();
 			System.out.println();
@@ -39,12 +40,11 @@ public class OrderAssign {
 				//주문서 확인 화면 넘어가기
 				checkOrder();
 				System.out.println();
-
 				checkContinue();
 		
 			} else if (num.equals("2")) {
 				//배정 수정 화면 넘어가기
-				
+				modifyAssign();
 				
 			} else if (num.equals("\n")) {
 				//엔터 누르면 초기 화면 넘어가기
@@ -61,12 +61,8 @@ public class OrderAssign {
 			//주문서 리스트 불러오기
 			
 			System.out.println();
-			System.out.println("________________________________________________________________________________________________________________________________________________________");
-			System.out.println("|                                                                                                                					|");
-			System.out.println("|                                                                                                                					|");
-			System.out.println("|                                                   			 주 문 서                  	                                    	|");
-			System.out.println("|                                            			 _____________________														|");
-			System.out.println("|                                                                                                                					|");
+			System.out.println("주문서");
+			System.out.println();
 			orderList("k3");
 			orderList("k5");
 			orderList("k7");
@@ -190,14 +186,17 @@ public class OrderAssign {
 			Scanner scan = new Scanner(System.in);
 			Scanner scan2 = new Scanner(System.in);
 			
-			String EmployeeNum = "";
-			String name = "";
-			String humanNum = "";
-			String phonNum = "";
-			String address = "";
+//			String EmployeeNum = "";
+//			String name = "";
+//			String humanNum = "";
+//			String phonNum = "";
+//			String address = "";
 			
 			System.out.println();
+			MainView.singnleLine();
+			System.out.println();
 			System.out.println("배정된 주문서");
+			System.out.println();
 			orderFinishList("k3");
 			orderFinishList("k5");
 			orderFinishList("k7");
@@ -206,80 +205,16 @@ public class OrderAssign {
 			MainView.doubleLine();
 			System.out.println();
 			System.out.print("수정 할 주문서 번호를 입력하세요: ");
+			
 			String orderNum = scan.nextLine();
-			
-			String line = null;
-			boolean loop = true;
-			while(loop) {
-				while ((line = reader.readLine()) != null) {
-					String[] temp = line.split("■");
-					if (orderNum.equals(temp[7])) {
-						System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[대리점 번호]\t[주문 댓수]\t[납기일]\t\t[담당자 이름]\t[사원번호]");
-						System.out.println(temp[7] + "\t\t" 
-								+ temp[8] + "\t" 
-								+ temp[9] + "\t\t" 
-								+ temp[11] + "\t" 
-								+ temp[12] + "\t\t" 
-								+ temp[13] + "\t"
-								+ temp[1] + "\t\t"
-								+ temp[0]);
-						System.out.println();
-						System.out.print("해당 주문을 담당할 사원번호를 입력하세요: ");
-						String memberNum = scan2.nextLine();
-						
-						while ((line = reader2.readLine()) != null) {
-							String[] temp2 = line.split("■");
-							if (memberNum.equals(temp2[0])) {
-							System.out.println("[사원번호]\t\t[이름]\t\t[생년월일]\t\t[전화번호]");
-							System.out.println(temp2[0] + "\t\t" + temp2[1] + "\t\t" + temp2[2] + "\t\t" + temp2[3]);
-							System.out.println();
-							EmployeeNum = temp2[0];
-							name = temp2[1];
-							humanNum = temp2[2];
-							phonNum = temp2[3];
-							address = temp2[4];
-							}
-						}
-						System.out.print("해당 직원으로 진행하시겠습니까? (Y/N) ");
-						String check = scan.nextLine();
-						System.out.println();
-						if (check.equals("Y") || check.equals("y")) {
-							MainView.singnleLine();
-							System.out.println();
-							System.out.println("해당 주문서의 담당자가 수정되었습니다.");
-							
-							BufferedReader reader3 = new BufferedReader(new FileReader("data\\최종 유통.txt"));
-							String txt = "";
-							while ((line = reader3.readLine()) != null) {
-								txt += line.replace(temp[0], EmployeeNum)
-										   .replace(temp[1], name)
-										   .replace(temp[2], humanNum)
-										   .replace(temp[3], phonNum)
-										   .replace(temp[4], address) + "\r\n";
-							}
-							BufferedWriter modifyDelivery = new BufferedWriter(new FileWriter("data\\최종 유통.txt"));
-							modifyDelivery.write(txt);
-							modifyDelivery.close();
-							
-							
-						} else if (check.equals("N") || check.equals("n")) {
-							
-						} else {
-							System.out.println();
-							MainView.singnleLine();
-							System.out.println();
-							System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-							checkContinue();
-						}
-						
-					}
-//			System.out.println("주문서 번호를 정확히 입력해 주세요.");
-//			modifyAssign();
-				}
-				
-			}
+			System.out.println();
+			modifyAssignCheck1(orderNum);
 			
 			
+			System.out.print("해당 주문을 담당할 사원번호를 입력하세요: ");
+			String workmanNum = scan2.nextLine();
+			System.out.println();
+			modifyAssignCheck2(workmanNum);
 			
 			
 		} catch (Exception e) {
@@ -291,6 +226,216 @@ public class OrderAssign {
 		
 		
 	}// modifyAssign()
+	
+	public static void modifyAssignCheck1(String orderNum) {
+		//수정할 주문번호 찾기
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("data\\최종 유통.txt"));
+			BufferedReader reader2 = new BufferedReader(new FileReader("data\\최종 유통.txt"));
+			String line = null;
+			boolean orderList = false;
+			
+			while((line = reader.readLine()) != null) {
+				if (line.contains(orderNum)) {
+                    orderList = true; // 찾고자 하는 문자열이 포함된 경우 true 반환
+                    break;
+                }
+			}
+			
+			if(orderList) {
+				while ((line = reader2.readLine()) != null) {
+					String[] temp = line.split("■");
+					if (orderNum.equals(temp[7])) {
+						System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[대리점 번호]\t[주문 댓수]\t[납기일]\t\t[담당자 이름]\t[사원번호]");
+						System.out.println(temp[7] + "\t\t" 
+										 + temp[8] + "\t" 
+										 + temp[9] + "\t\t" 
+										 + temp[11] + "\t" 
+										 + temp[12] + "\t\t" 
+										 + temp[13] + "\t" 
+										 + temp[1] + "\t\t" 
+										 + temp[0]);
+						System.out.println();
+					}
+			}
+			} else {
+				System.out.println("주문서 번호를 정확하게 입력해 주세요.");
+				
+				boolean back = true;
+				
+				while(back) {
+					System.out.println();
+					Scanner scan = new Scanner(System.in);
+					System.out.print("계속 진행하시겠습니까?(Y/N) ");
+					String check = scan.nextLine();
+					System.out.println();
+					
+					if (check.equals("Y") || check.equals("y")) {
+						System.out.println();
+						back = false;
+						modifyAssign();
+						
+					} else if (check.equals("N") || check.equals("n")) {
+						back = false;
+						orderView();
+					} else {
+						System.out.println();
+						MainView.singnleLine();
+						System.out.println();
+						System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+					}
+					
+				}
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("modifyAssignCheck1() 예외");
+			e.printStackTrace();
+		}
+	}// modifyAssignCheck1()
+	
+	public static void modifyAssignCheck2(String workmanNum) {
+		
+		//수정할 주문번호 찾기
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("data\\deliveryMember.txt"));
+			BufferedReader reader2 = new BufferedReader(new FileReader("data\\최종 유통.txt"));
+			String EmployeeNum = "";
+			String name = "";
+			String humanNum = "";
+			String phonNum = "";
+			String address = "";
+			
+			String line = null;
+			boolean orderList = false;
+			while((line = reader.readLine()) != null) {
+				if (line.contains(workmanNum)) {
+                    orderList = true; // 찾고자 하는 문자열이 포함된 경우 true 반환
+                    break;
+                }
+			}
+			
+			if(orderList) {
+				while ((line = reader.readLine()) != null) {
+					String[] temp = line.split("■");
+					if (workmanNum.equals(temp[0])) {
+						System.out.println("[사원번호]\t\t[이름]\t\t[생년월일]\t\t[전화번호]");
+						System.out.println(temp[0] + "\t\t" + temp[1] + "\t\t" + temp[2] + "\t\t" + temp[3]);
+						System.out.println();
+						EmployeeNum = temp[0];
+						name = temp[1];
+						humanNum = temp[2];
+						phonNum = temp[3];
+						address = temp[4];
+						}
+			}
+			} else {
+//				System.out.println("주문서 번호를 정확하게 입력해 주세요.");
+//				
+//				boolean back = true;
+//				
+//				while(back) {
+//					System.out.println();
+//					Scanner scan = new Scanner(System.in);
+//					System.out.print("계속 진행하시겠습니까?(Y/N) ");
+//					String check = scan.nextLine();
+//					System.out.println();
+//					
+//					if (check.equals("Y") || check.equals("y")) {
+//						System.out.println();
+//						back = false;
+//						modifyAssign();
+//						
+//					} else if (check.equals("N") || check.equals("n")) {
+//						back = false;
+//						orderView();
+//					} else {
+//						System.out.println();
+//						MainView.singnleLine();
+//						System.out.println();
+//						System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+//					}
+//					
+//				}
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("modifyAssignCheck2() 예외");
+			e.printStackTrace();
+		}
+		
+	}//modifyAssignCheck2()
+
+	
+//	String line = null;
+//	boolean loop = true;
+//	while(loop) {
+				
+//				String memberNum = scan2.nextLine();
+//				
+//				
+//				String check = scan.nextLine();
+//				System.out.println();
+//				if (check.equals("Y") || check.equals("y")) {
+//					MainView.singnleLine();
+//					System.out.println();
+//					System.out.println("해당 주문서의 담당자가 수정되었습니다.");
+//					System.out.println();
+//					
+//					BufferedReader reader3 = new BufferedReader(new FileReader("data\\최종 유통.txt"));
+//					String txt = "";
+//					while ((line = reader3.readLine()) != null) {
+//						txt += line.replace(temp[0], EmployeeNum)
+//								   .replace(temp[1], name)
+//								   .replace(temp[2], humanNum)
+//								   .replace(temp[3], phonNum)
+//								   .replace(temp[4], address) + "\r\n";
+//					}
+//					BufferedWriter modifyDelivery = new BufferedWriter(new FileWriter("data\\최종 유통.txt"));
+//					modifyDelivery.write(txt);
+//					modifyDelivery.close();
+//					loop = false;
+//					
+//				} else if (check.equals("N") || check.equals("n")) {
+//					
+//				} else {
+//					System.out.println();
+//					MainView.singnleLine();
+//					System.out.println();
+//					System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+//					checkContinue();
+//				}
+//				
+//			}
+//	System.out.println("주문서 번호를 정확히 입력해 주세요.");
+//	modifyAssign();
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	private static void checkContinue() {
 		
