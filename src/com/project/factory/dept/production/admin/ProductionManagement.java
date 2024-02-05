@@ -2,6 +2,7 @@ package com.project.factory.dept.production.admin;
 
 import java.util.Scanner;
 
+import com.project.factory.Main;
 import com.project.factory.dept.production.admin.resource.ModelInfo;
 import com.project.factory.dept.production.admin.resource.ModelInfoData;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
@@ -14,25 +15,15 @@ import com.project.factory.view.dept.ProductionView;
 public class ProductionManagement {
 	 // 생산관리
 	
-<<<<<<< HEAD
+
 	public static void productionSelect() {
-=======
-	
-	//스위치 케이스 맘대루~
-	
+		Scanner sc = new Scanner(System.in);
+		ProductionView.viewproductionMenu();
+		System.out.print("입력: ");
+		
+	}
 	
 	private void startProduction() {
-		//생산 자동 카운트
-	}
-	
-	private void pauseProduction() {
-		//생산 일시중지
-	}
-	private void stopProduction() {
-		//생산 정지 하루 재고 -> 재고량
->>>>>>> upstream/main
-		
-		
 		K3Start k3 = new K3Start();
 		K5Start k5 = new K5Start();
 		K7Start k7 = new K7Start();
@@ -68,6 +59,17 @@ public class ProductionManagement {
 			System.out.println("잘못된입력");
 			MainView.pause();
 		}
+	}
+	
+	private void pauseProduction() {
+		
+	}
+	private void stopProduction() {
+	
+
+		
+		
+		
 	}
 
 	private static void stopproduction() {

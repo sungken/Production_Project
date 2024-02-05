@@ -1,11 +1,8 @@
 package com.project.factory;
 
-
 import java.util.Scanner;
 
-<<<<<<< HEAD
 import javax.management.modelmbean.ModelMBeanAttributeInfo;
-
 import com.project.factory.dept.production.admin.ProductionManagement;
 import com.project.factory.dept.production.admin.SetProductionTarget;
 import com.project.factory.dept.production.admin.resource.ModelInfo;
@@ -13,23 +10,18 @@ import com.project.factory.dept.production.admin.resource.ModelInfoData;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
-=======
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
 import com.project.factory.dept.management.admin.AgencyManagement;
->>>>>>> upstream/main
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
 import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
-<<<<<<< HEAD
 import com.project.factory.member.admin.InventorySearch;
-=======
 import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.member.SignUp;
->>>>>>> upstream/main
 import com.project.factory.resource.Data;
 import com.project.factory.view.MainView;
 
@@ -38,6 +30,7 @@ public class Main {
 	// TODO selectNum String으로 변경
 	public static String selectNum;
 	public static String answer;
+
 	public static void main(String[] args) {
 
 		// TODO loop 변수 추가 > 초기 화면 메뉴 반복문
@@ -56,7 +49,7 @@ public class Main {
 			if (Identify.auth == null) {
 				if (sel.equals("1")) {
 					// 회원가입
-					 SignUp.cheackid(); 
+					SignUp.cheackid();
 				} else if (sel.equals("2")) {
 					// 로그인
 					Login.login();
@@ -76,7 +69,7 @@ public class Main {
 					Logout.logout();
 				} else if (sel.equals("5")) {
 					// 개인정보 조회 및 수정
-					Modify.modify(); 
+					Modify.modify();
 				} else if (sel.equals("6")) {
 					// 근태 등록
 					CommutePush.commutePush();
@@ -94,10 +87,10 @@ public class Main {
 					CommuteSearch.commuteSearch();
 				} else if (sel.equals("11")) {
 					// 재고 확인
-					 InventorySearch.checkInventory();
+					InventorySearch.checkInventory();
 				} else if (sel.equals("12")) {
 					// 공지사항 관리
-					BoardManagement.boardManagement(); 
+					BoardManagement.boardManagement();
 				} else if (sel.equals("13")) {
 					// 사원 관리(입사, 퇴사)
 					// HRD.hrd(); > 메서드 생성 필요
@@ -111,8 +104,7 @@ public class Main {
 					ModelInfoData.modelInfoLoad();
 					TodayProductionData.todayInventoryLoad();
 					ProductionManagement.productionSelect();
-					
-					
+
 					// ProductionManagement.productionManagement(); > 메서드 생성 필요
 				} else if (sel.equals("16")) {
 					// 주문서 확인 및 배정 수정
@@ -125,7 +117,7 @@ public class Main {
 					AgencyManagement.agencyManagement();
 				} else if (sel.equals("19")) {
 					// 대리점 주문 관리
-					//OrderManagement.orderManagement();
+					// OrderManagement.orderManagement();
 				} else if (sel.equals("20")) {
 					// 모델 관리
 					// ModelManagement.modelManagement(); > 메서드 생성 필요

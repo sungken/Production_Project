@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
-<<<<<<< HEAD
 import com.project.factory.member.Login;
-=======
 import com.project.factory.member.Modify;
 
 
