@@ -2,10 +2,7 @@ package com.project.factory.dept.production.admin;
 
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
-import com.project.factory.resource.inventory.ModelInfo;
-import com.project.factory.resource.inventory.ModelInfoData;
-import com.project.factory.resource.inventory.Piece;
-import com.project.factory.resource.inventory.PieceData;
+
 
 public class ProductThread extends Thread {
 
@@ -47,19 +44,19 @@ public class ProductThread extends Thread {
 					if (today.getModel().equals("K3")) {
 						today.setTodayProductNum(K3count);
 						
-						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+//						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
 					}
 					if (today.getModel().equals("K5")) {
 						today.setTodayProductNum(K5count);
-						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+//						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
 					}
 					if (today.getModel().equals("K7")) {
 						today.setTodayProductNum(K7count);
-						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+//						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
 					}
 					if (today.getModel().equals("K9")) {
 						today.setTodayProductNum(K9count);
-						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+//						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
 					}
 					
 				}
@@ -68,7 +65,6 @@ public class ProductThread extends Thread {
 				K7count += 5;
 				K9count += 3;
 				Thread.sleep(10000);
-				System.out.println("휘리릭");
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();

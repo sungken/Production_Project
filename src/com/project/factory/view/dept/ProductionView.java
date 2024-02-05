@@ -60,7 +60,7 @@ public class ProductionView {
 		System.out.println("모델별 불량품 개수를 입력해주세요");
 		int count = 1;
 		for (TodayProduction modelInventory : TodayProductionData.todayProductionList) {
-			System.out.printf("%d. %s: %d \n", count, modelInventory.getModel(), modelInventory.getTodayProductNum());
+			System.out.printf("%d. %s: %d \n", count, modelInventory.getModel(), modelInventory.getTodayDefectiveNum());
 			count++;
 		}
 		
@@ -71,7 +71,7 @@ public class ProductionView {
 	public static void viewCheckPiece() {
 		MainView.doubleLine();
 		System.out.println();
-		System.out.println("모델별 불량품 개수를 입력해주세요.");
+		System.out.println("부품 개수");
 		for(Piece piece : PieceData.pieceList) {
 			System.out.printf("- %s : %d", piece.getPieceType(), piece.getPieceNum());
 		}
