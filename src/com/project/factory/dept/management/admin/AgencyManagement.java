@@ -1,8 +1,6 @@
 package com.project.factory.dept.management.admin;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Random;
 import java.util.Scanner;
@@ -14,6 +12,7 @@ import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
+import com.project.factory.resource.sub.AgencyData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.AreaView;
 import com.project.factory.view.sub.AgencyManagementView;
@@ -34,7 +33,7 @@ public class AgencyManagement {
 
 	public static void agencyManagement() {
 
-		AgencyManagement.load();
+		AgencyData.load();
 
 		AgencyManagementView.agencyManagementMenu();
 
@@ -474,35 +473,6 @@ public class AgencyManagement {
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}
 		}
-	}
-
-	private static void load() {
-		try {
-
-			Data.memberList.clear(); // 기존 데이터 초기화
-
-			BufferedReader reader = new BufferedReader(new FileReader(Path.MEMBER));
-
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
-				// 대리점ID■비밀번호■이름■■전화번호■주소■직급■구역■이메일
-				String[] temp = line.split("■");
-
-				Members member = new Members(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7],
-						temp[8]);
-
-				Data.memberList.add(member);
-
-			}
-
-			reader.close();
-
-		} catch (Exception e) {
-			System.out.println("AgencyManagement.load");
-			e.printStackTrace();
-		}
-
 	}
 
 }
