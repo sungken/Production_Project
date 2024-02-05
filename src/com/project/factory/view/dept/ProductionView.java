@@ -2,9 +2,12 @@ package com.project.factory.view.dept;
 
 import java.util.Set;
 
+import com.project.factory.dept.management.admin.ModelManagement;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
+import com.project.factory.resource.inventory.ModelInfo;
+import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.Piece;
 import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.view.MainView;
@@ -12,7 +15,7 @@ import com.project.factory.view.MainView;
 public class ProductionView {
 	
 	
-
+	//하루목표 뷰
 	public static void viewModelInven() {
 		int count = 1;
 		Set<String> keySet = ProductionTarget.TargetNum.keySet();
@@ -40,14 +43,21 @@ public class ProductionView {
 	
 	
 	/**
-	 * 총생량, 불량품개수, 재고량 View
+	 * 총생산량, 불량품개수, 재고량 View
 	 */
 	public static void viewPoductionView() {
 		MainView.doubleLine();
 		System.out.println();
-		System.out.printf("총 생산량 %d대\n");
-		System.out.printf("불량품 개수 : %d대");
-		System.out.println("재고량 : ");
+		System.out.printf("생산 목표치 : ");
+		Set<String> keySet = ProductionTarget.TargetNum.keySet();
+		for (String model : keySet) {
+			System.out.print( model + " : " + ProductionTarget.TargetNum.get(model) + "대 ");
+		}
+		System.out.println();
+		System.out.print("재고량 : ");
+		for(ModelInfo model : ModelInfoData.modelInfoList) {
+			System.out.printf("%s : %d ", model.getModelName(), model.getModelInventory());
+		}
 		System.out.println();
 		MainView.doubleLine();
 	}

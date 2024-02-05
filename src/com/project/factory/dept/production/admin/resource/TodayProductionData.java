@@ -22,7 +22,7 @@ public class TodayProductionData {
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split("■");
 
-				TodayProduction todayProduction = new TodayProduction(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), temp[3]);
+				TodayProduction todayProduction = new TodayProduction(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), temp[2]);
 
 				todayProductionList.add(todayProduction);
 				
@@ -37,13 +37,13 @@ public class TodayProductionData {
 
 	}
 
-	public static void TodayInventorySave() {
+	public static void todayInventorySave() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.TODAYPRODUCTION));
 
 			for (TodayProduction todayProduction : TodayProductionData.todayProductionList) {
 
-				String line = String.format("%d■%d■%d■%s\r\n", todayProduction.getTodayProductNum(), todayProduction.getTodayDefectiveNum(), todayProduction.getModel());
+				String line = String.format("%d■%d■%s\r\n", todayProduction.getTodayProductNum(), todayProduction.getTodayDefectiveNum(), todayProduction.getModel());
 
 				writer.write(line);
 

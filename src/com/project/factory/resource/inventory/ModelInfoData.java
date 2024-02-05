@@ -35,7 +35,7 @@ public class ModelInfoData {
 
 	}
 
-	public static void ModelInfoSave() {
+	public static void modelInfoSave() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MODELINVENTORY));
 

@@ -46,6 +46,7 @@ public class Main {
 		ModelInfoData.modelInfoLoad();
 		TodayProductionData.todayInventoryLoad();
 		ProductionTarget.load_target();
+		
 		while (loop) {
 
 			MainView.mainMenu();
@@ -148,7 +149,9 @@ public class Main {
 		} // while
 
 		scan.close();
-
+		ModelInfoData.modelInfoSave();
+		TodayProductionData.todayInventorySave();
+		ProductionTarget.save_target();
 	}// main
 
 }

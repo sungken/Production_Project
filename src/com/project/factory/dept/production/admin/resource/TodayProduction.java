@@ -7,10 +7,9 @@ public class TodayProduction {
 	private String model;
 	
 	
-	public TodayProduction(int todayProductNum, int todayDefectiveNum, int finalTodayProductNum,  String model) {
+	public TodayProduction(int todayProductNum, int todayDefectiveNum, String model) {
 		this.todayProductNum = todayProductNum;
 		this.todayDefectiveNum = todayDefectiveNum;
-		this.finalTodayProductNum = todayProductNum - todayDefectiveNum;
 		this.model = model;
 	}
 
@@ -20,15 +19,6 @@ public class TodayProduction {
 
 	public int getTodayProductNum() {
 		return todayProductNum;
-	}
-
-
-	public void setFinalTodayProductNum(int finalTodayProductNum) {
-		this.finalTodayProductNum = finalTodayProductNum;
-	}
-
-	public int getFinalTodayProductNum() {
-		return finalTodayProductNum;
 	}
 
 	public void setTodayProductNum(int todayProductNum) {
