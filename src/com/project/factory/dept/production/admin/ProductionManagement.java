@@ -14,7 +14,23 @@ import com.project.factory.view.dept.ProductionView;
 public class ProductionManagement {
 	 // 생산관리
 	
+<<<<<<< HEAD
 	public static void productionSelect() {
+=======
+	
+	//스위치 케이스 맘대루~
+	
+	
+	private void startProduction() {
+		//생산 자동 카운트
+	}
+	
+	private void pauseProduction() {
+		//생산 일시중지
+	}
+	private void stopProduction() {
+		//생산 정지 하루 재고 -> 재고량
+>>>>>>> upstream/main
 		
 		
 		K3Start k3 = new K3Start();

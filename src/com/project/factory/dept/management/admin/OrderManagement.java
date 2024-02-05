@@ -16,6 +16,11 @@ public class OrderManagement {
 	private void cancleOrder(String oderId) {
 		
 	}
+
+	public static void orderManagement() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
