@@ -3,18 +3,25 @@ package com.project.factory;
 
 import java.util.Scanner;
 
+
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
+import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.dept.management.admin.AgencyManagement;
+
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
 import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
+
 import com.project.factory.member.admin.CommuteSearch;
+
 import com.project.factory.member.SignUp;
+
 import com.project.factory.resource.Data;
+import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
 
 public class Main {
@@ -58,7 +65,7 @@ public class Main {
 			} else if (Identify.auth != null) {
 				if (sel.equals("3")) {
 					// 로그아웃
-					Logout.logout();
+					Logout.logout(); 
 				} else if (sel.equals("5")) {
 					// 개인정보 조회 및 수정
 					Modify.modify(); 
@@ -85,7 +92,7 @@ public class Main {
 					BoardManagement.boardManagement(); 
 				} else if (sel.equals("13")) {
 					// 사원 관리(입사, 퇴사)
-					// HRD.hrd(); > 메서드 생성 필요
+					 HRM.hrd();
 				} else if (sel.equals("14")) {
 					// 생산 목표량 입력 및 수정
 					// ProductionTarget.productionTarget(); > 메서드 생성 필요
@@ -115,7 +122,7 @@ public class Main {
 					// Mail.mail(); > 메서드 생성 필요
 				} else if (sel.equals("23")) {
 					// 주문서 관리
-					// MyOrder.MyOrder(); > 메서드 생성 필요
+					 MyOrder.MyOrder();
 				} else if (sel.equals("0")) {
 					// 종료
 					loop = false;

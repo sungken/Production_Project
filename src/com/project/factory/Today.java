@@ -26,6 +26,7 @@ public class Today {
 
 	}
 	
+
 	//날짜 형식 유효성 검사
 	public static boolean checkDate(String date) {
         String regex = "\\d{4}-\\d{2}-\\d{2}";
@@ -48,4 +49,5 @@ public class Today {
             return true;
         }
     }
+
 }
