@@ -1,16 +1,24 @@
 package com.project.factory;
 
+
 import java.util.Scanner;
 
+import com.project.factory.dept.distribution.admin.DestManagement;
+import com.project.factory.dept.distribution.admin.OrderAssign;
+import com.project.factory.board.ReadBoard;
+import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
 import com.project.factory.dept.human.admin.HRM;
+import com.project.factory.dept.management.admin.AgencyManagement;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
 import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
+import com.project.factory.member.SignUp;
 import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.resource.Data;
+import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
 
 public class Main {
@@ -26,11 +34,9 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 
 		Data.load();
-		
 		while (loop) {
 
 			MainView.mainMenu();
-
 
 			// TODO sel 변수 추가 > 메뉴 번호 답변 받는 변수
 			String sel = scan.nextLine();
@@ -39,7 +45,7 @@ public class Main {
 			if (Identify.auth == null) {
 				if (sel.equals("1")) {
 					// 회원가입
-					// SignUp.signUp(); > 메서드 생성 필요
+					 SignUp.cheackid(); 
 				} else if (sel.equals("2")) {
 					// 로그인
 					Login.login();
@@ -65,8 +71,7 @@ public class Main {
 					CommutePush.commutePush();
 				} else if (sel.equals("7")) {
 					// 공지 사항(읽기)
-					// ReadBoard board = new ReadBoard();
-					// board.list(); > 메서드 생성 필요
+					ReadBoard.readBoard();
 				} else if (sel.equals("8")) {
 					// 부품 재고 파악 및 발주
 					// CheckPiece.checkPiece(); > 메서드 생성 필요
@@ -81,7 +86,7 @@ public class Main {
 					// InventorySearch.inventorySearch(); > 메서드 생성 필요
 				} else if (sel.equals("12")) {
 					// 공지사항 관리
-					// WriteBoard.writeBoared(); > 메서드 생성 필요
+					BoardManagement.boardManagement(); 
 				} else if (sel.equals("13")) {
 					// 사원 관리(입사, 퇴사)
 					 HRM.hrd();
@@ -93,16 +98,16 @@ public class Main {
 					// ProductionManagement.productionManagement(); > 메서드 생성 필요
 				} else if (sel.equals("16")) {
 					// 주문서 확인 및 배정 수정
-					// OrderAssign.orderAssign(); > 메서드 생성 필요
+					OrderAssign.orderView(); //> 메서드 생성 필요
 				} else if (sel.equals("17")) {
 					// 사원 배송 구역 관리
-					// DestManagement.destManagement(); > 메서드 생성 필요
+					DestManagement.destManagement(); 
 				} else if (sel.equals("18")) {
 					// 대리점 관리
-					// AgencyManagement.agencyManagement(); > 메서드 생성 필요
+					AgencyManagement.agencyManagement();
 				} else if (sel.equals("19")) {
 					// 대리점 주문 관리
-					// OrderManagement.orderManagement(); > 메서드 생성 필요
+					//OrderManagement.orderManagement();
 				} else if (sel.equals("20")) {
 					// 모델 관리
 					// ModelManagement.modelManagement(); > 메서드 생성 필요
@@ -114,7 +119,7 @@ public class Main {
 					// Mail.mail(); > 메서드 생성 필요
 				} else if (sel.equals("23")) {
 					// 주문서 관리
-					// MyOrder.MyOrder(); > 메서드 생성 필요
+					 MyOrder.myOrder();
 				} else if (sel.equals("0")) {
 					// 종료
 					loop = false;
@@ -122,7 +127,6 @@ public class Main {
 				} else {
 					System.out.println("잘못된 번호입니다.");
 				}
-
 			}
 		} // while
 

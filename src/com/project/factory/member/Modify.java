@@ -12,7 +12,7 @@ import com.project.factory.view.member.ModifyView;
 
 public class Modify {
 
-	public static String regex = ""; // 정규식을 이용한 유효성 검사를 위한 변수
+	static String regex = ""; // 정규식을 이용한 유효성 검사를 위한 변수
 
 	public static void modify() {
 
@@ -23,6 +23,7 @@ public class Modify {
 		Main.selectNum = scan.nextLine();
 
 		if (Main.selectNum.equals("1")) {
+			//TODO 대리점 계정인 경우 이름 유효성 검사가 달라짐 추가 구현 필요
 			Modify.modifyName();
 		} else if (Main.selectNum.equals("2")) {
 			Modify.modifyPhoneNum();
@@ -32,6 +33,7 @@ public class Modify {
 			Modify.modifyPw();
 		} else {
 			System.out.println("잘못된 번호입니다.");
+			MainView.pause();
 		}
 
 	}

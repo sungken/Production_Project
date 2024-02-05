@@ -25,7 +25,7 @@ public class NewMemberData {
                 String[] temp = line.split("■");
 
                 	
-                    NewMembers newMember = new NewMembers(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5],temp[6]);
+                    NewMembers newMember = new NewMembers(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5],temp[6],temp[7]);
                     NewMemberList.add(newMember);
                
                     // 유효하지 않은 데이터 처리
@@ -47,7 +47,7 @@ public class NewMemberData {
 	        BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBER));
 
 	        for (NewMembers newMember : NewMemberData.NewMemberList) {
-	            String line = String.format("%s■%s■%s■%s■%s■%s■%s\r\n", newMember.getId(), newMember.getName(),
+	            String line = String.format("%s■%s■%s■%s■%s■%s■%s■%s\r\n", newMember.getId(),newMember.getPw(), newMember.getName(),
 	                    newMember.getPhoneNum(), newMember.getBirth(), newMember.getAddress(), newMember.getDept(),
 	                    newMember.getLevel());
 	            writer.write(line);
