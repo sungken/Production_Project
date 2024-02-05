@@ -1,5 +1,6 @@
 package com.project.factory.dept.human.admin;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -113,7 +114,7 @@ public class HRM {
 				MainView.doubleLine();
 				System.out.println();
 				System.out.println("[사원번호]\t[이름]\t[생년월일]\t\t[전화번호]\t\t[주소]\t[부서]");
-				System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\n", member.getId(), member.getName(), member.getBirth(),
+				System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\n", member.getId() ,member.getName(), member.getBirth(),
 						member.getPhoneNum(), member.getAddress(), member.getDept());
 
 				System.out.println();
@@ -250,7 +251,7 @@ public class HRM {
 		MainView.doubleLine();
 		System.out.println();
 		System.out.println("[신입사원 리스트]");
-		System.out.println("[사원번호]\t[이름]\t[전화번호]\t\t[생년월일]\t\t[주소]\t\t[부서]\t[직급]");
+		System.out.println("[사원번호]\t[비밀번호]\t[이름]\t\t[전화번호]\t\t[생년월일]\t\t[주소]\t\t\t[부서]\t[직급]");
 
 		Iterator<NewMembers> iterator = NewMemberData.NewMemberList.iterator();
 		List<NewMembers> tempList = new ArrayList<>();
@@ -258,7 +259,7 @@ public class HRM {
 		while (iterator.hasNext()) {
 			NewMembers newMember = iterator.next();
 
-			System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n", newMember.getId(), newMember.getName(),
+			System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t%s\t%s\n", newMember.getId(),newMember.getPw() ,newMember.getName(),
 					newMember.getPhoneNum(), newMember.getBirth(), newMember.getAddress(), newMember.getDept(),
 					newMember.getLevel());
 
