@@ -4,12 +4,14 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
-import com.project.factory.member.Login;
 import com.project.factory.member.Modify;
 
-
 public class MainView {
+
+	//public static Object selectNum;
+
 	public static Scanner scan = new Scanner(System.in);
+
 	// TODO mainMenu 메서드 추가
 	public static void mainMenu() {
 //		System.out.println();
@@ -102,6 +104,7 @@ public class MainView {
 		System.out.print("엔터를 치면 초기화면으로 돌아갑니다.");
 		scan.nextLine();
 		System.out.println();
+
 	}
 	
 	public static void pauseToSel() {
@@ -119,27 +122,28 @@ public class MainView {
 		Main.answer = scan.nextLine();
 	}
 
+
 	public static boolean checkContinueBoolean() {
-		while (true) {
+        Scanner scan = new Scanner(System.in);
+        while (true) {
 
-			System.out.println();
-			System.out.print("계속 진행하시겠습니까?(Y/N)\n");
-			System.out.print("입력: ");
-			Main.answer = scan.nextLine();
+            System.out.println();
+            System.out.print("계속 진행하시겠습니까?(Y/N)\n");
+            System.out.print("입력: ");
+            Main.answer = scan.nextLine();
 
-			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
-				return true;
-			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
-				return false;
-			} else {
-				System.out.println();
-				MainView.singnleLine();
-				System.out.println();
-				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-			}
-		}
-	}
-	
+            if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+                return true;
+            } else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+                return false;
+            } else {
+                System.out.println();
+                MainView.singnleLine();
+                System.out.println();
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            }
+        }
+    }
 
 	// TODO doubleLine 메서드 추가
 	public static void doubleLine() {

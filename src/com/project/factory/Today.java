@@ -25,7 +25,18 @@ public class Today {
 		return formattedDate;
 
 	}
-	
+
+	// 차량 주문 현재일 부터 5일 후 배송(납기)
+	public static String daysLater() {
+		Calendar daysLater = Calendar.getInstance();
+		daysLater.add(Calendar.DATE, 5);
+		SimpleDateFormat daysLaterFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String fiveDaysLater = daysLaterFormat.format(daysLater.getTime());
+		return fiveDaysLater;
+
+	}
+
+
 	//날짜 형식 유효성 검사
 	public static boolean checkDate(String date) {
         String regex = "\\d{4}-\\d{2}-\\d{2}";
@@ -48,4 +59,6 @@ public class Today {
             return true;
         }
     }
+
+
 }

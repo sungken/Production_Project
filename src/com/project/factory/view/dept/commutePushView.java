@@ -31,7 +31,7 @@ public class commutePushView {
 	}
 	
 	
-	public static void CommutePushView() {
+	public static void commutePushViewEnd() {
 		
 
 		//로그인이 된 상태이면
@@ -43,5 +43,12 @@ public class commutePushView {
 			
 			System.out.print("번호 입력: ");
 			
+	}
+	
+	public static void alreadyCommute() {
+			System.out.println();
+			System.out.println("이미 출/퇴근을 완료했습니다.");
+			System.out.println();
+			MainView.pause();
 	}
 }
