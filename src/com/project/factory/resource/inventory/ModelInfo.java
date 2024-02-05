@@ -1,4 +1,4 @@
-package com.project.factory.dept.production.admin.resource;
+package com.project.factory.resource.inventory;
 /**
  * 모델 정보 클래스 (모델이름, 들어가는 부품(개수), 엔진타입, 모델재고)
  */

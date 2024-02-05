@@ -5,6 +5,8 @@ import java.util.Set;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
+import com.project.factory.resource.inventory.Piece;
+import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.view.MainView;
 
 public class ProductionView {
@@ -62,6 +64,69 @@ public class ProductionView {
 			count++;
 		}
 		
+		System.out.println();
+		MainView.doubleLine();
+	}
+	
+	public static void viewCheckPiece() {
+		MainView.doubleLine();
+		System.out.println();
+		System.out.println("모델별 불량품 개수를 입력해주세요.");
+		for(Piece piece : PieceData.pieceList) {
+			System.out.printf("- %s : %d", piece.getPieceType(), piece.getPieceNum());
+		}
+	}
+	
+	public static void checkPieceMenu() {
+		MainView.doubleLine();
+		System.out.println();
+		System.out.println("1. 부품 재고 파악");
+		System.out.println("2. 부품 발주");
+		System.out.println();
+		MainView.doubleLine();
+	}
+	
+	public static void checkPiece() {
+		int wheelSum = 0;
+		int frameSum = 0;
+		int leatherSum = 0;
+		MainView.doubleLine();
+		System.out.println();
+		System.out.println("\t\t부품 재고");
+		for(Piece piece : PieceData.pieceList) {
+			if(piece.getPieceType().equals("바퀴")) {
+				wheelSum += piece.getPieceNum();
+			}
+		}
+		for(Piece piece : PieceData.pieceList) {
+			if(piece.getPieceType().equals("철판")) {
+				frameSum += piece.getPieceNum();
+			}
+		}
+		for(Piece piece : PieceData.pieceList) {
+			if(piece.getPieceType().equals("가죽")) {
+				leatherSum += piece.getPieceNum();
+			}
+		}
+		System.out.printf("- 바퀴 : %d\n", wheelSum);
+		System.out.printf("- 철판 : %d\n", frameSum);
+		System.out.printf("- 바퀴 : %d\n", leatherSum);
+		for(Piece piece : PieceData.pieceList) {
+			if(piece.getPieceType().contains("엔")) {
+				System.out.printf("- %s : %d\n", piece.getPieceType(), piece.getPieceNum());
+			}
+		}
+		System.out.println();
+		MainView.doubleLine();
+	}
+	
+	public static void addPieceMenu() {
+		MainView.doubleLine();
+		System.out.println();
+		System.out.println("[하청업체ID]\t[하청업체 이름]\t\t  [전화번호]");
+		for(Piece piece : PieceData.pieceList) {
+			System.out.printf("%-10s\t   %-8s\t\t%-8s\n", piece.getPieceCompanyId(), piece.getPieceCompany(), piece.getPieceCompanyPhoneNum());
+		}
 		System.out.println();
 		MainView.doubleLine();
 	}

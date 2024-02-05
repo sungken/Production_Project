@@ -2,32 +2,21 @@ package com.project.factory.dept.production.admin;
 
 import java.util.Scanner;
 
-import com.project.factory.Main;
-import com.project.factory.dept.production.admin.resource.ModelInfo;
-import com.project.factory.dept.production.admin.resource.ModelInfoData;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
+import com.project.factory.resource.inventory.ModelInfo;
+import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.ProductionView;
 
 //TODO productionManagement 클래스명 오타 수정
 public class ProductionManagement {
-	 // 생산관리
+	 static // 생산관리
 	
-
+	ProductThread production = new ProductThread();
+	
 	public static void productionSelect() {
-		Scanner sc = new Scanner(System.in);
-		ProductionView.viewproductionMenu();
-		System.out.print("입력: ");
-		
-	}
-	
-	private void startProduction() {
-		K3Start k3 = new K3Start();
-		K5Start k5 = new K5Start();
-		K7Start k7 = new K7Start();
-		K9Start k9 = new K9Start();
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -36,49 +25,38 @@ public class ProductionManagement {
 		int sel = sc.nextInt();
 		
 		if (sel == 1) {
-			
-			k3.start();
-			k5.start();
-			k7.start();
-			k9.start();
-			k3.setStatusproduction(true);
-			k5.setStatusproduction(true);
-			k7.setStatusproduction(true);
-			k9.setStatusproduction(true);
-			
-			MainView.pause();
+//			if(production.isStarted()) {
+//				System.out.println("이미 실행중");
+//				return;
+//			}else if(production.isStarted() == false){
+//				production.start();
+//				MainView.pause();
+//				production.setStarted(true);
+//				
+//			}
+			production.start();
 		} else if (sel == 2) {
-			k3.setStatusproduction(false);
-			k5.setStatusproduction(false);
-			k7.setStatusproduction(false);
-			k9.setStatusproduction(false);
+//			production.setStopRequested(true);
 			MainView.pause();
 		} else if (sel == 3) {
-			stopproduction();
+			setRejectproduct();
+			stopProduction();
 		} else {
 			System.out.println("잘못된입력");
 			MainView.pause();
 		}
 	}
 	
-	private void pauseProduction() {
-		
-	}
-	private void stopProduction() {
+
 	
-
-		
-		
-		
-	}
-
-	private static void stopproduction() {
+	private static void stopProduction() {
 		
 		ProductionManagement.setRejectproduct();
-
+		TodayProduction todayProduction = new TodayProduction();
 		// 생산 정지 하루 재고 -> 재고량
 		for (ModelInfo model : ModelInfoData.modelInfoList) {
-				model.setModelInventory(TodayProduction.getFinalTodayProductNum());
+			if(model.getModelName().equals(model))
+				model.setModelInventory(todayProduction.getFinalTodayProductNum());
 
 			
 		}

@@ -1,4 +1,4 @@
-package com.project.factory.dept.production.user;
+package com.project.factory.resource.inventory;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,13 +14,13 @@ public class PieceData {
 	public static void pieceLoad() {
 		try {
 
-			BufferedReader reader = new BufferedReader(new FileReader(Path.TODAYPRODUCTION));
+			BufferedReader reader = new BufferedReader(new FileReader(Path.PIECEINVENTORY));
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split("■");
 
-				Piece piece = new Piece(temp[0], temp[1], temp[2],Integer.parseInt(temp[3]));
+				Piece piece = new Piece(temp[0], temp[1], temp[2],temp[3], temp[4], Integer.parseInt(temp[5]));
 
 				pieceList.add(piece);
 				
@@ -40,7 +40,7 @@ public class PieceData {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.PIECEINVENTORY));
 			for (Piece piece : PieceData.pieceList) {
 
-				String line = String.format("%s■%s■%s■%d\r\n", piece.getPieceName(), piece.getPieceType(), piece.getPieceCompany(), piece.getPieceNum());
+				String line = String.format("%s■%s■%s■%s■%s■%d\r\n", piece.getPieceName(), piece.getPieceType(), piece.getPieceCompany(),piece.getPieceCompanyId(), piece.getPieceCompanyPhoneNum(),piece.getPieceNum());
 
 				writer.write(line);
 

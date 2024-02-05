@@ -2,30 +2,28 @@ package com.project.factory;
 
 import java.util.Scanner;
 
-import com.project.factory.dept.production.admin.ProductionManagement;
-import com.project.factory.dept.production.admin.SetProductionTarget;
-import com.project.factory.dept.production.admin.resource.ModelInfo;
-import com.project.factory.dept.production.admin.resource.ModelInfoData;
-import com.project.factory.dept.production.admin.resource.ProductionTarget;
-import com.project.factory.dept.production.admin.resource.TodayProduction;
-import com.project.factory.dept.production.admin.resource.TodayProductionData;
-import com.project.factory.dept.distribution.admin.OrderAssign;
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
+import com.project.factory.dept.distribution.admin.OrderAssign;
 import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.dept.management.admin.AgencyManagement;
+import com.project.factory.dept.production.admin.ProductionManagement;
+import com.project.factory.dept.production.admin.SetProductionTarget;
+import com.project.factory.dept.production.admin.resource.ProductionTarget;
+import com.project.factory.dept.production.admin.resource.TodayProductionData;
+import com.project.factory.dept.production.user.CheckPiece;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
 import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
-import com.project.factory.member.admin.InventorySearch;
-import com.project.factory.member.admin.CommuteSearch;
-
 import com.project.factory.member.SignUp;
-
+import com.project.factory.member.admin.CommuteSearch;
+import com.project.factory.member.admin.InventorySearch;
 import com.project.factory.resource.Data;
+import com.project.factory.resource.inventory.ModelInfoData;
+import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
 
@@ -34,14 +32,18 @@ public class Main {
 	// TODO selectNum String으로 변경
 	public static String selectNum;
 	public static String answer;
+	public static Object production;
 
 	public static void main(String[] args) {
 
 		// TODO loop 변수 추가 > 초기 화면 메뉴 반복문
 		boolean loop = true;
 		Scanner scan = new Scanner(System.in);
-
+		PieceData.pieceLoad();
 		Data.load();
+		ModelInfoData.modelInfoLoad();
+		TodayProductionData.todayInventoryLoad();
+		ProductionTarget.load_target();
 		while (loop) {
 
 			MainView.mainMenu();
@@ -82,7 +84,8 @@ public class Main {
 					ReadBoard.readBoard();
 				} else if (sel.equals("8")) {
 					// 부품 재고 파악 및 발주
-					// CheckPiece.checkPiece(); > 메서드 생성 필요
+					
+					CheckPiece.pieceMenu();
 				} else if (sel.equals("9")) {
 					// 배송지 조회 및 유통
 					// CheckDest.checkDest(); > 메서드 생성 필요
@@ -99,14 +102,12 @@ public class Main {
 					// 사원 관리(입사, 퇴사)
 					 HRM.hrd();
 				} else if (sel.equals("14")) {
-					ProductionTarget.load_target();
 					SetProductionTarget.setproductionTarget();
 					// 생산 목표량 입력 및 수정
 					// ProductionTarget.productionTarget(); > 메서드 생성 필요
 				} else if (sel.equals("15")) {
 //					// 생산 관리
-					ModelInfoData.modelInfoLoad();
-					TodayProductionData.todayInventoryLoad();
+					
 					ProductionManagement.productionSelect();
 
 					// ProductionManagement.productionManagement(); > 메서드 생성 필요

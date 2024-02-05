@@ -1,7 +1,7 @@
 package com.project.factory.member.admin;
 
-import com.project.factory.dept.production.admin.resource.ModelInfo;
-import com.project.factory.dept.production.admin.resource.ModelInfoData;
+import com.project.factory.resource.inventory.ModelInfo;
+import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.ProductionView;
 

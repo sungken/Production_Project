@@ -1,8 +1,8 @@
 package com.project.factory.dept.production.admin.resource;
 
 public class TodayProduction {
-	private static int todayProductNum;
-	private static int todayDefectiveNum;
+	private int todayProductNum;
+	private int todayDefectiveNum;
 	private int finalTodayProductNum;
 	private String model;
 	
@@ -10,20 +10,25 @@ public class TodayProduction {
 	public TodayProduction(int todayProductNum, int todayDefectiveNum, int finalTodayProductNum,  String model) {
 		this.todayProductNum = todayProductNum;
 		this.todayDefectiveNum = todayDefectiveNum;
-		this.finalTodayProductNum = finalTodayProductNum;
+		this.finalTodayProductNum = todayProductNum - todayDefectiveNum;
 		this.model = model;
+	}
+
+	public TodayProduction() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getTodayProductNum() {
 		return todayProductNum;
 	}
 
-	public static int getFinalTodayProductNum() {
-		return todayProductNum - todayDefectiveNum;
-	}
 
 	public void setFinalTodayProductNum(int finalTodayProductNum) {
 		this.finalTodayProductNum = finalTodayProductNum;
+	}
+
+	public int getFinalTodayProductNum() {
+		return finalTodayProductNum;
 	}
 
 	public void setTodayProductNum(int todayProductNum) {
