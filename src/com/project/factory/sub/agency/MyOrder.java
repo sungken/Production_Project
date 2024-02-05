@@ -121,7 +121,7 @@ public class MyOrder {
 			MyOrder.id = scan.nextLine();// 주문서 번호
 
 			if (checkOrderIdExists()) {
-
+				
 			} else {
 				System.out.println();
 				System.out.println("잘못된 번호입니다.");
@@ -237,6 +237,13 @@ public class MyOrder {
 	private static boolean checkOrderIdExists() {
 		for (Order order : OrderData.orderList) {
 			if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {
+				
+				System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
+				System.out.printf("%-8d\t%-5S\t%-dS\n", order.getId(), order.getModelId(), order.getQuantity());
+				MainView.singnleLine();
+				System.out.println();
+				System.out.println("해당 주문의");
+				
 				return true;
 			}
 		}

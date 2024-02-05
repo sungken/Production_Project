@@ -12,7 +12,7 @@ public class AgencyData {
 	public static void load() {
 		try {
 
-			Data.memberList.clear(); // 기존 데이터 초기화
+			Data.memberList.clear(); // 기존 데이터 초기화 
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.MEMBER));
 
