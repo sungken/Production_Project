@@ -76,17 +76,11 @@ public class MyOrder {
 
 						MyOrder.getAgencyInfo(); // 이름, 주소, 전화번호
 
-						//myOrder() 메서드에서 처음에 OrderData.load()를 하면서 리스트에 불러오기 때문에 따로 리스트에 저장할 필요X
+						// myOrder() 메서드에서 처음에 OrderData.load()를 하면서 리스트에 불러오기 때문에 따로 리스트에 저장할 필요X
 						// 주문서번호■주문서 작성일■대리점명■대리점 주소■전화번호■개수■납기일■모델명
-						writer.write(
-								MyOrder.id + "■" + 
-								Today.day() + "■" + 
-								MyOrder.agencyName + "■" + 
-								MyOrder.agencyAddress + "■" + 
-								MyOrder.agencyPhoneNum + "■" + 
-								MyOrder.quantity + "■" + 
-								Today.daysLater() + "■" + 
-								MyOrder.modelId);
+						writer.write(MyOrder.id + "■" + Today.day() + "■" + MyOrder.agencyName + "■"
+								+ MyOrder.agencyAddress + "■" + MyOrder.agencyPhoneNum + "■" + MyOrder.quantity + "■"
+								+ Today.daysLater() + "■" + MyOrder.modelId);
 						writer.newLine();
 						writer.close();
 
@@ -113,18 +107,35 @@ public class MyOrder {
 						return;
 					}
 				}
-			}//while
+			} // while
 		} catch (Exception e) {
 			System.out.println("MyOrder.orderAdd");
 			e.printStackTrace();
 		}
-	}//orderAdd
-	
+	}// orderAdd
+
 	private static void orderEdit() {
-		while(true) {
-			
-		}//while
-	}//orderEdit
+		while (true) {
+			MyOrderView.orderEditMenu();
+
+			MyOrder.id = scan.nextLine();// 주문서 번호
+
+			if (checkOrderIdExists()) {
+
+			} else {
+				System.out.println();
+				System.out.println("잘못된 번호입니다.");
+				if (MainView.checkContinueBoolean()) {
+					continue;
+				} else {
+					MainView.pauseToSel();
+					MyOrder.myOrder();
+					return;
+				}
+			}
+
+		} // while
+	}// orderEdit
 
 	private static void orderDelete() {
 		// TODO Auto-generated method stub
@@ -136,6 +147,7 @@ public class MyOrder {
 
 	}
 
+	// 주문서 작성 메서드
 	private static void getAgencyInfo() {
 		for (Members member : Data.memberList) {
 			if (member.getId().equals(Identify.auth)) { // 주문서 작성 중인 회원
@@ -181,25 +193,6 @@ public class MyOrder {
 		} // while
 	}// writeQuantity
 
-	// 유효성 검사
-	private static boolean checkModelExists() {
-		if (Main.selectNum.equals("1")) {
-			MyOrder.modelId = "K3";
-			return true;
-		} else if (Main.selectNum.equals("2")) {
-			MyOrder.modelId = "K5";
-			return true;
-		} else if (Main.selectNum.equals("3")) {
-			MyOrder.modelId = "K7";
-			return true;
-		} else if (Main.selectNum.equals("4")) {
-			MyOrder.modelId = "K9";
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	private static void createOrderId() {
 
 		Random random = new Random(); // 랜덤 객체 생성
@@ -221,5 +214,33 @@ public class MyOrder {
 			}
 		}
 	}// createOrderId
+
+	// 유효성 검사
+	private static boolean checkModelExists() {
+		if (Main.selectNum.equals("1")) {
+			MyOrder.modelId = "K3";
+			return true;
+		} else if (Main.selectNum.equals("2")) {
+			MyOrder.modelId = "K5";
+			return true;
+		} else if (Main.selectNum.equals("3")) {
+			MyOrder.modelId = "K7";
+			return true;
+		} else if (Main.selectNum.equals("4")) {
+			MyOrder.modelId = "K9";
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private static boolean checkOrderIdExists() {
+		for (Order order : OrderData.orderList) {
+			if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
