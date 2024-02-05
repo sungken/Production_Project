@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
+import com.project.factory.member.Modify;
 
 public class MainView {
-
+	public static Scanner scan = new Scanner(System.in);
 	// TODO mainMenu 메서드 추가
 	public static void mainMenu() {
 //		System.out.println();
@@ -23,16 +24,20 @@ public class MainView {
 			System.out.println("3. 로그아웃");
 		}
 
+		//회원 공통
+		if (Identify.auth != null) {
+			System.out.println("5. 개인정보 조회 및 수정");
+		}
+		
 		// 사원, 관리자 공통
 		if (Identify.auth != null && (Identify.level.equals("1") || Identify.level.equals("2"))) {
-			System.out.println("5. 개인정보 조회 및 수정");
 			System.out.println("6. 근태 등록");
 			System.out.println("7. 공지 사항");
 		}
 
 		// 관리자 공통
 		if (Identify.auth != null && Identify.level.equals("1")) {
-			//TODO 10번 사원 출/퇴근 조회로 이름 변경
+			// TODO 10번 사원 출/퇴근 조회로 이름 변경
 			System.out.println("10. 사원 출/퇴근 조회");
 			System.out.println("11. 재고 확인");
 			System.out.println("12. 공지사항 관리");
@@ -74,7 +79,8 @@ public class MainView {
 		}
 
 		// 이메일(경영부 관리자, 대리점)
-		if (Identify.auth != null && ((Identify.level.equals("1") && Identify.dept.equals("경영")) || Identify.level.equals("3"))) {
+		if (Identify.auth != null
+				&& ((Identify.level.equals("1") && Identify.dept.equals("경영")) || Identify.level.equals("3"))) {
 
 			System.out.println("22. 이메일");
 		}
@@ -88,13 +94,16 @@ public class MainView {
 		System.out.print("번호 입력: ");
 	}
 
-
 	// TODO pause 메서드 추가
 	public static void pause() {
-		Scanner scan = new Scanner(System.in);
-
 		System.out.println();
 		System.out.print("엔터를 치면 초기화면으로 돌아갑니다.");
+		scan.nextLine();
+		System.out.println();
+	}
+	
+	public static void pauseToSel() {
+		System.out.println("엔터를 치면 선택 화면으로 돌아갑니다.");
 		scan.nextLine();
 		System.out.println();
 	}
@@ -102,18 +111,31 @@ public class MainView {
 	// TODO checkContinue 메서드 추가
 	// y,s 답변 받는 메서드
 	public static void checkContinue() {
-		Scanner scan = new Scanner(System.in);
-		
 		System.out.println();
 		System.out.print("계속 진행하시겠습니까?(Y/N)\n");
 		System.out.print("입력: ");
 		Main.answer = scan.nextLine();
-		
-//		if(Main.answer.equals("Y") || Main.answer.equals("y")) {
-//			
-//		} else {//N이나 아무것도 입력 안 한 경우
-//		}
-		
+	}
+
+	public static boolean checkContinueBoolean() {
+		while (true) {
+
+			System.out.println();
+			System.out.print("계속 진행하시겠습니까?(Y/N)\n");
+			System.out.print("입력: ");
+			Main.answer = scan.nextLine();
+
+			if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+				return true;
+			} else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+				return false;
+			} else {
+				System.out.println();
+				MainView.singnleLine();
+				System.out.println();
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			}
+		}
 	}
 
 	// TODO doubleLine 메서드 추가
@@ -125,6 +147,5 @@ public class MainView {
 	public static void singnleLine() {
 		System.out.println("---------------------------------------------------------------------------");
 	}
-	
 
 }
