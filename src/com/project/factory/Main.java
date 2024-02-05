@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.project.factory.dept.distribution.admin.DestManagement;
 import com.project.factory.dept.distribution.admin.OrderAssign;
+import com.project.factory.dept.distribution.user.CheckDest;
 import com.project.factory.board.ReadBoard;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
@@ -77,7 +78,7 @@ public class Main {
 					// CheckPiece.checkPiece(); > 메서드 생성 필요
 				} else if (sel.equals("9")) {
 					// 배송지 조회 및 유통
-					// CheckDest.checkDest(); > 메서드 생성 필요
+					CheckDest.checkDest(); 
 				} else if (sel.equals("10")) {
 					// 사원 출/퇴근 조회
 					CommuteSearch.commuteSearch();
