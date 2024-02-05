@@ -6,6 +6,7 @@ public class NewMembersTemp {
 	//449644A■차은우■010-1234-5678■920505■서울특별시 송파구 풍성로76길■생산■2
 	
 	private String id ;
+	private String pw;
 	private String name;
 	private String phoneNum;
 	private String birth;
@@ -28,6 +29,17 @@ public class NewMembersTemp {
 		return name;
 	}
 
+
+	public String getPw() {
+		return pw;
+	}
+
+
+
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
 
 
 
@@ -105,7 +117,7 @@ public class NewMembersTemp {
 
 
 
-	public NewMembersTemp(String id, String name, String phoneNum, String birth, String address, String dept,
+	public NewMembersTemp(String id, String pw,String name, String phoneNum, String birth, String address, String dept,
 			String level) {
 		super();
 		this.id = id;
@@ -116,6 +128,10 @@ public class NewMembersTemp {
 		this.dept = dept;
 		this.level = level;
 	}
+
+
+
+
 
 
 

@@ -3,6 +3,7 @@ package com.project.factory.dept.human.admin;
 public class NewMembers {
 	
 	private String id ;
+	private String pw;
 	private String name;
 	private String phoneNum;
 	private String birth;
@@ -22,16 +23,29 @@ public class NewMembers {
 		this.id = id;
 	}
 
+	
 	public String getName() {
 		return name;
 	}
 
 
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+
+	public String getPw() {
+		return pw;
+	}
+
+
+
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+
 
 
 
@@ -101,8 +115,9 @@ public class NewMembers {
 	}
 
 
-	public NewMembers(String id, String name, String phoneNum, String birth, String address, String dept, String level) {
+	public NewMembers(String id, String pw, String name, String phoneNum, String birth, String address, String dept, String level) {
 		this.id = "0";
+		this.pw = "0000";
 		this.name = name;
 		this.phoneNum = phoneNum;
 		this.birth = birth;
@@ -118,6 +133,10 @@ public class NewMembers {
 	public String toString() {
 		return super.toString();
 	}
+
+
+
+
 
 
 
