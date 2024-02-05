@@ -1,6 +1,6 @@
 package com.project.factory.sub.agency;
 
-import com.project.factory.view.dept.OrderView;
+import com.project.factory.view.dept.MyOrderView;
 
 public class MyOrder {
 	// 대리점 주문서 넣기, 수정, 조회, 취소
@@ -9,7 +9,7 @@ public class MyOrder {
 	
 	
 	public static void MyOrder() {
-		OrderView.orderTitle();
+		MyOrderView.myOrderMenu();
 		
 	}
 	private void setOrderId() {

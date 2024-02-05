@@ -2,13 +2,22 @@ package com.project.factory.view.dept;
 
 import com.project.factory.view.MainView;
 
-public class OrderView {
+public class MyOrderView {
 
-	public static void orderTitle() {
+	public static void myOrderMenu() {
 		System.out.println();
 		MainView.doubleLine();
-		System.out.println("     주문서 관리");
+		System.out.println("\t\t\t\t주문서 관리");
 		MainView.doubleLine();
+		
+		System.out.println();
+		System.out.println("1. 주문서 작성");
+		System.out.println("2. 주문서 수정");
+		System.out.println("3. 주문서 취소");
+		System.out.println("4. 주문서 조회");
+		System.out.println();
+		MainView.singnleLine();
+		System.out.print("번호 입력: ");
 	}
 
 		
