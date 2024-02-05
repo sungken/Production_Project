@@ -1,4 +1,4 @@
-package com.project.factory.view.dept;
+package com.project.factory.view.sub;
 
 import com.project.factory.view.MainView;
 
@@ -19,6 +19,30 @@ public class MyOrderView {
 		MainView.singnleLine();
 		System.out.print("번호 입력: ");
 	}
+	
+	public static void orderAddMenu() {
+		System.out.println();
+		MainView.singnleLine();
+		System.out.println("\t\t\t\t주문서 작성");
+		MainView.singnleLine();
+		
+		MyOrderView.modeliew();
+		
+		System.out.println("주문하실 모델 번호를 입력해주세요.");
+		MainView.singnleLine();
+		System.out.print("번호 입력: ");
+	}
+	
+	
+	private static void modeliew() {
+		System.out.println();
+		System.out.println("1. K3");
+		System.out.println("2. K5");
+		System.out.println("3. K7");
+		System.out.println("4. K9");
+		System.out.println();
+	}
+	
 
 		
 	
