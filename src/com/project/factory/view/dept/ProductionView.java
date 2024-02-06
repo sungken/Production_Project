@@ -7,6 +7,7 @@ import com.project.factory.dept.management.admin.ModelManagement;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
+import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.inventory.ModelInfo;
 import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.Piece;
@@ -125,23 +126,25 @@ public class ProductionView {
 	}
 	
 	public static void productionView() {
+		String slash = ":";
 		System.out.println();
 		MainView.doubleLine();
 		
 		System.out.println();
-		Today.day();
+		System.out.println(Today.day());
 		System.out.println();
-		
-		System.out.printf("생산 목표치 : ");
+		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
+		System.out.printf("생산 목표치\t :");
 		Set<String> keySet = ProductionTarget.TargetNum.keySet();
 		for (String model : keySet) {
-			System.out.print( model + " : " + ProductionTarget.TargetNum.get(model) + "대 ");
+			System.out.printf( "\t%3d대\t", ProductionTarget.TargetNum.get(model));
 		}
 		System.out.println();
-		System.out.print("재고량 : ");
+		System.out.printf("  재고량\t\t :", slash);
 		for(ModelInfo model : ModelInfoData.modelInfoList) {
-			System.out.printf("%s : %d ", model.getModelName(), model.getModelInventory());
+			System.out.printf("\t%3d대\t", model.getModelInventory());
 		}
+		System.out.println();
 		System.out.println();
 		MainView.doubleLine();
 		System.out.println();
@@ -153,10 +156,11 @@ public class ProductionView {
 		MainView.doubleLine();
 		
 		System.out.println();
-		Today.day();
+		System.out.println(Today.day());
+	
 		System.out.println();
 		
-		
+		HumanView.countMembersBySpecificDept("생산");
 		
 		System.out.println();
 		MainView.doubleLine();

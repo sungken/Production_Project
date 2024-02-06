@@ -34,12 +34,14 @@ public class MainView {
 		} else {
 			if(Identify.dept.equals("생산") && Identify.level.equals("2")) {
 				//생산부 직원 뷰
+				ProductionView.productionView();
 			}
 			if(Identify.dept.equals("유통") && Identify.level.equals("2")) {
 				DistributionView.DistributionMemberView();
 			}
 			if(Identify.dept.equals("생산") && Identify.level.equals("1")) {
 				//생산부 관리자 뷰
+				ProductionView.productionAdminView();
 			}
 			if(Identify.dept.equals("유통") && Identify.level.equals("1")) {
 				//유통부 관리자 뷰

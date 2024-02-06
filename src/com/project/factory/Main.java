@@ -24,11 +24,13 @@ import com.project.factory.member.Modify;
 import com.project.factory.member.SignUp;
 import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.member.admin.InventorySearch;
+import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.HumanView;
 
 public class Main {
 
@@ -47,6 +49,7 @@ public class Main {
 		ModelInfoData.modelInfoLoad();
 		TodayProductionData.todayInventoryLoad();
 		ProductionTarget.load_target();
+		CommuteData.load();
 		
 		while (loop) {
 
@@ -154,6 +157,7 @@ public class Main {
 		TodayProductionData.todayInventorySave();
 		ProductionTarget.save_target();
 		PieceData.PieceSave();
+		
 	}// main
 
 }
