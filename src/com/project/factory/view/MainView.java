@@ -13,8 +13,6 @@ import com.project.factory.view.dept.ManagementView;
 
 public class MainView {
 
-	//public static Object selectNum;
-
 	public static Scanner scan = new Scanner(System.in);
 	
 	public static void logo() {
@@ -57,18 +55,19 @@ public class MainView {
 
 	// TODO mainMenu 메서드 추가
 	public static void mainMenu() {
-		
 
 		if (Identify.auth == null) {
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
 			System.out.println("4. 아이디/비밀번호 찾기");
 		} else {
+			//로그인 시 초기 화면
 			if(Identify.dept.equals("생산") && Identify.level.equals("2")) {
 				//생산부 직원 뷰
 				ProductionView.productionView();
 			}
 			if(Identify.dept.equals("유통") && Identify.level.equals("2")) {
+				//유통부 사원
 				DistributionView.DistributionMemberView();
 			}
 			if(Identify.dept.equals("생산") && Identify.level.equals("1")) {
@@ -76,17 +75,20 @@ public class MainView {
 				ProductionView.productionAdminView();
 			}
 			if(Identify.dept.equals("유통") && Identify.level.equals("1")) {
-				//유통부 관리자 뷰
+				//유통부 관리자
+				DistributionView.DistributionAdminView();
 			}if(Identify.dept.equals("경영") && Identify.level.equals("1")) {
+				//경영부 관리자
 				ManagementView.managementAdminView();
 			}if(Identify.dept.equals("인사") && Identify.level.equals("1")) {
+				//인사부 관리자
 				HumanView.HumanAdminView();
 			}
-			System.out.println("3. 로그아웃");
 		}
 
 		//회원 공통
 		if (Identify.auth != null) {
+			System.out.println("3. 로그아웃");
 			System.out.println("5. 개인정보 조회 및 수정");
 		}
 		
@@ -104,14 +106,13 @@ public class MainView {
 			System.out.println("12. 공지사항 관리");
 		}
 
-		// 생산부 직원
+		// 생산부 사원
 		if (Identify.auth != null && Identify.level.equals("2") && Identify.dept.equals("생산")) {
 			System.out.println("8. 부품 재고 파악 및 발주");
 			
 		}
 
-		// 유통부 직원
-		
+		// 유통부 사원
 		if (Identify.auth != null && Identify.level.equals("2") && Identify.dept.equals("유통")) {
 			System.out.println("9. 배송지 조회 및 유통");
 		}
@@ -136,20 +137,11 @@ public class MainView {
 		// 경영부 관리자
 		if (Identify.auth != null && Identify.level.equals("1") && Identify.dept.equals("경영")) {
 			System.out.println("18. 대리점 관리");
-			System.out.println("19. 대리점 주문 관리");
-			System.out.println("20. 모델 관리");
-			System.out.println("21. 하청 업체 관리");
 		}
-
-		// 이메일(경영부 관리자, 대리점)
-		if (Identify.auth != null
-				&& ((Identify.level.equals("1") && Identify.dept.equals("경영")) || Identify.level.equals("3"))) {
-
-			System.out.println("22. 이메일");
-		}
+		
 		// 대리점
 		if (Identify.auth != null && Identify.level.equals("3")) {
-			System.out.println("23. 주문서 관리");
+			System.out.println("19. 주문서 관리");
 		}
 
 		System.out.println("0. 종료");
