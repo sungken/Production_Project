@@ -5,9 +5,11 @@ import java.util.Scanner;
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
 import com.project.factory.view.dept.DistributionView;
+//import com.project.factory.view.dept.DistributionView;
 import com.project.factory.view.dept.HumanView;
 import com.project.factory.view.dept.ManagementView;
 import com.project.factory.view.dept.ProductionView;
+
 
 
 public class MainView {

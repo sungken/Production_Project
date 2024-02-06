@@ -1,324 +1,293 @@
 package com.project.factory.dept.distribution.admin;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.Arrays;
+
 import java.util.Scanner;
 
-import com.project.factory.Today;
-import com.project.factory.resource.Path;
+import com.project.factory.Main;
+import com.project.factory.dept.distribution.user.Assign;
+import com.project.factory.resource.Data;
+import com.project.factory.resource.Members;
+import com.project.factory.resource.dept.AssignData;
+import com.project.factory.resource.dept.DistributionData;
+import com.project.factory.resource.sub.Order;
+import com.project.factory.resource.sub.OrderData;
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.OrderView;
 
 public class OrderAssign {
 	// OrderAssign.orderView();
-	public static void orderView() {
-		
-		boolean loop = true;
-		
-		while(loop) {
-			Scanner scan = new Scanner(System.in);
-			
-			MainView.doubleLine();
-			System.out.println();
-			System.out.println("1. 주문서 확인");
-			System.out.println();
-			System.out.println("2. 배정 수정");
-			System.out.println();
-			MainView.doubleLine();
-			System.out.println();
-			
-			System.out.println("엔터를 누르면 초기 화면으로 돌아갑니다.");
-			System.out.println();
-			System.out.print("번호 입력: ");
-			String num = scan.nextLine();
-			if(num.equals("1")) {
-				//주문서 확인 화면 넘어가기
-				checkOrder();
-				System.out.println();
 
-				checkContinue();
+	public static void OrderAssign() {
+
+		OrderView.orderTitle();
+		OrderView.orderView();
+
+		Scanner scan = new Scanner(System.in);
+
+		System.out.print("번호 입력: ");
 		
-			} else if (num.equals("2")) {
-				//배정 수정 화면 넘어가기
-				
-				
-			} else if (num.equals("\n")) {
-				//엔터 누르면 초기 화면 넘어가기
-				loop = false;
-			} else {
-				System.out.println("다시 입력하세요.");
+		Main.selectNum = scan.nextLine();
+		
+		if (Main.selectNum.equals("1")) {
+			// 주문서 확인 화면 넘어가기
+			OrderAssign.checkOrder();
+			System.out.println();
+
+		} else if (Main.selectNum.equals("2")) {
+			// 배정 수정 화면 넘어가기
+			
+			MainView.doubleLine();
+			
+			System.out.println("[배정된 주문서]");
+			
+			assignPrint("k3");
+			System.out.println();
+			assignPrint("k5");
+			System.out.println();
+			assignPrint("k7");
+			System.out.println();
+			assignPrint("k9");
+			System.out.println();
+			
+			MainView.singnleLine();
+			
+			modifyOrder(scan);
+			
+			
+			
+
+		} else if (Main.selectNum.equals("\n")) {
+			// 엔터 누르면 초기 화면 넘어가기
+
+		} else {
+			System.out.println("다시 입력하세요.");
+		}
+
+	}
+
+	private static void modifyOrder(Scanner scan) {
+		
+		AssignData.load();
+		
+		System.out.println("수정할 주문서 번호: ");
+		
+		String orderId = scan.nextLine();
+		
+		for (Assign assignOrder : AssignData.assignList) {
+			if(assignOrder.getId().equals(orderId)) {
+				System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[주소]\t\t\t\t\t[수량]\t[납기일]\t[사원 이름]\t[사원 번호]");
+				System.out.printf("%s\t%s\t%s\t%s\t\t%d\t%s\t%s\t%s\n", assignOrder.getId(), assignOrder.getWriteDate(),
+						assignOrder.getAgencyName(), assignOrder.getAgencyAddress(), assignOrder.getQuantity(),assignOrder.getDueDate(),assignOrder.getUserName(),assignOrder.getUserId());
+			
+			
+			}
+		}
+		
+		MainView.singnleLine();
+		
+		modifyUserId(scan);
+		
+		
+		
+		
+	}
+
+	private static void modifyUserId(Scanner scan) {
+		
+		String userName = "";
+		
+		System.out.println();
+		System.out.println("해당 주문을 담당할 사원번호: ");
+		
+		String assignUserId = scan.nextLine();
+		
+		for(Members member : Data.memberList) {
+			//[사원번호]     	 [이름]     	 [생년월일]             [전화번호]              [주소]
+			if(member.getId().equals(assignUserId)) {
+				System.out.println("[사원번호]\t[이름]\t\t[생년월일]\t[전화번호]\t\t[주소]");
+				System.out.printf("%s\t%s\t%s\t%s\t%s\n"
+														,member.getId()
+														,member.getName()
+														,member.getBirth()
+														,member.getPhoneNum()
+														,member.getAddress());
+				userName = member.getName();
 			}
 			
+		
+			
 		}
-	}// orderView()
-	
+		
+		System.out.println();
+		MainView.singnleLine();
+		
+		System.out.println("해당 직원으로 진행하시겠습니까?(Y/N)");
+		
+		Main.answer = scan.nextLine().toUpperCase();
+		
+		if(Main.answer.equals("Y")) {
+			System.out.println();
+			
+			changeAssignUser(assignUserId, userName);
+			
+		}
+		
+	}
+
+	private static void changeAssignUser(String userId, String userName) {
+		AssignData.load();
+		
+		for (Assign assignOrder : AssignData.assignList) {
+		
+				if(assignOrder.getUserId().equals(userId)){
+					assignOrder.setUserId(userId);
+					assignOrder.setUserName(userName);
+					System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[주소]\t\t\t\t\t[수량]\t[납기일]\t[사원 이름]\t[사원 번호]");
+					System.out.printf("%s\t%s\t%s\t%s\t\t%d\t%s\t%s\t%s\n", assignOrder.getId(), assignOrder.getWriteDate(),
+							assignOrder.getAgencyName(), assignOrder.getAgencyAddress(), assignOrder.getQuantity(),assignOrder.getDueDate(),assignOrder.getUserName(),assignOrder.getUserId());
+					
+					
+					
+					
+				
+			}
+		}
+		
+		
+		
+	}
+
 	public static void checkOrder() {
-		
-			//주문서 리스트 불러오기
-			
-			System.out.println();
-			System.out.println("________________________________________________________________________________________________________________________________________________________");
-			System.out.println("|                                                                                                                					|");
-			System.out.println("|                                                                                                                					|");
-			System.out.println("|                                                   			 주 문 서                  	                                    	|");
-			System.out.println("|                                            			 _____________________														|");
-			System.out.println("|                                                                                                                					|");
-			orderList("k3");
-			orderList("k5");
-			orderList("k7");
-			orderList("k9");
-			
-		}// checkOrder()
 
-	private static void orderList(String model)  {
-		//주문 리스트 확인
-		BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader(Path.ORDER));
-			System.out.printf("%s 주문서\n", model);
-			System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[대리점 번호]\t[주문 댓수]\t[납기일]\t\t[주소]");
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				String[] temp = line.split("■");
-				if(temp[7].equals(model)) {
-					System.out.println(temp[0] + "\t\t" 
-							+ Today.day() + "\t" 
-							+ temp[2] + "\t\t" 
-							+ temp[4] + "\t" 
-							+ temp[5] + "\t\t" 
-							+ Today.daysLater() + "\t"
-							+ temp[3]);
-				}
-			}
-			System.out.println();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}// orderList()
-	
-	
-	public static void assignOrder() {
-		// 배송자 배정
-		try {
-			//출근한 인원 리스트 받아서 랜덤으로 자동 배치 시키기
-			
-			//1. 출근자 목록중 유통직원 확인
-			BufferedReader reader = new BufferedReader(new FileReader("data\\출근자 목록 test.txt"));
-			String delivery = null;
-			
-			String deliveryMember = "";
-			while ((delivery = reader.readLine()) != null) {
-				String[] temp = delivery.split("■");
-				if(temp[5].equals("2") && temp[6].equals("유통")) {
-					deliveryMember += Arrays.toString(temp) + "\r\n";
-				}
-			}
-			
-			//출근한 유통 가능직원 추출 후 목록(파일) 생성
-			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.DELIVERYMEMBER));
-			writer.write(deliveryMember.replace(", ", "■").replace("[", "").replace("]", ""));
-			writer.close();
-			
-			// 유통(출근한)직원 과 주문 리스트(order) 합치기
-			BufferedReader readerMember = new BufferedReader(new FileReader(Path.DELIVERYMEMBER));
-			BufferedReader readerOrder = new BufferedReader(new FileReader(Path.ORDER));
-			BufferedWriter orderFinish = new BufferedWriter(new FileWriter("data\\최종 유통.txt"));
-			
-//			String lineMember = readerMember.readLine();
-//            String lineOrder = readerOrder.readLine();
-            
-            String line1;
-            String line2;
-            String orderFinishMember = "";
-            
-            while ((line1 = readerMember.readLine()) != null && (line2 = readerOrder.readLine()) != null) {
-                String mergedLine = line1 + "■" + line2 + "\r\n";
-                orderFinishMember += mergedLine;
-            }
-            
-//            System.out.println(orderFinishMember);
-            orderFinish.write(orderFinishMember);
-            orderFinish.close();
-            
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}// assignOrder()
-	
-	private static void orderFinishList(String model)  {
-		//주문서와 유통자 리스트 출력
-		BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader("data\\최종 유통.txt"));
-			System.out.printf("%s 주문서\n", model);
-			System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[대리점 번호]\t[주문 댓수]\t[납기일]\t\t[담당자 이름]\t[사원번호]");
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				String[] temp = line.split("■");
-				
-				if(temp[14].equals(model)) {
-					System.out.println(temp[7] + "\t\t" 
-							+ temp[8] + "\t" 
-							+ temp[9] + "\t\t" 
-							+ temp[11] + "\t" 
-							+ temp[12] + "\t\t" 
-							+ temp[13] + "\t"
-							+ temp[1] + "\t\t"
-							+ temp[0]);
-				}
-			}
-			System.out.println();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}// orderList()
-	
-	
-	public static void modifyAssign() {
-		//수정할 주문서 번호 받기
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data\\최종 유통.txt"));
-			BufferedReader reader2 = new BufferedReader(new FileReader("data\\deliveryMember.txt"));
-			Scanner scan = new Scanner(System.in);
-			Scanner scan2 = new Scanner(System.in);
-			
-			String EmployeeNum = "";
-			String name = "";
-			String humanNum = "";
-			String phonNum = "";
-			String address = "";
-			
-			System.out.println();
-			System.out.println("배정된 주문서");
-			orderFinishList("k3");
-			orderFinishList("k5");
-			orderFinishList("k7");
-			orderFinishList("k9");
-			System.out.println();
-			MainView.doubleLine();
-			System.out.println();
-			System.out.print("수정 할 주문서 번호를 입력하세요: ");
-			String orderNum = scan.nextLine();
-			
-			String line = null;
-			boolean loop = true;
-			while(loop) {
-				while ((line = reader.readLine()) != null) {
-					String[] temp = line.split("■");
-					if (orderNum.equals(temp[7])) {
-						System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[대리점 번호]\t[주문 댓수]\t[납기일]\t\t[담당자 이름]\t[사원번호]");
-						System.out.println(temp[7] + "\t\t" 
-								+ temp[8] + "\t" 
-								+ temp[9] + "\t\t" 
-								+ temp[11] + "\t" 
-								+ temp[12] + "\t\t" 
-								+ temp[13] + "\t"
-								+ temp[1] + "\t\t"
-								+ temp[0]);
-						System.out.println();
-						System.out.print("해당 주문을 담당할 사원번호를 입력하세요: ");
-						String memberNum = scan2.nextLine();
-						
-						while ((line = reader2.readLine()) != null) {
-							String[] temp2 = line.split("■");
-							if (memberNum.equals(temp2[0])) {
-							System.out.println("[사원번호]\t\t[이름]\t\t[생년월일]\t\t[전화번호]");
-							System.out.println(temp2[0] + "\t\t" + temp2[1] + "\t\t" + temp2[2] + "\t\t" + temp2[3]);
-							System.out.println();
-							EmployeeNum = temp2[0];
-							name = temp2[1];
-							humanNum = temp2[2];
-							phonNum = temp2[3];
-							address = temp2[4];
-							}
-						}
-						System.out.print("해당 직원으로 진행하시겠습니까? (Y/N) ");
-						String check = scan.nextLine();
-						System.out.println();
-						if (check.equals("Y") || check.equals("y")) {
-							MainView.singnleLine();
-							System.out.println();
-							System.out.println("해당 주문서의 담당자가 수정되었습니다.");
-							
-							BufferedReader reader3 = new BufferedReader(new FileReader("data\\최종 유통.txt"));
-							String txt = "";
-							while ((line = reader3.readLine()) != null) {
-								txt += line.replace(temp[0], EmployeeNum)
-										   .replace(temp[1], name)
-										   .replace(temp[2], humanNum)
-										   .replace(temp[3], phonNum)
-										   .replace(temp[4], address) + "\r\n";
-							}
-							BufferedWriter modifyDelivery = new BufferedWriter(new FileWriter("data\\최종 유통.txt"));
-							modifyDelivery.write(txt);
-							modifyDelivery.close();
-							
-							
-						} else if (check.equals("N") || check.equals("n")) {
-							
-						} else {
-							System.out.println();
-							MainView.singnleLine();
-							System.out.println();
-							System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-							checkContinue();
-						}
-						
-					}
-//			System.out.println("주문서 번호를 정확히 입력해 주세요.");
-//			modifyAssign();
-				}
-				
-			}
-			
-			
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		//수정
-		
-		
-		
-		
-	}// modifyAssign()
-
-	private static void checkContinue() {
+		// 주문서 리스트 불러오기
 		
 		Scanner scan = new Scanner(System.in);
+
 		System.out.println();
-		System.out.print("유통사원을 배정하시겠습니까?(Y/N) ");
-		String check = scan.nextLine();
+		MainView.doubleLine();
 		System.out.println();
+		orderList("k3");
+		System.out.println();
+		orderList("k5");
+		System.out.println();
+		orderList("k7");
+		System.out.println();
+		orderList("k9");
+		System.out.println();
+
+		MainView.singnleLine();
+		System.out.println();
+		System.out.println("배정하시겠습니까?(Y/N)?");
 		
-		if (check.equals("Y") || check.equals("y")) {
-			assignOrder();
-			orderFinishList("k3");
-			orderFinishList("k5");
-			orderFinishList("k7");
-			orderFinishList("k9");
-			System.out.println();
-			System.out.println("선택화면으로 돌아갑니다.");
+		
+		
+		Main.answer = scan.nextLine().toUpperCase();
+		
+		if(Main.answer.equals("Y")) {
 			
-		} else if (check.equals("N") || check.equals("n")) {
+			assign();
+			assignPrint("k3");
+			System.out.println();
+			assignPrint("k5");
+			System.out.println();
+			assignPrint("k7");
+			System.out.println();
+			assignPrint("k9");
+			System.out.println();
 			
-		} else {
-			System.out.println();
-			MainView.singnleLine();
-			System.out.println();
-			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-			checkContinue();
+			System.out.println("배정이 완료되었습니다.");
+			MainView.pause();
+		} 
+		
+
+		
+
+	}// checkOrder()
+
+	private static void assignPrint(String model) {
+		
+		AssignData.load();
+		
+		System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[주소]\t\t\t\t\t[수량]\t[납기일]\t[사원 이름]\t[사원 번호]");
+		
+		for (Assign assignOrder : AssignData.assignList) {
+			//주문서번호■주문서 작성일■대리점명■대리점 주소■전화번호■개수■납기일■모델명 사원이름 아이디
+			if(assignOrder.getModelId().equals(model)) {
+				System.out.printf("%s\t%s\t%s\t%s\t\t%d\t%s\t%s\t%s\n", assignOrder.getId(), assignOrder.getWriteDate(),
+						assignOrder.getAgencyName(), assignOrder.getAgencyAddress(), assignOrder.getQuantity(),assignOrder.getDueDate(),assignOrder.getUserName(),assignOrder.getUserId());
+			
+			}
 		}
+		
+		
 	}
+
+	private static void assign() {
+	    DistributionData.load(); // 사원 정보 로드
+	    OrderData.load(); // 주문 정보 로드
+	    for (Order orderItem : OrderData.orderList) {
+	    	
+	        boolean assigned = false; // 사원이 이미 배정되었는지 확인하는 변수
+	        for (EmployeeInfo employeeInfo : DistributionData.distributionMembersList) {
+	        	
+	            if (orderItem.getAgencyAddress().contains(employeeInfo.getAssignedRegion())) {
+	                
+	                assigned = true;
+	                
+	                // 주문서에 사원을 배정하고 종료
+	                Assign newAssignment = new Assign(
+	                        orderItem.getId(),
+	                        orderItem.getWriteDate(),
+	                        orderItem.getAgencyName(),
+	                        orderItem.getAgencyAddress(),
+	                        orderItem.getAgencyPhoneNum(),
+	                        orderItem.getQuantity(),
+	                        orderItem.getDueDate(),
+	                        orderItem.getModelId(),
+	                        employeeInfo.getName(),
+	                        employeeInfo.getId(),
+	                        employeeInfo.getAssignedRegion()
+	                       
+	                       
+	                       
+	                        
+	                );
+
+	                AssignData.assignList.add(newAssignment);
+	                break;
+	            }
+	        }
+	        
+	    }
+	  
+	    	
+	    
+	    // 데이터 추가 후 저장
+	    AssignData.save();
+	}
+
+
+
 	
+	private static void orderList(String model) {
+
+		OrderData.load();
+
+		System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[주소]\t\t\t\t\t[수량]\t[납기일]");
+
+		for (Order orderItem : OrderData.orderList) {
+
+			if (orderItem.getModelId().equals(model)) {
+				System.out.printf("%s\t\t%s\t%s\t%s\t%d\t%s\n", orderItem.getId(), orderItem.getWriteDate(),
+						orderItem.getAgencyName(), orderItem.getAgencyAddress(), orderItem.getQuantity(),
+						orderItem.getDueDate());
+			}
+		}
+
+	}// orderList()
+
+
 	
-	
+
+
 }

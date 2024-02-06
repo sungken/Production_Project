@@ -8,6 +8,7 @@ import com.project.factory.dept.CommutePush;
 import com.project.factory.dept.distribution.admin.DestManagement;
 import com.project.factory.dept.distribution.admin.OrderAssign;
 import com.project.factory.dept.distribution.user.CheckDest;
+//import com.project.factory.dept.distribution.user.CheckDest;
 import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.dept.management.admin.AgencyManagement;
 import com.project.factory.dept.production.admin.ProductionManagement;
@@ -118,7 +119,7 @@ public class Main {
 					// ProductionManagement.productionManagement(); > 메서드 생성 필요
 				} else if (sel.equals("16")) {
 					// 주문서 확인 및 배정 수정
-					OrderAssign.orderView(); //> 메서드 생성 필요
+					OrderAssign.OrderAssign(); //> 메서드 생성 필요
 				} else if (sel.equals("17")) {
 					// 사원 배송 구역 관리
 					DestManagement.destManagement(); 

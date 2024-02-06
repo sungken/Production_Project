@@ -48,7 +48,9 @@ public class HumanView {
             String dept = commuteMember.getDept();
 
             // 부서별로 카운트 유지
+            if(commuteMember.getCal().equals(Today.day()) && commuteMember.getCommute().equals("출근")) {
             deptCounts.put(dept, deptCounts.getOrDefault(dept, 0) + 1);
+            }
         }
 
         // 결과 출력
@@ -67,7 +69,10 @@ public class HumanView {
 
             // 특정 부서에 대한 카운트만 증가
             if (specificDept.equals(dept)) {
-                count++;
+            	if( commuteMember.getCal().equals(Today.day()) && commuteMember.getCommute().equals("출근")) {
+            		count++;
+            		
+            	}
             }
         }
 
