@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.Today;
+import com.project.factory.Toolkit;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.Board;
@@ -19,13 +20,13 @@ import com.project.factory.view.MainView;
 //TODO WriteBoard 클래스명 > BoardManagement으로 수정 
 public class BoardManagement {
 
-	public static Scanner scan = new Scanner(System.in);
+	static Scanner scan = new Scanner(System.in);
 
-	public static String regex = ""; // 유효성 검사를 위한 변수
-	public static int noticeNumber = 0; // 공지사항 번호
-	public static String title = ""; // 제목
-	public static StringBuilder contents = new StringBuilder(); // 내용을 저장할 StringBuilder
-	public static String deleteDate = ""; // 삭제할 날짜
+	static String regex = ""; // 유효성 검사를 위한 변수
+	static int noticeNumber = 0; // 공지사항 번호
+	static String title = ""; // 제목
+	static StringBuilder contents = new StringBuilder(); // 내용을 저장할 StringBuilder
+	static String deleteDate = ""; // 삭제할 날짜
 
 	// TODO 공지사항 데이터에 작성일 추가
 	// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
@@ -127,7 +128,7 @@ public class BoardManagement {
 			Main.selectNum = scan.nextLine(); // 입력 받기
 
 			if (!Main.selectNum.isEmpty()) { // 입력이 공백이 아닌 경우
-				if (isInteger(Main.selectNum)) { // 정수값인지 확인
+				if (Toolkit.isInteger(Main.selectNum)) { // 정수값인지 확인
 
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum); // 수정할 공지사항 번호
 
@@ -203,7 +204,7 @@ public class BoardManagement {
 			Main.selectNum = scan.nextLine();
 
 			if (!Main.selectNum.isEmpty()) {
-				if (isInteger(Main.selectNum)) {
+				if (Toolkit.isInteger(Main.selectNum)) {
 
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum);
 
@@ -543,16 +544,5 @@ public class BoardManagement {
 			}
 		} // for
 		return false;
-	}
-
-	// TODO ReadBoard에서 사용해서 일단 public으로 수정, AgencyManagement에서도 사용
-	// 문자열이 정수값인지 확인하는 메서드
-	public static boolean isInteger(String s) {
-		try {
-			Integer.parseInt(s);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 }

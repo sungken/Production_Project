@@ -54,10 +54,13 @@ public class Members {
 	public String getDept() {
 		return dept;
 	}
-
+	
+	
+	
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
+	
 
 	public Object getArea(String dept) {
 		if (getLevel().equals("3")) {
@@ -152,5 +155,9 @@ public class Members {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
 
 }

@@ -12,7 +12,7 @@ import com.project.factory.view.member.ModifyView;
 
 public class Modify {
 
-	public static String regex = ""; // 정규식을 이용한 유효성 검사를 위한 변수
+	static String regex = ""; // 정규식을 이용한 유효성 검사를 위한 변수
 
 	public static void modify() {
 

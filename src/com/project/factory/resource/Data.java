@@ -16,6 +16,8 @@ public class Data {
 
 	public static void load() {
 		try {
+			
+			memberList.clear(); // 기존 데이터 초기화
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.MEMBER));
 
@@ -76,5 +78,27 @@ public class Data {
 		}
 		
 		
+	}
+	
+	
+	public static void loadWithSelectedFields() {
+	    try {
+	        BufferedReader reader = new BufferedReader(new FileReader(Path.MEMBER));
+
+	        String line = null;
+	        while ((line = reader.readLine()) != null) {
+	            String[] temp = line.split("■");
+
+	            // 모든 필드를 사용하여 Members 객체 생성
+	            Members member = new Members(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8]);
+	            memberList.add(member);
+	        }
+
+	        reader.close();
+
+	    } catch (Exception e) {
+	        System.out.println("Data.loadWithSelectedFields");
+	        e.printStackTrace();
+	    }
 	}
 }

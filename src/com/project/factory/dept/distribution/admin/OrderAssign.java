@@ -2,16 +2,20 @@ package com.project.factory.dept.distribution.admin;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
-import com.project.factory.Main;
-import com.project.factory.Today;
-import com.project.factory.member.SignUp;
+import com.project.factory.resource.Data;
+import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
+import com.project.factory.resource.sub.Order;
+import com.project.factory.resource.sub.OrderData;
 import com.project.factory.view.MainView;
 
 public class OrderAssign {
@@ -82,11 +86,11 @@ public class OrderAssign {
 				String[] temp = line.split("■");
 				if(temp[7].equals(model)) {
 					System.out.println(temp[0] + "\t\t" 
-							+ Today.day() + "\t" 
+							+ temp[1] + "\t" 
 							+ temp[2] + "\t\t" 
 							+ temp[4] + "\t" 
 							+ temp[5] + "\t\t" 
-							+ Today.daysLater() + "\t"
+							+ temp[6] + "\t"
 							+ temp[3]);
 				}
 			}
@@ -104,56 +108,124 @@ public class OrderAssign {
 			//출근한 인원 리스트 받아서 랜덤으로 자동 배치 시키기
 			
 			//1. 출근자 목록중 유통직원 확인
-			BufferedReader reader = new BufferedReader(new FileReader("data\\출근자 목록 test.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data\\commute.txt"));
 			String delivery = null;
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+			String time = now.format(formatter);
 			
 			String deliveryMember = "";
 			while ((delivery = reader.readLine()) != null) {
 				String[] temp = delivery.split("■");
-				if(temp[5].equals("2") && temp[6].equals("유통")) {
+				if(temp[0].equals(time) 
+						&& temp[4].equals("유통") 
+						&& temp[5].equals("2") 
+						&& temp[7].equals("출근")) {
 					deliveryMember += Arrays.toString(temp) + "\r\n";
 				}
 			}
-			
+			System.out.println(deliveryMember);
 			//출근한 유통 가능직원 추출 후 목록(파일) 생성
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.DELIVERYMEMBER));
 			writer.write(deliveryMember.replace(", ", "■").replace("[", "").replace("]", ""));
 			writer.close();
 			
-			// 유통(출근한)직원 과 주문 리스트(order) 합치기
-			BufferedReader readerMember = new BufferedReader(new FileReader(Path.DELIVERYMEMBER));
-			BufferedReader readerOrder = new BufferedReader(new FileReader(Path.ORDER));
-			BufferedWriter orderFinish = new BufferedWriter(new FileWriter("data\\최종 유통.txt"));
+			//유통 출근자 목록(drliveryMember)과 지역 관리자(userRegion)합쳐서 출근자의 관리지역 확인하기
+			addOrderListAddDrliveryMember();
 			
-//			String lineMember = readerMember.readLine();
-//            String lineOrder = readerOrder.readLine();
-            
-            String line1;
-            String line2;
-            String orderFinishMember = "";
-            
-            while ((line1 = readerMember.readLine()) != null && (line2 = readerOrder.readLine()) != null) {
-                String mergedLine = line1 + "■" + line2 + "\r\n";
-                orderFinishMember += mergedLine;
-            }
-            
-//            System.out.println(orderFinishMember);
-            orderFinish.write(orderFinishMember);
-            orderFinish.close();
+			for(Order order : OrderData.orderList) {
+				for(Members member : Data.memberList) {
+					if(order.getAgencyName().equals(member.getName())) {
+						member.getArea(member.getDept());
+						System.out.println(member.getArea(member.getDept()));
+					}
+				}
+			}
+			
+			//----------------------------------------------------------------------------
             
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println("예외 assignOrder()");
 			e.printStackTrace();
 		}
 		
 	}// assignOrder()
 	
+	public static void addOrderListAddDrliveryMember()  {
+		
+		//유통 출근자 목록(drliveryMember)과 지역 관리자(userRegion)합쳐서 출근자의 관리지역 확인하기
+		try {
+			
+			String file1Path = "data\\deliveryMember.txt";
+	        String file2Path = "data\\userRegion.txt";
+	        String file3Path = "data\\drliveryMemberAdduserRegion.txt";
+	        // 파일 리더 및 라이터 설정
+	        BufferedReader reader1 = new BufferedReader(new FileReader(file1Path));
+	        BufferedWriter writer = new BufferedWriter(new FileWriter(file3Path));
+
+	        String line = null;
+	        String line2 = null;
+	        String txt = "";
+
+	        // drliveryMember.txt의 각 라인에 대해 반복
+	        while ((line = reader1.readLine()) != null) {
+	            // userRegion.txt을 다시 열어야 함
+	            BufferedReader reader2 = new BufferedReader(new FileReader(file2Path));
+
+	            // 각 라인을 "■"로 분리하여 배열로 저장
+	            String[] temp = line.split("■");
+
+	            // userRegion.txt의 각 라인에 대해 반복
+	            while ((line2 = reader2.readLine()) != null) {
+	                // userRegion.txt의 각 라인을 "■"로 분리하여 배열로 저장
+	                String[] temp2 = line2.split("■");
+
+	                // 유통 출근자와 지역 관리자의 정보가 일치하는 경우
+	                if (temp[1].equals(temp2[0]) && temp[2].equals(temp2[1])) {
+	                    // 필요한 정보를 합쳐서 문자열에 추가
+	                    txt += temp[0] + "■"
+	                            + temp[1] + "■"
+	                            + temp[2] + "■"
+	                            + temp[3] + "■"
+	                            + temp[4] + "■"
+	                            + temp[5] + "■"
+	                            + temp[6] + "■"
+	                            + temp[7] + "■"
+	                            + temp2[3] + "\r\n";
+	                }
+	            }
+
+	            // 파일2 리더 닫기
+	            reader2.close();
+	        }
+
+	        // 최종 결과 출력
+//	        System.out.println(txt);
+	        
+	        // 파일 라이터를 사용하여 결과를 파일에 쓰기
+	        writer.write(txt);
+
+	        // 파일 리더 및 라이터 닫기
+	        reader1.close();
+	        writer.close();
+            
+            
+            
+            
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("예외 addOrderListAddDrliveryMember()");
+			e.printStackTrace();
+		}
+		
+	}// addOrderListAddDrliveryMember()
+	
 	private static void orderFinishList(String model)  {
 		//주문서와 유통자 리스트 출력
-		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader("data\\최종 유통.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data\\최종 유통.txt"));
 			System.out.printf("%s 주문서\n", model);
 			System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[대리점 번호]\t[주문 댓수]\t[납기일]\t\t[담당자 이름]\t[사원번호]");
 			String line = null;
