@@ -7,9 +7,7 @@ import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import com.project.factory.Main;
 import com.project.factory.Today;
-import com.project.factory.member.SignUp;
 import com.project.factory.resource.Path;
 import com.project.factory.view.MainView;
 

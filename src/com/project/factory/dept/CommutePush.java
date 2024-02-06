@@ -2,13 +2,11 @@ package com.project.factory.dept;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.member.Identify;
-import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;

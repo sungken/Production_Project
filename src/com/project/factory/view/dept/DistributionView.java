@@ -1,16 +1,10 @@
 package com.project.factory.view.dept;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import com.project.factory.Today;
 import com.project.factory.dept.distribution.admin.EmployeeInfo;
-import com.project.factory.dept.distribution.user.Assign;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.AssignData;
 import com.project.factory.resource.dept.DistributionData;
-import com.project.factory.view.MainView;
 
 public class DistributionView {
 

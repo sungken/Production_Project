@@ -3,7 +3,6 @@ package com.project.factory.dept.distribution.user;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.project.factory.Main;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.AssignData;
 import com.project.factory.view.MainView;

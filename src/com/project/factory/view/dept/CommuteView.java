@@ -1,9 +1,5 @@
 package com.project.factory.view.dept;
 
-import java.util.Scanner;
-
-import com.project.factory.Main;
-import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.view.MainView;
 
 public class CommuteView {

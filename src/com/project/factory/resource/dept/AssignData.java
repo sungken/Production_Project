@@ -5,13 +5,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import com.project.factory.dept.distribution.user.Assign;
 import com.project.factory.resource.Path;
-import com.project.factory.resource.sub.Order;
-import com.project.factory.resource.sub.OrderData;
 
 public class AssignData {
 
