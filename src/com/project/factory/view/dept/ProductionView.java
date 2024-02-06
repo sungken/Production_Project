@@ -2,6 +2,7 @@ package com.project.factory.view.dept;
 
 import java.util.Set;
 
+import com.project.factory.Today;
 import com.project.factory.dept.management.admin.ModelManagement;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.dept.production.admin.resource.TodayProduction;
@@ -42,25 +43,7 @@ public class ProductionView {
 	}
 	
 	
-	/**
-	 * 총생산량, 불량품개수, 재고량 View
-	 */
-	public static void viewPoductionView() {
-		MainView.doubleLine();
-		System.out.println();
-		System.out.printf("생산 목표치 : ");
-		Set<String> keySet = ProductionTarget.TargetNum.keySet();
-		for (String model : keySet) {
-			System.out.print( model + " : " + ProductionTarget.TargetNum.get(model) + "대 ");
-		}
-		System.out.println();
-		System.out.print("재고량 : ");
-		for(ModelInfo model : ModelInfoData.modelInfoList) {
-			System.out.printf("%s : %d ", model.getModelName(), model.getModelInventory());
-		}
-		System.out.println();
-		MainView.doubleLine();
-	}
+
 	/**
 	 * 불량품 개수 입력 View
 	 */
@@ -140,6 +123,47 @@ public class ProductionView {
 		System.out.println();
 		MainView.doubleLine();
 	}
+	
+	public static void productionView() {
+		System.out.println();
+		MainView.doubleLine();
+		
+		System.out.println();
+		Today.day();
+		System.out.println();
+		
+		System.out.printf("생산 목표치 : ");
+		Set<String> keySet = ProductionTarget.TargetNum.keySet();
+		for (String model : keySet) {
+			System.out.print( model + " : " + ProductionTarget.TargetNum.get(model) + "대 ");
+		}
+		System.out.println();
+		System.out.print("재고량 : ");
+		for(ModelInfo model : ModelInfoData.modelInfoList) {
+			System.out.printf("%s : %d ", model.getModelName(), model.getModelInventory());
+		}
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println();
+		
+	}
+	
+	public static void productionAdminView() {
+		System.out.println();
+		MainView.doubleLine();
+		
+		System.out.println();
+		Today.day();
+		System.out.println();
+		
+		
+		
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println();
+	}
+	
+	
 
 
 }

@@ -50,7 +50,6 @@ public class MainView {
 
 		// 생산부 직원
 		if (Identify.auth != null && Identify.level.equals("2") && Identify.dept.equals("생산")) {
-			ProductionView.viewPoductionView();
 			System.out.println("8. 부품 재고 파악 및 발주");
 		}
 

@@ -2,6 +2,10 @@ package com.project.factory.dept.production.admin;
 
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
+import com.project.factory.resource.inventory.ModelInfo;
+import com.project.factory.resource.inventory.ModelInfoData;
+import com.project.factory.resource.inventory.Piece;
+import com.project.factory.resource.inventory.PieceData;
 
 
 public class ProductThread extends Thread {
@@ -51,7 +55,8 @@ public class ProductThread extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("쓰레드 시작");
+		terminate = true;
+		System.out.println("생산이 시작되었습니다.");
 
 		while (true) {
 			if(!terminate) {
@@ -59,7 +64,7 @@ public class ProductThread extends Thread {
 			}
 			if(stopRequested) {
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -72,21 +77,24 @@ public class ProductThread extends Thread {
 				for (TodayProduction today : TodayProductionData.todayProductionList) {
 					if (today.getModel().equals("K3")) {
 						today.setTodayProductNum(K3count);
-						
-						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+//						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
 					}
+					ProductionManagement.countPiece("K3", "엔진A");
 					if (today.getModel().equals("K5")) {
 						today.setTodayProductNum(K5count);
-						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+//						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
 					}
+					ProductionManagement.countPiece("K5", "엔진B");
 					if (today.getModel().equals("K7")) {
 						today.setTodayProductNum(K7count);
-						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+//						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
 					}
+					ProductionManagement.countPiece("K7", "엔진C");
 					if (today.getModel().equals("K9")) {
 						today.setTodayProductNum(K9count);
-						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+//						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
 					}
+					ProductionManagement.countPiece("K9", "엔진D");
 					
 				}
 				K3count += 9;

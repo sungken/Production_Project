@@ -152,6 +152,7 @@ public class Main {
 		ModelInfoData.modelInfoSave();
 		TodayProductionData.todayInventorySave();
 		ProductionTarget.save_target();
+		PieceData.PieceSave();
 	}// main
 
 }
