@@ -163,6 +163,7 @@ public class OrderAssign {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split("■");
+				
 				if(temp[14].equals(model)) {
 					System.out.println(temp[7] + "\t\t" 
 							+ temp[8] + "\t" 

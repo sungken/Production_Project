@@ -2,8 +2,6 @@ package com.project.factory.sub.agency;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,7 +26,6 @@ public class MyOrder {
 	private static String agencyAddress; // 대리점 주소
 	private static String agencyPhoneNum; // 대리점 전화번호
 	private static int quantity; // 수량
-	private static String dueDate; // 납기일
 	private static String modelId; // 모델ID
 
 	public static void myOrder() {
@@ -115,16 +112,43 @@ public class MyOrder {
 	}// orderAdd
 
 	private static void orderEdit() {
+		boolean loop = false;
 		while (true) {
 			MyOrderView.orderEditMenu();
 
 			MyOrder.id = scan.nextLine();// 주문서 번호
 
 			if (checkOrderIdExists()) {
-				
+				for (Order order : OrderData.orderList) {
+					if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {
+
+						System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
+						System.out.printf("%-8s\t%-5S\t%-4d\n", order.getId(), order.getModelId(), order.getQuantity());
+						MainView.singnleLine();
+
+						if (MyOrder.checkEditContinue()) {
+							System.out.println();
+							if (MyOrder.writeQuantity()) {
+								order.setQuantity(MyOrder.quantity);// 수정하기
+								OrderData.save();
+
+								System.out.println();
+								System.out.println("수량이 변경되었습니다.");
+							}
+						}
+						loop = true;
+						break;
+					} // 존재하는 경우
+				}
+			}
+			
+			if (loop) {
+				MainView.pauseToSel();
+				MyOrder.myOrder();
+				return;
 			} else {
-				System.out.println();
 				System.out.println("잘못된 번호입니다.");
+
 				if (MainView.checkContinueBoolean()) {
 					continue;
 				} else {
@@ -133,19 +157,64 @@ public class MyOrder {
 					return;
 				}
 			}
-
 		} // while
 	}// orderEdit
 
 	private static void orderDelete() {
-		// TODO Auto-generated method stub
+		boolean loop = false;
+		while (true) {
+			MyOrderView.orderDeleteMenu();
 
-	}
+			MyOrder.id = scan.nextLine();// 주문서 번호
+
+			if (checkOrderIdExists()) {
+				for (Order order : OrderData.orderList) {
+					if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {
+						System.out.println();
+						System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
+						System.out.printf("%-8s\t%-5S\t%-4d\n", order.getId(), order.getModelId(), order.getQuantity());
+						MainView.singnleLine();
+
+						if (MyOrder.checkDeleteContinue()) {
+							OrderData.orderList.remove(order);// 해당 order 삭제
+							OrderData.save();
+
+							System.out.println();
+							System.out.println("주문이 취소되었습니다.");
+						}
+						loop = true;
+						break;
+					} // 존재하는 경우
+				}
+			}
+
+			if (loop) {
+				MainView.pauseToSel();
+				MyOrder.myOrder();
+				return;
+			} else {
+				System.out.println("잘못된 번호입니다.");
+
+				if (MainView.checkContinueBoolean()) {
+					continue;
+				} else {
+					MainView.pauseToSel();
+					MyOrder.myOrder();
+					return;
+				}
+			}
+		} // while
+
+	}// orderDelete
 
 	private static void orderView() {
-		// TODO Auto-generated method stub
-
-	}
+		MyOrderView.orderViewMenu();
+		
+		MainView.pauseToSel();
+		
+		MyOrder.myOrder();
+		return;
+	}// orderView
 
 	// 주문서 작성 메서드
 	private static void getAgencyInfo() {
@@ -237,17 +306,51 @@ public class MyOrder {
 	private static boolean checkOrderIdExists() {
 		for (Order order : OrderData.orderList) {
 			if (order.getAgencyName().equals(Identify.name) && order.getId().equals(MyOrder.id)) {
-				
-				System.out.printf("%-8s\t%-5S\t%-4S\r\n", "[주문서 번호]", "[모델]", "[수량]");
-				System.out.printf("%-8d\t%-5S\t%-dS\n", order.getId(), order.getModelId(), order.getQuantity());
-				MainView.singnleLine();
-				System.out.println();
-				System.out.println("해당 주문의");
-				
 				return true;
 			}
 		}
 		return false;
 	}
 
+	private static boolean checkEditContinue() {
+        while (true) {
+
+            System.out.println();
+            System.out.print("해당 주문의 수량을 변경하시겠습니까?(Y/N)\n");
+            System.out.print("입력: ");
+            Main.answer = scan.nextLine();
+
+            if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+                return true;
+            } else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+                return false;
+            } else {
+                System.out.println();
+                MainView.singnleLine();
+                System.out.println();
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            }
+        }
+    }//checkEditContinue
+
+	private static boolean checkDeleteContinue() {
+		while (true) {
+
+            System.out.println();
+            System.out.print("해당 주문을 취소하시겠습니까?(Y/N)\n");
+            System.out.print("입력: ");
+            Main.answer = scan.nextLine();
+
+            if (Main.answer.equals("Y") || Main.answer.equals("y")) {
+                return true;
+            } else if (Main.answer.equals("N") || Main.answer.equals("n")) {
+                return false;
+            } else {
+                System.out.println();
+                MainView.singnleLine();
+                System.out.println();
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            }
+        }
+	}//checkDeleteContinue
 }

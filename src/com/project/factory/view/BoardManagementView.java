@@ -1,5 +1,6 @@
 package com.project.factory.view;
 
+import com.project.factory.Today;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
@@ -9,7 +10,7 @@ public class BoardManagementView {
 	public static void boardManagementMenu() {
 		System.out.println();
 		MainView.doubleLine();
-		System.out.println("          공지사항 관리");
+		System.out.println("\t\t\t\t공지사항 관리");
 		MainView.doubleLine();
 
 		System.out.println();
@@ -33,10 +34,19 @@ public class BoardManagementView {
 		System.out.print("번호 입력: ");
 	}
 
+	public static void boardWriteView() {
+		System.out.println();
+		MainView.singnleLine();
+		System.out.println("\t\t\t\t공지사항 작성");
+		MainView.doubleLine();
+		System.out.println("날짜: " + Today.day());
+		MainView.doubleLine();
+	}
+	
 	public static void boardEditView() {
 		System.out.println();
 		MainView.singnleLine();
-		System.out.println("          공지사항 수정");
+		System.out.println("\t\t\t\t공지사항 수정");
 		MainView.singnleLine();
 
 		BoardManagementView.boardManagementListView();
@@ -50,7 +60,7 @@ public class BoardManagementView {
 	public static void boardDeleteView() {
 		System.out.println();
 		MainView.singnleLine();
-		System.out.println("          공지사항 삭제");
+		System.out.println("\t\t\t\t공지사항 삭제");
 		MainView.singnleLine();
 
 		BoardManagementView.boardManagementListView();
