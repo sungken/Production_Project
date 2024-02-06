@@ -6,6 +6,10 @@ import com.project.factory.Main;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Modify;
 import com.project.factory.view.dept.ProductionView;
+import com.project.factory.view.dept.DistributionView;
+import com.project.factory.view.dept.HumanView;
+import com.project.factory.view.dept.ManagementView;
+
 
 public class MainView {
 
@@ -20,12 +24,30 @@ public class MainView {
 		System.out.println("            쌍용 테크");
 		MainView.doubleLine();
 		System.out.println();
+		
+
 
 		if (Identify.auth == null) {
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
 			System.out.println("4. 아이디/비밀번호 찾기");
 		} else {
+			if(Identify.dept.equals("생산") && Identify.level.equals("2")) {
+				//생산부 직원 뷰
+			}
+			if(Identify.dept.equals("유통") && Identify.level.equals("2")) {
+				DistributionView.DistributionMemberView();
+			}
+			if(Identify.dept.equals("생산") && Identify.level.equals("1")) {
+				//생산부 관리자 뷰
+			}
+			if(Identify.dept.equals("유통") && Identify.level.equals("1")) {
+				//유통부 관리자 뷰
+			}if(Identify.dept.equals("경영") && Identify.level.equals("1")) {
+				ManagementView.managementAdminView();
+			}if(Identify.dept.equals("인사") && Identify.level.equals("1")) {
+				HumanView.HumanAdminView();
+			}
 			System.out.println("3. 로그아웃");
 		}
 
@@ -51,9 +73,11 @@ public class MainView {
 		// 생산부 직원
 		if (Identify.auth != null && Identify.level.equals("2") && Identify.dept.equals("생산")) {
 			System.out.println("8. 부품 재고 파악 및 발주");
+			
 		}
 
 		// 유통부 직원
+		
 		if (Identify.auth != null && Identify.level.equals("2") && Identify.dept.equals("유통")) {
 			System.out.println("9. 배송지 조회 및 유통");
 		}
