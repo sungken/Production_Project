@@ -53,8 +53,8 @@ public class AssignList {
     public static int getOrderCountByMemberId(String memberId) {
 
 
-        for (AssignOrder assignOrder : AssignList.assignOrderList) {
-            if (assignOrder.getUserId().equals(memberId)) {
+        for (AssignOrder assignCheckOrder : AssignList.assignOrderList) {
+            if (assignCheckOrder.getUserId().equals(memberId)) {
                 orderCount++;
               
             }
