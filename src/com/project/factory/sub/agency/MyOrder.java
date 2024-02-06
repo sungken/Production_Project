@@ -2,20 +2,16 @@ package com.project.factory.sub.agency;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Random;
 import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.Toolkit;
-import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
-import com.project.factory.resource.dept.BoardData;
 import com.project.factory.resource.sub.Order;
 import com.project.factory.resource.sub.OrderData;
 import com.project.factory.view.MainView;
@@ -212,9 +208,13 @@ public class MyOrder {
 	}// orderDelete
 
 	private static void orderView() {
-		// TODO Auto-generated method stub
-
-	}
+		MyOrderView.orderViewMenu();
+		
+		MainView.pauseToSel();
+		
+		MyOrder.myOrder();
+		return;
+	}// orderView
 
 	// 주문서 작성 메서드
 	private static void getAgencyInfo() {
