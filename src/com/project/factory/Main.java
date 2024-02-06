@@ -50,7 +50,7 @@ public class Main {
 		TodayProductionData.todayInventoryLoad();
 		ProductionTarget.load_target();
 		CommuteData.load();
-		
+
 		while (loop) {
 
 			MainView.mainMenu();
@@ -93,7 +93,7 @@ public class Main {
 				} else if (selectNum.equals("0")) {
 					// 종료
 					loop = false;
-					
+
 					Data.save();
 					break;
 				} else {
@@ -218,12 +218,12 @@ public class Main {
 						fail = true;
 					}
 				}
-				
+
 				if (fail) {
 					System.out.println("not null Main잘못된 번호입니다.");
 					MainView.pause();
 				}
-			}//로그인 한 경우
+			} // 로그인 한 경우
 		} // while
 
 		scan.close();
