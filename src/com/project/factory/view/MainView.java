@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.project.factory.Main;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Modify;
+import com.project.factory.view.dept.ProductionView;
 import com.project.factory.view.dept.DistributionView;
 import com.project.factory.view.dept.HumanView;
 import com.project.factory.view.dept.ManagementView;
@@ -33,12 +34,14 @@ public class MainView {
 		} else {
 			if(Identify.dept.equals("생산") && Identify.level.equals("2")) {
 				//생산부 직원 뷰
+				ProductionView.productionView();
 			}
 			if(Identify.dept.equals("유통") && Identify.level.equals("2")) {
 				DistributionView.DistributionMemberView();
 			}
 			if(Identify.dept.equals("생산") && Identify.level.equals("1")) {
 				//생산부 관리자 뷰
+				ProductionView.productionAdminView();
 			}
 			if(Identify.dept.equals("유통") && Identify.level.equals("1")) {
 				//유통부 관리자 뷰
