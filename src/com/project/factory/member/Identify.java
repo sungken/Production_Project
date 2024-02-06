@@ -17,4 +17,6 @@ public class Identify {
 	
 	//TODO 이름 추가
 	public static String name;
+
+
 }
