@@ -49,7 +49,9 @@ public class HRM {
 
 		Main.selectNum = scan.nextLine();
 
+
 		if (Main.selectNum.equals("1")) {
+
 
 			// 리스트가 초기화되고 사원번호가 모두 부여된 경우에만 메시지 출력
 			if (NewMemberData.NewMemberList.isEmpty()) {
@@ -236,6 +238,7 @@ public class HRM {
 
 				System.out.println("생성된 사원번호: " + newMember.getId());
 
+
 				// 사원번호가 생성되면 newMemberTemp.txt에 저장
 
 				NewMemberTempData.save(newMember);
@@ -244,6 +247,7 @@ public class HRM {
 		NewMemberData.NewMemberList.clear();
 
 		NewMemberData.save();
+
 
 	}
 

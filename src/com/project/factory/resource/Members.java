@@ -131,7 +131,7 @@ public class Members {
 	 * @param 이메일
 	 */
 	// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
-	// 대리점ID■비밀번호■이름■■전화번호■주소■직급■구역■이메일
+	// 대리점ID■비밀번호■이름■전화번호■주소■직급■구역■이메일
 	public Members(String id, String pw, String name, String birth, String phoneNum, String address, String level,
 			String dept, String email) {
 		this.id = id;
