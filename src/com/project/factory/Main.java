@@ -116,7 +116,7 @@ public class Main {
 						CommuteSearch.commuteSearch();
 					} else if (selectNum.equals("11")) {
 						// 재고 확인
-						// InventorySearch.inventorySearch(); > 메서드 생성 필요
+						InventorySearch.checkInventory();
 					} else if (selectNum.equals("12")) {
 						// 공지사항 관리
 						BoardManagement.boardManagement();
@@ -127,7 +127,7 @@ public class Main {
 				if (Identify.level.equals("2") && Identify.dept.equals("생산")) {
 					if (selectNum.equals("8")) {
 						// 부품 재고 파악 및 발주
-						// CheckPiece.checkPiece();
+						 CheckPiece.pieceMenu();
 					}
 				}
 
@@ -143,10 +143,10 @@ public class Main {
 				if (Identify.level.equals("1") && Identify.dept.equals("생산")) {
 					if (selectNum.equals("14")) {
 						// 생산 목표량 입력 및 수정
-						// ProductionTarget.productionTarget(); > 메서드 생성 필요
+						 SetProductionTarget.setproductionTarget();
 					} else if (selectNum.equals("15")) {
 						// 생산 관리
-						// ProductionManagement.productionManagement(); > 메서드 생성 필요
+						ProductionManagement.productionSelect();
 					}
 				}
 

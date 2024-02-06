@@ -27,7 +27,6 @@ public class CommutePush {
 		CommuteData.load();
 
 		int isGoWork = checkGoWork(Identify.auth);
-		System.out.println(isGoWork);
 		System.out.println(Identify.auth);
 
 		Scanner scan = new Scanner(System.in);
