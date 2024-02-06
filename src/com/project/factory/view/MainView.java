@@ -6,6 +6,8 @@ import com.project.factory.Main;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Modify;
 import com.project.factory.view.dept.DistributionView;
+import com.project.factory.view.dept.HumanView;
+import com.project.factory.view.dept.ManagementView;
 
 
 public class MainView {
@@ -41,9 +43,9 @@ public class MainView {
 			if(Identify.dept.equals("유통") && Identify.level.equals("1")) {
 				//유통부 관리자 뷰
 			}if(Identify.dept.equals("경영") && Identify.level.equals("1")) {
-				//경영부 관리자 뷰
+				ManagementView.managementAdminView();
 			}if(Identify.dept.equals("인사") && Identify.level.equals("1")) {
-				//인시부 관리자 뷰
+				HumanView.HumanAdminView();
 			}
 			System.out.println("3. 로그아웃");
 		}
