@@ -1,6 +1,5 @@
 package com.project.factory;
 
-
 import java.util.Scanner;
 
 import com.project.factory.dept.distribution.admin.DestManagement;
@@ -11,6 +10,11 @@ import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.dept.CommutePush;
 import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.dept.management.admin.AgencyManagement;
+import com.project.factory.dept.production.admin.ProductionManagement;
+import com.project.factory.dept.production.admin.SetProductionTarget;
+import com.project.factory.dept.production.admin.resource.ProductionTarget;
+import com.project.factory.dept.production.admin.resource.TodayProductionData;
+import com.project.factory.dept.production.user.CheckPiece;
 import com.project.factory.member.Find;
 import com.project.factory.member.Identify;
 import com.project.factory.member.Login;
@@ -18,23 +22,34 @@ import com.project.factory.member.Logout;
 import com.project.factory.member.Modify;
 import com.project.factory.member.SignUp;
 import com.project.factory.member.admin.CommuteSearch;
+import com.project.factory.member.admin.InventorySearch;
+import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.Data;
+import com.project.factory.resource.inventory.ModelInfoData;
+import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.HumanView;
 
 public class Main {
 
 	// TODO selectNum String으로 변경
 	public static String selectNum;
 	public static String answer;
+	public static Object production;
 
 	public static void main(String[] args) {
 
 		// TODO loop 변수 추가 > 초기 화면 메뉴 반복문
 		boolean loop = true;
 		Scanner scan = new Scanner(System.in);
-
+		PieceData.pieceLoad();
 		Data.load();
+		ModelInfoData.modelInfoLoad();
+		TodayProductionData.todayInventoryLoad();
+		ProductionTarget.load_target();
+		CommuteData.load();
+		
 		while (loop) {
 
 			MainView.mainMenu();
@@ -133,7 +148,7 @@ public class Main {
 				if (Identify.level.equals("1") && Identify.dept.equals("유통")) {
 					if (selectNum.equals("16")) {
 						// 주문서 확인 및 배정 수정
-						OrderAssign.orderView(); 
+						OrderAssign.orderView();
 					} else if (selectNum.equals("17")) {
 						// 사원 배송 구역 관리
 						DestManagement.destManagement();
@@ -162,10 +177,16 @@ public class Main {
 						// 주문서 관리
 						MyOrder.myOrder();
 					}
-				} 
+				}
 			}
 		} // while
 
 		scan.close();
+
+		ModelInfoData.modelInfoSave();
+		TodayProductionData.todayInventorySave();
+		ProductionTarget.save_target();
+		PieceData.PieceSave();
+
 	}// main
 }
