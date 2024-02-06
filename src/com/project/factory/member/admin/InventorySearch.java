@@ -8,7 +8,11 @@ import com.project.factory.view.dept.ProductionView;
 public class InventorySearch {
 	// 재고확인
 	public static void checkInventory() {
+		System.out.println();
 		MainView.doubleLine();
+		System.out.println("\t\t\t\t재고 확인");
+		MainView.doubleLine();
+		
 		System.out.println();
 		for (ModelInfo modelInventory : ModelInfoData.modelInfoList) {
 			System.out.printf("%s : %d대\n", modelInventory.getModelName(), modelInventory.getModelInventory());

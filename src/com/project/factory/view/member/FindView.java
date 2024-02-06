@@ -17,7 +17,7 @@ public class FindView {
 
 			System.out.println();
 			MainView.doubleLine();
-			System.out.println("     아이디/비밀번호 찾기");
+			System.out.println("\t\t\t\t아이디/비밀번호 찾기");
 			MainView.doubleLine();
 
 			System.out.println();

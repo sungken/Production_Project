@@ -13,16 +13,21 @@ public class SetProductionTarget {
 	public static void setproductionTarget() {
 		int target = 0; //사용자로부터 입력받는 목표량 변수
 		Scanner sc = new Scanner(System.in);
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t생산 목표량 입력 및 수정");
 		MainView.doubleLine();
 		System.out.println();
 		System.out.println("모델별 생산 목표량을 입렵해주세요.");
 		System.out.println();
 		ProductionView.viewModelInven();
-
-		System.out.print("모델입력: ");
+		
+		System.out.println();
+		System.out.print("모델 입력: ");
 		String selectedModel = sc.nextLine();
 		if(ProductionTarget.TargetNum.containsKey(selectedModel)) {
 			try {
+				System.out.println();
 				System.out.print(selectedModel +" : ");
 				target = sc.nextInt();
 				ProductionTarget.TargetNum.put(selectedModel, target);
@@ -37,13 +42,13 @@ public class SetProductionTarget {
 		}else {
 			MainView.singnleLine();
 			System.out.println("입력하신 모델이 존재하지 않습니다.");
-			MainView.pause();
 		}
 		
-		MainView.pause();
 		ProductionTarget.save_target();
+		System.out.println();
+		MainView.singnleLine();
 		ProductionView.viewModelInven();
-		
+		MainView.pause();
 	}
 	
 

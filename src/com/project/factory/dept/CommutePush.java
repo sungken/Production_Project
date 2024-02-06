@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.Today;
+import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.member.Identify;
 import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.resource.CommuteData;
@@ -14,6 +15,7 @@ import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.user.Commute;
+import com.project.factory.view.MainView;
 import com.project.factory.view.dept.commutePushView;
 
 public class CommutePush {
@@ -27,8 +29,6 @@ public class CommutePush {
 		CommuteData.load();
 
 		int isGoWork = checkGoWork(Identify.auth);
-		System.out.println(isGoWork);
-		System.out.println(Identify.auth);
 
 		Scanner scan = new Scanner(System.in);
 		commutePushView.commutePushViewMain();
@@ -44,7 +44,19 @@ public class CommutePush {
 				System.out.println();
 				System.out.println(currentTime + " 출근하셨습니다.");
 				gowork(Identify.auth);
+				
+				MainView.pause();
 
+			} else {
+				System.out.println();
+				System.out.println("잘못된 번호입니다.");
+				if (MainView.checkContinueBoolean()) {
+					BoardManagement.boardManagement();
+					return;
+				} else {
+					MainView.pause();
+					return;
+				}
 			}
 
 		} else if (isGoWork == 1) {
@@ -57,9 +69,20 @@ public class CommutePush {
 				System.out.println();
 				System.out.println(currentTime + " 퇴근하셨습니다.");
 				leaveOut(Identify.auth);
+				MainView.pause();
 
 				// 퇴근 처리를 위한 메서드 호출 등 추가
 
+			} else {
+				System.out.println();
+				System.out.println("잘못된 번호입니다.");
+				if (MainView.checkContinueBoolean()) {
+					BoardManagement.boardManagement();
+					return;
+				} else {
+					MainView.pause();
+					return;
+				}
 			}
 		} else if (isGoWork == 2) {
 			commutePushView.alreadyCommute();

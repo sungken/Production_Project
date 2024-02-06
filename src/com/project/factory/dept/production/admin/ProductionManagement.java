@@ -54,7 +54,7 @@ public class ProductionManagement {
 
 			}
 		} else {
-			System.out.println("잘못된입력");
+			System.out.println("잘못된 입력입니다.");
 			MainView.pause();
 		}
 	}
