@@ -56,7 +56,8 @@ public class ProductThread extends Thread {
 	@Override
 	public void run() {
 		terminate = true;
-		System.out.println("생산이 시작되었습니다.");
+		System.out.println();
+		System.out.println("생산을 시작합니다.");
 
 		while (true) {
 			if(!terminate) {

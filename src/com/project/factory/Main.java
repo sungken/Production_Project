@@ -50,6 +50,8 @@ public class Main {
 		ProductionTarget.load_target();
 		CommuteData.load();
 		
+		MainView.logo();
+		
 		while (loop) {
 
 			MainView.mainMenu();
@@ -87,6 +89,10 @@ public class Main {
 					// 종료
 					loop = false;
 					Data.save();
+					ModelInfoData.modelInfoSave();
+					TodayProductionData.todayInventorySave();
+					ProductionTarget.save_target();
+					PieceData.PieceSave();
 				} else {
 					System.out.println("잘못된 번호입니다.");
 					MainView.pause();
@@ -179,14 +185,17 @@ public class Main {
 					}
 				}
 			}
+			ModelInfoData.modelInfoSave();
+			TodayProductionData.todayInventorySave();
+			ProductionTarget.save_target();
+			PieceData.PieceSave();
 		} // while
 
 		scan.close();
 
-		ModelInfoData.modelInfoSave();
-		TodayProductionData.todayInventorySave();
-		ProductionTarget.save_target();
-		PieceData.PieceSave();
+		
+	}
+
+
 
 	}// main
-}
