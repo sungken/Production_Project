@@ -29,8 +29,22 @@ public class MainView {
 			System.out.println("2. 로그인");
 			System.out.println("4. 아이디/비밀번호 찾기");
 		} else {
-			if(Identify.dept.equals("유통"))
+			if(Identify.dept.equals("생산") && Identify.level.equals("2")) {
+				//생산부 직원 뷰
+			}
+			if(Identify.dept.equals("유통") && Identify.level.equals("2")) {
 				DistributionView.DistributionMemberView();
+			}
+			if(Identify.dept.equals("생산") && Identify.level.equals("1")) {
+				//생산부 관리자 뷰
+			}
+			if(Identify.dept.equals("유통") && Identify.level.equals("1")) {
+				//유통부 관리자 뷰
+			}if(Identify.dept.equals("경영") && Identify.level.equals("1")) {
+				//경영부 관리자 뷰
+			}if(Identify.dept.equals("인사") && Identify.level.equals("1")) {
+				//인시부 관리자 뷰
+			}
 			System.out.println("3. 로그아웃");
 		}
 

@@ -42,10 +42,18 @@ public class CheckDest {
 		
 		insertListNum();
 
+
+
+		deleteOrder(selectNum);
+
+		MainView.pause();
+	}
+
+	private static void checkContinue() {
 		boolean continuePrompt = true;
 
 		while (continuePrompt) {
-
+			System.out.println();
 			System.out.print("계속 진행하시겠습니까?(Y/N)\n");
 			System.out.print("입력: ");
 
@@ -62,10 +70,6 @@ public class CheckDest {
 				continuePrompt = false;
 			}
 		}
-
-		deleteOrder(selectNum);
-
-		MainView.pause();
 	}
 
 	private static void insertListNum() {
@@ -86,6 +90,7 @@ public class CheckDest {
 					if (assignOrder.getNum() == selectNum && assignOrder.getMemberId().equals(Identify.auth)) {
 						System.out.println();
 						System.out.printf("%d번 배송 완료되었습니다.", assignOrder.getNum());
+						System.out.println();
 						found = true;
 						validInput = true; 
 						break;
@@ -97,6 +102,7 @@ public class CheckDest {
 					System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
 					System.out.println();
 					validInput = true; 
+					checkContinue();
 				}
 
 			} catch (InputMismatchException e) {
@@ -104,6 +110,7 @@ public class CheckDest {
 				System.out.println("숫자를 입력해주세요. 다시 시도해주세요.");
 				System.out.println();
 				validInput = true; 
+				checkContinue();
 			}
 		}
 	}
@@ -112,9 +119,10 @@ public class CheckDest {
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getNum() == selectNum) {
 				// 주문 번호와 일치하는 주문을 리스트에서 삭제
-				AssignData.assignList.remove(assignOrder);
+				assignOrder.setState("완료");
 				// 파일에 변경된 주문 목록 저장
-				AssignData.save();
+				
+				AssignData.save(); // 주문 상태가 변경됐으니 저장 필요
 				break;
 			}
 		}
@@ -125,11 +133,11 @@ public class CheckDest {
 		MainView.doubleLine();
 		System.out.println();
 
+		System.out.println("[번호]\t[구역]\t[대리점명]\t[모델명]\t[수량]\t[상태]");
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getMemberId().equals(Identify.auth)) {
-				System.out.println("[번호]\t[구역]\t[대리점명]\t[모델명]\t[수량]");
-				System.out.printf("%d\t%s\t%s\t%s\t\t%d\n", assignOrder.getNum(), assignOrder.getAssignRegion(),
-						assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity());
+				System.out.printf("%d\t%s\t%s\t%s\t\t%d\t%s\n", assignOrder.getNum(), assignOrder.getAssignRegion(),
+						assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity(),assignOrder.getState());
 			}
 
 		}

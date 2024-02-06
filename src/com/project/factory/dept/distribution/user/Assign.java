@@ -10,7 +10,11 @@ public class Assign {
 		private int quantity;
 		private String name;
 		private String memberId;
+		private String state = "미완료";
 		
+
+	    
+
 		/**
 		 * 
 		 * @param id 주무서 번호
@@ -23,7 +27,7 @@ public class Assign {
 		 * @param modelId 모델명
 		 */
 		
-		public Assign(int num, String assignRegion, String agencyName, String modelId,  int quantity, String name, String memberId) {
+		public Assign(int num, String assignRegion, String agencyName, String modelId,  int quantity, String name, String memberId, String state) {
 			this.num = num;
 			this.assignRegion = assignRegion;
 			this.agencyName = agencyName;
@@ -31,6 +35,7 @@ public class Assign {
 			this.quantity = quantity;
 			this.name = name;
 			this.memberId = memberId;
+			this.state = state;
 		}
 
 		public String getAssignRegion() {
@@ -97,6 +102,16 @@ public class Assign {
 		public void setQuantity(int quantity) {
 			this.quantity = quantity;
 		}
+
+		public String getState() {
+			return state;
+		}
+
+		public void setState(String state) {
+			this.state = state;
+		}
+
+
 
 		
 
