@@ -70,11 +70,9 @@ public class CommutePush {
 
 	private static int checkGoWork(String auth) {
 
-		System.out.println("CommuteData.commuteMemberList " + CommuteData.commuteMemberList);
+		//System.out.println("CommuteData.commuteMemberList " + CommuteData.commuteMemberList);
 
 		ArrayList<Commute> matchingCommutes = new ArrayList<>();
-
-		
 
 		for (Commute commuteMember : CommuteData.commuteMemberList) {
 			if(commuteMember.getId().equals(auth) ) {
@@ -108,7 +106,7 @@ public class CommutePush {
 
 			FileWriter writer = new FileWriter(Path.COMMUTE, true);
 
-			// 날짜■사원번호■이름■부서■직급■출근시간
+			
 			for (Members member : Data.memberList) {
 				if (member.getId().equals(auth)) {
 					String commuteRecord = Today.day() + "■" + member.getId() + "■" + member.getName() + "■"
