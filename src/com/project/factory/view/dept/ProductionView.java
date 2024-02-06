@@ -58,8 +58,7 @@ public class ProductionView {
 			count++;
 		}
 		
-		System.out.println();
-		MainView.doubleLine();
+		
 	}
 	
 	public static void viewCheckPiece() {
@@ -127,8 +126,6 @@ public class ProductionView {
 	
 	public static void productionView() {
 		String slash = ":";
-		System.out.println();
-		MainView.doubleLine();
 		
 		System.out.println();
 		System.out.println(Today.day());
@@ -152,8 +149,6 @@ public class ProductionView {
 	}
 	
 	public static void productionAdminView() {
-		System.out.println();
-		MainView.doubleLine();
 		
 		System.out.println();
 		System.out.println(Today.day());
