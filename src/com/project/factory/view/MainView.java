@@ -20,7 +20,7 @@ public class MainView {
 	public static void mainMenu() {
 //		System.out.println();
 		MainView.doubleLine();
-		System.out.println("            쌍용 테크");
+		System.out.println("\t\t\t\t쌍용 테크");
 		MainView.doubleLine();
 		System.out.println();
 		
@@ -32,19 +32,23 @@ public class MainView {
 			System.out.println("4. 아이디/비밀번호 찾기");
 		} else {
 			if(Identify.dept.equals("생산") && Identify.level.equals("2")) {
-				//생산부 직원 뷰
+				//생산부 사원
 			}
 			if(Identify.dept.equals("유통") && Identify.level.equals("2")) {
+				//유통부 사원
 				DistributionView.DistributionMemberView();
 			}
 			if(Identify.dept.equals("생산") && Identify.level.equals("1")) {
-				//생산부 관리자 뷰
+				//생산부 관리자
 			}
 			if(Identify.dept.equals("유통") && Identify.level.equals("1")) {
-				//유통부 관리자 뷰
+				//유통부 관리자
+				DistributionView.DistributionAdminView();
 			}if(Identify.dept.equals("경영") && Identify.level.equals("1")) {
+				//경영부 관리자
 				ManagementView.managementAdminView();
 			}if(Identify.dept.equals("인사") && Identify.level.equals("1")) {
+				//인사부 관리자
 				HumanView.HumanAdminView();
 			}
 			System.out.println("3. 로그아웃");
