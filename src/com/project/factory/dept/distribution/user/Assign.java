@@ -3,17 +3,7 @@ package com.project.factory.dept.distribution.user;
 import com.project.factory.resource.Members;
 
 public class Assign {
-	// 주문서
-		//주문서번호■주문서 작성일■대리점명■대리점 주소■전화번호■개수■납기일■모델명
-		private int num ;
-		private String assignRegion;
-//		private String agencyName;
-//		private String modelId;
-//		private int quantity;
-//		private String name;
-//		private String memberId;
-	
-		
+
 		private String id;
 		private String writeDate;
 		private String agencyName;
@@ -25,10 +15,11 @@ public class Assign {
 		private String userName;
 		private String userId;
 		private String area;
+		private String state = "미완료";
 		
-		//주문서번호■주문서 작성일■대리점명■대리점 주소■전화번호■개수■납기일■모델명 사원이름 아이디
+		//주문서번호■주문서 작성일■대리점명■대리점 주소■전화번호■개수■납기일■모델명 사원이름 아이디 구역 상태
 		public Assign(String id, String writeDate, String agencyName, String agencyAddress, String agencyPhoneNum,
-				int quantity, String dueDate, String modelId, String userName, String userId, Object area) {
+				int quantity, String dueDate, String modelId, String userName, String userId, Object area, String state) {
 
 			this.id = id;
 			this.writeDate = writeDate;
@@ -41,6 +32,7 @@ public class Assign {
 			this.userName = userName;
 			this.userId = userId;
 			this.area = (String) area;
+			this.state = state;
 		
 			
 			
@@ -108,12 +100,7 @@ public class Assign {
 		public void setModelId(String modelId) {
 			this.modelId = modelId;
 		}
-		public String getAssignRegion() {
-			return assignRegion;
-		}
-		public void setAssignRegion(String assignRegion) {
-			this.assignRegion = assignRegion;
-		}
+
 
 
 		
@@ -141,11 +128,11 @@ public class Assign {
 //			
 //		}
 
-		public int getNum() {
-			return num;
+		public String getState() {
+			return state;
 		}
-		public void setNum(int num) {
-			this.num = num;
+		public void setState(String state) {
+			this.state = state;
 		}
 
 	

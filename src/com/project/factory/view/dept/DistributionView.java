@@ -4,7 +4,6 @@ import com.project.factory.Today;
 import com.project.factory.dept.distribution.admin.EmployeeInfo;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.AssignData;
-import com.project.factory.resource.dept.AssignList;
 import com.project.factory.resource.dept.DistributionData;
 
 public class DistributionView {
@@ -14,7 +13,7 @@ public class DistributionView {
 
 		public static void DistributionMemberView(){
 			
-			AssignList.load();
+			AssignData.load();
 			DistributionData.load();
 
 			System.out.println(Today.day());
@@ -29,10 +28,10 @@ public class DistributionView {
 	        	}
 	        }
 	        
-	        AssignList.getCompletedOrderCountByMemberId(Identify.auth);
+	        AssignData.getCompletedOrderCountByMemberId(Identify.auth);
 	        
-	        int totalOrderCount = AssignList.getOrderCountByMemberId(Identify.auth); // 배정 받은 주문 개수
-	        int completeOrderCount = AssignList.getCompletedOrderCountByMemberId(Identify.auth);
+	        int totalOrderCount = AssignData.getOrderCountByMemberId(Identify.auth); // 배정 받은 주문 개수
+	        int completeOrderCount = AssignData.getCompletedOrderCountByMemberId(Identify.auth);
 	        int incompleteOrderCount = totalOrderCount - completeOrderCount;
 
 	        System.out.printf("오늘 배정 받은 주문 개수: %d\n", totalOrderCount);

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.dept.distribution.user.Assign;
+import com.project.factory.dept.distribution.user.AssignOrder;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.dept.AssignData;
@@ -226,14 +227,10 @@ public class OrderAssign {
 	    DistributionData.load(); // 사원 정보 로드
 	    OrderData.load(); // 주문 정보 로드
 	    for (Order orderItem : OrderData.orderList) {
-	    	
 	        boolean assigned = false; // 사원이 이미 배정되었는지 확인하는 변수
 	        for (EmployeeInfo employeeInfo : DistributionData.distributionMembersList) {
-	        	
 	            if (orderItem.getAgencyAddress().contains(employeeInfo.getAssignedRegion())) {
-	                
 	                assigned = true;
-	                
 	                // 주문서에 사원을 배정하고 종료
 	                Assign newAssignment = new Assign(
 	                        orderItem.getId(),
@@ -246,25 +243,25 @@ public class OrderAssign {
 	                        orderItem.getModelId(),
 	                        employeeInfo.getName(),
 	                        employeeInfo.getId(),
-	                        employeeInfo.getAssignedRegion()
-	                       
-	                       
-	                       
-	                        
+	                        employeeInfo.getAssignedRegion(),
+	                        "미완료" // 일단 "미완료"로 고정하여 추가합니다.
 	                );
-
 	                AssignData.assignList.add(newAssignment);
 	                break;
 	            }
 	        }
-	        
+	        // 추가된 Assign 객체들을 확인하고 추가 작업 수행
+	        for (Assign assignOrder : AssignData.assignList) {
+	            // 여기서 할당된 주문 정보에 대한 추가 작업 수행
+	            String assignedRegion = assignOrder.getArea();
+	            String state = assignOrder.getState();
+	            // 할당된 주문 정보와 상태를 확인하고 필요한 작업을 수행합니다.
+	        }
 	    }
-	  
-	    	
-	    
 	    // 데이터 추가 후 저장
 	    AssignData.save();
 	}
+
 
 
 
