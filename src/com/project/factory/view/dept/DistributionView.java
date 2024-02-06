@@ -23,6 +23,7 @@ public class DistributionView {
 			DistributionData.load();
 
 			System.out.println(Today.day());
+			System.out.println();
 
 	        for (EmployeeInfo employeeInfo :DistributionData.distributionMembersList ) {
 	        	if(employeeInfo.getId().equals(Identify.auth)) {
@@ -43,7 +44,8 @@ public class DistributionView {
 	        System.out.printf("미완료: %d\n", incompleteOrderCount);
 	        
 	        System.out.println();
-	        MainView.singnleLine();
+	        System.out.println();
+	        
 
 	         
 
