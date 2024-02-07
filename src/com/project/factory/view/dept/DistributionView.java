@@ -3,8 +3,10 @@ package com.project.factory.view.dept;
 import com.project.factory.Today;
 import com.project.factory.dept.distribution.admin.EmployeeInfo;
 import com.project.factory.member.Identify;
+import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.dept.AssignData;
 import com.project.factory.resource.dept.DistributionData;
+import com.project.factory.view.MainView;
 
 public class DistributionView {
 
@@ -42,9 +44,17 @@ public class DistributionView {
 	        System.out.println();
 	        
 
-	         
-
-	        
-
 	}
+		public static void DistributionAdminView() {
+            CommuteData.load();
+
+            System.out.println(Today.day());
+            System.out.println();
+
+            HumanView.countMembersBySpecificDept(Identify.dept); //유통부 출근 인원
+            System.out.println();
+            MainView.doubleLine();
+            System.out.println();
+
+        }
 }

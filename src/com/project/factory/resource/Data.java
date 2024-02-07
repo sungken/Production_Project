@@ -23,7 +23,6 @@ public class Data {
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-
 				String[] temp = line.split("■");
 				
 				Members member = new Members(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8]);

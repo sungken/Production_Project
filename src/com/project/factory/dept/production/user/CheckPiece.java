@@ -27,7 +27,7 @@ public class CheckPiece {
 
 	}
 
-	private static void checkPiece() {
+	public static void checkPiece() {
 		ProductionView.checkPiece();
 
 	}

@@ -17,8 +17,6 @@ public class HumanView {
 		MainView.doubleLine();
 		System.out.println("     직원관리(입사,퇴사)");
 		MainView.doubleLine();
-		
-		
 	}
 	
 	public static void HumanAdminView() {
@@ -35,9 +33,8 @@ public class HumanView {
 		
 		countMembersByDept();
 		System.out.println();
+		MainView.doubleLine();
 		System.out.println();
-		
-		
 	}
 	
 		
@@ -55,11 +52,10 @@ public class HumanView {
 
         // 결과 출력
         for (Map.Entry<String, Integer> entry : deptCounts.entrySet()) {
-            System.out.printf("%s부: %d명\n", entry.getKey(), entry.getValue());
+            System.out.printf("%s부 출근 인원: %d명\n", entry.getKey(), entry.getValue());
         }
     }
 
-    
 
     public static void countMembersBySpecificDept(String specificDept) {
         int count = 0;
@@ -77,8 +73,7 @@ public class HumanView {
         }
 
         // 결과 출력
-        System.out.printf("%s 부서: %d명\n", specificDept, count);
+        System.out.printf("%s부 출근 인원: %d명\n", specificDept, count);
     }
-	
 
 }

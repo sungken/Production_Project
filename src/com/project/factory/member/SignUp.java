@@ -17,7 +17,11 @@ public class SignUp {
 	private static final Object[] String = null;
 
 	public static void cheackid() {
-
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t회원가입");
+		MainView.doubleLine();
+		
 		try {
 			// 사원번호
 			String id = "";
@@ -34,21 +38,19 @@ public class SignUp {
 			// 비밀번호
 			String pw = "";
 
-			BufferedReader reader = new BufferedReader(new FileReader(Path.NEWMEMBER));
-
+			BufferedReader reader = new BufferedReader(new FileReader("data\\newMemberTemp.txt"));
 			
 			boolean loop = true;
 			
 			while(loop) {
-				MainView.singnleLine();
-				System.out.println();
+				System.out.println("회원가입을 진행할 사원 번호를 입력해주세요.");
+				System.out.println();   
 				System.out.print("사원번호: ");
 				Scanner scan = new Scanner(System.in);
 				String loadId = scan.nextLine();
 				System.out.println();
 				MainView.singnleLine();
 				System.out.println();
-				
 				
 				boolean result = false;
 				String tempMember = "";
@@ -69,10 +71,10 @@ public class SignUp {
 					System.out.println();
 					id = temp[0];
 					phoneNum = temp[2];
-					depart = temp[4];
-					name = temp[5];
-					humanNum = temp[6];
-					address = temp[7];
+					depart = temp[5];
+					name = temp[1];
+					humanNum = temp[3];
+					address = temp[4];
 					System.out.println("이름: " + name);
 					System.out.println("생년월일: " + humanNum);
 					System.out.println("전화번호: " + phoneNum);
@@ -85,7 +87,7 @@ public class SignUp {
 					boolean pwLoop = true;
 					while(pwLoop) {
 						System.out.println("비밀번호를 설정해 주세요.");
-						System.out.println("(길이 : 10-16자, 영문자, 숫자만 가능)");
+						System.out.println("비밀번호는 10-16글자, 영문자&숫자만 입력 가능합니다.");
 						System.out.println();
 						MainView.singnleLine();
 						System.out.println();
@@ -95,7 +97,7 @@ public class SignUp {
 							System.out.println();
 							System.out.println("회원가입이 완료되었습니다.");
 							
-							BufferedReader readerDelete = new BufferedReader(new FileReader(Path.NEWMEMBER));
+							BufferedReader readerDelete = new BufferedReader(new FileReader("data\\newMemberTemp.txt"));
 							
 							String txt = "";
 							String line2 = null;
@@ -106,7 +108,7 @@ public class SignUp {
 							}
 							
 							// 수정된 파일을 가지고 원본 파일에 덮어쓰기
-							BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBER));
+							BufferedWriter writer = new BufferedWriter(new FileWriter("data\\newMemberTemp.txt"));
 							writer.write(txt);
 							
 							Members member = new Members(id, pw, name, humanNum, phoneNum, address, "2", depart, id + "@auto.com");
@@ -135,7 +137,7 @@ public class SignUp {
 
 			reader.close();
 			
-//			reader = new BufferedReader(new FileReader(Path.NEWMEMBER));
+//			reader = new BufferedReader(new FileReader("data\\MemberTemp.txt"));
 
 			
 		} catch (Exception e) {
