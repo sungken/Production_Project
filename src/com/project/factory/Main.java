@@ -126,9 +126,7 @@ public class Main {
 					} else if (selectNum.equals("11")) {
 						// 재고 확인
 						InventorySearch.checkInventory();
-
 						continue;
-
 					} else if (selectNum.equals("12")) {
 						// 공지사항 관리
 						BoardManagement.boardManagement();
@@ -142,12 +140,10 @@ public class Main {
 				if (Identify.level.equals("2") && Identify.dept.equals("생산")) {
 					if (selectNum.equals("8")) {
 						// 부품 재고 파악 및 발주
-
 						CheckPiece.pieceMenu();
 						continue;
 					} else {
 						fail = true;
-
 					}
 				}
 
@@ -166,7 +162,6 @@ public class Main {
 				if (Identify.level.equals("1") && Identify.dept.equals("생산")) {
 					if (selectNum.equals("14")) {
 						// 생산 목표량 입력 및 수정
-
 						SetProductionTarget.setproductionTarget();
 						continue;
 					} else if (selectNum.equals("15")) {
@@ -182,7 +177,7 @@ public class Main {
 				if (Identify.level.equals("1") && Identify.dept.equals("유통")) {
 					if (selectNum.equals("16")) {
 						// 주문서 확인 및 배정 수정
-						OrderAssign.orderView();
+						OrderAssign.OrderAssign();
 						continue;
 					} else if (selectNum.equals("17")) {
 						// 사원 배송 구역 관리

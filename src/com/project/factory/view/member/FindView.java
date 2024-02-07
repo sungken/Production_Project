@@ -1,9 +1,5 @@
 package com.project.factory.view.member;
 
-import java.util.Scanner;
-
-import com.project.factory.Main;
-import com.project.factory.member.Identify;
 import com.project.factory.view.MainView;
 
 public class FindView {

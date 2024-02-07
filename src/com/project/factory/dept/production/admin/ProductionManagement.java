@@ -2,7 +2,6 @@ package com.project.factory.dept.production.admin;
 
 import java.util.Scanner;
 
-import com.project.factory.Today;
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
 import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
@@ -84,7 +83,6 @@ public class ProductionManagement {
 		}
 		System.out.println("생산이 종료되었습니다. 오늘도 고생하셨습니다.");
 		System.out.println();
-		MainView.doubleLine();
 		MainView.singleLine();
 		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
 		MainView.singleLine();
@@ -118,7 +116,7 @@ public class ProductionManagement {
 		while (loop) {
 			ProductionView.viewModel();
 			System.out.println("종료를 원하시면 0을 입력해주세요.");
-			System.out.print("모델 입력): ");
+			System.out.print("모델 입력: ");
 			String sel = sc.nextLine();
 			if (sel.equals("0")) {
 				loop = false;

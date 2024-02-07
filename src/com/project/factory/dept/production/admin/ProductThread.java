@@ -106,7 +106,6 @@ public class ProductThread extends Thread {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("스레드 종료");
 			
 	}
 

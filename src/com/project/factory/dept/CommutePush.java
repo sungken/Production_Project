@@ -2,21 +2,22 @@ package com.project.factory.dept;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.Today;
 import com.project.factory.board.admin.BoardManagement;
 import com.project.factory.member.Identify;
-import com.project.factory.member.admin.CommuteSearch;
 import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.user.Commute;
 import com.project.factory.view.MainView;
-import com.project.factory.view.dept.commutePushView;
+
+import com.project.factory.view.dept.CommutePushView;
+
+
 
 public class CommutePush {
 
@@ -32,11 +33,13 @@ public class CommutePush {
 
 
 		Scanner scan = new Scanner(System.in);
-		commutePushView.commutePushViewMain();
+		CommutePushView.commutePushViewMain();
+		
+		
 
 		// 출근을 안 하면
 		if (isGoWork == 0) {
-			commutePushView.notCommutePushView();
+			CommutePushView.notCommutePushView();
 			Main.selectNum = scan.nextLine();
 
 			if (Main.selectNum.equals("1")) {
@@ -44,24 +47,27 @@ public class CommutePush {
 				String currentTime = Today.time();
 				System.out.println();
 				System.out.println(currentTime + " 출근하셨습니다.");
+				System.out.println();
 				gowork(Identify.auth);
 				
 				MainView.pause();
 
 			} else {
 				System.out.println();
-				System.out.println("잘못된 번호입니다.");
-				if (MainView.checkContinueBoolean()) {
-					BoardManagement.boardManagement();
-					return;
-				} else {
+				System.out.println("잘못된 입력입니다.");
+				if(MainView.checkContinueBoolean()) {
+					commutePush();
+				}else {
+					System.out.println();
+					System.out.println("잘못된 입력입니다.");
 					MainView.pause();
-					return;
 				}
+				
+
 			}
 
 		} else if (isGoWork == 1) {
-			commutePushView.commutePushViewEnd();
+			CommutePushView.commutePushViewEnd();
 			Main.selectNum = scan.nextLine();
 
 			if (Main.selectNum.equals("2")) {
@@ -69,6 +75,7 @@ public class CommutePush {
 				String currentTime = Today.time();
 				System.out.println();
 				System.out.println(currentTime + " 퇴근하셨습니다.");
+				System.out.println();
 				leaveOut(Identify.auth);
 				MainView.pause();
 
@@ -86,7 +93,7 @@ public class CommutePush {
 				}
 			}
 		} else if (isGoWork == 2) {
-			commutePushView.alreadyCommute();
+			CommutePushView.alreadyCommute();
 
 		}
 
@@ -94,11 +101,9 @@ public class CommutePush {
 
 	private static int checkGoWork(String auth) {
 
-		System.out.println("CommuteData.commuteMemberList " + CommuteData.commuteMemberList);
+		//System.out.println("CommuteData.commuteMemberList " + CommuteData.commuteMemberList);
 
 		ArrayList<Commute> matchingCommutes = new ArrayList<>();
-
-		
 
 		for (Commute commuteMember : CommuteData.commuteMemberList) {
 			if(commuteMember.getId().equals(auth) ) {
@@ -132,7 +137,7 @@ public class CommutePush {
 
 			FileWriter writer = new FileWriter(Path.COMMUTE, true);
 
-			// 날짜■사원번호■이름■부서■직급■출근시간
+			
 			for (Members member : Data.memberList) {
 				if (member.getId().equals(auth)) {
 					String commuteRecord = Today.day() + "■" + member.getId() + "■" + member.getName() + "■"
@@ -144,7 +149,7 @@ public class CommutePush {
 				}
 			}
 
-			System.out.println("완료");
+		
 			writer.close();
 
 		} catch (Exception e) {
@@ -174,7 +179,7 @@ public class CommutePush {
 				}
 			}
 
-			System.out.println("완료");
+			
 			writer.close();
 
 		} catch (Exception e) {
