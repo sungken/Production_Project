@@ -114,11 +114,14 @@ public class HRM {
 			if (member.getId().equals(id)) {
 				MainView.doubleLine();
 				System.out.println();
-				System.out.println("[사원번호]\t[이름]\t[생년월일]\t\t[전화번호]\t\t[주소]\t[부서]");
-				System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\n", member.getId() ,member.getName(), member.getBirth(),
-						member.getPhoneNum(), member.getAddress(), member.getDept());
-
+				System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s","[사원번호]", "[이름]", "[전화번호]", "[생년월일]", "[주소]","[부서]");
 				System.out.println();
+
+				System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s", member.getId(), member.getName(), member.getBirth(),
+						member.getPhoneNum(), member.getAddress(),member.getDept());
+				System.out.println();
+
+				
 				MainView.doubleLine();
 
 				System.out.println();
@@ -182,11 +185,12 @@ public class HRM {
 				if (!found) {
 					MainView.doubleLine();
 					System.out.println();
-					System.out.println("[사원번호]\t[이름]\t\t[생년월일]\t\t[전화번호]\t\t[주소]\t\t\t\t[부서]");
+					System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s","[사원번호]", "[이름]", "[전화번호]", "[생년월일]", "[주소]","[부서]");
+					System.out.println();
 				}
 
-				System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%s\t%s\n", member.getId(), member.getName(), member.getBirth(),
-						member.getPhoneNum(), member.getAddress(), member.getDept());
+				System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s", member.getId(), member.getName(), member.getBirth(),
+						member.getPhoneNum(), member.getAddress());
 				System.out.println();
 
 				found = true; // 일치하는 회원이 있음을 표시
@@ -251,10 +255,12 @@ public class HRM {
 	}
 
 	private static void newMemberList() {
-		MainView.doubleLine();
+
 		System.out.println();
-		System.out.println("[신입사원 리스트]");
-		System.out.println("[사원번호]\t[비밀번호]\t[이름]\t\t[전화번호]\t\t[생년월일]\t\t[주소]\t\t\t[부서]\t[직급]");
+		System.out.println("신입사원 리스트");
+
+		System.out.printf("%-8s\t%-10s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\t%-4s","[사원번호]","[비밀번호]", "[이름]", "[전화번호]", "[생년월일]", "[주소]","[부서]","[직급]");
+		System.out.println();
 
 		Iterator<NewMembers> iterator = NewMemberData.NewMemberList.iterator();
 		List<NewMembers> tempList = new ArrayList<>();
@@ -262,9 +268,10 @@ public class HRM {
 		while (iterator.hasNext()) {
 			NewMembers newMember = iterator.next();
 
-			System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%s\t\t%s\t%s\t%s\n", newMember.getId(),newMember.getPw() ,newMember.getName(),
+			System.out.printf("%-8s\t%-10s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\t%-4s", newMember.getId(),newMember.getPw() ,newMember.getName(),
 					newMember.getPhoneNum(), newMember.getBirth(), newMember.getAddress(), newMember.getDept(),
 					newMember.getLevel());
+			System.out.println();
 
 			if (!"0".equals(newMember.getId())) {
 				// 생성된 사원번호를 부여한 후에 해당 멤버를 리스트에서 삭제

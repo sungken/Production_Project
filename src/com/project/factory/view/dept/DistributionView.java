@@ -12,6 +12,7 @@ public class DistributionView {
 
 	
 		public static String assignRegion;
+		public static int completeOrderCount;
 
 		public static void DistributionMemberView(){
 			

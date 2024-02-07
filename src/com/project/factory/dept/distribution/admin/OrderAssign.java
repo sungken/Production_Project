@@ -42,13 +42,13 @@ public class OrderAssign {
 			System.out.println();
 			System.out.println("[배정된 주문서]");
 
-			assignPrint("k3");
+			assignPrint("K3");
 			System.out.println();
-			assignPrint("k5");
+			assignPrint("K5");
 			System.out.println();
-			assignPrint("k7");
+			assignPrint("K7");
 			System.out.println();
-			assignPrint("k9");
+			assignPrint("K9");
 			System.out.println();
 
 			MainView.singleLine();
@@ -118,9 +118,16 @@ public class OrderAssign {
 
 		for (Members member : Data.memberList) {
 			// [사원번호] [이름] [생년월일] [전화번호] [주소]
+			
+//			System.out.printf("%-8s\t%-10s\t%-6s\t%-40s\t%-4s\t%-10s\t%-7s\t%-8s\n", "[주문서 번호]", "[주문일]", "[대리점명]",
+//					"[주소]", "[수량]", "[납기일]", "[사원이름]", "[사원번호]");
+//			System.out.printf("%-8s\t%-10s\t%-6s\t%-40s\t%-4s\t%-10s\t%-7s\t%-8s\n", assignOrder.getId(),
+//					assignOrder.getWriteDate(), assignOrder.getAgencyName(), assignOrder.getAgencyAddress(),
+//					assignOrder.getQuantity(), assignOrder.getDueDate(), assignOrder.getUserName(),
+//					assignOrder.getUserId());
 			if (member.getId().equals(assignUserId) && member.getDept().equals(Identify.dept)) {
-				System.out.println("[사원번호]\t[이름]\t\t[생년월일]\t[전화번호]\t\t[주소]");
-				System.out.printf("%s\t%s\t%s\t%s\t%s\n", member.getId(), member.getName(), member.getBirth(),
+				System.out.printf("%-8s\t%-4s\t%-8s\t%-15s\t%-30s\n","[사원번호]" ,"[이름]","[생년월일]","[전화번호]","[주소]");
+				System.out.printf("%-8s\t%-4s\t%-8s\t%-15s\t%-30s\n", member.getId(), member.getName(), member.getBirth(),
 						member.getPhoneNum(), member.getAddress());
 				userName = member.getName();
 			}
@@ -178,7 +185,8 @@ public class OrderAssign {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println();
-		MainView.doubleLine();
+		//TODO 이거 지워
+		//MainView.doubleLine();
 		System.out.println();
 		orderList("K3");
 		System.out.println();
@@ -221,6 +229,7 @@ public class OrderAssign {
 			System.out.println();
 			System.out.println();
 
+			MainView.singleLine();
 			System.out.println("배정이 완료되었습니다.");
 			MainView.pause();
 		} else if (Main.answer.equals("N")) {
@@ -234,12 +243,13 @@ public class OrderAssign {
 	}// checkOrder()
 
 	private static void deleteInventory(String model) {
-		ModelInfoData.modelInfoLoad();
+		
 		for (Order Order : OrderData.orderList) {
 			for (ModelInfo modell : ModelInfoData.modelInfoList) {
 				if (Order.getModelId().equals(model) && modell.getModelName().equals(model)) {
 					modell.setModelInventory(modell.getModelInventory() - Order.getQuantity());
-					System.out.println(modell.getModelName() + ", " + modell.getModelInventory());
+					//TODO 이거 지워
+					//System.out.println(modell.getModelName() + ", " + modell.getModelInventory());
 				}
 			}
 		}
