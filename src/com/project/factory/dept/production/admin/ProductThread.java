@@ -77,23 +77,27 @@ public class ProductThread extends Thread {
 					if (today.getModel().equals("K3")) {
 						today.setTodayProductNum(K3count);
 //						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+						ProductionManagement.countPiece("K3", "E94-A");
+						for(Piece piece : PieceData.pieceList) {
+							System.out.println(piece.getPieceName() +":"+ piece.getPieceNum());
+						}
 					}
-					ProductionManagement.countPiece("K3", "엔진A");
 					if (today.getModel().equals("K5")) {
 						today.setTodayProductNum(K5count);
 //						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+						ProductionManagement.countPiece("K5", "E94-B");
 					}
-					ProductionManagement.countPiece("K5", "엔진B");
 					if (today.getModel().equals("K7")) {
 						today.setTodayProductNum(K7count);
 //						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+						ProductionManagement.countPiece("K7", "E94-C");
 					}
-					ProductionManagement.countPiece("K7", "엔진C");
 					if (today.getModel().equals("K9")) {
 						today.setTodayProductNum(K9count);
 //						System.out.printf("%s . %d\n", today.getModel(), today.getTodayProductNum());
+						ProductionManagement.countPiece("K9", "E94-D");
 					}
-					ProductionManagement.countPiece("K9", "엔진D");
+					
 					
 				}
 				K3count += 9;

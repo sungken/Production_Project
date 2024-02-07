@@ -22,7 +22,6 @@ public class ProductionManagement {
 	public static void productionSelect() {
 
 		Scanner sc = new Scanner(System.in);
-
 		ProductionView.viewproductionMenu();
 		System.out.print("생산 입력: ");
 		int sel = sc.nextInt();
@@ -38,6 +37,7 @@ public class ProductionManagement {
 				MainView.pause();
 				production.setStarted(true);
 				production.setTerminate(true);
+				System.out.println("이미 실행중");
 
 			}
 		} else if (sel == 2) {
@@ -66,12 +66,14 @@ public class ProductionManagement {
 	}
 
 	private static void stopProduction() {
-
+		
+		
 		// 생산 정지 하루 재고 -> 재고량
 		for (ModelInfo model : ModelInfoData.modelInfoList) {
 			for (TodayProduction today : TodayProductionData.todayProductionList) {
 				if (model.getModelName().equals(today.getModel()))
-					model.setModelInventory(model.getModelInventory() + today.getTodayProductNum() - today.getTodayDefectiveNum());
+					model.setModelInventory(
+							model.getModelInventory() + today.getTodayProductNum() - today.getTodayDefectiveNum());
 
 			}
 
@@ -102,8 +104,8 @@ public class ProductionManagement {
 		for (ModelInfo model : ModelInfoData.modelInfoList) {
 			System.out.printf("\t%3d대\t", model.getModelInventory());
 		}
-	
-		//하루 생산량 -> 0
+
+		// 하루 생산량 -> 0
 		for (TodayProduction today : TodayProductionData.todayProductionList) {
 			today.setTodayProductNum(0);
 			today.setTodayDefectiveNum(0);
@@ -116,69 +118,83 @@ public class ProductionManagement {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		// 불량품 개수
-	
-		
-		while(loop) {
+
+		while (loop) {
 			ProductionView.viewModel();
 			System.out.println("종료를 원하시면 0을 입력해주세요.");
 			System.out.print("모델 입력: ");
 			String modelSel = sc.next();
-			if(modelSel.equals("0")) {
+			if (modelSel.equals("0")) {
 				loop = false;
 			}
-			for( TodayProduction product : TodayProductionData.todayProductionList) {
-				if(product.getModel().equals(modelSel)) {
+			for (TodayProduction product : TodayProductionData.todayProductionList) {
+				if (product.getModel().equals(modelSel)) {
 					System.out.printf("%s : ", product.getModel());
 					int rejectNum = sc.nextInt();
 					product.setTodayDefectiveNum(rejectNum);
 				}
-				
+
 			}
-			
+
 		}
-		
-		
-	
 
 	}
 
 	public static void countPiece(String modelName, String engineType) {
-		ProductThread thread = new ProductThread();
-		for (Piece piece : PieceData.pieceList) {
-			for (ModelInfo model : ModelInfoData.modelInfoList) {
-				if (piece.getPieceType().equals("바퀴") && model.getModelName().equals(modelName)) {
-					if (piece.getPieceNum() - model.getWheel() < 1) {
-						System.out.println("부품 개수가 부족합니다.");
-						System.out.println("생산을 종료합니다.");
-						thread.setTerminate(true);
-					}
-					piece.setPieceNum(piece.getPieceNum() - model.getWheel());
-				}
-				if (piece.getPieceType().equals("철판") && model.getModelName().equals(modelName)) {
-					if (piece.getPieceNum() - model.getWheel() < 1) {
-						System.out.println("부품 개수가 부족합니다.");
-						System.out.println("생산을 종료합니다.");
-						thread.setTerminate(true);
-					}
-					piece.setPieceNum(piece.getPieceNum() - model.getFrame());
-				}
-				if (piece.getPieceType().equals(engineType) && model.getModelName().equals(modelName)) {
-					if (piece.getPieceNum() - model.getWheel() < 1) {
-						System.out.println("부품 개수가 부족합니다.");
-						System.out.println("생산을 종료합니다.");
-						thread.setTerminate(true);
-					}
-					piece.setPieceNum(piece.getPieceNum() - 1);
-				}
-				if (piece.getPieceType().equals("가죽") && model.getModelName().equals(modelName)) {
-					if (piece.getPieceNum() - model.getWheel() < 1) {
-						System.out.println("부품 개수가 부족합니다.");
-						System.out.println("생산을 종료합니다.");
-						thread.setTerminate(true);
-					}
-					piece.setPieceNum(piece.getPieceNum() - model.getWheel());
-				}
+		boolean loop = true;
 
+		for (ModelInfo model : ModelInfoData.modelInfoList) {
+			if (loop) {
+				for (Piece piece : PieceData.pieceList) {
+					if (piece.getPieceType().equals("바퀴") && model.getModelName().equals(modelName)) {
+						if (piece.getPieceNum() - model.getWheel() < 1) {
+							System.out.println("바퀴 부품 개수가 부족합니다.");
+							System.out.println("생산을 종료합니다.");
+							production.setTerminate(false);
+							loop = false;
+							break;
+						} else {
+							piece.setPieceNum(piece.getPieceNum() - model.getWheel());
+						}
+					}
+					if (piece.getPieceType().equals("철판") && model.getModelName().equals(modelName)) {
+						if (piece.getPieceNum() - model.getFrame() < 1) {
+							System.out.println("철판 부품 개수가 부족합니다.");
+							System.out.println("생산을 종료합니다.");
+							production.setTerminate(false);
+							loop = false;
+							break;
+						} else {
+							piece.setPieceNum(piece.getPieceNum() - model.getFrame());
+						}
+					}
+					if (piece.getPieceName().equals(engineType) && model.getEngineType().equals(engineType)) {
+						if ((piece.getPieceNum() - 1) < 1) {
+							System.out.println("엔진 부품 개수가 부족합니다.");
+							System.out.println("생산을 종료합니다.");
+							production.setTerminate(false);
+							loop = false;
+							break;
+						} else {
+							piece.setPieceNum(piece.getPieceNum() - 1);
+						}
+					}
+					if (piece.getPieceType().equals("가죽") && model.getModelName().equals(modelName)) {
+						if (piece.getPieceNum() - model.getLeather() < 1) {
+							System.out.println("가죽 부품 개수가 부족합니다.");
+							System.out.println("생산을 종료합니다.");
+							production.setTerminate(false);
+							loop = false;
+							break;
+						} else {
+							piece.setPieceNum(piece.getPieceNum() - model.getLeather());
+						}
+					}
+
+				}
+			} else {
+				production.setTerminate(false);
+				break;
 			}
 		}
 	}
