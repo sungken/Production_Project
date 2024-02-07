@@ -11,7 +11,7 @@ public class commutePushView {
 	public static void commutePushViewMain() {
 		System.out.println();
 		MainView.doubleLine();
-		System.out.println("       근태 등록");
+		System.out.println("\t\t\t\t근태 등록");
 		MainView.doubleLine();
 	}
 
@@ -21,7 +21,7 @@ public class commutePushView {
 
 		//로그인이 안 된 상태이면
 			System.out.println();
-			System.out.println("1.출근하기");
+			System.out.println("1. 출근하기");
 			System.out.println();
 			MainView.singnleLine();
 			
