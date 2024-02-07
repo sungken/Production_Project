@@ -117,9 +117,9 @@ public class OrderAssign {
 			}
 			System.out.println(deliveryMember);
 			// 출근한 유통 가능직원 추출 후 목록(파일) 생성
-			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.DELIVERYMEMBER));
-			writer.write(deliveryMember.replace(", ", "■").replace("[", "").replace("]", ""));
-			writer.close();
+//			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.DELIVERYMEMBER));
+//			writer.write(deliveryMember.replace(", ", "■").replace("[", "").replace("]", ""));
+//			writer.close();
 
 			// 유통 출근자 목록(deliveryMember)과 지역 관리자(userRegion)합쳐서 출근자의 관리지역 확인하기
 			addOrderListAddDeliveryMember();
