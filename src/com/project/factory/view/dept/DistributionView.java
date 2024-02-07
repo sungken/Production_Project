@@ -42,9 +42,9 @@ public class DistributionView {
 	        System.out.printf("미완료: %d\n", incompleteOrderCount);
 	        
 	        System.out.println();
-	        System.out.println();
+			MainView.doubleLine();
+			System.out.println();
 	        
-
 	}
 		public static void DistributionAdminView() {
             CommuteData.load();

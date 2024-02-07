@@ -13,15 +13,15 @@ import com.project.factory.view.dept.DistributionView;
 public class CheckDest {
 
 	public static String selectNum;
-	
 	public static int count;
+	
 	
 
 
 	public static void checkDest() {
 		AssignData.load();
 	
-		CheckDestView.checkDestTitle();
+		MainView.title("배송지 조회 및 유통");
 
 		boolean hasOrders = false;
 
@@ -36,7 +36,6 @@ public class CheckDest {
 		
 
 		if (!hasOrders) {
-			MainView.doubleLine();
 			System.out.println();
 			System.out.println("오늘 배정받은 배송지가 없습니다.");
 			System.out.println();
@@ -63,11 +62,8 @@ public class CheckDest {
 		
 		System.out.println();
 		MainView.singleLine();
-		System.out.println();
 		
 		insertListNum();
-
-
 
 		deleteOrder(selectNum);
 
@@ -162,7 +158,9 @@ public class CheckDest {
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getUserId().equals(Identify.auth)) {
 				System.out.printf("%-8s\t%-6s\t%-10s\t%-8s\t%-5s\t%-5s\n", assignOrder.getId(), assignOrder.getArea(),
-						assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity(),assignOrder.getState());
+
+                        assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity(),assignOrder.getState());
+
 			}
 
 		}

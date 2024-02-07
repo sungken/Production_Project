@@ -21,8 +21,8 @@ public class OrderAssign {
 
 	public static void OrderAssign() {
 		AssignData.load();
-
-		OrderView.orderTitle();
+		
+		MainView.title("주문서 확인 및 배정 수정");
 		OrderView.orderView();
 
 		Scanner scan = new Scanner(System.in);
@@ -37,17 +37,17 @@ public class OrderAssign {
 		} else if (Main.selectNum.equals("2")) {
 			// 배정 수정 화면 넘어가기
 
-			MainView.doubleLine();
-
+			MainView.title("배정 수정");
 			System.out.println();
-			System.out.println("[배정된 주문서]");
 
 			assignPrint("K3");
 			System.out.println();
+
 			assignPrint("K5");
 			System.out.println();
 			assignPrint("K7");
 			System.out.println();
+
 			assignPrint("K9");
 			System.out.println();
 
@@ -77,19 +77,21 @@ public class OrderAssign {
 		String orderId = scan.nextLine();
 
 		boolean hasOrder = false;
-
+		System.out.println();
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getId().equals(orderId)) {
-				System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[주소]\t\t\t\t\t[수량]\t[납기일]\t[사원 이름]\t[사원 번호]");
-				System.out.printf("%s\t%s\t%s\t%s\t\t%d\t%s\t%s\t%s\n", assignOrder.getId(), assignOrder.getWriteDate(),
-						assignOrder.getAgencyName(), assignOrder.getAgencyAddress(), assignOrder.getQuantity(),
-						assignOrder.getDueDate(), assignOrder.getUserName(), assignOrder.getUserId());
+				System.out.printf("%-8s\t%-10s\t%-6s\t%-40s\t%-4s\t%-10s\t%-7s\t%-8s\n", "[주문서 번호]", "[주문일]", "[대리점명]",
+						"[주소]", "[수량]", "[납기일]", "[사원이름]", "[사원번호]");
+				System.out.printf("%-8s\t%-10s\t%-6s\t%-40s\t%-4s\t%-10s\t%-7s\t%-8s\n", assignOrder.getId(),
+						assignOrder.getWriteDate(), assignOrder.getAgencyName(), assignOrder.getAgencyAddress(),
+						assignOrder.getQuantity(), assignOrder.getDueDate(), assignOrder.getUserName(),
+						assignOrder.getUserId());
 				hasOrder = true;
 				break;
 
 			}
 		}
-
+		System.out.println();
 		MainView.singleLine();
 
 		if (hasOrder) {
@@ -111,11 +113,10 @@ public class OrderAssign {
 
 		String userName = "";
 
-		System.out.println();
 		System.out.print("해당 주문을 담당할 사원번호: ");
 
 		String assignUserId = scan.nextLine();
-
+		System.out.println();
 		for (Members member : Data.memberList) {
 			// [사원번호] [이름] [생년월일] [전화번호] [주소]
 			
@@ -127,9 +128,9 @@ public class OrderAssign {
 //					assignOrder.getUserId());
 			if (member.getId().equals(assignUserId) && member.getDept().equals(Identify.dept)) {
 				System.out.printf("%-8s\t%-4s\t%-8s\t%-15s\t%-30s\n","[사원번호]" ,"[이름]","[생년월일]","[전화번호]","[주소]");
-				System.out.printf("%-8s\t%-4s\t%-8s\t%-15s\t%-30s\n", member.getId(), member.getName(), member.getBirth(),
-						member.getPhoneNum(), member.getAddress());
-				userName = member.getName();
+
+                System.out.printf("%-8s\t%-4s\t%-8s\t%-15s\t%-30s\n", member.getId(), member.getName(), member.getBirth(), member.getPhoneNum(), member.getAddress());
+
 			}
 
 		}
@@ -172,9 +173,12 @@ public class OrderAssign {
 		}
 
 		System.out.println();
-		System.out.println("해당 직원으로 변경되었습니다.");
+		MainView.singleLine();
+		System.out.println();
+		System.out.println("해당 사원으로 변경되었습니다.");
 		System.out.println();
 		AssignData.save();
+		MainView.pause();
 
 	}
 
@@ -184,9 +188,9 @@ public class OrderAssign {
 
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println();
-		//TODO 이거 지워
-		//MainView.doubleLine();
+
+		MainView.title("주문서 확인");
+
 		System.out.println();
 		orderList("K3");
 		System.out.println();
@@ -199,10 +203,8 @@ public class OrderAssign {
 		System.out.println();
 		orderList("K9");
 		System.out.println();
-		System.out.println();
-
 		MainView.singleLine();
-		System.out.println();
+		
 		System.out.println("배정하시겠습니까?(Y/N)");
 		System.out.print("입력: ");
 
@@ -211,6 +213,7 @@ public class OrderAssign {
 		if (Main.answer.equals("Y")) {
 
 			assign();
+			System.out.println();
 			deleteInventory("K3");
 			deleteInventory("K5");
 			deleteInventory("K7");
@@ -227,9 +230,10 @@ public class OrderAssign {
 			System.out.println();
 			assignPrint("K9");
 			System.out.println();
+			MainView.singleLine();
 			System.out.println();
 
-			MainView.singleLine();
+
 			System.out.println("배정이 완료되었습니다.");
 			MainView.pause();
 		} else if (Main.answer.equals("N")) {
@@ -243,13 +247,13 @@ public class OrderAssign {
 	}// checkOrder()
 
 	private static void deleteInventory(String model) {
-		
+
+
 		for (Order Order : OrderData.orderList) {
 			for (ModelInfo modell : ModelInfoData.modelInfoList) {
 				if (Order.getModelId().equals(model) && modell.getModelName().equals(model)) {
 					modell.setModelInventory(modell.getModelInventory() - Order.getQuantity());
-					//TODO 이거 지워
-					//System.out.println(modell.getModelName() + ", " + modell.getModelInventory());
+
 				}
 			}
 		}
@@ -262,9 +266,7 @@ public class OrderAssign {
 
 		// System.out.println("[주문서 번호]\t[날짜]\t\t[대리점
 		// 명칭]\t[주소]\t\t\t\t\t[수량]\t[납기일]\t[사원 이름]\t[사원 번호]");
-		System.out.printf("%s 주문서", model);
-		System.out.println();
-		System.out.println();
+		System.out.printf("%s 주문서\n", model);
 		System.out.printf("%-8s\t%-10s\t%-6s\t%-40s\t%-4s\t%-10s\t%-7s\t%-8s\n", "[주문서 번호]", "[주문일]", "[대리점명]", "[주소]",
 				"[수량]", "[납기일]", "[사원이름]", "[사원번호]");
 		for (Assign assignOrder : AssignData.assignList) {
