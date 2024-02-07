@@ -8,13 +8,17 @@ import com.project.factory.view.dept.ProductionView;
 public class InventorySearch {
 	// 재고확인
 	public static void checkInventory() {
-		MainView.doubleLine();
+		System.out.println();
+		MainView.singleLine();
+		System.out.println("\t\t\t\t재고 확인");
+		MainView.singleLine();
+		
 		System.out.println();
 		for (ModelInfo modelInventory : ModelInfoData.modelInfoList) {
 			System.out.printf("%s : %d대\n", modelInventory.getModelName(), modelInventory.getModelInventory());
 		}
 		System.out.println();
-		MainView.doubleLine();
+		MainView.singleLine();
 		MainView.pause();
 	}
 	

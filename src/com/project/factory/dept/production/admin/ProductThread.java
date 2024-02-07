@@ -56,8 +56,6 @@ public class ProductThread extends Thread {
 	@Override
 	public void run() {
 		terminate = true;
-		System.out.println();
-		System.out.println("생산을 시작합니다.");
 
 		while (true) {
 			if(!terminate) {
@@ -108,6 +106,7 @@ public class ProductThread extends Thread {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("스레드 종료");
 			
 	}
 

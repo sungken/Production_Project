@@ -37,6 +37,7 @@ public class ProductionManagement {
 				production.start();
 				MainView.pause();
 				production.setStarted(true);
+				production.setTerminate(true);
 
 			}
 		} else if (sel == 2) {
@@ -44,14 +45,12 @@ public class ProductionManagement {
 			MainView.pause();
 		} else if (sel == 3) {
 			if(production.isStarted() == false) {
+				System.out.println();
 				System.out.println("생산이 시작되지 않았습니다.");
 				MainView.pause();
 				return;
 			}
 			
-			for (TodayProduction today : TodayProductionData.todayProductionList) {
-				System.out.printf("%s : %d대\n", today.getModel(), today.getTodayProductNum());
-			}
 			setRejectproduct();
 			stopProduction();
 			production.setTerminate(false);
@@ -60,7 +59,7 @@ public class ProductionManagement {
 
 			}
 		} else {
-			System.out.println("잘못된입력");
+			System.out.println("잘못된 입력입니다.");
 			MainView.pause();
 		
 		}
@@ -86,9 +85,9 @@ public class ProductionManagement {
 		System.out.println("생산이 종료되었습니다. 오늘도 고생하셨습니다.");
 		System.out.println();
 		MainView.doubleLine();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.printf("금일 총 생산량\t");
 		for(TodayProduction today : TodayProductionData.todayProductionList) {
 			System.out.printf("\t%3d대\t",  today.getTodayProductNum());
@@ -118,7 +117,8 @@ public class ProductionManagement {
 		// 불량품 개수
 		while (loop) {
 			ProductionView.viewModel();
-			System.out.print(" 모델 입력(종료. 0): ");
+			System.out.println("종료를 원하시면 0을 입력해주세요.");
+			System.out.print("모델 입력): ");
 			String sel = sc.nextLine();
 			if (sel.equals("0")) {
 				loop = false;
@@ -134,7 +134,6 @@ public class ProductionManagement {
 
 			}
 		}
-		MainView.pause();
 
 	}
 	

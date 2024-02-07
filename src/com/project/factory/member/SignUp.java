@@ -18,6 +18,10 @@ public class SignUp {
 	private static final Object[] String = null;
 
 	public static void cheackid() {
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t회원가입");
+		MainView.doubleLine();
 		
 		try {
 			// 사원번호
@@ -40,13 +44,13 @@ public class SignUp {
 			boolean loop = true;
 			
 			while(loop) {
-				MainView.singnleLine();
-				System.out.println();
+				System.out.println("회원가입을 진행할 사원 번호를 입력해주세요.");
+				System.out.println();   
 				System.out.print("사원번호: ");
 				Scanner scan = new Scanner(System.in);
 				String loadId = scan.nextLine();
 				System.out.println();
-				MainView.singnleLine();
+				MainView.singleLine();
 				System.out.println();
 				
 				boolean result = false;
@@ -78,15 +82,15 @@ public class SignUp {
 					System.out.println("주소: " + address);
 					System.out.println("부서: " + depart);
 					System.out.println();
-					MainView.singnleLine();
+					MainView.singleLine();
 					System.out.println();
 					
 					boolean pwLoop = true;
 					while(pwLoop) {
 						System.out.println("비밀번호를 설정해 주세요.");
-						System.out.println("(길이 : 10-16자, 영문자, 숫자만 가능)");
+						System.out.println("비밀번호는 10-16글자, 영문자&숫자만 입력 가능합니다.");
 						System.out.println();
-						MainView.singnleLine();
+						MainView.singleLine();
 						System.out.println();
 						System.out.print("비밀번호: ");
 						pw = scan.nextLine();
@@ -153,7 +157,7 @@ public class SignUp {
 			MainView.pause();
 		} else {
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			SignUp.checkContinue();

@@ -148,7 +148,7 @@ public class MainView {
 		}
 
 		System.out.println("0. 종료");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 
@@ -192,7 +192,7 @@ public class MainView {
                 return false;
             } else {
                 System.out.println();
-                MainView.singnleLine();
+                MainView.singleLine();
                 System.out.println();
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
             }
@@ -201,12 +201,12 @@ public class MainView {
 
 	// TODO doubleLine 메서드 추가
 	public static void doubleLine() {
-		System.out.println("===========================================================================");
+		System.out.println("==========================================================================================================================================");
 	}
 
 	// TODO singnleLine 메서드 추가
-	public static void singnleLine() {
-		System.out.println("---------------------------------------------------------------------------");
+	public static void singleLine() {
+		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
 }
