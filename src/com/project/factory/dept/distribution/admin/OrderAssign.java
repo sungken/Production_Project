@@ -235,15 +235,15 @@ public class OrderAssign {
 
 	private static void deleteInventory(String model) {
 		ModelInfoData.modelInfoLoad();
-		for(Order Order : OrderData.orderList) {
-		for (ModelInfo modell : ModelInfoData.modelInfoList) { 
+		for (Order Order : OrderData.orderList) {
+			for (ModelInfo modell : ModelInfoData.modelInfoList) {
 				if (Order.getModelId().equals(model) && modell.getModelName().equals(model)) {
 					modell.setModelInventory(modell.getModelInventory() - Order.getQuantity());
-				System.out.println(modell.getModelName() +", "+ modell.getModelInventory());
+					System.out.println(modell.getModelName() + ", " + modell.getModelInventory());
 				}
 			}
 		}
-			
+
 	}
 
 	private static void assignPrint(String model) {
@@ -310,8 +310,9 @@ public class OrderAssign {
 
 		OrderData.load();
 
-		// System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[주소]\t\t\t\t\t[수량]\t[납기일]");
 		System.out.printf("%s 주문서", model);
+		System.out.println();
+		// System.out.println("[주문서 번호]\t[날짜]\t\t[대리점 명칭]\t[주소]\t\t\t\t\t[수량]\t[납기일]");
 		System.out.printf("%-8s\t%-10s\t%-6s\t%-40s\t%-4s\t%-10s\n", "[주문서 번호]", "[주문일]", "[대리점명]", "[주소]", "[수량]",
 				"[납기일]");
 
