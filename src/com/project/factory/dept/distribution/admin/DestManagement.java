@@ -99,11 +99,15 @@ public class DestManagement {
 
 	
 	public static void area() {
-	    MainView.singnleLine();
-	    System.out.println();
-	    AreaView.areaView();
-	    System.out.println();
-	    MainView.singnleLine();
+
+		MainView.singleLine();
+		System.out.println();
+		AreaView.areaView();
+		System.out.println();
+		MainView.singleLine();
+		
+		System.out.print("행정구역 번호: ");
+
 
 	    Scanner scanner = new Scanner(System.in);
 	    int selectedRegion;

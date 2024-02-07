@@ -22,7 +22,7 @@ public class CommutePushView {
 			System.out.println();
 			System.out.println("1.출근하기");
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			
 			
 			System.out.print("번호 입력: ");
@@ -37,7 +37,7 @@ public class CommutePushView {
 			System.out.println();
 			System.out.println("2.퇴근하기");
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			
 			
 			System.out.print("번호 입력: ");
