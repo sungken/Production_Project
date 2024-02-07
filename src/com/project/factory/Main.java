@@ -50,6 +50,8 @@ public class Main {
 		TodayProductionData.todayInventoryLoad();
 		ProductionTarget.load_target();
 		CommuteData.load();
+		
+		MainView.logo();
 
 		while (loop) {
 
