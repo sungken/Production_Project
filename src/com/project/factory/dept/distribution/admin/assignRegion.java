@@ -11,9 +11,7 @@ import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.DistributionData;
 
-//사원 배정 메서드
-public class assignRegion {
-	
+public class AssignRegion {
 
 	private static HashMap<Integer, String> regionMap;
 	
@@ -72,5 +70,4 @@ public class assignRegion {
         }
     }
     
-
 }

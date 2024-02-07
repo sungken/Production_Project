@@ -7,14 +7,18 @@ import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.AssignData;
 
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.CheckDestView;
 
 public class CheckDest {
 
 	public static String selectNum;
+	
+
 
 	public static void checkDest() {
 		AssignData.load();
 	
+		CheckDestView.checkDestTitle();
 
 		boolean hasOrders = false;
 
@@ -30,7 +34,7 @@ public class CheckDest {
 			System.out.println();
 			System.out.println("오늘 배정받은 배송지가 없습니다.");
 			System.out.println();
-			MainView.doubleLine();
+			MainView.singnleLine();
 			MainView.pause();
 			return;
 		}
@@ -38,11 +42,11 @@ public class CheckDest {
 		for (Assign assignOrder : AssignData.assignList) {
 			if(assignOrder.getUserId().equals(Identify.auth)) {
 				if(assignOrder.getState().equals("완료") ) {
-					MainView.doubleLine();
+					
 					System.out.println();
 					System.out.println("배송을 모두 완료했습니다.");
 					System.out.println();
-					MainView.doubleLine();
+					MainView.singnleLine();
 					MainView.pause();
 					return;
 				}
@@ -145,13 +149,13 @@ public class CheckDest {
 
 	private static void printOrder() {
 
-		MainView.doubleLine();
+		
 		System.out.println();
 
-		System.out.println("[주문서 번호]\t[구역]\t[대리점명]\t[모델명]\t[수량]\t[상태]");
+		System.out.println("[주문서 번호]\t[구역]\t\t[대리점명]\t[모델명]\t[수량]\t[상태]");
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getUserId().equals(Identify.auth)) {
-				System.out.printf("%s\t%s\t%s\t%s\t\t%d\t%s\n", assignOrder.getId(), assignOrder.getArea(),
+				System.out.printf("%s\t\t%s\t%s\t%s\t\t%d\t%s\n", assignOrder.getId(), assignOrder.getArea(),
 						assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity(),assignOrder.getState());
 			}
 
