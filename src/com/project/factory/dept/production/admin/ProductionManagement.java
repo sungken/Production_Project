@@ -1,6 +1,5 @@
 package com.project.factory.dept.production.admin;
 
-import java.nio.file.spi.FileSystemProvider;
 import java.util.Scanner;
 
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
@@ -34,6 +33,9 @@ public class ProductionManagement {
 				}
 			} else if (production.isStarted() == false) {
 				production.start();
+				System.out.println();
+				System.out.println("생산이 시작되었습니다.");
+				
 				MainView.pause();
 				production.setStarted(true);
 				production.setTerminate(true);
@@ -42,6 +44,10 @@ public class ProductionManagement {
 			}
 		} else if (sel == 2) {
 			production.setStopRequested(true);
+			
+			System.out.println();
+			System.out.println("생산이 정지되었습니다.");
+			
 			MainView.pause();
 		} else if (sel == 3) {
 			if (production.isStarted() == false) {
@@ -84,6 +90,7 @@ public class ProductionManagement {
 			ProductionTarget.TargetNum.put(key, 0);
 		}
 
+
 		// 모든 종료절차가 끝나고난 뒤
 		System.out.println("생산이 종료되었습니다. 오늘도 고생하셨습니다.");
 		System.out.println();
@@ -110,6 +117,9 @@ public class ProductionManagement {
 			today.setTodayProductNum(0);
 			today.setTodayDefectiveNum(0);
 		}
+		System.out.println();
+		MainView.singleLine();
+		System.out.println();
 		MainView.pause();
 	}
 
@@ -122,14 +132,21 @@ public class ProductionManagement {
 		while (loop) {
 			ProductionView.viewModel();
 			System.out.println("종료를 원하시면 0을 입력해주세요.");
-			System.out.print("모델 입력: ");
-			String modelSel = sc.next();
-			if (modelSel.equals("0")) {
+
+			System.out.println();
+			System.out.print("모델명 입력: ");
+			String sel = sc.nextLine();
+			if (sel.equals("0")) {
+
 				loop = false;
 			}
+
+			System.out.println();
 			for (TodayProduction product : TodayProductionData.todayProductionList) {
-				if (product.getModel().equals(modelSel)) {
-					System.out.printf("%s : ", product.getModel());
+				if (product.getModel().equals(sel)) {
+					System.out.printf("%s의 불량품 개수: ", product.getModel());
+
+
 					int rejectNum = sc.nextInt();
 					product.setTodayDefectiveNum(rejectNum);
 				}
