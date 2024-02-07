@@ -49,7 +49,7 @@ public class SignUp {
 				Scanner scan = new Scanner(System.in);
 				String loadId = scan.nextLine();
 				System.out.println();
-				MainView.singnleLine();
+				MainView.singleLine();
 				System.out.println();
 				
 				boolean result = false;
@@ -81,7 +81,7 @@ public class SignUp {
 					System.out.println("주소: " + address);
 					System.out.println("부서: " + depart);
 					System.out.println();
-					MainView.singnleLine();
+					MainView.singleLine();
 					System.out.println();
 					
 					boolean pwLoop = true;
@@ -89,7 +89,7 @@ public class SignUp {
 						System.out.println("비밀번호를 설정해 주세요.");
 						System.out.println("비밀번호는 10-16글자, 영문자&숫자만 입력 가능합니다.");
 						System.out.println();
-						MainView.singnleLine();
+						MainView.singleLine();
 						System.out.println();
 						System.out.print("비밀번호: ");
 						pw = scan.nextLine();
@@ -156,7 +156,7 @@ public class SignUp {
 			MainView.pause();
 		} else {
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			SignUp.checkContinue();

@@ -51,7 +51,7 @@ public class OrderAssign {
 			assignPrint("k9");
 			System.out.println();
 
-			MainView.singnleLine();
+			MainView.singleLine();
 
 			modifyOrder(scan);
 
@@ -90,7 +90,7 @@ public class OrderAssign {
 			}
 		}
 
-		MainView.singnleLine();
+		MainView.singleLine();
 
 		if (hasOrder) {
 			modifyUserId(scan);
@@ -128,7 +128,7 @@ public class OrderAssign {
 		}
 
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 
 		System.out.println("해당 직원으로 진행하시겠습니까?(Y/N)");
 		System.out.print("입력: ");
@@ -193,7 +193,7 @@ public class OrderAssign {
 		System.out.println();
 		System.out.println();
 
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println();
 		System.out.println("배정하시겠습니까?(Y/N)");
 		System.out.print("입력: ");
