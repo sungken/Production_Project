@@ -16,18 +16,24 @@ public class SetProductionTarget {
 		System.out.println();
 
 		while (true) {
-			MainView.doubleLine();
-			System.out.println("\t\t\t\t생산 목표량 입력 및 수정");
-			MainView.doubleLine();
-			System.out.println("모델별 생산 목표량을 입렵해주세요.");
+			MainView.title("생산 목표량 입력 및 수정");
+			
+			System.out.println();
+			System.out.println("모델별 현재 생산 목표량");
 			System.out.println();
 			ProductionView.viewModelInven();
 			System.out.println();
+			MainView.singleLine();
+			
 			System.out.println("종료를 원하시면 0을 입력해주세요.");
-			System.out.print("모델 입력: ");
+			System.out.println();
+			
+			System.out.print("모델명 입력: ");
 			String selectedModel = sc.next();
 			if (ProductionTarget.TargetNum.containsKey(selectedModel)) {
 
+				System.out.println();
+				System.out.println("생산 목표량을 입력해주세요.");
 				System.out.println();
 				System.out.print(selectedModel + " : ");
 				target = sc.nextInt();
