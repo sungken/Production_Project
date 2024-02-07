@@ -1,5 +1,6 @@
 package com.project.factory.dept.production.admin;
 
+import java.nio.file.spi.FileSystemProvider;
 import java.util.Scanner;
 
 import com.project.factory.dept.production.admin.resource.ProductionTarget;
@@ -43,16 +44,16 @@ public class ProductionManagement {
 			production.setStopRequested(true);
 			MainView.pause();
 		} else if (sel == 3) {
-			if(production.isStarted() == false) {
+			if (production.isStarted() == false) {
 				System.out.println();
 				System.out.println("생산이 시작되지 않았습니다.");
 				MainView.pause();
 				return;
 			}
-			
+
+			production.setTerminate(false);
 			setRejectproduct();
 			stopProduction();
-			production.setTerminate(false);
 			for (TodayProduction today : TodayProductionData.todayProductionList) {
 				today.setTodayDefectiveNum(0);
 
@@ -60,7 +61,7 @@ public class ProductionManagement {
 		} else {
 			System.out.println("잘못된 입력입니다.");
 			MainView.pause();
-		
+
 		}
 	}
 
@@ -70,7 +71,7 @@ public class ProductionManagement {
 		for (ModelInfo model : ModelInfoData.modelInfoList) {
 			for (TodayProduction today : TodayProductionData.todayProductionList) {
 				if (model.getModelName().equals(today.getModel()))
-					model.setModelInventory(today.getTodayProductNum() - today.getTodayDefectiveNum());
+					model.setModelInventory(model.getModelInventory() + today.getTodayProductNum() - today.getTodayDefectiveNum());
 
 			}
 
@@ -79,29 +80,31 @@ public class ProductionManagement {
 		// 하루 목표량 -> 0
 		for (String key : ProductionTarget.TargetNum.keySet()) {
 			ProductionTarget.TargetNum.put(key, 0);
-
 		}
+
+		// 모든 종료절차가 끝나고난 뒤
 		System.out.println("생산이 종료되었습니다. 오늘도 고생하셨습니다.");
 		System.out.println();
 		MainView.singleLine();
 		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
 		MainView.singleLine();
 		System.out.printf("금일 총 생산량\t");
-		for(TodayProduction today : TodayProductionData.todayProductionList) {
-			System.out.printf("\t%3d대\t",  today.getTodayProductNum());
+		for (TodayProduction today : TodayProductionData.todayProductionList) {
+			System.out.printf("\t%3d대\t", today.getTodayProductNum());
 		}
 		System.out.println();
 		System.out.printf("금일 불량품 수\t");
-		for(TodayProduction today : TodayProductionData.todayProductionList) {
-			System.out.printf("\t%3d대\t",  today.getTodayDefectiveNum());
+		for (TodayProduction today : TodayProductionData.todayProductionList) {
+			System.out.printf("\t%3d대\t", today.getTodayDefectiveNum());
 		}
 		System.out.println();
 		System.out.print("재고 현황\t");
 		for (ModelInfo model : ModelInfoData.modelInfoList) {
 			System.out.printf("\t%3d대\t", model.getModelInventory());
 		}
-		
-		for(TodayProduction today : TodayProductionData.todayProductionList) {
+	
+		//하루 생산량 -> 0
+		for (TodayProduction today : TodayProductionData.todayProductionList) {
 			today.setTodayProductNum(0);
 			today.setTodayDefectiveNum(0);
 		}
@@ -113,34 +116,38 @@ public class ProductionManagement {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		// 불량품 개수
-		while (loop) {
+	
+		
+		while(loop) {
 			ProductionView.viewModel();
 			System.out.println("종료를 원하시면 0을 입력해주세요.");
 			System.out.print("모델 입력: ");
-			String sel = sc.nextLine();
-			if (sel.equals("0")) {
+			String modelSel = sc.next();
+			if(modelSel.equals("0")) {
 				loop = false;
-				break;
 			}
-
-			for (TodayProduction product : TodayProductionData.todayProductionList) {
-				if (product.getModel().equals(sel)) {
+			for( TodayProduction product : TodayProductionData.todayProductionList) {
+				if(product.getModel().equals(modelSel)) {
 					System.out.printf("%s : ", product.getModel());
 					int rejectNum = sc.nextInt();
 					product.setTodayDefectiveNum(rejectNum);
 				}
-
+				
 			}
+			
 		}
+		
+		
+	
 
 	}
-	
+
 	public static void countPiece(String modelName, String engineType) {
 		ProductThread thread = new ProductThread();
 		for (Piece piece : PieceData.pieceList) {
 			for (ModelInfo model : ModelInfoData.modelInfoList) {
 				if (piece.getPieceType().equals("바퀴") && model.getModelName().equals(modelName)) {
-					if(piece.getPieceNum() - model.getWheel()<1) {
+					if (piece.getPieceNum() - model.getWheel() < 1) {
 						System.out.println("부품 개수가 부족합니다.");
 						System.out.println("생산을 종료합니다.");
 						thread.setTerminate(true);
@@ -148,7 +155,7 @@ public class ProductionManagement {
 					piece.setPieceNum(piece.getPieceNum() - model.getWheel());
 				}
 				if (piece.getPieceType().equals("철판") && model.getModelName().equals(modelName)) {
-					if(piece.getPieceNum() - model.getWheel()<1) {
+					if (piece.getPieceNum() - model.getWheel() < 1) {
 						System.out.println("부품 개수가 부족합니다.");
 						System.out.println("생산을 종료합니다.");
 						thread.setTerminate(true);
@@ -156,7 +163,7 @@ public class ProductionManagement {
 					piece.setPieceNum(piece.getPieceNum() - model.getFrame());
 				}
 				if (piece.getPieceType().equals(engineType) && model.getModelName().equals(modelName)) {
-					if(piece.getPieceNum() - model.getWheel()<1) {
+					if (piece.getPieceNum() - model.getWheel() < 1) {
 						System.out.println("부품 개수가 부족합니다.");
 						System.out.println("생산을 종료합니다.");
 						thread.setTerminate(true);
@@ -164,14 +171,14 @@ public class ProductionManagement {
 					piece.setPieceNum(piece.getPieceNum() - 1);
 				}
 				if (piece.getPieceType().equals("가죽") && model.getModelName().equals(modelName)) {
-					if(piece.getPieceNum() - model.getWheel()<1) {
+					if (piece.getPieceNum() - model.getWheel() < 1) {
 						System.out.println("부품 개수가 부족합니다.");
 						System.out.println("생산을 종료합니다.");
 						thread.setTerminate(true);
 					}
 					piece.setPieceNum(piece.getPieceNum() - model.getWheel());
 				}
-				
+
 			}
 		}
 	}
