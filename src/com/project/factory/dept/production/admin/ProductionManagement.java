@@ -22,6 +22,7 @@ public class ProductionManagement {
 
 		Scanner sc = new Scanner(System.in);
 		ProductionView.viewproductionMenu();
+		
 		System.out.print("생산 입력: ");
 		int sel = sc.nextInt();
 
@@ -39,10 +40,15 @@ public class ProductionManagement {
 				MainView.pause();
 				production.setStarted(true);
 				production.setTerminate(true);
-				System.out.println("이미 실행중");
 
 			}
 		} else if (sel == 2) {
+			if (production.isStarted() == false) {
+				System.out.println();
+				System.out.println("생산이 시작되지 않았습니다.");
+				MainView.pause();
+				return;
+			}
 			production.setStopRequested(true);
 
 			System.out.println();
@@ -105,7 +111,7 @@ public class ProductionManagement {
 			System.out.printf("\t%3d대\t", today.getTodayDefectiveNum());
 		}
 		System.out.println();
-		System.out.print("재고 현황\t");
+		System.out.print("재고 현황\t\t");
 		for (ModelInfo model : ModelInfoData.modelInfoList) {
 			System.out.printf("\t%3d대\t", model.getModelInventory());
 		}
@@ -154,139 +160,7 @@ public class ProductionManagement {
 
 	}
 
-	public static void countPiece(String modelName, String engineType) {
-
-		switch (modelName) {
-		case "K3":
-			for (Piece piece : PieceData.pieceList) {
-				for (ModelInfo model : ModelInfoData.modelInfoList) {
-					if (piece.getPieceName().equals("바퀴")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getWheel());
-					}
-					if (piece.getPieceName().equals("철판")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getFrame());
-					}
-					if (piece.getPieceName().equals("가죽")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getLeather());
-					}
-					if (piece.getPieceName().equals(engineType)) {
-						piece.setPieceNum(piece.getPieceNum() - 1);
-					}
-				}
-			}
-			break;
-
-		case "K5":
-			for (Piece piece : PieceData.pieceList) {
-				for (ModelInfo model : ModelInfoData.modelInfoList) {
-					if (piece.getPieceName().equals("바퀴")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getWheel());
-					}
-					if (piece.getPieceName().equals("철판")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getFrame());
-					}
-					if (piece.getPieceName().equals("가죽")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getLeather());
-					}
-					if (piece.getPieceName().equals(engineType)) {
-						piece.setPieceNum(piece.getPieceNum() - 1);
-					}
-				}
-			}
-			break;
-		case "K7":
-			for (Piece piece : PieceData.pieceList) {
-				for (ModelInfo model : ModelInfoData.modelInfoList) {
-					if (piece.getPieceName().equals("바퀴")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getWheel());
-					}
-					if (piece.getPieceName().equals("철판")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getFrame());
-					}
-					if (piece.getPieceName().equals("가죽")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getLeather());
-					}
-					if (piece.getPieceName().equals(engineType)) {
-						piece.setPieceNum(piece.getPieceNum() - 1);
-					}
-				}
-			}
-			break;
-		case "K9":
-			for (Piece piece : PieceData.pieceList) {
-				for (ModelInfo model : ModelInfoData.modelInfoList) {
-					if (piece.getPieceName().equals("바퀴")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getWheel());
-					}
-					if (piece.getPieceName().equals("철판")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getFrame());
-					}
-					if (piece.getPieceName().equals("가죽")) {
-						piece.setPieceNum(piece.getPieceNum() - model.getLeather());
-					}
-					if (piece.getPieceName().equals(engineType)) {
-						piece.setPieceNum(piece.getPieceNum() - 1);
-					}
-				}
-			}
-			break;
-		}
-
-//		boolean loop = true;
-//		for (ModelInfo model : ModelInfoData.modelInfoList) {
-//			if (loop) {
-//				for (Piece piece : PieceData.pieceList) {
-//					if (piece.getPieceType().equals("바퀴") && model.getModelName().equals(modelName)) {
-//						if (piece.getPieceNum() - model.getWheel() < 1) {
-//							System.out.println("바퀴 부품 개수가 부족합니다.");
-//							System.out.println("생산을 종료합니다.");
-//							production.setTerminate(false);
-//							loop = false;
-//							break;
-//						} else {
-//							piece.setPieceNum(piece.getPieceNum() - model.getWheel());
-//						}
-//					}
-//					if (piece.getPieceType().equals("철판") && model.getModelName().equals(modelName)) {
-//						if (piece.getPieceNum() - model.getFrame() < 1) {
-//							System.out.println("철판 부품 개수가 부족합니다.");
-//							System.out.println("생산을 종료합니다.");
-//							production.setTerminate(false);
-//							loop = false;
-//							break;
-//						} else {
-//							piece.setPieceNum(piece.getPieceNum() - model.getFrame());
-//						}
-//					}
-//					if (piece.getPieceName().equals(engineType) && model.getEngineType().equals(engineType)) {
-//						if ((piece.getPieceNum() - 1) < 1) {
-//							System.out.println("엔진 부품 개수가 부족합니다.");
-//							System.out.println("생산을 종료합니다.");
-//							production.setTerminate(false);
-//							loop = false;
-//							break;
-//						} else {
-//							piece.setPieceNum(piece.getPieceNum() - 1);
-//						}
-//					}
-//					if (piece.getPieceType().equals("가죽") && model.getModelName().equals(modelName)) {
-//						if (piece.getPieceNum() - model.getLeather() < 1) {
-//							System.out.println("가죽 부품 개수가 부족합니다.");
-//							System.out.println("생산을 종료합니다.");
-//							production.setTerminate(false);
-//							loop = false;
-//							break;
-//						} else {
-//							piece.setPieceNum(piece.getPieceNum() - model.getLeather());
-//						}
-//					}
-//
-//				}
-//			} else {
-//				production.setTerminate(false);
-//				break;
-//			}
-//		}
-	}
+	
+	
 
 }// class
