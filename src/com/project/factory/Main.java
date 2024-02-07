@@ -177,7 +177,7 @@ public class Main {
 				if (Identify.level.equals("1") && Identify.dept.equals("유통")) {
 					if (selectNum.equals("16")) {
 						// 주문서 확인 및 배정 수정
-						OrderAssign.orderView();
+						OrderAssign.OrderAssign();
 						continue;
 					} else if (selectNum.equals("17")) {
 						// 사원 배송 구역 관리

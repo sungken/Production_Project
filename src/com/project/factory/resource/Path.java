@@ -13,7 +13,7 @@ public class Path {
 	public static final String ORDER = "data\\order.txt";	//주문서.
 	public static final String PIECEINVENTORY = "data\\pieceInventory.txt"; //부품 재고.
 	public static final String TODAYGOAL = "data\\todayGoal.txt";	//하루 생산 목표.
-	public static final String TODAYPRODUCTION = "data\\todayProduction.txt";	//하루 생산량정보
+	public static final String TODAYPRODUCTION = "data\\todayProduction.txt";	//하루 생산량정보.
 	public static final String USERREGION = "data\\userRegion.txt";	//유통사원 담당 구역 정보.
 	public static final String USERREGIONTEMP = "data\\userRegionTemp.txt";	//유통사원 담당 구역 변경 정보
 	
