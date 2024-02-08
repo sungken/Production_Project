@@ -7,8 +7,6 @@ import com.project.factory.dept.production.admin.resource.TodayProduction;
 import com.project.factory.dept.production.admin.resource.TodayProductionData;
 import com.project.factory.resource.inventory.ModelInfo;
 import com.project.factory.resource.inventory.ModelInfoData;
-import com.project.factory.resource.inventory.Piece;
-import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.ProductionView;
 
