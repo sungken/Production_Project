@@ -15,7 +15,6 @@ public class ProductionSystem {
 				today.setTodayProductNum(today.getTodayProductNum() + 9);
 				for (Piece piece : PieceData.pieceList) {
 					for (ModelInfo model : ModelInfoData.modelInfoList) {
-						System.out.println("ehlsmsda");
 						if (piece.getPieceType().equals("바퀴") && model.getModelName().equals("K3")) {
 							piece.setPieceNum(piece.getPieceNum() - model.getWheel()*9);
 						}
