@@ -126,7 +126,7 @@ public class ProductionView {
 		System.out.println(Today.day());
 		System.out.println();
 		System.out.println(" [ 구 분 ]\t\t[ K 3 ]\t\t[ K 5 ]\t\t[ K 7 ]\t\t[ K 9 ]");
-		System.out.printf("생산 목표치\t |");
+		System.out.printf("생산 목표치\t\t |");
 		Set<String> keySet = ProductionTarget.TargetNum.keySet();
 		for (String model : keySet) {
 			System.out.printf( "\t%3d대\t", ProductionTarget.TargetNum.get(model));
