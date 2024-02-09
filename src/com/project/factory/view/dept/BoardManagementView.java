@@ -6,8 +6,14 @@ import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
 import com.project.factory.view.MainView;
 
+/**
+ * 공지사항 관리를 담당하는 뷰 클래스이다.
+ */
 public class BoardManagementView {
 
+	/**
+	 * 공지사항 관리 메뉴를 출력하는 메서드이다.
+	 */
 	public static void boardManagementMenu() {
 		MainView.title("공지사항 관리");
 
@@ -20,6 +26,9 @@ public class BoardManagementView {
 		System.out.print("번호 입력: ");
 	}
 
+	/**
+	 * 공지사항 수정 메뉴를 출력하는 메서드이다.
+	 */
 	public static void boardEditMenu() {
 		System.out.println();
 		MainView.singleLine();
@@ -32,6 +41,9 @@ public class BoardManagementView {
 		System.out.print("번호 입력: ");
 	}
 
+	/**
+	 * 공지사항 등록 화면을 출력하는 메서드이다.
+	 */
 	public static void boardWriteView() {
 		MainView.title("공지사항 등록");
 		
@@ -39,6 +51,9 @@ public class BoardManagementView {
 		MainView.singleLine();
 	}
 	
+	/**
+	 * 공지사항 수정 화면을 출력하는 메서드이다.
+	 */
 	public static void boardEditView() {
 		MainView.title("공지사항 수정");
 
@@ -50,6 +65,9 @@ public class BoardManagementView {
 		System.out.print("번호 입력: ");
 	}
 
+	/**
+	 * 공지사항 삭제 화면을 출력하는 메서드이다.
+	 */
 	public static void boardDeleteView() {
 		MainView.title("공지사항 삭제");
 
@@ -61,6 +79,9 @@ public class BoardManagementView {
 		System.out.print("번호 입력: ");
 	}
 
+	/**
+	 * 현재 로그인한 사용자가 작성한 공지사항 목록을 출력하는 메서드이다.
+	 */
 	private static void boardManagementListView() {
 		System.out.printf("%-5s\t%-40S\t%-10S\t%-10S\r\n", "[번호]", "[제목]", "[작성일]", "[삭제 예정일]");
 

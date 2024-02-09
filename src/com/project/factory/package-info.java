@@ -1,4 +1,4 @@
 /**
- * 기본 메인 패키지
+ * 메인 패키지이다.
  */
 package com.project.factory;
