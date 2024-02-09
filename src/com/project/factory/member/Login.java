@@ -12,6 +12,13 @@ public class Login {
 	public static void login() {
 		int checkId = 0;
 		int checkPw = 0;
+		
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t\t\t\t로그인");
+		MainView.doubleLine();
+		System.out.println();
+		
 		Scanner scan = new Scanner(System.in);
 		System.out.print("아이디 입력: ");
 		String id = scan.nextLine();
@@ -29,6 +36,10 @@ public class Login {
 				Identify.level = member.getLevel();
 				Identify.dept = member.getDept();
 				Identify.name = member.getName();
+				
+				System.out.println();
+				System.out.println(Identify.name + "님 환영합니다.");
+				MainView.pause();
 				return;
 
 			} else if (pw.equals(member.getPw())) {
@@ -41,13 +52,16 @@ public class Login {
 		} // for문
 
 		if (checkId > checkPw) {
+			System.out.println();
 			System.out.println("아이디를 잘못 입력했습니다.");
 			checkContinue();
 		} else if (checkId < checkPw) {
+			System.out.println();
 			System.out.println("비밀번호를 잘못 입력했습니다.");
 			checkContinue();
 
 		} else if (checkId < 1 && checkPw < 1) {
+			System.out.println();
 			System.out.println("아이디와 비밀번호를 잘못 입력했습니다.");
 			checkContinue();
 
@@ -63,7 +77,7 @@ public class Login {
 			MainView.pause();
 		} else {
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			Login.checkContinue();

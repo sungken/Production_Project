@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import com.project.factory.Main;
 import com.project.factory.Today;
+import com.project.factory.Toolkit;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.Board;
@@ -19,13 +20,13 @@ import com.project.factory.view.MainView;
 //TODO WriteBoard 클래스명 > BoardManagement으로 수정 
 public class BoardManagement {
 
-	public static Scanner scan = new Scanner(System.in);
+	static Scanner scan = new Scanner(System.in);
 
-	public static String regex = ""; // 유효성 검사를 위한 변수
-	public static int noticeNumber = 0; // 공지사항 번호
-	public static String title = ""; // 제목
-	public static StringBuilder contents = new StringBuilder(); // 내용을 저장할 StringBuilder
-	public static String deleteDate = ""; // 삭제할 날짜
+	static String regex = ""; // 유효성 검사를 위한 변수
+	static int noticeNumber = 0; // 공지사항 번호
+	static String title = ""; // 제목
+	static String content = ""; //내용
+	static String deleteDate = ""; // 삭제할 날짜
 
 	// TODO 공지사항 데이터에 작성일 추가
 	// 공지사항번호■작성자ID(사원번호)■제목■내용■작성일■삭제할날짜
@@ -62,29 +63,20 @@ public class BoardManagement {
 
 	// 공지사항 등록
 	private static void boardWrite() {
-
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.BOARD, true)); // true인 경우 이어쓰기
 
 			BoardData.setNewNoticeNumber(); // 공지사항 번호 설정
 
-			System.out.println();
-			MainView.singnleLine();
-			System.out.println("          공지사항 작성");
-			MainView.singnleLine();
-			System.out.println();
-			// MainView.doubleLine();
-			System.out.println("날짜: " + Today.day());
-			MainView.doubleLine();
+			BoardManagementView.boardWriteView();
 
 			if (BoardManagement.writeDeleteDate()) {
-
+				System.out.println();
 				if (BoardManagement.writeTitle()) {
-
 					if (BoardManagement.writeContents()) {
 						// 공지사항번호■작성자ID(사원번호)■부서■제목■내용■작성일■삭제할날짜
 						writer.write(BoardData.getNoticeNumber() + "■" + Identify.auth + "■" + Identify.dept + "■"
-								+ BoardManagement.title + "■" + BoardManagement.contents.toString().trim() + "■"
+								+ BoardManagement.title + "■" + BoardManagement.content + "■"
 								+ Today.day() + "■" + BoardManagement.deleteDate);
 						writer.newLine();
 						writer.close();
@@ -127,7 +119,7 @@ public class BoardManagement {
 			Main.selectNum = scan.nextLine(); // 입력 받기
 
 			if (!Main.selectNum.isEmpty()) { // 입력이 공백이 아닌 경우
-				if (isInteger(Main.selectNum)) { // 정수값인지 확인
+				if (Toolkit.isInteger(Main.selectNum)) { // 정수값인지 확인
 
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum); // 수정할 공지사항 번호
 
@@ -139,13 +131,13 @@ public class BoardManagement {
 							Main.selectNum = scan.nextLine();
 
 							if (Main.selectNum.equals("1")) {
-								BoardManagement.boardEditTitle(BoardManagement.noticeNumber);
+								BoardManagement.boardEditTitle();
 								break;
 							} else if (Main.selectNum.equals("2")) {
-								BoardManagement.boardEditcontents(BoardManagement.noticeNumber);
+								BoardManagement.boardEditcontents();
 								break;
 							} else if (Main.selectNum.equals("3")) {
-								BoardManagement.boardEditDeleteDate(BoardManagement.noticeNumber);
+								BoardManagement.boardEditDeleteDate();
 								break;
 							} else {
 								System.out.println("잘못된 번호입니다.");
@@ -198,12 +190,12 @@ public class BoardManagement {
 		boolean loop = false;
 
 		while (true) {
-			BoardManagementView.boardEditView();
+			BoardManagementView.boardDeleteView();
 
 			Main.selectNum = scan.nextLine();
 
 			if (!Main.selectNum.isEmpty()) {
-				if (isInteger(Main.selectNum)) {
+				if (Toolkit.isInteger(Main.selectNum)) {
 
 					BoardManagement.noticeNumber = Integer.parseInt(Main.selectNum);
 
@@ -264,11 +256,11 @@ public class BoardManagement {
 
 	// 공지사항 수정 메서드
 	// 수정 메서드
-	private static void boardEditDeleteDate(int noticeNumber) {
+	private static void boardEditDeleteDate() {
 
 		while (true) {
 			if (BoardManagement.writeDeleteDate()) {
-				if (checkDeleteDateChange(noticeNumber, BoardManagement.deleteDate)) {
+				if (checkDeleteDateChange()) {
 					BoardData.save();
 
 					System.out.println();
@@ -299,10 +291,10 @@ public class BoardManagement {
 
 	}// boardEditDeleteDate
 
-	private static void boardEditTitle(int noticeNumber) {
+	private static void boardEditTitle() {
 		while (true) {
 			if (BoardManagement.writeTitle()) {
-				if (checkTitleChange(noticeNumber, BoardManagement.title)) {
+				if (checkTitleChange()) {
 					BoardData.save();
 
 					System.out.println();
@@ -332,10 +324,10 @@ public class BoardManagement {
 		}
 	}// boardEditTitle
 
-	private static void boardEditcontents(int noticeNumber) {
+	private static void boardEditcontents() {
 		while (true) {
 			for (Board board : BoardData.boardList) {
-				if (board.getNoticeNumber() == noticeNumber) {
+				if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
 					System.out.println();
 					System.out.println("기존 내용: " + board.getContents().replace("\\n", "\n"));
 					break;
@@ -343,7 +335,7 @@ public class BoardManagement {
 			}
 
 			if (BoardManagement.writeContents()) {
-				if (checkContentsChange(noticeNumber, BoardManagement.contents)) {
+				if (checkContentsChange()) {
 					BoardData.save();
 
 					System.out.println();
@@ -380,7 +372,7 @@ public class BoardManagement {
 			System.out.print("삭제할 날짜: ");
 			BoardManagement.deleteDate = scan.nextLine();
 
-			if (!Today.checkDate(BoardManagement.deleteDate) || Today.invalidateDate(deleteDate)) {
+			if (Today.invalidateDate(deleteDate)) {
 				System.out.println();
 				System.out.println("잘못된 형식의 날짜입니다.");
 				System.out.println("날짜는 10글자(하이픈 포함), 숫자만 입력 가능합니다.");
@@ -414,7 +406,7 @@ public class BoardManagement {
 			System.out.print("제목: ");
 			BoardManagement.title = scan.nextLine();
 
-			if (BoardManagement.invalidateTitle(BoardManagement.title)) {
+			if (BoardManagement.invalidateTitle()) {
 				System.out.println();
 				System.out.println("제목은 1-30글자까지 입력 가능합니다.");
 
@@ -432,6 +424,8 @@ public class BoardManagement {
 
 	private static boolean writeContents() {
 		while (true) {
+			StringBuilder contents = new StringBuilder(); // 내용을 저장할 StringBuilder
+			
 			System.out.println();
 			System.out.println("종료하려면 빈 줄에서 엔터를 두 번 입력하세요.");
 			System.out.print("내용: ");
@@ -440,9 +434,9 @@ public class BoardManagement {
 				if (line.isEmpty()) { // 입력이 빈 줄인 경우 반복문 종료
 					break;
 				}
-				BoardManagement.contents.append(line).append("\\n"); // 줄바꿈된 상태로 저장하지 말고 줄바꿈 문자를 추가하여 표시
+				contents.append(line).append("\\n"); // 줄바꿈된 상태로 저장하지 말고 줄바꿈 문자를 추가하여 표시
 			}
-			if (invalidateContents(BoardManagement.contents.toString())) {
+			if (invalidateContents(contents.toString())) { //StringBuilder 객체에 저장된 문자열 버퍼를 String으로 변환
 				System.out.println();
 				System.out.println("내용은 1-200글자까지 입력 가능합니다.");
 
@@ -452,6 +446,7 @@ public class BoardManagement {
 					return false;
 				}
 			} else {
+				BoardManagement.content = contents.toString().trim();
 				return true;
 			}
 		}
@@ -481,9 +476,9 @@ public class BoardManagement {
 		return false;
 	}
 
-	private static boolean invalidateTitle(String title) {
+	private static boolean invalidateTitle() {
 		// 제목 > 최대 30글자
-		return title.isEmpty() || title.length() > 30;
+		return BoardManagement.title.isEmpty() || BoardManagement.title.length() > 30;
 	}
 
 	private static boolean invalidateContents(String contents) {
@@ -501,14 +496,14 @@ public class BoardManagement {
 	}
 
 	// 중복성 검사
-	private static boolean checkDeleteDateChange(int noticeNumber, String deleteDate) {
+	private static boolean checkDeleteDateChange() {
 		for (Board board : BoardData.boardList) {
-			if (board.getNoticeNumber() == noticeNumber) {
-				if (board.getDeleteDate().equals(deleteDate)) {
+			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
+				if (board.getDeleteDate().equals(BoardManagement.deleteDate)) {
 					return false;
 
 				} else {
-					board.setDeleteDate(deleteDate); // 수정
+					board.setDeleteDate(BoardManagement.deleteDate); // 수정
 					return true;
 				}
 			}
@@ -516,14 +511,14 @@ public class BoardManagement {
 		return false;
 	}
 
-	public static boolean checkTitleChange(int noticeNumber, String title) {
+	public static boolean checkTitleChange() {
 		for (Board board : BoardData.boardList) {
-			if (board.getNoticeNumber() == noticeNumber) {
-				if (board.getTitle().equals(title)) {
+			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
+				if (board.getTitle().equals(BoardManagement.title)) {
 					return false;
 
 				} else {
-					board.setTitle(title); // 수정
+					board.setTitle(BoardManagement.title); // 수정
 					return true;
 				}
 			}
@@ -531,28 +526,17 @@ public class BoardManagement {
 		return false;
 	}
 
-	private static boolean checkContentsChange(int noticeNumber, StringBuilder contents) {
+	private static boolean checkContentsChange() {
 		for (Board board : BoardData.boardList) {
-			if (board.getNoticeNumber() == noticeNumber) {
-				if (board.getContents().equals(contents)) {
+			if (board.getNoticeNumber() == BoardManagement.noticeNumber) {
+				if (board.getContents().equals(BoardManagement.content)) {
 					return false;
 				} else {
-					board.setContents(contents.toString().trim()); // 수정
+					board.setContents(BoardManagement.content.toString().trim()); // 수정
 					return true;
 				}
 			}
 		} // for
 		return false;
-	}
-
-	// TODO ReadBoard에서 사용해서 일단 public으로 수정, AgencyManagement에서도 사용
-	// 문자열이 정수값인지 확인하는 메서드
-	public static boolean isInteger(String s) {
-		try {
-			Integer.parseInt(s);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 }

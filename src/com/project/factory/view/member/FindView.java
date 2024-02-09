@@ -1,9 +1,5 @@
 package com.project.factory.view.member;
 
-import java.util.Scanner;
-
-import com.project.factory.Main;
-import com.project.factory.member.Identify;
 import com.project.factory.view.MainView;
 
 public class FindView {
@@ -17,14 +13,14 @@ public class FindView {
 
 			System.out.println();
 			MainView.doubleLine();
-			System.out.println("     아이디/비밀번호 찾기");
+			System.out.println("\t\t\t\t아이디/비밀번호 찾기");
 			MainView.doubleLine();
 
 			System.out.println();
 			System.out.println("1. 아이디 찾기");
 			System.out.println("2. 비밀번호 찾기");
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			
 			System.out.print("번호 입력: ");
 

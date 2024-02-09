@@ -6,16 +6,13 @@ import com.project.factory.resource.dept.BoardData;
 public class BoardView {
 
 	public static void boardView() {
-		System.out.println();
-		MainView.doubleLine();
-		System.out.println("\t\t\t\t<공지사항>");
-		MainView.doubleLine();
+		MainView.title("공지사항");
 
 		BoardView.boardListView();
 
 		System.out.println();
 		System.out.println("확인하실 공지사항 번호를 입력해주세요.");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 
@@ -30,9 +27,13 @@ public class BoardView {
 	}
 
 	public static void boardDetailView(int noticeNumber) {
+		System.out.println();
+		MainView.singleLine();
+		System.out.println();
 		for (Board board : BoardData.boardList) {
 			if (board.getNoticeNumber() == noticeNumber) {
 				System.out.println("제목: " + board.getTitle().trim());
+				System.out.println();
 				System.out.println(board.getContents().replace("\\n", "\n"));
 				break;
 			}

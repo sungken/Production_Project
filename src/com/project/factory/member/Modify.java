@@ -12,7 +12,7 @@ import com.project.factory.view.member.ModifyView;
 
 public class Modify {
 
-	public static String regex = ""; // 정규식을 이용한 유효성 검사를 위한 변수
+	static String regex = ""; // 정규식을 이용한 유효성 검사를 위한 변수
 
 	public static void modify() {
 
@@ -32,6 +32,7 @@ public class Modify {
 		} else if (Main.selectNum.equals("4")) {
 			Modify.modifyPw();
 		} else {
+			System.out.println();
 			System.out.println("잘못된 번호입니다.");
 			MainView.pause();
 		}
@@ -43,7 +44,11 @@ public class Modify {
 		String name = "";
 
 		Scanner scan = new Scanner(System.in);
-
+		
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t\t\t\t이름 수정");
+		MainView.doubleLine();
 		System.out.print("이름: ");
 		name = scan.nextLine();
 
@@ -58,12 +63,14 @@ public class Modify {
 			// 유효성 검사는 통과한 경우 이전 이름에서 변경된 내용이 없는지 확인한다.
 			if (checkNameExist(name)) {
 				// 변경된 내용이 없는 경우
+				System.out.println();
 				System.out.println("변경된 내용이 없습니다.");
 
-				Modify.checkContinue();
+				Modify.checkContinue();    
 
 			} else {
 				// 변경된 이름인 경우
+				System.out.println();
 				System.out.println("이름이 변경되었습니다.");
 				MainView.pause();
 			}
@@ -77,6 +84,10 @@ public class Modify {
 
 		Scanner scan = new Scanner(System.in);
 
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t\t\t\t전화번호 수정");
+		MainView.doubleLine();
 		System.out.print("전화번호: ");
 		phoneNum = scan.nextLine();
 
@@ -90,11 +101,13 @@ public class Modify {
 		} else {
 
 			if (checkPhoneNumExist(phoneNum)) {
+				System.out.println();
 				System.out.println("변경된 내용이 없습니다.");
 
 				Modify.checkContinue();
 
 			} else {
+				System.out.println();
 				System.out.println("전화번호가 변경되었습니다.");
 				MainView.pause();
 			}
@@ -106,6 +119,10 @@ public class Modify {
 
 		Scanner scan = new Scanner(System.in);
 
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t\t\t\t주소 수정");
+		MainView.doubleLine();
 		System.out.print("주소: ");
 		address = scan.nextLine();
 
@@ -119,11 +136,13 @@ public class Modify {
 		} else {
 
 			if (checkAddressExist(address)) {
+				System.out.println();
 				System.out.println("변경된 내용이 없습니다.");
 
 				Modify.checkContinue();
 
 			} else {
+				System.out.println();
 				System.out.println("주소가 변경되었습니다.");
 				MainView.pause();
 			}
@@ -136,6 +155,10 @@ public class Modify {
 
 		Scanner scan = new Scanner(System.in);
 
+		System.out.println();
+		MainView.doubleLine();
+		System.out.println("\t\t\t\t\t\t\t비밀번호 수정");
+		MainView.doubleLine();
 		System.out.print("비밀번호: ");
 		pw = scan.nextLine();
 
@@ -149,11 +172,13 @@ public class Modify {
 		} else {
 
 			if (checkPwExist(pw)) {
+				System.out.println();
 				System.out.println("변경된 내용이 없습니다.");
 
 				Modify.checkContinue();
 
 			} else {
+				System.out.println();
 				System.out.println("비밀번호가 변경되었습니다.");
 				MainView.pause();
 			}
@@ -275,7 +300,7 @@ public class Modify {
 			MainView.pause();
 		} else {
 			System.out.println();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.println();
 			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			Modify.checkContinue();

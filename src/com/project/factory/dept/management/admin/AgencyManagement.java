@@ -1,8 +1,6 @@
 package com.project.factory.dept.management.admin;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Random;
 import java.util.Scanner;
@@ -10,10 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.project.factory.Main;
-import com.project.factory.board.admin.BoardManagement;
+import com.project.factory.Toolkit;
 import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
+import com.project.factory.resource.sub.AgencyData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.AreaView;
 import com.project.factory.view.sub.AgencyManagementView;
@@ -22,19 +21,19 @@ import com.project.factory.view.sub.AgencyManagementView;
 //S8132101■1234■강남1호점■010-1234-4567■gangnam1@auto.com■서울특별시 강남구 테헤란로 132■2
 public class AgencyManagement {
 
-	public static Scanner scan = new Scanner(System.in);
+	static Scanner scan = new Scanner(System.in);
 
-	public static String regex = ""; // 유효성 검사를 위한 변수
+	static String regex = ""; // 유효성 검사를 위한 변수
 
-	public static String name = ""; // 이름
-	public static String phoneNum = ""; // 전화번호
-	public static String areaNum = ""; // 구역번호(부서)
-	public static String address = ""; // 주소
-	public static String id = ""; // 아이디
+	static String name = ""; // 이름
+	static String phoneNum = ""; // 전화번호
+	static String areaNum = ""; // 구역번호(부서)
+	static String address = ""; // 주소
+	static String id = ""; // 아이디
 
 	public static void agencyManagement() {
 
-		AgencyManagement.load();
+		AgencyData.load();
 
 		AgencyManagementView.agencyManagementMenu();
 
@@ -61,20 +60,18 @@ public class AgencyManagement {
 	private static void registerAgency() {
 
 		try {
-			System.out.println();
-			MainView.singnleLine();
-			System.out.println("\t\t\t\t대리점 등록");
-			MainView.singnleLine();
+			MainView.title("대리점 등록");
 			System.out.println();
 
 			if (AgencyManagement.registerAgencyName()) {
+				System.out.println();
 				if (AgencyManagement.registerAgencyPhoneNum()) {
+					System.out.println();
 					if (AgencyManagement.registerAgencyArea()) {
+						System.out.println();
 						if (AgencyManagement.registerAgencyAddress()) {
 							if (AgencyManagement.checkRegisterContinue()) {
-								BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true)); // true인
-																												// 경우
-																												// 이어쓰기
+								BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true)); // true인 경우 이어쓰기
 
 								AgencyManagement.createAgencyId();// 대리점 아이디 생성
 
@@ -150,9 +147,13 @@ public class AgencyManagement {
 					loop = true;
 									
 					System.out.println();
+					MainView.singleLine();
+					System.out.println();
 					System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\r\n", "[대리점명]", "[전화번호]", "[구역]", "[주소]");
 					System.out.printf("%-10s\t%-12S\t%-10S\t%-40S\n", member.getName(),member.getPhoneNum(),member.getArea(member.getDept()), member.getAddress());
-
+					System.out.println();
+					MainView.singleLine();
+					
 					if (AgencyManagement.checkDeleteContinue()) {
 						Data.memberList.remove(member);// 해당 member 삭제
 
@@ -252,9 +253,9 @@ public class AgencyManagement {
 
 	private static boolean registerAgencyArea() {
 		while (true) {
-			MainView.singnleLine();
+			MainView.singleLine();
 			AreaView.areaView();
-			MainView.singnleLine();
+			MainView.singleLine();
 			System.out.print("구역 번호: ");
 			AgencyManagement.areaNum = scan.nextLine();
 
@@ -266,7 +267,7 @@ public class AgencyManagement {
 					return false;
 				}
 			} else {
-				if (BoardManagement.isInteger(AgencyManagement.areaNum)) { // 정수값인지 확인
+				if (Toolkit.isInteger(AgencyManagement.areaNum)) { // 정수값인지 확인
 
 					if (AgencyManagement.invalidateArea()) {
 						System.out.println();
@@ -449,7 +450,7 @@ public class AgencyManagement {
 				return false;
 			} else {
 				System.out.println();
-				MainView.singnleLine();
+				MainView.singleLine();
 				System.out.println();
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}
@@ -469,40 +470,11 @@ public class AgencyManagement {
 				return false;
 			} else {
 				System.out.println();
-				MainView.singnleLine();
+				MainView.singleLine();
 				System.out.println();
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}
 		}
-	}
-
-	private static void load() {
-		try {
-
-			Data.memberList.clear(); // 기존 데이터 초기화
-
-			BufferedReader reader = new BufferedReader(new FileReader(Path.MEMBER));
-
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
-				// 대리점ID■비밀번호■이름■■전화번호■주소■직급■구역■이메일
-				String[] temp = line.split("■");
-
-				Members member = new Members(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7],
-						temp[8]);
-
-				Data.memberList.add(member);
-
-			}
-
-			reader.close();
-
-		} catch (Exception e) {
-			System.out.println("AgencyManagement.load");
-			e.printStackTrace();
-		}
-
 	}
 
 }

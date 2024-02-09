@@ -54,10 +54,13 @@ public class Members {
 	public String getDept() {
 		return dept;
 	}
-
+	
+	
+	
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
+	
 
 	public Object getArea(String dept) {
 		if (getLevel().equals("3")) {
@@ -128,7 +131,7 @@ public class Members {
 	 * @param 이메일
 	 */
 	// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
-	// 대리점ID■비밀번호■이름■■전화번호■주소■직급■구역■이메일
+	// 대리점ID■비밀번호■이름■전화번호■주소■직급■구역■이메일
 	public Members(String id, String pw, String name, String birth, String phoneNum, String address, String level,
 			String dept, String email) {
 		this.id = id;
@@ -152,5 +155,9 @@ public class Members {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
 
 }

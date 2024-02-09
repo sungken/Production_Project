@@ -1,5 +1,6 @@
 package com.project.factory.view;
 
+import com.project.factory.Today;
 import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
@@ -7,57 +8,55 @@ import com.project.factory.resource.dept.BoardData;
 public class BoardManagementView {
 
 	public static void boardManagementMenu() {
-		System.out.println();
-		MainView.doubleLine();
-		System.out.println("          공지사항 관리");
-		MainView.doubleLine();
+		MainView.title("공지사항 관리");
 
 		System.out.println();
 		System.out.println("1. 공지사항 등록");
 		System.out.println("2. 공지사항 수정");
 		System.out.println("3. 공지사항 삭제");
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 
 	public static void boardEditMenu() {
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.println();
 		System.out.println("1. 제목");
 		System.out.println("2. 내용");
 		System.out.println("3. 삭제 날짜");
 		System.out.println();
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 
+	public static void boardWriteView() {
+		MainView.title("공지사항 등록");
+		
+		System.out.println("날짜: " + Today.day());
+		MainView.singleLine();
+	}
+	
 	public static void boardEditView() {
-		System.out.println();
-		MainView.singnleLine();
-		System.out.println("          공지사항 수정");
-		MainView.singnleLine();
+		MainView.title("공지사항 수정");
 
 		BoardManagementView.boardManagementListView();
 
 		System.out.println();
 		System.out.println("수정하실 공지사항 번호를 입력해주세요.");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 
 	public static void boardDeleteView() {
-		System.out.println();
-		MainView.singnleLine();
-		System.out.println("          공지사항 삭제");
-		MainView.singnleLine();
+		MainView.title("공지사항 삭제");
 
 		BoardManagementView.boardManagementListView();
 
 		System.out.println();
 		System.out.println("삭제하실 공지사항 번호를 입력해주세요.");
-		MainView.singnleLine();
+		MainView.singleLine();
 		System.out.print("번호 입력: ");
 	}
 

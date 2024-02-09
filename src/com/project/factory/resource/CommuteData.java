@@ -2,7 +2,6 @@ package com.project.factory.resource;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -15,7 +14,8 @@ public class CommuteData {
 
 		public static void load() {
 			try {
-
+				
+				commuteMemberList.clear();
 				
 				BufferedReader reader = new BufferedReader(new FileReader(Path.COMMUTE));
 
@@ -48,13 +48,14 @@ public class CommuteData {
 				for(Commute commuteMember : CommuteData.commuteMemberList) {
 					
 					//Score 객체 1개 > 홍길동, 100, 90, 80
-					String line = String.format("\r\n%s■%s■%s■%s■%d■%s"
+					String line = String.format("\r\n%s■%s■%s■%s■%s■%s■%s"
 																	, commuteMember.getCal()
 																	, commuteMember.getId()
 																	, commuteMember.getName()
 																	, commuteMember.getDept()
 																	, commuteMember.getLevel()
-																	, commuteMember.getCurrentTime());
+																	, commuteMember.getCurrentTime()
+																	, commuteMember.getCommute());
 																	
 					
 					writer.write(line);
