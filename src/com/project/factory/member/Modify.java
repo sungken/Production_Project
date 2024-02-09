@@ -17,7 +17,10 @@ import com.project.factory.view.member.ModifyView;
 public class Modify {
 
 	static String regex = ""; // 정규식을 이용한 유효성 검사를 위한 변수
-
+	
+	/**
+     * 회원 정보를 조회 및 수정하는 메서드이다.
+     */
 	public static void modify() {
 
 		Scanner scan = new Scanner(System.in);

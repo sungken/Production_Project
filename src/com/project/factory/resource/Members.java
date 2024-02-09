@@ -1,5 +1,8 @@
 package com.project.factory.resource;
 
+/**
+ * 회원 정보를 나타내는 클래스이다.
+ */
 public class Members {
 	private String id;
 	private String pw;
@@ -62,6 +65,12 @@ public class Members {
 	}
 	
 
+	/**
+     * 부서에 따른 구역을 반환하는 메서드이다.
+     * 
+     * @param dept 부서
+     * @return 부서에 따른 구역
+     */
 	public Object getArea(String dept) {
 		if (getLevel().equals("3")) {
 			switch (dept) {
@@ -118,18 +127,19 @@ public class Members {
 		return email;
 	}
 
-	/**
-	 * 
-	 * @param id    = 사원번호
-	 * @param pw    =비밀번호
-	 * @param name  = 이름
-	 * @param birth = 생년월일
-	 * @param 휴대폰번호
-	 * @param 주소
-	 * @param 권한
-	 * @param 부서
-	 * @param 이메일
-	 */
+	 /**
+     * Members 클래스의 생성자이다.
+     * 
+     * @param id       사원번호
+     * @param pw       비밀번호
+     * @param name     이름
+     * @param birth    생년월일
+     * @param phoneNum 전화번호
+     * @param address  주소
+     * @param level    직급
+     * @param dept     부서 or 행정 구역
+     * @param email    이메일
+     */
 	// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
 	// 대리점ID■비밀번호■이름■전화번호■주소■직급■구역■이메일
 	public Members(String id, String pw, String name, String birth, String phoneNum, String address, String level,
