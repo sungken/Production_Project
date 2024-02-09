@@ -15,6 +15,7 @@ public class CheckDest {
 	public static String selectNum;
 	public static int count;
 	
+	
 
 
 	public static void checkDest() {
@@ -31,6 +32,8 @@ public class CheckDest {
 				break;
 			}
 		}
+		
+		
 
 		if (!hasOrders) {
 			System.out.println();
@@ -155,7 +158,9 @@ public class CheckDest {
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getUserId().equals(Identify.auth)) {
 				System.out.printf("%-8s\t%-6s\t%-10s\t%-8s\t%-5s\t%-5s\n", assignOrder.getId(), assignOrder.getArea(),
+
                         assignOrder.getAgencyName(), assignOrder.getModelId(), assignOrder.getQuantity(),assignOrder.getState());
+
 			}
 
 		}
