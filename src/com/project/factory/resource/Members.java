@@ -46,6 +46,12 @@ public class Members {
 		this.address = address;
 	}
 
+	/**
+	 * 회원의 직급을 반환하는 메서드이다.
+	 * 직급은 관리자(1), 사원(2), 대리점(3)으로 구분된다.
+	 * 
+	 * @return 회원의 직급
+	 */
 	public String getLevel() {
 		return level;
 	}
@@ -66,11 +72,11 @@ public class Members {
 	
 
 	/**
-     * 부서에 따른 구역을 반환하는 메서드이다.
-     * 
-     * @param dept 부서
-     * @return 부서에 따른 구역
-     */
+	 * 행정 구역 번호에 따른 구역 이름을 한글로 반환하는 메서드이다.
+	 * 
+	 * @param dept 행정 구역 번호
+	 * @return 행정 구역 한글 이름
+	 */
 	public Object getArea(String dept) {
 		if (getLevel().equals("3")) {
 			switch (dept) {
@@ -137,7 +143,7 @@ public class Members {
      * @param phoneNum 전화번호
      * @param address  주소
      * @param level    직급
-     * @param dept     부서 or 행정 구역
+     * @param dept     부서 or 행정 구역 번호
      * @param email    이메일
      */
 	// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
