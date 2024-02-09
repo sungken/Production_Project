@@ -6,8 +6,8 @@ import com.project.factory.Main;
 import com.project.factory.Toolkit;
 import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
-import com.project.factory.view.BoardView;
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.BoardView;
 
 public class ReadBoard {
 

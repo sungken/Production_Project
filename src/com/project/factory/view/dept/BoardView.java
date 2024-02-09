@@ -1,7 +1,8 @@
-package com.project.factory.view;
+package com.project.factory.view.dept;
 
 import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
+import com.project.factory.view.MainView;
 
 public class BoardView {
 

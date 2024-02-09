@@ -14,8 +14,8 @@ import com.project.factory.member.Identify;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.Board;
 import com.project.factory.resource.dept.BoardData;
-import com.project.factory.view.BoardManagementView;
 import com.project.factory.view.MainView;
+import com.project.factory.view.dept.BoardManagementView;
 
 //TODO WriteBoard 클래스명 > BoardManagement으로 수정 
 public class BoardManagement {
