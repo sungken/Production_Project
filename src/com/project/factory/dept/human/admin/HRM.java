@@ -111,6 +111,7 @@ public class HRM {
 
                 System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\n", member.getId(), member.getName(), member.getBirth(),
                         member.getPhoneNum(), member.getAddress(),member.getDept());
+                System.out.println();
 				MainView.singleLine();
 
 				System.out.println();
