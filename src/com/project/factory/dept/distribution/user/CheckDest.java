@@ -1,6 +1,7 @@
 package com.project.factory.dept.distribution.user;
 
 import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 import com.project.factory.member.Identify;
@@ -10,6 +11,9 @@ import com.project.factory.view.MainView;
 import com.project.factory.view.dept.CheckDestView;
 import com.project.factory.view.dept.DistributionView;
 
+/** 배정된 주문서를 확인하고 유통 기능을 하는 클래스이다. 
+ * 
+ */
 public class CheckDest {
 
 	public static String selectNum;
@@ -18,6 +22,9 @@ public class CheckDest {
 	
 
 
+	/** 배송지를 조회하고 유통을 완료하는 메서드이다.
+	 * 
+	 */
 	public static void checkDest() {
 		AssignData.load();
 	
@@ -70,6 +77,9 @@ public class CheckDest {
 		MainView.pause();
 	}
 
+	/** 해당 작업을 계속 진행할지를 선택 받는 메서드이다.
+	 * 
+	 */
 	private static void checkContinue() {
 		boolean continuePrompt = true;
 
@@ -92,6 +102,10 @@ public class CheckDest {
 			}
 		}
 	}
+	
+	/** 배송이 완료된 주문서를 선택하고 선택한 주문서의 유통을 완료하는 메서드이다.
+	 * 
+	 */
 
 	private static void insertListNum() {
 		boolean validInput = false;
@@ -136,6 +150,10 @@ public class CheckDest {
 		}
 	}
 
+	/** 유통을 완료한 주문서의 상태를 미완료에서 완료로 변경하는 메서드이다.
+	 * 
+	 * @param selectNum 유통을 완료한 주문서 번호
+	 */
 	private static void deleteOrder(String selectNum) {
 		for (Assign assignOrder : AssignData.assignList) {
 			if (assignOrder.getId().equals(selectNum)) {

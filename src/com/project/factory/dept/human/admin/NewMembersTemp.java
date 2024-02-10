@@ -1,5 +1,8 @@
 package com.project.factory.dept.human.admin;
 
+/** 신입사원에게 사원번호까지 부여한 정보를 객체로 저장하는 클래스이다.
+ * 
+ */
 public class NewMembersTemp {
 	//신규 입사자에서 사원번호까지 받은 사람들 리스트 (신입사원은 비밀번호가 없어서 멤버 리스트에 저장하면 나중에 사용할때 인덱스아웃오브 에러뜸)
 	

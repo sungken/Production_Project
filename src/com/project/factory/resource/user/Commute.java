@@ -1,5 +1,8 @@
 package com.project.factory.resource.user;
 
+/** 근태 등록 정보를 객체로 만드는 클래스이다.
+ * 
+ */
 public class Commute{
 	//출근 인원 목록(관리자 기능)
 	private String cal;
@@ -57,7 +60,7 @@ public class Commute{
 	}
 
 	
-	/**
+	/** 근태등록을 한 멤버 정보 생성자
 	 * @param cal = 출근 날짜
 	 * @param id = 사원번호
 	 * @param name = 이름

@@ -9,10 +9,15 @@ import java.util.ArrayList;
 import com.project.factory.dept.human.admin.NewMembers;
 
 
-
+/** 신입사원 데이터를 파일에서 읽어와 리스트로 만드는 클래스이다.
+ * 
+ */
 public class NewMemberData {
 	public static ArrayList<NewMembers> NewMemberList = new ArrayList<NewMembers>();
 
+	/** 리스트로 만든 데이터를 로드하는 메서드이다.
+	 * 
+	 */
 	public static void load() {
         try {
             NewMemberList.clear();
@@ -40,7 +45,9 @@ public class NewMemberData {
 		
 		
 	
-	
+	/** 파일에 신입사원 리스트 정보를 저장하는 메서드이다.
+	 * 
+	 */
 	public static void save() {
 	    try {
 	        BufferedWriter writer = new BufferedWriter(new FileWriter(Path.NEWMEMBER));

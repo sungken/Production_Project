@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import com.project.factory.dept.distribution.user.Assign;
 import com.project.factory.resource.Path;
 
+/** 배정된 주문서 데이터를 파일에서 읽어와 리스트로 만드는 클래스이다.
+ * 
+ */
 public class AssignData {
+	
 
 	public static ArrayList<Assign> assignList = new ArrayList<Assign>();
 	public static int orderCount;
@@ -52,6 +56,11 @@ public class AssignData {
 	    }
 	}
 
+	/** 유통부 사원에게 배정된 주문서 개수를 반환하는 메서드이다.
+	 * 
+	 * @param memberId 해당 주문서를 배정받은 유통부 사원번호
+	 * @return 배정된 주문서 개수
+	 */
 	public static int getOrderCountByMemberId(String memberId) {
 	    int orderCount = 0; // 메서드 호출 시마다 초기화
 
@@ -64,6 +73,11 @@ public class AssignData {
 	    return orderCount;
 	}
 
+	/** 유통부 사원에게 배정된 주문서 중 유통을 완료한 주문서 개수를 반환하는 메서드 
+	 * 
+	 * @param memberId 해당 주문서를 배정받은 유통부 사원번호
+	 * @return 유통이 완료된 주문서 개수
+	 */
 	public static int getCompletedOrderCountByMemberId(String memberId) {
 	    int completedOrderCount = 0;
 
@@ -77,6 +91,9 @@ public class AssignData {
 	}
 
 
+	/** 파일에 배정된 주문서 리스트 정보를 저장하는 메서드이다.
+	 * 
+	 */
 	public static void save() {
 
 		try {

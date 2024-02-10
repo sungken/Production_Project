@@ -8,12 +8,18 @@ import com.project.factory.resource.dept.AssignData;
 import com.project.factory.resource.dept.DistributionData;
 import com.project.factory.view.MainView;
 
+/** 유통부 사원과 관리자 로그인시 보이는 화면을 관리하는 클래스이다.
+ * 
+ */
 public class DistributionView {
 
 	
 		public static String assignRegion;
 		public static int completeOrderCount;
 
+		/** 유통부 사원의 로그인시 보이는 화면을 출력하는 메서드이다.
+		 * 
+		 */
 		public static void DistributionMemberView(){
 			
 			AssignData.load();
@@ -46,6 +52,9 @@ public class DistributionView {
 			System.out.println();
 	        
 	}
+		/** 유통부 관리자의 로그인시 보이는 화면을 출력하는 메서드이다.
+		 * 
+		 */
 		public static void DistributionAdminView() {
             CommuteData.load();
 

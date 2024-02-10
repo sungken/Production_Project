@@ -14,6 +14,9 @@ import com.project.factory.resource.NewMemberTempData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.HumanView;
 
+/** 대리점을 제외한 모든 멤버의 인사관리 기능을 하는 클래스이다.
+ * 
+ */
 public class HRM {
 
 	private static String employeeId;
@@ -24,6 +27,9 @@ public class HRM {
 		hrmSelect();
 	}
 
+	/** 인사관리 메뉴를 선택하고 해당 기능을 수행하는 메서드이다.
+	 * 
+	 */
 	public static void hrmSelect() {
 		Scanner scan = new Scanner(System.in);
 
@@ -65,6 +71,9 @@ public class HRM {
 		}
 	}
 
+	/** 신입사원에게 사원번호를 부여하는 메서드이다.
+	 * 
+	 */
 	private static void addUser() {
 		
 		newMemberList();
@@ -85,6 +94,10 @@ public class HRM {
 			hrd();
 		}
 	}
+	
+	/** 멤버리스트에 있는 사원을 퇴사 시키는 메서드이다.
+	 * 
+	 */
 
 	private static void deleteUser() {
 		MainView.title("퇴사 관리");
@@ -156,6 +169,9 @@ public class HRM {
 		}
 	}
 
+	/** 사원 조회 기능을 수행하는 메서드이다.
+	 * 
+	 */
 	private static void searchUser() {
 		MainView.title("사원 조회");
 		System.out.println();
@@ -206,6 +222,9 @@ public class HRM {
 
 	}
 
+	/** 신입사원의 부서에 따라 사원번호를 생성해주는 메서드이다.
+	 * 
+	 */
 	private static void createUserId() {
 		Iterator<NewMembers> iterator = NewMemberData.NewMemberList.iterator();
 		boolean allAssigned = true;
@@ -251,6 +270,9 @@ public class HRM {
 		MainView.pause();
 	}
 
+	/** 신입사원 리스트를 출력하는 메서드이다.
+	 * 
+	 */
 	private static void newMemberList() {
 
 		MainView.title("입사 관리");

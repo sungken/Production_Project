@@ -8,10 +8,16 @@ import java.util.ArrayList;
 
 import com.project.factory.resource.user.Commute;
 
+/** 근태 등록 데이터를 파일에서 읽어와 리스트로 만드는 클래스이다.
+ * 
+ */
 public class CommuteData {
 		// 출근사원 정보 담긴 리스트(commuteMemberList)
 		public static ArrayList<Commute> commuteMemberList = new ArrayList<Commute>();
 
+		/** 리스트로 만든 데이터를 로드하는 메서드이다.
+		 * 
+		 */
 		public static void load() {
 			try {
 				
@@ -40,6 +46,9 @@ public class CommuteData {
 			
 		}
 		
+		/** 파일에 근태 등록 리스트 정보를 저장하는 메서드이다.
+		 * 
+		 */
 		public static void save() {
 			
 			try {

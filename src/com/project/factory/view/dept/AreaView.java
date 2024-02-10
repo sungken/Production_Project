@@ -1,7 +1,12 @@
 package com.project.factory.view.dept;
 
+/** 17개의 행정구역 뷰를 출력하는 클래스이다.
+ * 
+ */
 public class AreaView {
-	
+	/** 번호별 해당하는 행정구역을 출력하는 메서드
+	 * 
+	 */
 	 public static void areaView() {
 	        System.out.println("\t\t\t\t[행정구역 번호]");
 	        System.out.println();

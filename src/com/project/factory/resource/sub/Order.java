@@ -14,7 +14,7 @@ public class Order {
 	
 	/**
 	 * 
-	 * @param id 주무서 번호
+	 * @param id 주문서 번호
 	 * @param writeDate 주문서 작성일
 	 * @param agencyName 대리점명
 	 * @param agencyAddress 대리점 주소

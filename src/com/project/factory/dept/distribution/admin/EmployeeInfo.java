@@ -1,6 +1,8 @@
 package com.project.factory.dept.distribution.admin;
 
-
+/** 유통부 사원의 정보를 객체로 만드는 클래스이다.
+ * 
+ */
 
 public class EmployeeInfo {
 	private String id;
@@ -42,6 +44,13 @@ public class EmployeeInfo {
 //	public void setPhoneNum(String phoneNum) {
 //		this.phoneNum = phoneNum;
 //	}
+	/** 유통부 사원 정보 생성자
+	 * 
+	 * @param id 유통부 사원번호
+	 * @param name 유통부 사원이름
+	 * @param phoneNum 유통부 사원번호
+	 * @param assignedRegion 유통부 사원 담당구역
+	 */
 	public EmployeeInfo(String id, String name, String phoneNum,String assignedRegion) {
 		this.id = id;
 		this.name = name;

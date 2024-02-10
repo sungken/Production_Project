@@ -2,6 +2,9 @@ package com.project.factory.dept.distribution.user;
 
 import com.project.factory.resource.Members;
 
+/** 유통부 사원의 정보에 주문서 정보를 추가해 객체로 만드는 클래스이다.
+ * 
+ */
 public class Assign {
 
 		private String id;
@@ -18,6 +21,21 @@ public class Assign {
 		private String state = "미완료";
 		
 		//주문서번호■주문서 작성일■대리점명■대리점 주소■전화번호■개수■납기일■모델명 사원이름 아이디 구역 상태
+		/** 주문서 정보 생성자
+		 * 
+		 * @param id 주문서 아이디
+		 * @param writeDate 주문서 작성일
+		 * @param agencyName 대리점명
+		 * @param agencyAddress 대리점 주소
+		 * @param agencyPhoneNum 대리점 전화번호
+		 * @param quantity 수량
+		 * @param dueDate 납기일
+		 * @param modelId 모델명
+		 * @param userName 유통부 사원이름
+		 * @param userId 유통부 사원번호
+		 * @param area 유통부 사원 담당구역
+		 * @param state 배송상태
+		 */
 		public Assign(String id, String writeDate, String agencyName, String agencyAddress, String agencyPhoneNum,
 				int quantity, String dueDate, String modelId, String userName, String userId, Object area, String state) {
 

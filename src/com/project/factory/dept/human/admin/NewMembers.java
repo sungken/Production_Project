@@ -1,5 +1,8 @@
 package com.project.factory.dept.human.admin;
 
+/** 신입사원 정보를 객체로 저장하는 클래스이다.
+ * 
+ */
 public class NewMembers {
 	
 	private String id ;

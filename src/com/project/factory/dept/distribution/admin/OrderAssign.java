@@ -16,9 +16,16 @@ import com.project.factory.resource.sub.OrderData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.OrderView;
 
+/** 주문서 확인 및 배정 수정을 하는 클래스이다.
+ * 
+ */
+
 public class OrderAssign {
 	// OrderAssign.orderView();
 
+	/** 주문서 확인 및 배정 수정 기능을 수행하는 메서드이다.
+	 * 
+	 */
 	public static void OrderAssign() {
 		AssignData.load();
 		
@@ -67,6 +74,11 @@ public class OrderAssign {
 		}
 
 	}
+	
+	/** 주문서 정보를 변경하는 메서드이다.
+	 * 
+	 * @param scan 수정할 주문서 번호
+	 */
 
 	private static void modifyOrder(Scanner scan) {
 
@@ -109,6 +121,10 @@ public class OrderAssign {
 
 	}
 
+	/** 주문서 담당 사원을 변경하는 메서드이다.
+	 * 
+	 * @param scan 변경할 사원번호
+	 */
 	private static void modifyUserId(Scanner scan) {
 
 		String userName = "";
@@ -152,6 +168,11 @@ public class OrderAssign {
 
 	}
 
+	/** 담당 사원이 변경된 주문서 정보를 출력하는 메서드이다.
+	 * 
+	 * @param userId 변경할 사원번호
+	 * @param userName 변경할 사원이름
+	 */
 	private static void changeAssignUser(String userId, String userName) {
 
 		for (Assign assignOrder : AssignData.assignList) {
@@ -182,6 +203,9 @@ public class OrderAssign {
 
 	}
 
+	/** 대리점에서 모델별로 받은 주문서를 출력하는 메서드이다.
+	 * 
+	 */
 	public static void checkOrder() {
 
 		// 주문서 리스트 불러오기
@@ -246,6 +270,10 @@ public class OrderAssign {
 
 	}// checkOrder()
 
+	/** 주문서를 유통부 사원에게 배정하면 배정된 주문만큼 모델별 재고량에서 제외하는 메서드이다.
+	 * 
+	 * @param model 모델별 재고량에서 제외할 모델명
+	 */
 	private static void deleteInventory(String model) {
 
 
@@ -260,6 +288,10 @@ public class OrderAssign {
 
 	}
 
+	/** 모델별로 배정된 주문서를 출력하는 메서드이다.
+	 * 
+	 * @param model 출력할 모델명
+	 */
 	private static void assignPrint(String model) {
 
 		AssignData.load();
@@ -282,6 +314,9 @@ public class OrderAssign {
 
 	}
 
+	/** 주문서의 대리점 주소와 일치하는 담당구역을 관리하는 유통부 사원에게 주문을 배정하는 메서드이다.
+	 * 
+	 */
 	private static void assign() {
 		DistributionData.load(); // 사원 정보 로드
 		OrderData.load(); // 주문 정보 로드
@@ -318,6 +353,11 @@ public class OrderAssign {
 		AssignData.save();
 	}
 
+	/** 모델별로 대리점에서 받은 주문서를 출력하는 메서드이다.
+	 * 
+	 * @param model 출력할 모델명
+	 */
+	
 	private static void orderList(String model) {
 
 		OrderData.load();

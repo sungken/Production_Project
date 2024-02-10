@@ -8,6 +8,9 @@ import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
 import com.project.factory.view.member.FindView;
 
+/** 회원가입이 된 멤버의 아이디와 비밀번호를 찾는 기능을 하는 클래스이다.
+ * 
+ */
 public class Find {
 	
 	//TODO Find 변수와 메서드 모두 삭제하고 다시 만듬
@@ -40,6 +43,10 @@ public class Find {
     //TODO findId 메서드 추가
     //입력받은 이름과 전화번호를 memberList에 있는 이름과 전화번호를 비교해서 
     //해당하는 아이디를 반환하는 메서드
+    
+    /** 아이디 찾기 기능을 수행하는 메서드이다.
+     * 
+     */
     private static void findId() {
         Scanner scan = new Scanner(System.in);
         
@@ -84,6 +91,12 @@ public class Find {
 
     //TODO findMemberId 메서드 추가
     //memberList에 있는 name과 phoneNum을 비교 후 해당하는 아이디 반환
+    /** 멤버리스트에 존재하는 회원인지 확인하고 아이디를 반환하는 메서드이다.
+     * 
+     * @param name 아이디를 찾을 사원의 이름
+     * @param phoneNum 아이디를 찾을 사원의 전화번호
+     * @return 해당 아이디가 존재하지 않는다면 null, 아니면 해당 아이디 존재
+     */
     public static String findMemberId(String name, String phoneNum) {
         for (Members member : Data.memberList) {
             if (member.getName().equals(name) && member.getPhoneNum().equals(phoneNum)) {
@@ -96,6 +109,10 @@ public class Find {
     //TODO findId 메서드 추가
     //입력받은 아이디과 전화번호를 memberList에 있는 아이디과 전화번호를 비교해서 
     //해당하는 비밀번호를 반환하는 메서드
+    
+    /** 비밀번호 찾기 기능을 수행하는 메서드이다.
+     * 
+     */
     private static void findPw() {
         Scanner scan = new Scanner(System.in);
 
@@ -138,6 +155,12 @@ public class Find {
 
     //TODO findPw 메서드 추가
     //memberList에 있는 아이디와 phoneNum을 비교 후 해당하는 비밀번호 반환
+    /** 멤버리스트에 존재하는 회원인지 확인하고 비밀번호를 반환하는 메서드이다.
+     * 
+     * @param Id 비밀번호를 찾을 사원 아이디
+     * @param phoneNum 비밀번호를 찾을 사원의 전화번호
+     * @return 해당 비밀번호가 존재하지 않는다면 null, 아니면 해당 아이디 존재
+     */
     private static String findMemberPw(String Id, String phoneNum) {
         for (Members member : Data.memberList) {
             if (member.getId().equals(Id) && member.getPhoneNum().equals(phoneNum)) {

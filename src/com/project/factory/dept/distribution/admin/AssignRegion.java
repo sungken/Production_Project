@@ -11,6 +11,9 @@ import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.DistributionData;
 
+/**
+ * 유통부 사원의 배송 담당구역을 배정해 파일에 저장하는 클래스이다.
+ */
 public class AssignRegion {
 
 	private static HashMap<Integer, String> regionMap;
@@ -37,6 +40,9 @@ public class AssignRegion {
 		regionMap.put(17, "전북특별자치도");
 	}
 	
+	/** 해쉬맵으로 만든 행정구역 17개를 유통부 사원에 랜덤 배정하는 메서드이다.
+	 * 
+	 */
 
 	public static void distributionMember() {
 	    // 필요한 필드만 로드
@@ -58,7 +64,9 @@ public class AssignRegion {
 	    saveToUserRegionFile();
 	}
 
-
+/** 유통부 사원 담당구역 파일에 사원정보와 담당구역을 저장하는 메서드이다.
+ * 
+ */
     public static void saveToUserRegionFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Path.USERREGION))) {
             for (EmployeeInfo employeeInfo : DistributionData.distributionMembersList) {
