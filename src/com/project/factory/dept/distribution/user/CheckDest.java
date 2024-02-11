@@ -8,7 +8,6 @@ import com.project.factory.member.Identify;
 import com.project.factory.resource.dept.AssignData;
 
 import com.project.factory.view.MainView;
-import com.project.factory.view.dept.CheckDestView;
 import com.project.factory.view.dept.DistributionView;
 
 /** 배정된 주문서를 확인하고 유통 기능을 하는 클래스이다. 

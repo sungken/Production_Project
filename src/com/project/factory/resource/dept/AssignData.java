@@ -9,15 +9,25 @@ import java.util.ArrayList;
 import com.project.factory.dept.distribution.user.Assign;
 import com.project.factory.resource.Path;
 
-/** 배정된 주문서 데이터를 파일에서 읽어와 리스트로 만드는 클래스이다.
+/** 배정된 주문서 데이터를 관리하는 클래스이다.
  * 
  */
 public class AssignData {
 	
-
+	/** 주문서 목록
+	 * 
+	 */
 	public static ArrayList<Assign> assignList = new ArrayList<Assign>();
+	
+	/** 배정된 주문서 개수
+	 * 
+	 */
 	public static int orderCount;
-
+	
+	
+	/** 파일에서 주문서 데이터를 로드하는 메서드이다.
+	 * 
+	 */
 	public static void load() {
 	    try {
 	        assignList.clear(); // 기존 데이터 초기화

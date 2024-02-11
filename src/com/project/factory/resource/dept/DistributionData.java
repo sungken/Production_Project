@@ -7,13 +7,19 @@ import java.util.ArrayList;
 import com.project.factory.dept.distribution.admin.EmployeeInfo;
 import com.project.factory.resource.Path;
 
-/** 유통부 사원의 데이터를 파일에서 읽어와 리스트로 만드는 클래스이다.
+/** 유통부 사원의 데이터를 관리하는 클래스이다.
  * 
  */
 public class DistributionData {
 	
+	/** 유통부 사원 목록
+	 * 
+	 */
 	public static ArrayList<EmployeeInfo> distributionMembersList = new ArrayList<>();
 	
+	/** 파일에서 유통부 사원 데이터를 로드하는 메서드이다.
+	 * 
+	 */
 	public static void load() {
         try {
         	distributionMembersList.clear();

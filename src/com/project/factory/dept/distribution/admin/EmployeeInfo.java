@@ -1,6 +1,6 @@
 package com.project.factory.dept.distribution.admin;
 
-/** 유통부 사원의 정보를 객체로 만드는 클래스이다.
+/** 유통부 사원의 정보 나타내는 클래스이다.
  * 
  */
 

@@ -9,13 +9,17 @@ import java.util.ArrayList;
 import com.project.factory.dept.human.admin.NewMembers;
 
 
-/** 신입사원 데이터를 파일에서 읽어와 리스트로 만드는 클래스이다.
+/** 신입사원 데이터를 관리하는 클래스이다.
  * 
  */
 public class NewMemberData {
+	
+	/** 신입사원 목록
+	 * 
+	 */
 	public static ArrayList<NewMembers> NewMemberList = new ArrayList<NewMembers>();
 
-	/** 리스트로 만든 데이터를 로드하는 메서드이다.
+	/** 파일에서 신입사원 목록 데이터를 로드하는 메서드이다.
 	 * 
 	 */
 	public static void load() {

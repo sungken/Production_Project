@@ -8,13 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.project.factory.Main;
-import com.project.factory.dept.human.admin.HRM;
 import com.project.factory.resource.Path;
 import com.project.factory.resource.dept.DistributionData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.AreaView;
-import com.project.factory.view.dept.RegionView;
 
 
 /** 유통부 사원 담당 구역을 관리하는 클래스이다.
@@ -23,6 +20,10 @@ import com.project.factory.view.dept.RegionView;
 public class DestManagement {
 
 	public static String id;
+	
+	/** 유통부 사원 배송 구역 관리 기능을 하는 메서드이다.
+	 * 
+	 */
 
 	public static void destManagement() {
 		DistributionData.load();
