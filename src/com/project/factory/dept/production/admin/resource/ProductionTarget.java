@@ -12,10 +12,13 @@ import com.project.factory.resource.Path;
  * 모델별 목표 생산량 클래스
  */
 public class ProductionTarget {
+	/**
+	 * 하루 생산목표량을 담는 HashMap이다.
+	 */
 	public static HashMap<String, Integer> TargetNum = new HashMap<String, Integer>();
 	
 	/**
-	 * txt파일의 내용을 HashMap에 담는 메소드
+	 * txt파일의 내용을 HashMap에 담는 메소드이다.
 	 */
 	public static void load_target() {
 		try {
