@@ -13,9 +13,17 @@ import com.project.factory.resource.dept.DistributionData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.AreaView;
 
+
+/** 유통부 사원 담당 구역을 관리하는 클래스이다.
+ * 
+ */
 public class DestManagement {
 
 	public static String id;
+	
+	/** 유통부 사원 배송 구역 관리 기능을 하는 메서드이다.
+	 * 
+	 */
 
 	public static void destManagement() {
 		DistributionData.load();
@@ -47,6 +55,10 @@ public class DestManagement {
 		}
 	}
 
+	/** 존재하는 유통부 사원인지 확인하고 사원 정보를 출력하는 메서드이다.
+	 * 
+	 * @return 사원을 찾으면 true, 아니면 false
+	 */
 	private static boolean checkMemberId() {
 	    Scanner scan = new Scanner(System.in);
 
@@ -78,6 +90,10 @@ public class DestManagement {
 	}
 
 
+	/** 찾은 유통부 사원이 맞는지 확인하는 메서드이다.
+	 * 
+	 * @return 맞으면 true, 아니면 false
+	 */
 	private static boolean checkMember() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("해당 직원이 맞습니까?(Y/N)");
@@ -99,6 +115,9 @@ public class DestManagement {
 		return false;
 	}
 
+	/** 변경 가능한 17개의 행정구역을 출력하고 입력 받는 메서드이다.
+	 * 
+	 */
 	
 	public static void area() {
 
@@ -186,6 +205,10 @@ public class DestManagement {
 	}
 
 
+	/** 새로운 행정구역으로 유통부 사원의 담당구역을 변경하는 메서드이다.
+	 * 
+	 * @param newRegion 새로운 행정구역
+	 */
 	private static void updateAssignedRegion(String newRegion) {
 		try (BufferedReader reader = new BufferedReader(new FileReader(Path.USERREGION));
 				BufferedWriter writer = new BufferedWriter(new FileWriter(Path.USERREGIONTEMP))) {

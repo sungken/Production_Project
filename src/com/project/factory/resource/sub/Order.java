@@ -18,6 +18,7 @@ public class Order {
 	/**
 	 * Order 클래스의 생성자이다.
 	 * 
+
 	 * @param id             주문서 번호
 	 * @param writeDate      주문서 작성일
 	 * @param agencyName     대리점명

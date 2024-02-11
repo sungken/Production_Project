@@ -18,13 +18,18 @@ import com.project.factory.view.MainView;
 import com.project.factory.view.dept.CommutePushView;
 
 
-
+/** 대리점을 제외한 모든 멤버의 출근/퇴근을 관리하는 클래스이다.
+ * 
+ */
 public class CommutePush {
 
 	// 근태 등록
 
 	// 출근, 퇴근 누적시키기
 
+	/** 사원이 출근/퇴근을 등록하는 메서드이다.
+	 * 
+	 */
 	public static void commutePush() {
 
 		CommuteData.load();
@@ -99,6 +104,11 @@ public class CommutePush {
 
 	}
 
+	/** 사원의 출근 횟수를 확인하는 메서드이다.
+	 * 
+	 * @param auth
+	 * @return 출근만 했으면 0, 퇴근만 했으면 1, 출근/퇴근을 했으면 2
+	 */
 	private static int checkGoWork(String auth) {
 
 		//System.out.println("CommuteData.commuteMemberList " + CommuteData.commuteMemberList);
@@ -131,6 +141,10 @@ public class CommutePush {
 	}
 
 	// commute.txt에 퇴근 등록
+	/** 사원의 퇴근을 등록하는 메서드이다.
+	 * 
+	 * @param auth
+	 */
 	private static void leaveOut(String auth) {
 
 		try {
@@ -160,6 +174,10 @@ public class CommutePush {
 	}
 
 	// commute.txt에 출근 등록
+	/** 사원의 출근을 등록하는 메서드이다.
+	 * 
+	 * @param auth
+	 */
 	private static void gowork(String auth) {
 
 		try {
