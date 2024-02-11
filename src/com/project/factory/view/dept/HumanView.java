@@ -8,17 +8,24 @@ import com.project.factory.resource.CommuteData;
 import com.project.factory.resource.user.Commute;
 import com.project.factory.view.MainView;
 
+/** 인사부 관리자의 로그인시 보이는 화면을 관리하는 클래스이다.
+ *  
+ */
 public class HumanView {
 	
 	public static int count;
 	
+	/** 인사부 관리자의 사원관리 메뉴 뷰를 출력하는 메서드이다.
+	 * 
+	 */
 	public static void hrmTitle() {
 		System.out.println();
 		MainView.doubleLine();
-		System.out.println("\t\t\t\t\t\t\t직원관리(입사,퇴사)");
+		System.out.println("\t\t\t\t\t\t\t사원관리(입사,퇴사)");
 		MainView.doubleLine();
 	}
 	
+	// 인사부 관리자의 로그인시 보이는 화면을 출력하는 메서드이다.
 	public static void HumanAdminView() {
 		//2024-02-08
 		//현재 생산부 출근인원 : 10명
@@ -38,6 +45,9 @@ public class HumanView {
 	}
 	
 		
+	/** 부서별 출근인원을 보여주는 메서드이다.
+	 * 
+	 */
     public static void countMembersByDept() {
         Map<String, Integer> deptCounts = new HashMap<>();
 
@@ -57,6 +67,10 @@ public class HumanView {
     }
 
 
+    /** 찾고자하는 부서의 출근인원을 보여주는 메서드이다.
+     * 
+     * @param specificDept 찾고자하는 부서
+     */
     public static void countMembersBySpecificDept(String specificDept) {
         int count = 0;
 

@@ -69,7 +69,9 @@ public class MainView {
      */
 	public static void mainMenu() {
 		
+
 		MainView.title("쌍용 테크");
+
 
 		if (Identify.auth == null) {
 			System.out.println("1. 회원가입");
