@@ -10,7 +10,15 @@ public class ModelInfo {
 	private String engineType;
 	private int modelInventory;
 	
-	
+	/**
+	 * 모델 클래스의 생성자이다.
+	 * @param modelName	모델이름
+	 * @param wheel	바퀴 수
+	 * @param frame	철판 수
+	 * @param leather	가죽 수
+	 * @param engineType	엔진 종류
+	 * @param modelInventory	재고량
+	 */
 	public ModelInfo(String modelName, int wheel, int frame, int leather, String engineType, int modelInventory) {
 		this.modelName = modelName;
 		this.wheel = wheel;

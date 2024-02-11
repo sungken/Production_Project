@@ -3,7 +3,9 @@ package com.project.factory.member.admin;
 import com.project.factory.resource.inventory.ModelInfo;
 import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.view.MainView;
-
+/**
+ * 재고를 확인할 수 있는 클래스이다.
+ */
 public class InventorySearch {
 	// 재고확인
 	public static void checkInventory() {

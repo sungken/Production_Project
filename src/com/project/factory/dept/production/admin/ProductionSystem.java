@@ -6,9 +6,13 @@ import com.project.factory.resource.inventory.ModelInfo;
 import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.Piece;
 import com.project.factory.resource.inventory.PieceData;
-
+/**
+ * 모데별로 생산시스템을 관리하는 클래스이다.
+ */
 public class ProductionSystem {
-
+	/**
+	 * K3모델의 생산관리하는 메소드
+	 */
 	public static void productK3() {
 		for (TodayProduction today : TodayProductionData.todayProductionList) {
 			if (today.getModel().equals("K3")) {
@@ -33,7 +37,9 @@ public class ProductionSystem {
 		}
 
 	}
-
+	/**
+	 * K5모델의 생산관리하는 메소드
+	 */
 	public static void productK5() {
 		for (TodayProduction today : TodayProductionData.todayProductionList) {
 			if (today.getModel().equals("K5")) {
@@ -58,7 +64,10 @@ public class ProductionSystem {
 		}
 
 	}
-
+	
+	/**
+	 * K7모델의 생산관리하는 메소드
+	 */
 	public static void productK7() {
 		for (TodayProduction today : TodayProductionData.todayProductionList) {
 			if (today.getModel().equals("K7")) {
@@ -83,7 +92,9 @@ public class ProductionSystem {
 		}
 
 	}
-
+	/**
+	 * K9모델의 생산관리하는 메소드
+	 */
 	public static void productK9() {
 		for (TodayProduction today : TodayProductionData.todayProductionList) {
 			if (today.getModel().equals("K9")) {
