@@ -8,11 +8,15 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import com.project.factory.resource.Path;
-
+/**
+ * 모델별 목표 생산량 클래스
+ */
 public class ProductionTarget {
-	//모델별 목표 생산량을 담는 HashMap
 	public static HashMap<String, Integer> TargetNum = new HashMap<String, Integer>();
 	
+	/**
+	 * txt파일의 내용을 HashMap에 담는 메소드
+	 */
 	public static void load_target() {
 		try {
 
@@ -34,7 +38,10 @@ public class ProductionTarget {
 		}
 
 	}
-
+	
+	/**
+	 * 하루목표량 HashMap의 내용을 txt파일에 저장하는 메소드이다.
+	 */
 	public static void save_target() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.TODAYGOAL));

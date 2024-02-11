@@ -12,11 +12,15 @@ import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.Piece;
 import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.view.MainView;
-
+/**
+ * 생산부에서 쓰이는 View 클래스이다.
+ */
 public class ProductionView {
 	
 	
-	//하루목표 뷰
+	/**
+	 * 하루 목표량 view이다.
+	 */
 	public static void viewModelInven() {
 		int count = 1;
 		Set<String> keySet = ProductionTarget.TargetNum.keySet();
@@ -27,7 +31,7 @@ public class ProductionView {
 	}
 	
 	/**
-	 * 생산관리 View
+	 * 생산관리 View이다.
 	 */
 	public static void viewproductionMenu() {
 		MainView.title("생산 관리");
@@ -56,7 +60,9 @@ public class ProductionView {
 		MainView.singleLine();
 		
 	}
-	
+	/**
+	 * 부품개수를 보여주는 View이다.
+	 */
 	public static void viewCheckPiece() {
 		MainView.doubleLine();
 		System.out.println();
@@ -65,7 +71,9 @@ public class ProductionView {
 			System.out.printf("- %s : %d", piece.getPieceType(), piece.getPieceNum());
 		}
 	}
-	
+	/**
+	 * 부품 재고 파악 및 발주 메뉴 view이다.
+	 */
 	public static void checkPieceMenu() {
 		MainView.title("부품 재고 파악 및 발주");
 		System.out.println();
@@ -74,7 +82,9 @@ public class ProductionView {
 		System.out.println();
 		MainView.singleLine();
 	}
-	
+	/**
+	 * 부품별 재고 사항을 보여주는 View이다.
+	 */
 	public static void checkPiece() {
 		MainView.title("부품 재고 파악");
 		int wheelSum = 0;
@@ -107,7 +117,9 @@ public class ProductionView {
 		System.out.println();
 		MainView.singleLine();
 	}
-	
+	/**
+	 * 부품 발주 메뉴 view이다.
+	 */
 	public static void addPieceMenu() {
 		MainView.title("부품 발주");
 		System.out.println();
@@ -118,7 +130,9 @@ public class ProductionView {
 		System.out.println();
 		MainView.singleLine();
 	}
-	
+	/**
+	 * 생산직원의 초기화면 view이다.
+	 */
 	public static void productionView() {
 		String slash = ":";
 		MainView.doubleLine();
@@ -142,7 +156,9 @@ public class ProductionView {
 		System.out.println();
 		
 	}
-	
+	/**
+	 * 생산관리자의 초기메뉴 View이다.
+	 */
 	public static void productionAdminView() {
 		
 		System.out.println(Today.day());

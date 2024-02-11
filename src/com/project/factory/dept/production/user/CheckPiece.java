@@ -7,9 +7,13 @@ import com.project.factory.resource.inventory.Piece;
 import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.ProductionView;
-
+/**
+ * 부품재고 관리 시스템 클래스이다.
+ */
 public class CheckPiece {
-
+	/**
+	 * 부품재고관리 메뉴 선택 메소드이다.
+	 */
 	public static void pieceMenu() {
 		Scanner sc = new Scanner(System.in);
 		ProductionView.checkPieceMenu();
@@ -31,7 +35,9 @@ public class CheckPiece {
 		ProductionView.checkPiece();
 
 	}
-
+	/**
+	 * 부품을 발주할 수 있는 메소드이다.
+	 */
 	private static void addPiece() {
 		Scanner sc = new Scanner(System.in);
 		ProductionView.addPieceMenu();

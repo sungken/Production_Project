@@ -7,10 +7,17 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import com.project.factory.resource.Path;
-
+/**
+ * 모델 정보 데이터를 관리하는 클래스이다.
+ */
 public class ModelInfoData {
+	/**
+	 * 모델별 정보를 담는 ArrayList이다.
+	 */
 	public static ArrayList<ModelInfo> modelInfoList = new ArrayList<ModelInfo>();
-
+	/**
+	 * 모델 정보가 담겨있는 txt파일의 내용을 ArrayList에 담는 메소드이다.
+	 */
 	public static void modelInfoLoad() {
 		try {
 
@@ -34,7 +41,9 @@ public class ModelInfoData {
 		}
 
 	}
-
+	/**
+	 * ArrayList의 모델 정보를 txt파일에 담는 메소드이다.
+	 */
 	public static void modelInfoSave() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MODELINVENTORY));

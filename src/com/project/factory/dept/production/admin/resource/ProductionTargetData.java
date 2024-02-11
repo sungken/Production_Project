@@ -1,5 +1,7 @@
 package com.project.factory.dept.production.admin.resource;
-
+/**
+ * 하루 목표 생산량 데이터 클래스이다.
+ */
 public class ProductionTargetData {
 	
 	private String modelName;

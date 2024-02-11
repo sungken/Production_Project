@@ -1,5 +1,8 @@
 package com.project.factory.dept.production.admin.resource;
 
+/**
+ * 하루 생산량 데이터 클래스이다.
+ */
 public class TodayProduction {
 	private int todayProductNum;
 	private int todayDefectiveNum;
