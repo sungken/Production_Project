@@ -166,6 +166,9 @@ public class CheckDest {
 		}
 	}
 
+	/** 배정된 주문서 정보를 출력하는 메서드이다.
+	 * 
+	 */
 	private static void printOrder() {
 
 		
