@@ -33,7 +33,6 @@ import com.project.factory.view.dept.HumanView;
 /**
  * 메인 클래스이다.
  */
-
 public class Main {
 
 	public static String selectNum;
