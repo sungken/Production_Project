@@ -11,7 +11,6 @@ import com.project.factory.view.MainView;
 
 /**
  * 유통부 관련 화면을 관리하는 클래스이다.
->>>>>>> upstream/main
  */
 public class DistributionView {
 
@@ -23,7 +22,6 @@ public class DistributionView {
 		/**
 	     * 유통부 사원 화면에 배정된 행정 구역 및 주문 처리 현황을 출력하는 메서드이다.
 	     */
-
 		public static void DistributionMemberView(){
 			
 			AssignData.load();
@@ -60,7 +58,6 @@ public class DistributionView {
 		/**
 	     * 유통부 관리자 화면에 오늘 출근한 유통부 인원을 출력하는 메서드이다.
 	     */
-
 		public static void DistributionAdminView() {
             CommuteData.load();
 
