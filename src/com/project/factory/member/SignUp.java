@@ -12,31 +12,27 @@ import com.project.factory.resource.Members;
 import com.project.factory.resource.Path;
 import com.project.factory.view.MainView;
 
-
 /**
  * 회원가입을 하는 클래스 이다.
  */
 public class SignUp {
 
-
-
-	private static final Object[] String = null;
 	/**
 	 * cheackid 회원가입을 위한 메서드 이다.
 	 * 
-	 * @param id           = 사원번호
-	 * @param name         = 이름
-	 * @param humanNum     = 생년월일
-	 * @param phoneNum     = 핸드폰 번호
-	 * @param address      = 주소
-	 * @param depart       = 부서
-	 * @param pw           = 비밀번호
+	 * @param id       = 사원번호
+	 * @param name     = 이름
+	 * @param humanNum = 생년월일
+	 * @param phoneNum = 핸드폰 번호
+	 * @param address  = 주소
+	 * @param depart   = 부서
+	 * @param pw       = 비밀번호
 	 */
 	public static void cheackid() {
 		MainView.title("회원가입");
-		
+
 		try {
-			
+
 			String id = "";
 			String name = "";
 			String humanNum = "";
@@ -44,37 +40,34 @@ public class SignUp {
 			String address = "";
 			String depart = "";
 			String pw = "";
-			
-			
 
 			BufferedReader reader = new BufferedReader(new FileReader(Path.NEWMEMBERTEMP));
-			
+
 			boolean loop = true;
-			
-			while(loop) {
+
+			while (loop) {
 				System.out.println("회원가입을 진행할 사원 번호를 입력해주세요.");
-				System.out.println();   
+				System.out.println();
 				System.out.print("사원번호: ");
 				Scanner scan = new Scanner(System.in);
 				String loadId = scan.nextLine();
 				System.out.println();
 				MainView.singleLine();
 				System.out.println();
-				
+
 				boolean result = false;
 				String tempMember = "";
 				String line = null;
 				while ((line = reader.readLine()) != null) {
-					
+
 					String[] temp = line.split("■");
 					if (temp[0].equals(loadId)) {
 						result = true;
 						tempMember = line;
 						break;
-					} 
+					}
 				}
-				
-							
+
 				if (result) {
 					String[] temp = tempMember.split("■");
 					System.out.println("[기존 정보]");
@@ -93,9 +86,9 @@ public class SignUp {
 					System.out.println();
 					MainView.singleLine();
 					System.out.println();
-					
+
 					boolean pwLoop = true;
-					while(pwLoop) {
+					while (pwLoop) {
 						System.out.println("비밀번호를 설정해 주세요.");
 						System.out.println("비밀번호는 10-16글자, 영문자&숫자만 입력 가능합니다.");
 						System.out.println();
@@ -106,26 +99,27 @@ public class SignUp {
 						if (pw.matches("^[a-zA-Z0-9]{10,16}$")) {
 							System.out.println();
 							System.out.println("회원가입이 완료되었습니다.");
-							
+
 							BufferedReader readerDelete = new BufferedReader(new FileReader(Path.NEWMEMBERTEMP));
-							
+
 							String txt = "";
 							String line2 = null;
-							
+
 							while ((line2 = readerDelete.readLine()) != null) {
 //								System.out.println(tempMember);
 								txt += line2.replace(tempMember, "") + "\r\n";
 							}
-							
+
 							// 수정된 파일을 가지고 원본 파일에 이어쓰기
 							BufferedWriter writer = new BufferedWriter(new FileWriter(Path.MEMBER, true));
 							writer.write(txt);
-							
-							Members member = new Members(id, pw, name, humanNum, phoneNum, address, "2", depart, id + "@auto.com");
+
+							Members member = new Members(id, pw, name, humanNum, phoneNum, address, "2", depart,
+									id + "@auto.com");
 							Data.memberList.add(member);
 							writer.close();
 							readerDelete.close();
-							
+
 							pwLoop = false;
 						} else {
 							System.out.println("비밀번호는 10-16자, 영문자, 숫자만 가능합니다.");
@@ -135,34 +129,33 @@ public class SignUp {
 					loop = false;
 					MainView.pause(); // 왜 문제 ? + newMember에서 추가된 부분 삭제시키기
 					break;
-					
+
 				} else {
 					System.out.println("사원번호를 잘못 입력하셨습니다.");
 					System.out.println();
 					checkContinue();
 					break;
 				}
-				
+
 			}
 
 			reader.close();
-			
-			
+
 		} catch (Exception e) {
-			System.out.println("몰라"); //??
+			System.out.println("몰라"); // ??
 			e.printStackTrace();
 		}
 
 	}
-	
-	
+
 	/**
 	 * 계속 진행 여부를 확인하고 boolean 값으로 반환하는 메서드이다.
+	 * 
 	 * @return 계속 진행할 경우 true를 반환하고, 그렇지 않은 경우 false를 반환
 	 */
 	private static void checkContinue() {
 		MainView.checkContinue();
-		
+
 		if (Main.answer.equals("Y") || Main.answer.equals("y")) {
 			cheackid();
 		} else if (Main.answer.equals("N") || Main.answer.equals("n")) {

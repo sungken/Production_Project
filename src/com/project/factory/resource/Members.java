@@ -222,10 +222,4 @@ public class Members {
 
 	}
 
-
-	public String getMemberId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
