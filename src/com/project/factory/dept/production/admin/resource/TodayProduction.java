@@ -9,7 +9,7 @@ public class TodayProduction {
 	private String model;
 	
 	/**
-	 * 하루 생산량 생성자이다.
+	 * TodayProduction 클래스의 생성자이다.
 	 * @param todayProductNum	하루 생산량
 	 * @param todayDefectiveNum 하루 불량품 개수
 	 * @param model	모델이름
@@ -24,26 +24,50 @@ public class TodayProduction {
 		// TODO Auto-generated constructor stub
 	}
 
+	/** 하루 생산량을 반환하는 메서드이다.
+	 * 
+	 * @return 하루 생산량
+	 */
 	public int getTodayProductNum() {
 		return todayProductNum;
 	}
 
+	/** 하루 생산량을 설정하는 메서드이다.
+	 * 
+	 * @param todayProductNum 하루 생산량
+	 */
 	public void setTodayProductNum(int todayProductNum) {
 		this.todayProductNum = todayProductNum;
 	}
 
+	/** 하루 불량품 개수를 반환하는 메서드이다.
+	 * 
+	 * @return 하루 불량품 개수
+	 */
 	public int getTodayDefectiveNum() {
 		return todayDefectiveNum;
 	}
 
+	/** 하루 불량품 개수를 설정하는 메서드이다.
+	 * 
+	 * @param 하루 불량품 개수
+	 */
 	public void setTodayDefectiveNum(int todayDefectiveNum) {
 		this.todayDefectiveNum = todayDefectiveNum;
 	}
 
+	/** 모델이름을 반환하는 메서드이다.
+	 * 
+	 * @return 모델이름
+	 */
 	public String getModel() {
 		return model;
 	}
 
+	/** 모델이름을 설정하는 메서드이다.
+	 * 
+	 * @param model
+	 */
 	public void setModel(String model) {
 		this.model = model;
 	}

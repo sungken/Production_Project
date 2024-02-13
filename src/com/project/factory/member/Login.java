@@ -11,6 +11,10 @@ import com.project.factory.view.MainView;
  * 로그인 클래스이다.
  */
 public class Login {
+	
+	/** 로그인 기능을 수행하는 메서드이다.
+	 * 
+	 */
 	public static void login() {
 		int checkId = 0;
 		int checkPw = 0;

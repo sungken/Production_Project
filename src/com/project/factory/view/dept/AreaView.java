@@ -10,6 +10,7 @@ public class AreaView {
 	 * 번호별 해당하는 행정 구역을 출력하는 메서드이다.
 	 * 
 	 */
+	
 	public static void areaView() {
 		System.out.println("\t\t\t\t[행정구역 번호]");
 		System.out.println();

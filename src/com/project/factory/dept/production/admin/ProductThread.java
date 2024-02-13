@@ -55,7 +55,7 @@ public class ProductThread extends Thread {
 	int K9count = 0;
 
 	/**
-	 * 생샌 시스템 구현부 메소드이다.
+	 * 생산 시스템 구현부 메소드이다.
 	 */
 	@Override
 	public void run() {

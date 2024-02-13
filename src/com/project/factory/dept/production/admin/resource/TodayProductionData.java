@@ -15,7 +15,7 @@ import com.project.factory.view.dept.ProductionView;
 public class TodayProductionData {
 	public static ArrayList<TodayProduction> todayProductionList = new ArrayList<TodayProduction>();
 	/**
-	 * txt파일에 있는 하루 생산량을 ArrayList에 담는 메소드이다.
+	 * txt파일에 있는 하루 생산량을 ArrayList에 담는 메서드이다.
 	 */
 	public static void todayInventoryLoad() {
 		try {
@@ -41,7 +41,7 @@ public class TodayProductionData {
 
 	}
 	/**
-	 * 하루 생산량을 txt파일에 저장하는 메소드이다.
+	 * 하루 생산량을 txt파일에 저장하는 메서드이다.
 	 */
 	public static void todayInventorySave() {
 		try {

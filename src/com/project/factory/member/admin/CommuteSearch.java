@@ -16,6 +16,9 @@ import com.project.factory.view.dept.CommuteView;
 public class CommuteSearch {
     public static String date;
 
+    /** 사원 출/퇴근 조회 기능을 수행하는 메서드이다.
+     * 
+     */
     public static void commuteSearch() {
         CommuteData.load();
 

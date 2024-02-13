@@ -14,6 +14,10 @@ public class Data {
 	// TODO 유저 정보 담긴 리스트(memberList)
 	public static ArrayList<Members> memberList = new ArrayList<Members>();
 
+	
+	/** 파일에서 유저정보 데이터를 로드하는 메서드이다.
+	 * 
+	 */
 	public static void load() {
 		try {
 			
@@ -43,6 +47,9 @@ public class Data {
 		
 	}
 	
+	/** 파일에 유저 리스트 정보를 저장하는 메서드이다.
+	 * 
+	 */
 	public static void save() {
 		try {
 			BufferedWriter writer =  new BufferedWriter(new FileWriter(Path.MEMBER));

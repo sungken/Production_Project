@@ -18,6 +18,10 @@ public class Find {
 	//TODO find 메서드 추가
 	//1. 아이디 찾기
 	//2. 비밀먼호 찾기
+	
+	/** 아이디/비밀번호 찾기 기능을 실행하는 메서드이다.
+	 * 
+	 */
     public static void find() {
 
 		Scanner scan = new Scanner(System.in);
