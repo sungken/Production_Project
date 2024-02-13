@@ -7,11 +7,11 @@ import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.Piece;
 import com.project.factory.resource.inventory.PieceData;
 /**
- * 모데별로 생산시스템을 관리하는 클래스이다.
+ * 모델별로 생산시스템을 관리하는 클래스이다.
  */
 public class ProductionSystem {
 	/**
-	 * K3모델의 생산관리하는 메소드
+	 * K3모델의 생산관리하는 메소드이다.
 	 */
 	public static void productK3() {
 		for (TodayProduction today : TodayProductionData.todayProductionList) {
@@ -38,7 +38,7 @@ public class ProductionSystem {
 
 	}
 	/**
-	 * K5모델의 생산관리하는 메소드
+	 * K5모델의 생산관리하는 메소드이다.
 	 */
 	public static void productK5() {
 		for (TodayProduction today : TodayProductionData.todayProductionList) {
@@ -66,7 +66,7 @@ public class ProductionSystem {
 	}
 	
 	/**
-	 * K7모델의 생산관리하는 메소드
+	 * K7모델의 생산관리하는 메소드이다.
 	 */
 	public static void productK7() {
 		for (TodayProduction today : TodayProductionData.todayProductionList) {

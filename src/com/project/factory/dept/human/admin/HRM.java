@@ -19,8 +19,11 @@ import com.project.factory.view.dept.HumanView;
  */
 public class HRM {
 
-	private static String employeeId;
+	//private static String employeeId;
 
+	/** 인사부 관리자 기능을 수행하는 메서드이다.
+	 * 
+	 */
 	public static void hrd() {
 		NewMemberData.load();
 		HumanView.hrmTitle();
@@ -287,7 +290,7 @@ public class HRM {
 		System.out.println();
 
 		Iterator<NewMembers> iterator = NewMemberData.NewMemberList.iterator();
-		List<NewMembers> tempList = new ArrayList<>();
+		//List<NewMembers> tempList = new ArrayList<>();
 
 		while (iterator.hasNext()) {
 			NewMembers newMember = iterator.next();

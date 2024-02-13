@@ -83,7 +83,7 @@ public class AssignData {
 	    return orderCount;
 	}
 
-	/** 유통부 사원에게 배정된 주문서 중 유통을 완료한 주문서 개수를 반환하는 메서드 
+	/** 유통부 사원에게 배정된 주문서 중 유통을 완료한 주문서 개수를 반환하는 메서드이다.
 	 * 
 	 * @param memberId 해당 주문서를 배정받은 유통부 사원번호
 	 * @return 유통이 완료된 주문서 개수

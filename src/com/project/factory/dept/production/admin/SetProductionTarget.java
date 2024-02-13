@@ -10,6 +10,8 @@ import com.project.factory.view.dept.ProductionView;
  * 생산 목표를 입력받는 클래스이다.
  */
 public class SetProductionTarget {
+	
+	
 	public static void setproductionTarget() {
 		int target = 0; // 사용자로부터 입력받는 목표량 변수
 		Scanner sc = new Scanner(System.in);
