@@ -27,55 +27,93 @@ public class ModelInfo {
 		this.engineType = engineType;
 		this.modelInventory = modelInventory;
 	}
-
+	/**
+	 * 모델 정보 생산자이다.
+	 */
 	public ModelInfo() {
 		// TODO Auto-generated constructor stub
 	}
-
+	/**
+	 * 바퀴의 개수를 반환하는 메서드이다.
+	 * @return 바퀴 개수
+	 */
 	public int getWheel() {
 		return wheel;
 	}
-
+	/**
+	 * 바퀴 개수를 설정하는 메서드이다.
+	 * @param wheel 바퀴 개수
+	 */
 	public void setWheel(int wheel) {
 		this.wheel = wheel;
 	}
-
+	/**
+	 * 모델 재고를 반환하는 메서드이다.
+	 * @return 모델 재고
+	 */
 	public int getModelInventory() {
 		return modelInventory;
 	}
-
+	/**
+	 * 모델 재고를 설정하는 메서드이다.
+	 * @param modelInventory 모델 재고
+	 */
 	public void setModelInventory(int modelInventory) {
 		this.modelInventory = modelInventory;
 	}
-
+	/**
+	 * 모델 이름을 반환하는 메서드이다.
+	 * @return 모델 이름
+	 */
 	public String getModelName() {
 		return modelName;
 	}
-
+	/**
+	 * 모델 이름을 설정하는 메서드이다.
+	 * @param modelName 모델 이름
+	 */
 	public void setModelName(String modelName) {
 		this.modelName = modelName;
 	}
-
+	/**
+	 * 철판 개수를 반환하는 메서드이다.
+	 * @return 철판 개수
+	 */
 	public int getFrame() {
 		return frame;
 	}
-
+	/**
+	 * 철판 개수를 설정하는 메서드이다.
+	 * @param frame 철판 개수
+	 */
 	public void setFrame(int frame) {
 		this.frame = frame;
 	}
-
+	/**
+	 * 가죽 개수를 반환하는 메서드이다.
+	 * @return 가죽 개수
+	 */
 	public int getLeather() {
 		return leather;
 	}
-
+	/**
+	 * 가죽 개수를 설정하는 메서드이다.
+	 * @param leather 가죽 개수
+	 */
 	public void setLeather(int leather) {
 		this.leather = leather;
 	}
-
+	/**
+	 * 엔진 종류를 반환하는 메서드이다.
+	 * @return 엔진 종류
+	 */
 	public String getEngineType() {
 		return engineType;
 	}
-
+	/**
+	 * 엔진 종류를 설정하는 메서드이다.
+	 * @param engineType 엔진 종류
+	 */
 	public void setEngineType(String engineType) {
 		this.engineType = engineType;
 	}

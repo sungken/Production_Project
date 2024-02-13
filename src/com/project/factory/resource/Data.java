@@ -11,12 +11,13 @@ import java.util.ArrayList;
  * 사용자 데이터 저장 리스트 관리 클래스
  */
 public class Data {
-	// TODO 유저 정보 담긴 리스트(memberList)
+	/**
+	 *  유저 정보가 담긴 리스트(memberList)
+	 */
 	public static ArrayList<Members> memberList = new ArrayList<Members>();
 
-	
-	/** 파일에서 유저정보 데이터를 로드하는 메서드이다.
-	 * 
+	/**
+	 * txt파일의 유저정보를 ArrayList에 담는 메서드이다.
 	 */
 	public static void load() {
 		try {
@@ -46,9 +47,9 @@ public class Data {
 		
 		
 	}
-	
-	/** 파일에 유저 리스트 정보를 저장하는 메서드이다.
-	 * 
+
+	/**
+	 * ArrayList의 유저정보를 txt파일에 담는 메서드이다.
 	 */
 	public static void save() {
 		try {

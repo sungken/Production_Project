@@ -14,41 +14,80 @@ public class Members {
 	private String dept;
 	private String email;
 
+	/**
+	 * 사용자의 비밀번호를 반환하는 메서드이다.
+	 * 
+	 * @return 사용자 비밀번호
+	 */
 	public String getPw() {
 		return pw;
 	}
 
+	/**
+	 * 사용자의 비밀번호를 설정하는 메서드이다.
+	 * 
+	 * @param pw 사용자 비밀번호
+	 */
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
 
+	/**
+	 * 사용자의 이름을 반환하는 메서드이다.
+	 * 
+	 * @return 사용자 이름
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * 사용자의 이름을 설정하는 메서드이다.
+	 * 
+	 * @param name 사용자 이름
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * 사용자의 이름을 반환하는 메서드이다.
+	 * 
+	 * @return 사용자 이름
+	 */
 	public String getPhoneNum() {
 		return phoneNum;
 	}
 
+	/**
+	 * 사용자의 휴대폰 번호를 설정하는 메서드이다.
+	 * 
+	 * @param phoneNum
+	 */
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
 
+	/**
+	 * 사용자의 주소를 반환하는 메서드이다.
+	 * 
+	 * @return 사용자 주소
+	 */
 	public String getAddress() {
 		return address;
 	}
 
+	/**
+	 * 사용자의 주소를 설정하는 메서드이다.
+	 * 
+	 * @param address 사용자 주소
+	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	/**
-	 * 회원의 직급을 반환하는 메서드이다.
-	 * 직급은 관리자(1), 사원(2), 대리점(3)으로 구분된다.
+	 * 회원의 직급을 반환하는 메서드이다. 직급은 관리자(1), 사원(2), 대리점(3)으로 구분된다.
 	 * 
 	 * @return 회원의 직급
 	 */
@@ -56,20 +95,32 @@ public class Members {
 		return level;
 	}
 
+	/**
+	 * 회원의 직급을 설정하는 메서드이다. 직급은 관리자(1), 사원(2), 대리점(3)으로 구분된다.
+	 * 
+	 * @param 회원의 직급
+	 */
 	public void setLevel(String level) {
 		this.level = level;
 	}
 
+	/**
+	 * 사용자의 부서를 반환하는 메서드이다.
+	 * 
+	 * @return 사용자 부서
+	 */
 	public String getDept() {
 		return dept;
 	}
-	
-	
-	
+
+	/**
+	 * 사용자의 부서를 설정하는 메서드이다.
+	 * 
+	 * @param dept 사용자 부서
+	 */
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
-	
 
 	/**
 	 * 행정 구역 번호에 따른 구역 이름을 한글로 반환하는 메서드이다.
@@ -120,32 +171,41 @@ public class Members {
 		}
 		return "";
 	}
-
+	/**사용자의 아이디를 반환하는 메서드이다.
+	 * 
+	 * @return 사용자 아이디
+	 */
 	public String getId() {
 		return id;
 	}
-
+	/**사용자의 생년월일을 반환하는 메서드이다.
+	 * 
+	 * @return 사용자 생년월일
+	 */
 	public String getBirth() {
 		return birth;
 	}
-
+	/**사용자의 이메일주소를 반환하는 메서드이다.
+	 * 
+	 * @return 사용자 이메일주소
+	 */
 	public String getEmail() {
 		return email;
 	}
 
-	 /**
-     * Members 클래스의 생성자이다.
-     * 
-     * @param id       사원번호
-     * @param pw       비밀번호
-     * @param name     이름
-     * @param birth    생년월일
-     * @param phoneNum 전화번호
-     * @param address  주소
-     * @param level    직급
-     * @param dept     부서 or 행정 구역 번호
-     * @param email    이메일
-     */
+	/**
+	 * Members 클래스의 생성자이다.
+	 * 
+	 * @param id       사원번호
+	 * @param pw       비밀번호
+	 * @param name     이름
+	 * @param birth    생년월일
+	 * @param phoneNum 전화번호
+	 * @param address  주소
+	 * @param level    직급
+	 * @param dept     부서 or 행정 구역 번호
+	 * @param email    이메일
+	 */
 	// 사원번호■비밀번호■이름■생년월일■전화번호■주소■직급■부서■이메일
 	// 대리점ID■비밀번호■이름■전화번호■주소■직급■구역■이메일
 	public Members(String id, String pw, String name, String birth, String phoneNum, String address, String level,
@@ -162,18 +222,10 @@ public class Members {
 
 	}
 
-	@Override
-	public String toString() {
-		return super.toString();
-	}
 
 	public String getMemberId() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
-
 
 }
