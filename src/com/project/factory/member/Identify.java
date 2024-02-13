@@ -10,10 +10,10 @@ public class Identify {
 	// 사용자 권한 레벨 (관리자: 1, 사원: 2, 대리점: 3)
 	public static String level;
 	
-	// 사용자 권한 레벨 (관리자: 1, 사원: 2, 대리점: 3)
+	// 사용자 부서 
 	public static String dept;
 	
-	// 사용자 권한 레벨 (관리자: 1, 사원: 2, 대리점: 3)
+	// 사용자 이름 
 	public static String name;
 
 }

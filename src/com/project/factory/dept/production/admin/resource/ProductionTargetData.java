@@ -19,19 +19,12 @@ public class ProductionTargetData {
 		this.targetNum = targetNum;
 	}
 
-	/**
-	 * 모델의 이름을 반환하는 메서드이다.
-	 * 
-	 * @return 모델 이름
-	 */
-	public String getModelName() {
-		return modelName;
-	}
 
 	/**
 	 * 모델의 이름을 설정하는 메서드이다.
 	 * 
 	 * @param modelName 모델 이름
+
 	 */
 	public void setModelName(String modelName) {
 		this.modelName = modelName;
@@ -41,15 +34,23 @@ public class ProductionTargetData {
 	 * 하루 목표 생산량을 반환하는 메서드이다.
 	 * 
 	 * @return 하루 목표 생산량
+
 	 */
 	public int getTargetNum() {
 		return targetNum;
 	}
 
+	
+	/** 하루 목표량을 설정하는 메서드이다. 
+	 * 
+	 * @param targetNum 하루 목표량
+
+
 	/**
 	 * 하루 목표 생산량을 설정하는 메서드이다.
 	 * 
 	 * @param targetNum 하루 목표 생산량
+
 	 */
 	public void setTargetNum(int targetNum) {
 		this.targetNum = targetNum;

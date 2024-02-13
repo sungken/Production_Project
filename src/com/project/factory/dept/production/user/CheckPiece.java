@@ -12,7 +12,7 @@ import com.project.factory.view.dept.ProductionView;
  */
 public class CheckPiece {
 	/**
-	 * 부품재고관리 메뉴 선택 메소드이다.
+	 * 부품재고관리 메뉴 선택 메서드이다.
 	 */
 	public static void pieceMenu() {
 		Scanner sc = new Scanner(System.in);
@@ -36,7 +36,7 @@ public class CheckPiece {
 
 	}
 	/**
-	 * 부품을 발주할 수 있는 메소드이다.
+	 * 부품을 발주할 수 있는 메서드이다.
 	 */
 	private static void addPiece() {
 		Scanner sc = new Scanner(System.in);

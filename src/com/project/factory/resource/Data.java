@@ -15,6 +15,7 @@ public class Data {
 	 *  유저 정보가 담긴 리스트(memberList)
 	 */
 	public static ArrayList<Members> memberList = new ArrayList<Members>();
+
 	/**
 	 * txt파일의 유저정보를 ArrayList에 담는 메서드이다.
 	 */
@@ -46,6 +47,7 @@ public class Data {
 		
 		
 	}
+
 	/**
 	 * ArrayList의 유저정보를 txt파일에 담는 메서드이다.
 	 */

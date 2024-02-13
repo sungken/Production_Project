@@ -8,6 +8,10 @@ import com.project.factory.view.MainView;
  */
 public class InventorySearch {
 	// 재고확인
+	
+	/** 재고 확인 기능을 수행하는 메서드이다.
+	 * 
+	 */
 	public static void checkInventory() {
 		MainView.title("재고 확인");
 		

@@ -22,7 +22,7 @@ public class SignUp {
 
 	private static final Object[] String = null;
 	/**
-	 * cheackid 회원가입 을 위한 메서드 이다.
+	 * cheackid 회원가입을 위한 메서드 이다.
 	 * 
 	 * @param id           = 사원번호
 	 * @param name         = 이름
@@ -149,7 +149,7 @@ public class SignUp {
 			
 			
 		} catch (Exception e) {
-			System.out.println("몰라");
+			System.out.println("몰라"); //??
 			e.printStackTrace();
 		}
 

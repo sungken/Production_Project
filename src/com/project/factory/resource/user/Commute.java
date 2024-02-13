@@ -29,7 +29,7 @@ public class Commute{
 		return id;
 	}
 
-	/** 사원이름을 반환하느 메서드이다. 
+	/** 사원이름을 반환하는 메서드이다. 
 	 * 
 	 * @return 사원이름
 	 */
@@ -85,7 +85,7 @@ public class Commute{
 	 * @param dept = 부서
 	 * @param level = 권한
 	 * @param currentTime = 출근시간 
-	 * @param commute = 출/퇴근 
+	 * @param commute = 출/퇴근 상태
 	 */
 	
 	

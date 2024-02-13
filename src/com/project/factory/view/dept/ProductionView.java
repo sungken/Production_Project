@@ -19,7 +19,7 @@ public class ProductionView {
 	
 	
 	/**
-	 * 하루 목표량 view이다.
+	 * 하루 목표량 view 메서드이다.
 	 */
 	public static void viewModelInven() {
 		int count = 1;
@@ -31,7 +31,7 @@ public class ProductionView {
 	}
 	
 	/**
-	 * 생산관리 View이다.
+	 * 생산관리 View 메서드이다.
 	 */
 	public static void viewproductionMenu() {
 		MainView.title("생산 관리");
@@ -46,7 +46,7 @@ public class ProductionView {
 	
 
 	/**
-	 * 불량품 개수 입력 View이다.
+	 * 불량품 개수 입력 View 메서드이다.
 	 */
 	public static void viewModel() {
 		MainView.title("불량품 입력");
@@ -61,7 +61,7 @@ public class ProductionView {
 		
 	}
 	/**
-	 * 부품개수를 보여주는 View이다.
+	 * 부품개수를 보여주는 View 메서드이다.
 	 */
 	public static void viewCheckPiece() {
 		MainView.doubleLine();
@@ -83,7 +83,7 @@ public class ProductionView {
 		MainView.singleLine();
 	}
 	/**
-	 * 부품별 재고 사항을 보여주는 View이다.
+	 * 부품별 재고 사항을 보여주는 View 메서드이다.
 	 */
 	public static void checkPiece() {
 		MainView.title("부품 재고 파악");
@@ -118,7 +118,7 @@ public class ProductionView {
 		MainView.singleLine();
 	}
 	/**
-	 * 부품 발주 메뉴 view이다.
+	 * 부품 발주 메뉴 view 메서드이다.
 	 */
 	public static void addPieceMenu() {
 		MainView.title("부품 발주");
@@ -131,7 +131,7 @@ public class ProductionView {
 		MainView.singleLine();
 	}
 	/**
-	 * 생산직원의 초기화면 view이다.
+	 * 생산직원의 초기화면 view 메서드이다.
 	 */
 	public static void productionView() {
 		String slash = ":";
@@ -157,7 +157,7 @@ public class ProductionView {
 		
 	}
 	/**
-	 * 생산관리자의 초기메뉴 View이다.
+	 * 생산관리자의 초기메뉴 View 메서드이다.
 	 */
 	public static void productionAdminView() {
 		
