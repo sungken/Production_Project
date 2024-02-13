@@ -30,6 +30,7 @@ import com.project.factory.resource.inventory.PieceData;
 import com.project.factory.sub.agency.MyOrder;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.HumanView;
+
 /**
  * 메인 클래스이다.
  */
@@ -41,13 +42,14 @@ public class Main {
 
 	/**
 	 * 메인 메서드이다.
+	 * 
 	 * @param args 파라미터
 	 */
 	public static void main(String[] args) {
-		
+
 		boolean loop = true;
 		boolean fail = false;
-	
+
 		Scanner scan = new Scanner(System.in);
 		PieceData.pieceLoad();
 		Data.load();
