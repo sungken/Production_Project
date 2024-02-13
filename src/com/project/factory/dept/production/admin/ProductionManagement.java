@@ -10,7 +10,10 @@ import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.ProductionView;
 
-//TODO productionManagement 클래스명 오타 수정
+
+/**
+ * 생산시스템을 관리하는 클래스이다.
+ */
 public class ProductionManagement {
 	static // 생산관리
 
@@ -74,7 +77,9 @@ public class ProductionManagement {
 
 		}
 	}
-
+	/**
+	 * 생산을 정지하는 메소드이다.
+	 */
 	private static void stopProduction() {
 
 		// 생산 정지 하루 재고 -> 재고량
@@ -124,7 +129,10 @@ public class ProductionManagement {
 		System.out.println();
 		MainView.pause();
 	}
-
+	
+	/**
+	 * 불량품 개수를 입력받는 메소드이다.
+	 */
 	private static void setRejectproduct() {
 		// 불량품 개수 입력
 		Scanner sc = new Scanner(System.in);

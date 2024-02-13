@@ -7,7 +7,9 @@ import com.project.factory.resource.Data;
 import com.project.factory.resource.Members;
 import com.project.factory.view.MainView;
 
-//TODO checkContinue 유효성 검사시 반복문 돌음
+/**
+ * 로그인 클래스이다.
+ */
 public class Login {
 	public static void login() {
 		int checkId = 0;

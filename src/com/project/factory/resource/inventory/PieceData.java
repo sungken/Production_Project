@@ -7,10 +7,17 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import com.project.factory.resource.Path;
-
+/**
+ * 부품데이터 관리 클래스이다.
+ */
 public class PieceData {
+	/**
+	 * 부품정보를 담는 ArrayLIst이다.
+	 */
 	public static ArrayList<Piece> pieceList = new ArrayList<Piece>();
-
+	/**
+	 * txt파일의 부품정보 데이터를 ArrayList에 담는 메소드이다.
+	 */
 	public static void pieceLoad() {
 		try {
 
@@ -34,7 +41,9 @@ public class PieceData {
 		}
 
 	}
-
+	/**
+	 * 부품ArrayList의 내용을 txt파일에 담는 클래스이다.
+	 */
 	public static void PieceSave() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.PIECEINVENTORY));

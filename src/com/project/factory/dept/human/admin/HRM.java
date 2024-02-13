@@ -14,6 +14,9 @@ import com.project.factory.resource.NewMemberTempData;
 import com.project.factory.view.MainView;
 import com.project.factory.view.dept.HumanView;
 
+/** 대리점을 제외한 모든 멤버의 인사관리 기능을 하는 클래스이다.
+ * 
+ */
 public class HRM {
 
 	private static String employeeId;
@@ -24,6 +27,9 @@ public class HRM {
 		hrmSelect();
 	}
 
+	/** 인사관리 메뉴를 선택하고 해당 기능을 수행하는 메서드이다.
+	 * 
+	 */
 	public static void hrmSelect() {
 		Scanner scan = new Scanner(System.in);
 
@@ -65,6 +71,9 @@ public class HRM {
 		}
 	}
 
+	/** 신입사원에게 사원번호를 부여하는 메서드이다.
+	 * 
+	 */
 	private static void addUser() {
 		
 		newMemberList();
@@ -85,6 +94,10 @@ public class HRM {
 			hrd();
 		}
 	}
+	
+	/** 멤버리스트에 있는 사원을 퇴사 시키는 메서드이다.
+	 * 
+	 */
 
 	private static void deleteUser() {
 		MainView.title("퇴사 관리");
@@ -107,11 +120,14 @@ public class HRM {
 				MainView.singleLine();
 				System.out.println();
 				System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s","[사원번호]", "[이름]", "[전화번호]", "[생년월일]", "[주소]","[부서]");
+
                 System.out.println();
 
                 System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\n", member.getId(), member.getName(), member.getBirth(),
                         member.getPhoneNum(), member.getAddress(),member.getDept());
+                System.out.println();
 				MainView.singleLine();
+
 
 				System.out.println();
 				System.out.print("퇴사 처리하시겠습니까? (Y/N): ");
@@ -153,6 +169,9 @@ public class HRM {
 		}
 	}
 
+	/** 사원 조회 기능을 수행하는 메서드이다.
+	 * 
+	 */
 	private static void searchUser() {
 		MainView.title("사원 조회");
 		System.out.println();
@@ -179,11 +198,13 @@ public class HRM {
 				if (!found) {
 					MainView.singleLine();
 					System.out.println();
+
 					System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\n","[사원번호]", "[이름]", "[전화번호]", "[생년월일]", "[주소]","[부서]");
 				}
 
 				 System.out.printf("%-8s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\n", member.getId(), member.getName(), member.getBirth(),
 	                        member.getPhoneNum(), member.getAddress(),member.getDept());
+
 
 				found = true; // 일치하는 회원이 있음을 표시
 			}
@@ -201,6 +222,9 @@ public class HRM {
 
 	}
 
+	/** 신입사원의 부서에 따라 사원번호를 생성해주는 메서드이다.
+	 * 
+	 */
 	private static void createUserId() {
 		Iterator<NewMembers> iterator = NewMemberData.NewMemberList.iterator();
 		boolean allAssigned = true;
@@ -246,14 +270,20 @@ public class HRM {
 		MainView.pause();
 	}
 
+	/** 신입사원 리스트를 출력하는 메서드이다.
+	 * 
+	 */
 	private static void newMemberList() {
+
 		MainView.title("입사 관리");
 
 		System.out.println();
 		System.out.println("신입사원 리스트");
 
+
 		System.out.printf("%-8s\t%-10s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\t%-4s", "[사원번호]", "[비밀번호]", "[이름]", "[전화번호]",
 				"[생년월일]", "[주소]", "[부서]", "[직급]");
+
 		System.out.println();
 
 		Iterator<NewMembers> iterator = NewMemberData.NewMemberList.iterator();
@@ -262,9 +292,11 @@ public class HRM {
 		while (iterator.hasNext()) {
 			NewMembers newMember = iterator.next();
 
+
 			System.out.printf("%-8s\t%-10s\t%-8s\t%-18s\t%-8s\t%-25s\t%-5s\t%-4s", newMember.getId(), newMember.getPw(),
 					newMember.getName(), newMember.getPhoneNum(), newMember.getBirth(), newMember.getAddress(),
 					newMember.getDept(), newMember.getLevel());
+
 			System.out.println();
 
 			if (!"0".equals(newMember.getId())) {

@@ -7,7 +7,9 @@ import com.project.factory.resource.inventory.ModelInfoData;
 import com.project.factory.resource.inventory.Piece;
 import com.project.factory.resource.inventory.PieceData;
 
-
+/**
+ * 생산 시스템이 실행되는 클래스이다.
+ */
 public class ProductThread extends Thread {
 
 	private boolean stopRequested;
@@ -52,7 +54,9 @@ public class ProductThread extends Thread {
 	int K7count = 0;
 	int K9count = 0;
 
-
+	/**
+	 * 생샌 시스템 구현부 메소드이다.
+	 */
 	@Override
 	public void run() {
 		terminate = true;

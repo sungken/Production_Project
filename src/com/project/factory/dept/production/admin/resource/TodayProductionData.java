@@ -9,10 +9,14 @@ import java.util.ArrayList;
 import com.project.factory.dept.production.admin.ProductionManagement;
 import com.project.factory.resource.Path;
 import com.project.factory.view.dept.ProductionView;
-
+/**
+ * 하루 생산량 데이터 관리 클래스
+ */
 public class TodayProductionData {
 	public static ArrayList<TodayProduction> todayProductionList = new ArrayList<TodayProduction>();
-
+	/**
+	 * txt파일에 있는 하루 생산량을 ArrayList에 담는 메소드이다.
+	 */
 	public static void todayInventoryLoad() {
 		try {
 
@@ -36,7 +40,9 @@ public class TodayProductionData {
 		}
 
 	}
-
+	/**
+	 * 하루 생산량을 txt파일에 저장하는 메소드이다.
+	 */
 	public static void todayInventorySave() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(Path.TODAYPRODUCTION));

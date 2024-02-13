@@ -1,11 +1,19 @@
 package com.project.factory.dept.production.admin.resource;
 
+/**
+ * 하루 생산량 데이터 클래스이다.
+ */
 public class TodayProduction {
 	private int todayProductNum;
 	private int todayDefectiveNum;
 	private String model;
 	
-	
+	/**
+	 * 하루 생산량 생성자이다.
+	 * @param todayProductNum	하루 생산량
+	 * @param todayDefectiveNum 하루 불량품 개수
+	 * @param model	모델이름
+	 */
 	public TodayProduction(int todayProductNum, int todayDefectiveNum, String model) {
 		this.todayProductNum = todayProductNum;
 		this.todayDefectiveNum = todayDefectiveNum;

@@ -7,7 +7,7 @@ import com.project.factory.view.MainView;
 import com.project.factory.view.dept.ProductionView;
 
 /**
- * 생산 목표 입력 클래스
+ * 생산 목표를 입력받는 클래스이다.
  */
 public class SetProductionTarget {
 	public static void setproductionTarget() {
