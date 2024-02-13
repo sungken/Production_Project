@@ -1,7 +1,9 @@
 package com.project.factory.member;
 
 import com.project.factory.view.MainView;
-
+/**
+ * 로그아웃 클래스이다.
+ */
 public class Logout {
 	
 	public static void logout(){

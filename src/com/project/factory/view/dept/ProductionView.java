@@ -46,7 +46,7 @@ public class ProductionView {
 	
 
 	/**
-	 * 불량품 개수 입력 View
+	 * 불량품 개수 입력 View이다.
 	 */
 	public static void viewModel() {
 		MainView.title("불량품 입력");
